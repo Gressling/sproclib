@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -7,18 +5,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Functions Legacy Package &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=70140151" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <script src="../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -37,6 +39,9 @@
           <a href="../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -159,7 +164,7 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}y(t) = \\mathcal{L}^{-1}\\left\\{\\frac{G(s)}{s}\\right\\}\end{split}\]</div>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">step_response</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">step_response</span>
 
 <span class="c1"># Define transfer function (FOPDT)</span>
 <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]</span>  <span class="c1"># K = 2.0</span>
@@ -184,7 +189,7 @@
 <li><p><strong>Phase:</strong> <span class="math notranslate nohighlight">\(\\angle G(j\\omega)\)</span> in degrees</p></li>
 </ul>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">bode_plot</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">bode_plot</span>
 
 <span class="c1"># Transfer function coefficients</span>
 <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]</span>
@@ -210,8 +215,8 @@
 - <span class="math notranslate nohighlight">\(\\tau\)</span> = Time constant
 - <span class="math notranslate nohighlight">\(\\theta\)</span> = Dead time</p>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">fit_fopdt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">fit_fopdt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Generate synthetic data</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -241,7 +246,7 @@
 <li><p><strong>IMC</strong> - Internal Model Control tuning</p></li>
 </ol>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">tune_pid</span>
 
 <span class="c1"># Process model parameters (FOPDT)</span>
 <span class="n">process_params</span> <span class="o">=</span> <span class="p">{</span>
@@ -268,8 +273,8 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}A = \\left.\\frac{\\partial f}{\\partial x}\\right|_{x_0,u_0}, \\quad B = \\left.\\frac{\\partial f}{\\partial u}\\right|_{x_0,u_0}\end{split}\]</div>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">linearize</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">linearize</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Tank</span>
 
 <span class="c1"># Create nonlinear tank model</span>
 <span class="n">tank</span> <span class="o">=</span> <span class="n">Tank</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
@@ -293,9 +298,9 @@
 <h3>Process Simulation<a class="headerlink" href="#process-simulation" title="Link to this heading"></a></h3>
 <p>Simulate process dynamics with time-varying inputs.</p>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">simulate_process</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">simulate_process</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Create CSTR model</span>
 <span class="n">cstr</span> <span class="o">=</span> <span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">dHr</span><span class="o">=-</span><span class="mi">50000</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">Cp</span><span class="o">=</span><span class="mf">4.18</span><span class="p">)</span>
@@ -340,7 +345,7 @@
 <li><p><strong>Phase Margin</strong> - Additional phase lag before instability</p></li>
 </ul>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">stability_analysis</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">stability_analysis</span>
 
 <span class="c1"># Transfer function for analysis</span>
 <span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]</span>
@@ -363,10 +368,10 @@
 <h3>Process Optimization<a class="headerlink" href="#process-optimization" title="Link to this heading"></a></h3>
 <p>Optimize process operating conditions for maximum profit or minimum cost.</p>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_operation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">optimize_operation</span>
 
 <span class="c1"># Define objective function (profit)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">profit_function</span><span class="p">(</span><span class="n">variables</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">profit_function</span><span class="p">(</span><span class="n">variables</span><span class="p">):</span>
     <span class="n">temperature</span><span class="p">,</span> <span class="n">flow_rate</span> <span class="o">=</span> <span class="n">variables</span>
     <span class="n">revenue</span> <span class="o">=</span> <span class="n">production_rate</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">)</span> <span class="o">*</span> <span class="n">product_price</span>
     <span class="n">energy_cost</span> <span class="o">=</span> <span class="n">energy_consumption</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span> <span class="o">*</span> <span class="n">energy_price</span>
@@ -399,7 +404,7 @@
 <h3>Disturbance Rejection<a class="headerlink" href="#disturbance-rejection" title="Link to this heading"></a></h3>
 <p>Analyze and design for disturbance rejection performance.</p>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">disturbance_rejection</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">disturbance_rejection</span>
 
 <span class="c1"># Plant and controller transfer functions</span>
 <span class="n">plant_tf</span> <span class="o">=</span> <span class="p">([</span><span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>      <span class="c1"># Process</span>
@@ -426,8 +431,8 @@
 \[\begin{split}\\min_{\\Delta u} \\sum_{i=1}^{N_p} ||y_{k+i} - r_{k+i}||_Q^2 + \\sum_{i=0}^{N_c-1} ||\\Delta u_{k+i}||_R^2\end{split}\]</div>
 <p>Subject to constraints on inputs, outputs, and input moves.</p>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">model_predictive_control</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functions</span> <span class="kn">import</span> <span class="n">model_predictive_control</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># System matrices (discrete-time state space)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]])</span>

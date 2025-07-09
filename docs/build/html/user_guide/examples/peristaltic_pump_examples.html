@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../">
 <head>
@@ -7,17 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peristaltic Pump Examples &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=70140151" />
 
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -36,6 +38,9 @@
           <a href="../../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -165,8 +170,8 @@
 <h2>Basic Peristaltic Pump Operation<a class="headerlink" href="#basic-peristaltic-pump-operation" title="Link to this heading"></a></h2>
 <section id="example-1-basic-pump-modeling">
 <h3>Example 1: Basic Pump Modeling<a class="headerlink" href="#example-1-basic-pump-modeling" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PeristalticFlow</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transport.continuous.liquid</span> <span class="kn">import</span> <span class="n">PeristalticFlow</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Create a peristaltic pump model</span>
 <span class="n">pump</span> <span class="o">=</span> <span class="n">PeristalticFlow</span><span class="p">(</span>
@@ -196,7 +201,7 @@
 </section>
 <section id="example-2-speed-control-and-flow-rate">
 <h3>Example 2: Speed Control and Flow Rate<a class="headerlink" href="#example-2-speed-control-and-flow-rate" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Analyze flow rate vs pump speed</span>
 <span class="n">speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># RPM</span>
@@ -222,17 +227,17 @@
 <h2>Advanced Pump Control<a class="headerlink" href="#advanced-pump-control" title="Link to this heading"></a></h2>
 <section id="example-3-pid-flow-control">
 <h3>Example 3: PID Flow Control<a class="headerlink" href="#example-3-pid-flow-control" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">controller.pid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">controller.pid</span> <span class="kn">import</span> <span class="n">PIDController</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">PeristalticPumpController</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump</span><span class="p">,</span> <span class="n">target_flow</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PeristalticPumpController</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump</span><span class="p">,</span> <span class="n">target_flow</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pump</span> <span class="o">=</span> <span class="n">pump</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target_flow</span> <span class="o">=</span> <span class="n">target_flow</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pid</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">kp</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">ki</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">kd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">current_speed</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># Initial speed</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measured_flow</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measured_flow</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
         <span class="n">error</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_flow</span> <span class="o">-</span> <span class="n">measured_flow</span>
         <span class="n">speed_adjustment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pid</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 
@@ -287,8 +292,8 @@
 </section>
 <section id="example-4-multi-pump-system">
 <h3>Example 4: Multi-Pump System<a class="headerlink" href="#example-4-multi-pump-system" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MultiPumpSystem</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_pumps</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MultiPumpSystem</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_pumps</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pumps</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_pumps</span><span class="p">):</span>
             <span class="n">pump</span> <span class="o">=</span> <span class="n">PeristalticFlow</span><span class="p">(</span>
@@ -298,14 +303,14 @@
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">pumps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pump</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_flow_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow_rates</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">set_flow_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flow_rates</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set individual flow rates for each pump&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">pump</span><span class="p">,</span> <span class="n">flow_rate</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pumps</span><span class="p">,</span> <span class="n">flow_rates</span><span class="p">):</span>
             <span class="c1"># Calculate required speed for target flow rate</span>
             <span class="n">required_speed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_required_speed</span><span class="p">(</span><span class="n">pump</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">)</span>
             <span class="n">pump</span><span class="o">.</span><span class="n">set_operating_conditions</span><span class="p">(</span><span class="n">rotation_speed</span><span class="o">=</span><span class="n">required_speed</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_required_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump</span><span class="p">,</span> <span class="n">target_flow</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate_required_speed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump</span><span class="p">,</span> <span class="n">target_flow</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate required speed for target flow rate&quot;&quot;&quot;</span>
         <span class="c1"># Simplified calculation (would need iterative solution in practice)</span>
         <span class="n">base_speed</span> <span class="o">=</span> <span class="mi">100</span>
@@ -317,7 +322,7 @@
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">required_speed</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">base_speed</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_total_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_total_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate total system flow rate&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">pump</span><span class="o">.</span><span class="n">calculate_actual_flow</span><span class="p">()</span> <span class="k">for</span> <span class="n">pump</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pumps</span><span class="p">)</span>
 
@@ -336,13 +341,13 @@
 <h2>Pump Maintenance and Optimization<a class="headerlink" href="#pump-maintenance-and-optimization" title="Link to this heading"></a></h2>
 <section id="example-5-tube-wear-analysis">
 <h3>Example 5: Tube Wear Analysis<a class="headerlink" href="#example-5-tube-wear-analysis" title="Link to this heading"></a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TubeWearModel</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_diameter</span><span class="p">,</span> <span class="n">wear_rate</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TubeWearModel</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_diameter</span><span class="p">,</span> <span class="n">wear_rate</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">initial_diameter</span> <span class="o">=</span> <span class="n">initial_diameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wear_rate</span> <span class="o">=</span> <span class="n">wear_rate</span>  <span class="c1"># m per cycle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cycles</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_wear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump_speed</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">update_wear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump_speed</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update tube wear based on pump operation&quot;&quot;&quot;</span>
         <span class="n">cycles_per_second</span> <span class="o">=</span> <span class="n">pump_speed</span> <span class="o">/</span> <span class="mi">60</span>
         <span class="n">new_cycles</span> <span class="o">=</span> <span class="n">cycles_per_second</span> <span class="o">*</span> <span class="n">duration</span>
@@ -353,7 +358,7 @@
         <span class="n">current_diameter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_diameter</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">wear_depth</span>
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">current_diameter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_diameter</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">)</span>  <span class="c1"># Minimum diameter</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">predict_lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump_speed</span><span class="p">,</span> <span class="n">failure_diameter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">predict_lifetime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pump_speed</span><span class="p">,</span> <span class="n">failure_diameter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict tube lifetime at given operating conditions&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">failure_diameter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">failure_diameter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_diameter</span> <span class="o">*</span> <span class="mf">0.7</span>

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -7,18 +5,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Models Legacy Package (Deprecated) &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=70140151" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <script src="../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -37,6 +39,9 @@
           <a href="../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -168,18 +173,18 @@
 <section id="quick-migration-example">
 <h3>Quick Migration Example<a class="headerlink" href="#quick-migration-example" title="Link to this heading"></a></h3>
 <p><strong>Old (Deprecated):</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span><span class="p">,</span> <span class="n">CSTR</span><span class="p">,</span> <span class="n">LinearApproximation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Tank</span><span class="p">,</span> <span class="n">CSTR</span><span class="p">,</span> <span class="n">LinearApproximation</span>
 </pre></div>
 </div>
 <p><strong>New (Recommended):</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unit.tank.Tank</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">unit.reactor.cstr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">unit.utilities.LinearApproximation</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearApproximation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unit.tank.Tank</span> <span class="kn">import</span> <span class="n">Tank</span>
+<span class="kn">from</span> <span class="nn">unit.reactor.cstr</span> <span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">from</span> <span class="nn">unit.utilities.LinearApproximation</span> <span class="kn">import</span> <span class="n">LinearApproximation</span>
 </pre></div>
 </div>
 <p>For complete documentation of all available units, see <a class="reference internal" href="units_package.html"><span class="doc">Units Operations Package</span></a>.</p>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Tank</span>
 
 <span class="c1"># Create tank model</span>
 <span class="n">tank</span> <span class="o">=</span> <span class="n">Tank</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Storage Tank&quot;</span><span class="p">)</span>
@@ -211,7 +216,7 @@
 - <span class="math notranslate nohighlight">\(E\)</span> = Activation energy (K)
 - <span class="math notranslate nohighlight">\(\\Delta H_r\)</span> = Heat of reaction (J/mol)</p>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">CSTR</span>
 
 <span class="c1"># Create CSTR model</span>
 <span class="n">cstr</span> <span class="o">=</span> <span class="n">CSTR</span><span class="p">(</span>
@@ -259,7 +264,7 @@
 <div class="math notranslate nohighlight">
 \[\begin{split}A = \\left.\\frac{\\partial f}{\\partial x}\\right|_{x_0,u_0}, \\quad B = \\left.\\frac{\\partial f}{\\partial u}\\right|_{x_0,u_0}\end{split}\]</div>
 <p>Example Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span><span class="p">,</span> <span class="n">LinearApproximation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Tank</span><span class="p">,</span> <span class="n">LinearApproximation</span>
 
 <span class="c1"># Create nonlinear tank model</span>
 <span class="n">tank</span> <span class="o">=</span> <span class="n">Tank</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>

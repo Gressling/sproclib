@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -7,17 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Examples &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=70140151" />
 
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=8d563738"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/semantic_examples.js?v=29722ac0"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -36,6 +38,9 @@
           <a href="index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -242,19 +247,19 @@ using familiar syntax from machine learning frameworks:</p>
 <span class="sd">features of the SPROCLIB semantic plant design API.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.plant</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalPlant</span><span class="p">,</span> <span class="n">PlantConfiguration</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.pump.centrifugal</span><span class="w"> </span><span class="kn">import</span> <span class="n">CentrifugalPump</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.reactor.cstr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.distillation.column</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinaryDistillationColumn</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.heat_exchanger</span><span class="w"> </span><span class="kn">import</span> <span class="n">HeatExchanger</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.valve.control</span><span class="w"> </span><span class="kn">import</span> <span class="n">ControlValve</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.controller.pid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.plant</span> <span class="kn">import</span> <span class="n">ChemicalPlant</span><span class="p">,</span> <span class="n">PlantConfiguration</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.pump.centrifugal</span> <span class="kn">import</span> <span class="n">CentrifugalPump</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.reactor.cstr</span> <span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.distillation.column</span> <span class="kn">import</span> <span class="n">BinaryDistillationColumn</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.heat_exchanger</span> <span class="kn">import</span> <span class="n">HeatExchanger</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.valve.control</span> <span class="kn">import</span> <span class="n">ControlValve</span>
+<span class="kn">from</span> <span class="nn">process_control.transport.continuous.liquid</span> <span class="kn">import</span> <span class="n">PipeFlow</span>
+<span class="kn">from</span> <span class="nn">process_control.controller.pid</span> <span class="kn">import</span> <span class="n">PIDController</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">basic_plant_example</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">basic_plant_example</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Basic plant example demonstrating fundamental concepts.</span>
 <span class="sd">    </span>
@@ -344,19 +349,19 @@ using familiar syntax from machine learning frameworks:</p>
 <span class="sd">features of the SPROCLIB semantic plant design API.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.plant</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalPlant</span><span class="p">,</span> <span class="n">PlantConfiguration</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.pump.centrifugal</span><span class="w"> </span><span class="kn">import</span> <span class="n">CentrifugalPump</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.reactor.cstr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.distillation.column</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinaryDistillationColumn</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.heat_exchanger</span><span class="w"> </span><span class="kn">import</span> <span class="n">HeatExchanger</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.valve.control</span><span class="w"> </span><span class="kn">import</span> <span class="n">ControlValve</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.controller.pid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.plant</span> <span class="kn">import</span> <span class="n">ChemicalPlant</span><span class="p">,</span> <span class="n">PlantConfiguration</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.pump.centrifugal</span> <span class="kn">import</span> <span class="n">CentrifugalPump</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.reactor.cstr</span> <span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.distillation.column</span> <span class="kn">import</span> <span class="n">BinaryDistillationColumn</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.heat_exchanger</span> <span class="kn">import</span> <span class="n">HeatExchanger</span>
+<span class="kn">from</span> <span class="nn">process_control.unit.valve.control</span> <span class="kn">import</span> <span class="n">ControlValve</span>
+<span class="kn">from</span> <span class="nn">process_control.transport.continuous.liquid</span> <span class="kn">import</span> <span class="n">PipeFlow</span>
+<span class="kn">from</span> <span class="nn">process_control.controller.pid</span> <span class="kn">import</span> <span class="n">PIDController</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">basic_plant_example</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">basic_plant_example</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Basic plant example demonstrating fundamental concepts.</span>
 <span class="sd">    </span>
@@ -454,9 +459,9 @@ using familiar syntax from machine learning frameworks:</p>
 <p>Frequency domain analysis of a process control system.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">Frequency Domain Analysis</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span><span class="p">,</span> <span class="n">PIDController</span>
- <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
- <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">TransferFunction</span><span class="p">,</span> <span class="n">PIDController</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
  <span class="c1"># Create process transfer function (FOPDT)</span>
  <span class="n">process</span> <span class="o">=</span> <span class="n">TransferFunction</span><span class="o">.</span><span class="n">first_order_plus_dead_time</span><span class="p">(</span>
@@ -614,14 +619,14 @@ using familiar syntax from machine learning frameworks:</p>
 <p>Optimize a batch reactor operation for maximum profit.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Batch Process Optimization</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimization</span><span class="p">,</span> <span class="n">StateTaskNetwork</span>
- <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
- <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
- <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
- <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">Optimization</span><span class="p">,</span> <span class="n">StateTaskNetwork</span>
+ <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ <span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+ <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+ <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
  <span class="c1"># Define batch reactor model</span>
- <span class="k">def</span><span class="w"> </span><span class="nf">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+ <span class="k">def</span> <span class="nf">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
      \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
      <span class="n">Batch</span> <span class="n">reactor</span><span class="p">:</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span> <span class="o">-&gt;</span> <span class="n">C</span>
      <span class="n">Temperature</span><span class="o">-</span><span class="n">dependent</span> <span class="n">kinetics</span>
@@ -654,7 +659,7 @@ using familiar syntax from machine learning frameworks:</p>
      <span class="s1">&#39;T_ambient&#39;</span><span class="p">:</span> <span class="mi">300</span>  <span class="c1"># Ambient temperature (K)</span>
  <span class="p">}</span>
 
- <span class="k">def</span><span class="w"> </span><span class="nf">simulate_batch</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+ <span class="k">def</span> <span class="nf">simulate_batch</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
      \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
      <span class="n">Simulate</span> <span class="n">batch</span> <span class="n">reactor</span> <span class="k">with</span> <span class="n">temperature</span> <span class="n">profile</span>
      <span class="n">T_profile_params</span><span class="p">:</span> <span class="p">[</span><span class="n">T_initial</span><span class="p">,</span> <span class="n">T_final</span><span class="p">,</span> <span class="n">ramp_time</span><span class="p">]</span>
@@ -662,14 +667,14 @@ using familiar syntax from machine learning frameworks:</p>
      <span class="n">T_initial</span><span class="p">,</span> <span class="n">T_final</span><span class="p">,</span> <span class="n">ramp_time</span> <span class="o">=</span> <span class="n">T_profile_params</span>
 
      <span class="c1"># Define temperature profile</span>
-     <span class="k">def</span><span class="w"> </span><span class="nf">temperature_profile</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+     <span class="k">def</span> <span class="nf">temperature_profile</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
          <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">ramp_time</span><span class="p">:</span>
              <span class="k">return</span> <span class="n">T_initial</span> <span class="o">+</span> <span class="p">(</span><span class="n">T_final</span> <span class="o">-</span> <span class="n">T_initial</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">ramp_time</span>
          <span class="k">else</span><span class="p">:</span>
              <span class="k">return</span> <span class="n">T_final</span>
 
      <span class="c1"># Modified dynamics function with temperature profile</span>
-     <span class="k">def</span><span class="w"> </span><span class="nf">dynamics_with_profile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+     <span class="k">def</span> <span class="nf">dynamics_with_profile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
          <span class="n">T_setpoint</span> <span class="o">=</span> <span class="n">temperature_profile</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
          <span class="c1"># For simplicity, assume perfect temperature control</span>
          <span class="n">modified_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">T_setpoint</span><span class="p">]</span>
@@ -738,7 +743,7 @@ using familiar syntax from machine learning frameworks:</p>
      <span class="k">return</span> <span class="n">final_state</span>
 
  <span class="c1"># Define economic objective</span>
- <span class="k">def</span><span class="w"> </span><span class="nf">batch_profit</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">):</span>
+ <span class="k">def</span> <span class="nf">batch_profit</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">):</span>
      \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Calculate batch profit for given temperature profile</span><span class="se">\&quot;\&quot;\&quot;</span>
      <span class="k">try</span><span class="p">:</span>
          <span class="n">final_state</span> <span class="o">=</span> <span class="n">simulate_batch</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">)</span>

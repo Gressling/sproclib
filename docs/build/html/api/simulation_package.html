@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -7,17 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulation Package &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=70140151" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +38,9 @@
           <a href="../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -132,7 +137,7 @@ with integrated control loops, disturbances, and performance monitoring.</p>
 License: MIT License</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="simulation.process_simulation.ProcessSimulation">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">simulation.process_simulation.</span></span><span class="sig-name descname"><span class="pre">ProcessSimulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Process</span> <span class="pre">Simulation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">simulation.process_simulation.</span></span><span class="sig-name descname"><span class="pre">ProcessSimulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Process</span> <span class="pre">Simulation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Dynamic process simulation with control loops.</p>
 <dl class="py method">
@@ -152,7 +157,7 @@ License: MIT License</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="simulation.process_simulation.ProcessSimulation.add_disturbance">
-<span class="sig-name descname"><span class="pre">add_disturbance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">disturbance_func:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479155744'&gt;],</span> <span class="pre">name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'Disturbance'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation.add_disturbance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation.add_disturbance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_disturbance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">disturbance_func:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2769525783824'&gt;],</span> <span class="pre">name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'Disturbance'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation.add_disturbance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation.add_disturbance" title="Link to this definition"></a></dt>
 <dd><p>Add disturbance to simulation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -166,7 +171,7 @@ License: MIT License</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="simulation.process_simulation.ProcessSimulation.set_setpoint_profile">
-<span class="sig-name descname"><span class="pre">set_setpoint_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">setpoint_func:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479156752'&gt;]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation.set_setpoint_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation.set_setpoint_profile" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">set_setpoint_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">setpoint_func:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2769525776192'&gt;]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation.set_setpoint_profile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation.set_setpoint_profile" title="Link to this definition"></a></dt>
 <dd><p>Set setpoint profile for closed-loop simulation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -177,7 +182,7 @@ License: MIT License</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="simulation.process_simulation.ProcessSimulation.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">t_span:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">float],</span> <span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479155072'&gt;,</span> <span class="pre">u_profile:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479154736'&gt;]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">solver:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'RK45',</span> <span class="pre">rtol:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-06,</span> <span class="pre">atol:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-09,</span> <span class="pre">max_step:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479154064'&gt;]</span></span></span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation.run" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">t_span:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">float],</span> <span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2769525592416'&gt;,</span> <span class="pre">u_profile:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2769525874448'&gt;]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">solver:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'RK45',</span> <span class="pre">rtol:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-06,</span> <span class="pre">atol:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-09,</span> <span class="pre">max_step:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2769525820784'&gt;]</span></span></span><a class="reference internal" href="../_modules/simulation/process_simulation.html#ProcessSimulation.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#simulation.process_simulation.ProcessSimulation.run" title="Link to this definition"></a></dt>
 <dd><p>Run simulation with specified conditions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -246,11 +251,11 @@ License: MIT License</p>
 <section id="quick-usage">
 <h2>Quick Usage<a class="headerlink" href="#quick-usage" title="Link to this heading"></a></h2>
 <p>Basic Process Simulation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">simulation.process_simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessSimulation</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">simulation.process_simulation</span> <span class="kn">import</span> <span class="n">ProcessSimulation</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Define a simple process model</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">tank_model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">tank_model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
     <span class="c1"># Tank dynamics: dh/dt = (Fin - Fout)/A</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">Fin</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -261,7 +266,7 @@ License: MIT License</p>
 <span class="n">sim</span> <span class="o">=</span> <span class="n">ProcessSimulation</span><span class="p">(</span><span class="n">tank_model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tank Simulation&quot;</span><span class="p">)</span>
 
 <span class="c1"># Define input profile</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">input_profile</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">input_profile</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">]</span>  <span class="c1"># Constant inlet flow</span>
 
 <span class="c1"># Run simulation</span>

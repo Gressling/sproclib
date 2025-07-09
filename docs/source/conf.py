@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.abspath('../../'))
 sys.path.insert(0, os.path.abspath('../../../'))
 
 # Mock external dependencies that aren't available during documentation build
+import sys
 from unittest.mock import MagicMock
 
 class Mock(MagicMock):
@@ -18,11 +19,19 @@ class Mock(MagicMock):
     def __getattr__(cls, name):
         return MagicMock()
 
+# Comprehensive mock for all external dependencies
 MOCK_MODULES = [
-    'numpy', 'scipy', 'matplotlib', 'matplotlib.pyplot', 'pandas',
-    'cvxpy', 'pyomo', 'control', 'jupyter'
+    'numpy', 'np', 'scipy', 'scipy.optimize', 'scipy.integrate', 'scipy.linalg',
+    'matplotlib', 'matplotlib.pyplot', 'plt', 'pandas', 'pd',
+    'cvxpy', 'pyomo', 'pyomo.environ', 'control', 'jupyter',
+    'IPython', 'ipywidgets', 'plotly', 'bokeh', 'seaborn'
 ]
-sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
+for mod_name in MOCK_MODULES:
+    sys.modules[mod_name] = Mock()
+
+# Also add to autodoc_mock_imports for additional safety
+autodoc_mock_imports = MOCK_MODULES
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -45,8 +54,7 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.intersphinx',
     'sphinx.ext.mathjax',
-    # 'sphinx_autodoc_typehints',  # Disabled due to mock conflicts
-    # 'myst_parser'  # Temporarily disabled to resolve parser issues
+    'sphinx.ext.todo',
 ]
 
 templates_path = ['_templates']
@@ -61,11 +69,6 @@ autodoc_default_options = {
     'exclude-members': '__weakref__',
     'show-inheritance': True
 }
-
-# Suppress import warnings during doc build
-autodoc_mock_imports = [
-    'numpy', 'scipy', 'matplotlib', 'pandas', 'cvxpy', 'pyomo', 'control', 'jupyter'
-]
 
 autosummary_generate = True
 autosummary_generate_overwrite = True
@@ -123,23 +126,23 @@ html_context = {
 html_title = 'SPROCLIB - The TensorFlow/Keras for Chemical Engineering'
 html_short_title = 'SPROCLIB Semantic API'
 
-# Custom sidebar
-html_sidebars = {
-    '**': [
-        'about.html',
-        'navigation.html',
-        'relations.html',
-        'searchbox.html',
-        'donate.html',
-    ]
-}
+# Custom sidebar - simplified
+# html_sidebars = {
+#     '**': [
+#         'about.html',
+#         'navigation.html', 
+#         'relations.html',
+#         'searchbox.html',
+#         'donate.html',
+#     ]
+# }
 
 # Custom CSS for semantic theme
 html_css_files = [
     'custom.css',
 ]
 
-# Add JavaScript for interactive examples
+# Add JavaScript for interactive examples  
 html_js_files = [
     'semantic_examples.js',
 ]

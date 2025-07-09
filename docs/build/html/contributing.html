@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -7,17 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contributing to the Standard Process Control Library &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=70140151" />
 
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=8d563738"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/semantic_examples.js?v=29722ac0"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,6 +37,9 @@
           <a href="index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -194,19 +199,19 @@
 - Statistical analysis tools
 - Process monitoring and fault detection</p>
 <p><strong>Example Implementation</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessModel</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">process_control.models</span> <span class="kn">import</span> <span class="n">ProcessModel</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">HeatExchanger</span><span class="p">(</span><span class="n">ProcessModel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">HeatExchanger</span><span class="p">(</span><span class="n">ProcessModel</span><span class="p">):</span>
     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Counter-current heat exchanger model.</span><span class="se">\&quot;\&quot;\&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">UA</span><span class="p">,</span> <span class="n">mcp_hot</span><span class="p">,</span> <span class="n">mcp_cold</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;HeatExchanger&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">UA</span><span class="p">,</span> <span class="n">mcp_hot</span><span class="p">,</span> <span class="n">mcp_cold</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;HeatExchanger&quot;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">UA</span> <span class="o">=</span> <span class="n">UA</span>        <span class="c1"># Heat transfer coefficient</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mcp_hot</span> <span class="o">=</span> <span class="n">mcp_hot</span>   <span class="c1"># Hot side heat capacity rate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mcp_cold</span> <span class="o">=</span> <span class="n">mcp_cold</span> <span class="c1"># Cold side heat capacity rate</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
         \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Calculate state derivatives.</span><span class="se">\&quot;\&quot;\&quot;</span>
         <span class="n">T_hot_out</span><span class="p">,</span> <span class="n">T_cold_out</span> <span class="o">=</span> <span class="n">state</span>
         <span class="n">T_hot_in</span><span class="p">,</span> <span class="n">T_cold_in</span><span class="p">,</span> <span class="n">flow_hot</span><span class="p">,</span> <span class="n">flow_cold</span> <span class="o">=</span> <span class="n">inputs</span>
@@ -265,7 +270,7 @@
 - Write comprehensive docstrings (Google style)
 - Include units in variable names when applicable</p>
 <p><strong>Example Style</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calculate_settling_time</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_settling_time</span><span class="p">(</span>
     <span class="n">response</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">time</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">final_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -299,7 +304,7 @@
 <section id="documentation-style">
 <h3>Documentation Style<a class="headerlink" href="#documentation-style" title="Link to this heading"></a></h3>
 <p><strong>Docstring Format (Google Style)</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">tune_pid_controller</span><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tune_pid_controller</span><span class="p">(</span>
     <span class="n">process_model</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
     <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;ziegler_nichols&#39;</span><span class="p">,</span>
     <span class="n">controller_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;PID&#39;</span>
@@ -349,7 +354,7 @@
 <section id="testing-guidelines">
 <h3>Testing Guidelines<a class="headerlink" href="#testing-guidelines" title="Link to this heading"></a></h3>
 <p><strong>Test Structure</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_pid_controller_basic_functionality</span><span class="p">():</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_pid_controller_basic_functionality</span><span class="p">():</span>
     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Test basic PID controller operation.</span><span class="se">\&quot;\&quot;\&quot;</span>
     <span class="c1"># Arrange</span>
     <span class="n">controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="n">Kp</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -381,7 +386,7 @@
 </li>
 <li><p><strong>Make your changes</strong> following the guidelines above</p></li>
 <li><p><strong>Add tests</strong> for new functionality:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_heat_exchanger_dynamics</span><span class="p">():</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_heat_exchanger_dynamics</span><span class="p">():</span>
     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Test heat exchanger model dynamics.</span><span class="se">\&quot;\&quot;\&quot;</span>
     <span class="c1"># Test implementation</span>
 </pre></div>
@@ -484,7 +489,7 @@
 <section id="example-contributions">
 <h3>Example Contributions<a class="headerlink" href="#example-contributions" title="Link to this heading"></a></h3>
 <p><strong>Simple Contribution - New Tuning Method</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">lambda_tuning</span><span class="p">(</span><span class="n">process_params</span><span class="p">,</span> <span class="n">lambda_factor</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lambda_tuning</span><span class="p">(</span><span class="n">process_params</span><span class="p">,</span> <span class="n">lambda_factor</span><span class="o">=</span><span class="mf">2.0</span><span class="p">):</span>
     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
     <span class="n">Lambda</span> <span class="n">tuning</span> <span class="n">method</span> <span class="k">for</span> <span class="n">PID</span> <span class="n">controllers</span><span class="o">.</span>
 

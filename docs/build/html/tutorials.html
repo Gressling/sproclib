@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -7,17 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tutorials &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=70140151" />
 
   
-      <script src="_static/jquery.js?v=5d32c60e"></script>
-      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=8d563738"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/semantic_examples.js?v=29722ac0"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -34,6 +36,9 @@
           <a href="index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -109,9 +114,9 @@
 <p><strong>Objective:</strong> Design a PID controller for tank level control</p>
 <p><strong>Step 1: Model the Process</strong></p>
 <p>Start by creating a tank model:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span><span class="p">,</span> <span class="n">PIDController</span><span class="p">,</span> <span class="n">simulate_process</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">Tank</span><span class="p">,</span> <span class="n">PIDController</span><span class="p">,</span> <span class="n">simulate_process</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Create tank model (1 m² area, valve coefficient 2.0)</span>
 <span class="n">tank</span> <span class="o">=</span> <span class="n">Tank</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Level Control Tank&quot;</span><span class="p">)</span>
@@ -123,7 +128,7 @@
 </div>
 <p><strong>Step 2: Linearize Around Operating Point</strong></p>
 <p>For controller design, we need a linear model:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearApproximation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">LinearApproximation</span>
 
 <span class="c1"># Create linearization tool</span>
 <span class="n">linear_approx</span> <span class="o">=</span> <span class="n">LinearApproximation</span><span class="p">(</span><span class="n">tank</span><span class="p">)</span>
@@ -137,7 +142,7 @@
 </div>
 <p><strong>Step 3: Design PID Controller</strong></p>
 <p>Use automated tuning to design the controller:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span><span class="p">,</span> <span class="n">fit_fopdt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">tune_pid</span><span class="p">,</span> <span class="n">fit_fopdt</span>
 
 <span class="c1"># First, identify FOPDT parameters from step response</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -223,7 +228,7 @@
 <p><strong>Objective:</strong> Control reactor temperature with cascade control structure</p>
 <p><strong>Step 1: Model the CSTR</strong></p>
 <p>Create a detailed CSTR model:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">CSTR</span>
 
 <span class="c1"># Create CSTR with realistic parameters</span>
 <span class="n">cstr</span> <span class="o">=</span> <span class="n">CSTR</span><span class="p">(</span>
@@ -251,7 +256,7 @@
 </div>
 <p><strong>Step 2: Design Primary (Temperature) Controller</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linearize CSTR around operating point</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearApproximation</span>
+<span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">LinearApproximation</span>
 
 <span class="n">linear_cstr</span> <span class="o">=</span> <span class="n">LinearApproximation</span><span class="p">(</span><span class="n">cstr</span><span class="p">)</span>
 <span class="n">u_nominal</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">285.0</span><span class="p">]</span>  <span class="c1"># [q, CA_in, T_in, T_cool]</span>
@@ -330,7 +335,7 @@
 <p>Optimize a batch reactor operation for maximum profit.</p>
 <p><strong>Objective:</strong> Find optimal temperature profile for batch reactor</p>
 <p><strong>Step 1: Define Batch Reactor Model</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">temperature_profile</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">temperature_profile</span><span class="p">):</span>
     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Batch reactor with temperature-dependent kinetics</span><span class="se">\&quot;\&quot;\&quot;</span>
     <span class="n">CA</span><span class="p">,</span> <span class="n">CB</span> <span class="o">=</span> <span class="n">state</span>
 
@@ -348,10 +353,10 @@
 </pre></div>
 </div>
 <p><strong>Step 2: Set up Optimization Problem</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimization</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">process_control</span> <span class="kn">import</span> <span class="n">Optimization</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">objective_function</span><span class="p">(</span><span class="n">T_profile</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">T_profile</span><span class="p">):</span>
     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Negative profit (for minimization)</span><span class="se">\&quot;\&quot;\&quot;</span>
 
     <span class="c1"># Create temperature profile</span>
@@ -388,7 +393,7 @@
 </pre></div>
 </div>
 <p><strong>Step 3: Solve Optimization</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
 
 <span class="c1"># Initial guess - constant temperature</span>
 <span class="n">initial_temp_profile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span> <span class="o">*</span> <span class="mi">320</span>  <span class="c1"># 320 K</span>
