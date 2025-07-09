@@ -137,15 +137,17 @@ html_short_title = 'SPROCLIB Semantic API'
 #     ]
 # }
 
-# Custom CSS for semantic theme
-html_css_files = [
-    'custom.css',
-]
+# Custom CSS and JS - conditional loading
+html_css_files = []
+html_js_files = []
 
-# Add JavaScript for interactive examples  
-html_js_files = [
-    'semantic_examples.js',
-]
+# Only load custom files if they exist (avoid Read the Docs errors)
+import os
+static_path = os.path.join(os.path.dirname(__file__), '_static')
+if os.path.exists(os.path.join(static_path, 'custom.css')):
+    html_css_files.append('custom.css')
+if os.path.exists(os.path.join(static_path, 'semantic_examples.js')):
+    html_js_files.append('semantic_examples.js')
 
 # Master document (starting page)
 master_doc = 'index'
@@ -174,13 +176,23 @@ source_suffix = {
 # Add todo extension for development
 todo_include_todos = True
 
-# Suppress warnings for now during development
+# Suppress warnings for cleaner build
 suppress_warnings = [
     'image.nonlocal_uri',
     'toc.not_readable',
     'autodoc.import_object',
-    'ref.option'
+    'ref.option',
+    'ref.python',
+    'misc.highlighting_failure',
+    'toc.excluded',
+    'autodoc'
 ]
 
 # Don't show warnings as errors during development
 nitpicky = False
+nitpick_ignore = [
+    ('py:class', 'optional'),
+    ('py:class', 'array-like'),
+    ('py:class', 'callable'),
+    ('py:class', 'dict-like'),
+]
