@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>unit.reactor.FluidizedBedReactor &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/semantic_examples.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">unit.reactor.FluidizedBedReactor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for unit.reactor.FluidizedBedReactor</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">FluidizedBedReactor Model for SPROCLIB - Standard Process Control Library</span>
+
+<span class="sd">This module implements a fluidized bed catalytic reactor model with two-phase </span>
+<span class="sd">(bubble and emulsion) behavior for chemical process control applications.</span>
+
+<span class="sd">Author: SPROCLIB Development Team</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessModel</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="FluidizedBedReactor">
+<a class="viewcode-back" href="../../../api/units_package.html#unit.reactor.fluidized_bed.FluidizedBedReactor">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">FluidizedBedReactor</span><span class="p">(</span><span class="n">ProcessModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fluidized bed catalytic reactor model with bubble and emulsion phases.&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="FluidizedBedReactor.__init__">
+<a class="viewcode-back" href="../../../api/units_package.html#unit.reactor.fluidized_bed.FluidizedBedReactor.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">H</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span>              <span class="c1"># Bed height [m]</span>
+        <span class="n">D</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>              <span class="c1"># Bed diameter [m]</span>
+        <span class="n">U_mf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>           <span class="c1"># Minimum fluidization velocity [m/s]</span>
+        <span class="n">rho_cat</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1500.0</span><span class="p">,</span>     <span class="c1"># Catalyst density [kg/m³]</span>
+        <span class="n">dp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0005</span><span class="p">,</span>          <span class="c1"># Particle diameter [m]</span>
+        <span class="n">epsilon_mf</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>     <span class="c1"># Voidage at minimum fluidization [-]</span>
+        <span class="n">k0</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1e5</span><span class="p">,</span>             <span class="c1"># Pre-exponential factor [m³/kg·s]</span>
+        <span class="n">Ea</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">60000.0</span><span class="p">,</span>         <span class="c1"># Activation energy [J/mol]</span>
+        <span class="n">delta_H</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">80000.0</span><span class="p">,</span>   <span class="c1"># Heat of reaction [J/mol]</span>
+        <span class="n">K_bc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">,</span>           <span class="c1"># Bubble-cloud mass transfer coefficient [1/s]</span>
+        <span class="n">K_ce</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span><span class="p">,</span>          <span class="c1"># Cloud-emulsion mass transfer coefficient [1/s]</span>
+        <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;FluidizedBedReactor&quot;</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize fluidized bed reactor with two-phase model.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            H: Bed height [m]</span>
+<span class="sd">            D: Bed diameter [m]</span>
+<span class="sd">            U_mf: Minimum fluidization velocity [m/s]</span>
+<span class="sd">            rho_cat: Catalyst density [kg/m³]</span>
+<span class="sd">            dp: Particle diameter [m]</span>
+<span class="sd">            epsilon_mf: Voidage at minimum fluidization [-]</span>
+<span class="sd">            k0: Pre-exponential factor [m³/kg·s]</span>
+<span class="sd">            Ea: Activation energy [J/mol]</span>
+<span class="sd">            delta_H: Heat of reaction [J/mol]</span>
+<span class="sd">            K_bc: Bubble-cloud mass transfer coefficient [1/s]</span>
+<span class="sd">            K_ce: Cloud-emulsion mass transfer coefficient [1/s]</span>
+<span class="sd">            name: Model name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="n">H</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D</span> <span class="o">=</span> <span class="n">D</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">U_mf</span> <span class="o">=</span> <span class="n">U_mf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho_cat</span> <span class="o">=</span> <span class="n">rho_cat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dp</span> <span class="o">=</span> <span class="n">dp</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_mf</span> <span class="o">=</span> <span class="n">epsilon_mf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k0</span> <span class="o">=</span> <span class="n">k0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ea</span> <span class="o">=</span> <span class="n">Ea</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delta_H</span> <span class="o">=</span> <span class="n">delta_H</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K_bc</span> <span class="o">=</span> <span class="n">K_bc</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K_ce</span> <span class="o">=</span> <span class="n">K_ce</span>
+        
+        <span class="c1"># Calculate derived properties</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A_cross</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">D</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># Cross-sectional area</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">V_total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A_cross</span> <span class="o">*</span> <span class="n">H</span>  <span class="c1"># Total volume</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="n">H</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="n">D</span><span class="p">,</span> <span class="s1">&#39;U_mf&#39;</span><span class="p">:</span> <span class="n">U_mf</span><span class="p">,</span> <span class="s1">&#39;rho_cat&#39;</span><span class="p">:</span> <span class="n">rho_cat</span><span class="p">,</span> <span class="s1">&#39;dp&#39;</span><span class="p">:</span> <span class="n">dp</span><span class="p">,</span>
+            <span class="s1">&#39;epsilon_mf&#39;</span><span class="p">:</span> <span class="n">epsilon_mf</span><span class="p">,</span> <span class="s1">&#39;k0&#39;</span><span class="p">:</span> <span class="n">k0</span><span class="p">,</span> <span class="s1">&#39;Ea&#39;</span><span class="p">:</span> <span class="n">Ea</span><span class="p">,</span> <span class="s1">&#39;delta_H&#39;</span><span class="p">:</span> <span class="n">delta_H</span><span class="p">,</span>
+            <span class="s1">&#39;K_bc&#39;</span><span class="p">:</span> <span class="n">K_bc</span><span class="p">,</span> <span class="s1">&#39;K_ce&#39;</span><span class="p">:</span> <span class="n">K_ce</span>
+        <span class="p">}</span></div>
+
+
+    
+<div class="viewcode-block" id="FluidizedBedReactor.fluidization_properties">
+<a class="viewcode-back" href="../../../api/units_package.html#unit.reactor.fluidized_bed.FluidizedBedReactor.fluidization_properties">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fluidization_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">U_g</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate fluidization properties.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            U_g: Superficial gas velocity [m/s]</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Dictionary with fluidization properties</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Bubble velocity (simplified correlation)</span>
+        <span class="n">U_b</span> <span class="o">=</span> <span class="n">U_g</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">U_mf</span> <span class="o">+</span> <span class="mf">0.711</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">9.81</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dp</span><span class="p">)</span>
+        
+        <span class="c1"># Bubble fraction (simplified)</span>
+        <span class="k">if</span> <span class="n">U_g</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">U_mf</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_g</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">U_mf</span><span class="p">)</span> <span class="o">/</span> <span class="n">U_b</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+        <span class="c1"># Emulsion phase fraction</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">delta</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;bubble_velocity&#39;</span><span class="p">:</span> <span class="n">U_b</span><span class="p">,</span>
+            <span class="s1">&#39;bubble_fraction&#39;</span><span class="p">:</span> <span class="n">delta</span><span class="p">,</span>
+            <span class="s1">&#39;emulsion_fraction&#39;</span><span class="p">:</span> <span class="n">gamma</span><span class="p">,</span>
+            <span class="s1">&#39;excess_velocity&#39;</span><span class="p">:</span> <span class="n">U_g</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">U_mf</span>
+        <span class="p">}</span></div>
+
+
+    
+<div class="viewcode-block" id="FluidizedBedReactor.reaction_rate">
+<a class="viewcode-back" href="../../../api/units_package.html#unit.reactor.fluidized_bed.FluidizedBedReactor.reaction_rate">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reaction_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">CA</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">T</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate reaction rate in emulsion phase.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            CA: Concentration in emulsion phase [mol/m³]</span>
+<span class="sd">            T: Temperature [K]</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Reaction rate [mol/kg·s]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="mf">8.314</span>  <span class="c1"># Gas constant [J/mol·K]</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">Ea</span> <span class="o">/</span> <span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">T</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">k</span> <span class="o">*</span> <span class="n">CA</span></div>
+
+
+    
+<div class="viewcode-block" id="FluidizedBedReactor.dynamics">
+<a class="viewcode-back" href="../../../api/units_package.html#unit.reactor.fluidized_bed.FluidizedBedReactor.dynamics">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">dynamics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fluidized bed reactor dynamics with two-phase model.</span>
+<span class="sd">        </span>
+<span class="sd">        State variables: [CA_bubble, CA_emulsion, T]</span>
+<span class="sd">        Input variables: [CA_in, T_in, U_g, T_coolant]</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            t: Time [s]</span>
+<span class="sd">            x: State variables</span>
+<span class="sd">            u: Input variables</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            State derivatives</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">CA_bubble</span><span class="p">,</span> <span class="n">CA_emulsion</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">CA_in</span><span class="p">,</span> <span class="n">T_in</span><span class="p">,</span> <span class="n">U_g</span><span class="p">,</span> <span class="n">T_coolant</span> <span class="o">=</span> <span class="n">u</span>
+        
+        <span class="c1"># Fluidization properties</span>
+        <span class="n">props</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fluidization_properties</span><span class="p">(</span><span class="n">U_g</span><span class="p">)</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">props</span><span class="p">[</span><span class="s1">&#39;bubble_fraction&#39;</span><span class="p">]</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="n">props</span><span class="p">[</span><span class="s1">&#39;emulsion_fraction&#39;</span><span class="p">]</span>
+        <span class="n">U_b</span> <span class="o">=</span> <span class="n">props</span><span class="p">[</span><span class="s1">&#39;bubble_velocity&#39;</span><span class="p">]</span>
+        
+        <span class="c1"># Reaction rate in emulsion phase</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reaction_rate</span><span class="p">(</span><span class="n">CA_emulsion</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+        
+        <span class="c1"># Mass transfer between phases</span>
+        <span class="n">J_bc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">K_bc</span> <span class="o">*</span> <span class="p">(</span><span class="n">CA_bubble</span> <span class="o">-</span> <span class="n">CA_emulsion</span><span class="p">)</span>  <span class="c1"># Bubble to cloud/emulsion</span>
+        
+        <span class="c1"># Bubble phase mass balance</span>
+        <span class="k">if</span> <span class="n">delta</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">dCA_bubble_dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_g</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">U_mf</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">delta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">CA_in</span> <span class="o">-</span> <span class="n">CA_bubble</span><span class="p">)</span> <span class="o">-</span> <span class="n">J_bc</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dCA_bubble_dt</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+        <span class="c1"># Emulsion phase mass balance</span>
+        <span class="n">W_cat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho_cat</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon_mf</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">V_total</span> <span class="o">*</span> <span class="n">gamma</span>
+        <span class="n">dCA_emulsion_dt</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U_mf</span> <span class="o">/</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">CA_in</span> <span class="o">-</span> <span class="n">CA_emulsion</span><span class="p">)</span> <span class="o">+</span> 
+                          <span class="n">J_bc</span> <span class="o">-</span> <span class="n">r</span> <span class="o">*</span> <span class="n">W_cat</span> <span class="o">/</span> <span class="p">(</span><span class="n">gamma</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">V_total</span><span class="p">))</span>
+        
+        <span class="c1"># Energy balance (simplified)</span>
+        <span class="n">rho_cp</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># Approximate heat capacity of gas phase</span>
+        <span class="n">Q_reaction</span> <span class="o">=</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">delta_H</span> <span class="o">*</span> <span class="n">r</span> <span class="o">*</span> <span class="n">W_cat</span>
+        <span class="n">Q_cooling</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">T_coolant</span><span class="p">)</span>  <span class="c1"># Simplified cooling</span>
+        
+        <span class="n">dT_dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_g</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">*</span> <span class="n">rho_cp</span> <span class="o">*</span> <span class="p">(</span><span class="n">T_in</span> <span class="o">-</span> <span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="n">Q_reaction</span> <span class="o">-</span> <span class="n">Q_cooling</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">rho_cp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">V_total</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dCA_bubble_dt</span><span class="p">,</span> <span class="n">dCA_emulsion_dt</span><span class="p">,</span> <span class="n">dT_dt</span><span class="p">])</span></div>
+
+
+    
+<div class="viewcode-block" id="FluidizedBedReactor.steady_state">
+<a class="viewcode-back" href="../../../api/units_package.html#unit.reactor.fluidized_bed.FluidizedBedReactor.steady_state">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">steady_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate steady-state concentrations and temperature.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            u: Input variables [CA_in, T_in, U_g, T_coolant]</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Steady-state values [CA_bubble, CA_emulsion, T]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">CA_in</span><span class="p">,</span> <span class="n">T_in</span><span class="p">,</span> <span class="n">U_g</span><span class="p">,</span> <span class="n">T_coolant</span> <span class="o">=</span> <span class="n">u</span>
+        
+        <span class="c1"># Initial guess</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">CA_in</span> <span class="o">*</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">CA_in</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">T_in</span><span class="p">])</span>
+        
+        <span class="c1"># Solve for steady state</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">steady_state_eqs</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x_ss</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">steady_state_eqs</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">x_ss</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Steady-state calculation failed, returning initial guess&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">x0</span></div>
+
+
+    
+<div class="viewcode-block" id="FluidizedBedReactor.calculate_conversion">
+<a class="viewcode-back" href="../../../api/units_package.html#unit.reactor.fluidized_bed.FluidizedBedReactor.calculate_conversion">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_conversion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">CA_in</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">CA_out</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate overall conversion.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">CA_in</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">CA_in</span> <span class="o">-</span> <span class="n">CA_out</span><span class="p">)</span> <span class="o">/</span> <span class="n">CA_in</span>
+        <span class="k">return</span> <span class="mf">0.0</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

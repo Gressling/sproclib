@@ -1,0 +1,788 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semantic Plant Design &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/semantic_examples.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Complete Semantic Plant Design Examples" href="semantic_examples.html" />
+    <link rel="prev" title="Control Examples" href="user_guide/examples/control_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Semantic Plant Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-design-philosophy">API Design Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hyperparameter-optimization-analogy">Hyperparameter Optimization Analogy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#neural-network-vs-chemical-plant-parameters">Neural Network vs Chemical Plant Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameter-categories-and-analogies">Parameter Categories and Analogies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimization-strategies-comparison">Optimization Strategies Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameter-sensitivity-and-design-trade-offs">Parameter Sensitivity and Design Trade-offs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#practical-design-workflow">Practical Design Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-semantic-api-reference"><strong>Complete Semantic API Reference</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plant-construction">Plant Construction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plant-compilation">Plant Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plant-operations">Plant Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plant-analysis">Plant Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#real-world-example-complete-chemical-plant"><strong>Real-World Example: Complete Chemical Plant</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-path-from-simple-to-advanced"><strong>Learning Path: From Simple to Advanced</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-features"><strong>Advanced Features</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-this-matters"><strong>Why This Matters</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-future-of-chemical-engineering-software"><strong>The Future of Chemical Engineering Software</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Semantic Plant Design</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/semantic_plant_design.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="semantic-plant-design">
+<h1>Semantic Plant Design<a class="headerlink" href="#semantic-plant-design" title="Link to this heading"></a></h1>
+<p>SPROCLIB provides a semantic API for chemical plant design that uses familiar
+patterns from machine learning frameworks like TensorFlow and Keras.</p>
+<section id="api-design-philosophy">
+<h2>API Design Philosophy<a class="headerlink" href="#api-design-philosophy" title="Link to this heading"></a></h2>
+<p>The semantic API implements consistent patterns across all process units:</p>
+<dl class="simple">
+<dt><strong>Plant Definition</strong></dt><dd><p>Similar to keras.Sequential(), define a plant container</p>
+</dd>
+<dt><strong>Unit Addition</strong></dt><dd><p>Add process units like neural network layers with model.add()</p>
+</dd>
+<dt><strong>Connection Specification</strong></dt><dd><p>Connect units with explicit stream definitions</p>
+</dd>
+<dt><strong>Compilation</strong></dt><dd><p>Configure optimization objectives and constraints</p>
+</dd>
+<dt><strong>Optimization</strong></dt><dd><p>Solve for optimal operating conditions</p>
+</dd>
+</dl>
+</section>
+<section id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unit.plant</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalPlant</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unit.reactor.cstr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unit.pump</span><span class="w"> </span><span class="kn">import</span> <span class="n">CentrifugalPump</span>
+
+<span class="c1"># Define plant</span>
+<span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Process Plant&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add units</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CentrifugalPump</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;feed_pump&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">7.2e10</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor&quot;</span><span class="p">)</span>
+
+<span class="c1"># Connect units</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;feed_pump&quot;</span><span class="p">,</span> <span class="s2">&quot;reactor&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_stream&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configure optimization</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;economic&quot;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;total_cost&quot;</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;profit&quot;</span><span class="p">,</span> <span class="s2">&quot;conversion&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Optimize operations</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">target_production</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">)</span>
+
+<span class="c1"># Display results</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="hyperparameter-optimization-analogy">
+<h2>Hyperparameter Optimization Analogy<a class="headerlink" href="#hyperparameter-optimization-analogy" title="Link to this heading"></a></h2>
+<p>Just as machine learning models require hyperparameter tuning to achieve optimal performance,
+chemical plants require unit operation parameter optimization to maximize efficiency, profit,
+and safety. SPROCLIB makes this analogy explicit through its design.</p>
+<section id="neural-network-vs-chemical-plant-parameters">
+<h3>Neural Network vs Chemical Plant Parameters<a class="headerlink" href="#neural-network-vs-chemical-plant-parameters" title="Link to this heading"></a></h3>
+<p><strong>Neural Network Layer Configuration:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keras neural network hyperparameters</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>      <span class="c1"># Layer size</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">))</span>                        <span class="c1"># Regularization</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>       <span class="c1"># Hidden layer size</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>    <span class="c1"># Output classes</span>
+</pre></div>
+</div>
+<p><strong>Chemical Plant Unit Configuration:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SPROCLIB plant unit parameters</span>
+<span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Production Plant&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PipeFlow</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">diameter</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pipeline1&quot;</span><span class="p">)</span>      <span class="c1"># Physical dimensions</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">7.2e10</span><span class="p">,</span> <span class="n">Ea</span><span class="o">=</span><span class="mi">72750</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor1&quot;</span><span class="p">)</span>         <span class="c1"># Reaction kinetics</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DistillationColumn</span><span class="p">(</span><span class="n">N_trays</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">reflux_ratio</span><span class="o">=</span><span class="mf">3.5</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;col1&quot;</span><span class="p">)</span> <span class="c1"># Separation efficiency</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ControlValve</span><span class="p">(</span><span class="n">Cv_max</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span> <span class="n">response_time</span><span class="o">=</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;valve1&quot;</span><span class="p">)</span>   <span class="c1"># Control characteristics</span>
+</pre></div>
+</div>
+</section>
+<section id="parameter-categories-and-analogies">
+<h3>Parameter Categories and Analogies<a class="headerlink" href="#parameter-categories-and-analogies" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Hyperparameter Optimization Analogy</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 33.0%" />
+<col style="width: 33.0%" />
+<col style="width: 34.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Aspect</strong></p></th>
+<th class="head"><p><strong>Neural Networks</strong></p></th>
+<th class="head"><p><strong>Chemical Plants</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Architecture</strong></p></td>
+<td><p>Layer types, connections</p></td>
+<td><p>Unit types, stream connections</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Capacity</strong></p></td>
+<td><p>Number of neurons, layer width</p></td>
+<td><p>Reactor volume, pipe diameter</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Performance</strong></p></td>
+<td><p>Activation functions, dropout rates</p></td>
+<td><p>Reaction kinetics, efficiency factors</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Control</strong></p></td>
+<td><p>Learning rate, batch size</p></td>
+<td><p>Control valve settings, flow rates</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Regularization</strong></p></td>
+<td><p>Dropout, weight decay</p></td>
+<td><p>Safety margins, constraint limits</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Physical Design Parameters (Architecture Hyperparameters):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Equipment sizing - analogous to layer architecture</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span>
+    <span class="n">V</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span>           <span class="c1"># Reactor volume (like layer width)</span>
+    <span class="n">A_heat</span><span class="o">=</span><span class="mf">25.0</span><span class="p">,</span>       <span class="c1"># Heat transfer area (like connections)</span>
+    <span class="n">height</span><span class="o">=</span><span class="mf">3.0</span>         <span class="c1"># Physical geometry (like network depth)</span>
+<span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor&quot;</span><span class="p">)</span>
+
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PipeFlow</span><span class="p">(</span>
+    <span class="n">length</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span>      <span class="c1"># Transport capacity (like layer size)</span>
+    <span class="n">diameter</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>     <span class="c1"># Flow capacity (like neuron count)</span>
+    <span class="n">roughness</span><span class="o">=</span><span class="mf">0.045</span>    <span class="c1"># Efficiency factor (like activation)</span>
+<span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pipeline&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Operating Parameters (Training Hyperparameters):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process conditions - analogous to training parameters</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DistillationColumn</span><span class="p">(</span>
+    <span class="n">N_trays</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>           <span class="c1"># Separation stages (like epochs)</span>
+    <span class="n">reflux_ratio</span><span class="o">=</span><span class="mf">3.5</span><span class="p">,</span>     <span class="c1"># Internal recycle (like learning rate)</span>
+    <span class="n">feed_tray</span><span class="o">=</span><span class="mi">10</span>          <span class="c1"># Input location (like batch strategy)</span>
+<span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">)</span>
+
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ControlValve</span><span class="p">(</span>
+    <span class="n">Cv_max</span><span class="o">=</span><span class="mf">15.0</span><span class="p">,</span>          <span class="c1"># Maximum capacity (like max learning rate)</span>
+    <span class="n">response_time</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>    <span class="c1"># Control speed (like optimizer momentum)</span>
+    <span class="n">dead_time</span><span class="o">=</span><span class="mf">0.5</span>         <span class="c1"># System lag (like gradient delay)</span>
+<span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;valve&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="optimization-strategies-comparison">
+<h3>Optimization Strategies Comparison<a class="headerlink" href="#optimization-strategies-comparison" title="Link to this heading"></a></h3>
+<p><strong>Neural Network Hyperparameter Search:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grid search for neural network</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;layers&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">],</span> <span class="p">[</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">]],</span>
+    <span class="s1">&#39;dropout&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+    <span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">best_model</span> <span class="o">=</span> <span class="n">grid_search</span><span class="p">(</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Chemical Plant Parameter Optimization:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Grid search for plant design</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;reactor_volume&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">150.0</span><span class="p">,</span> <span class="mf">200.0</span><span class="p">],</span>          <span class="c1"># Physical sizing</span>
+    <span class="s1">&#39;pipe_diameter&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">],</span>              <span class="c1"># Transport capacity</span>
+    <span class="s1">&#39;column_trays&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>                      <span class="c1"># Separation stages</span>
+    <span class="s1">&#39;reflux_ratio&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]</span>                   <span class="c1"># Operating conditions</span>
+<span class="p">}</span>
+
+<span class="n">best_plant</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">optimize_parameters</span><span class="p">(</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">economic_objective</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Automated Hyperparameter Optimization:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Neural network auto-tuning</span>
+<span class="n">tuner</span> <span class="o">=</span> <span class="n">keras_tuner</span><span class="o">.</span><span class="n">RandomSearch</span><span class="p">(</span>
+    <span class="n">build_model</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">,</span>
+    <span class="n">max_trials</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">)</span>
+
+<span class="c1"># Plant parameter auto-tuning</span>
+<span class="n">plant_tuner</span> <span class="o">=</span> <span class="n">PlantParameterOptimizer</span><span class="p">(</span>
+    <span class="n">build_plant</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;profit_per_hour&#39;</span><span class="p">,</span>
+    <span class="n">max_trials</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">constraints</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;safety_margin&#39;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Both follow similar optimization patterns</span>
+<span class="n">best_hyperparams</span> <span class="o">=</span> <span class="n">tuner</span><span class="o">.</span><span class="n">get_best_hyperparameters</span><span class="p">()</span>
+<span class="n">best_plant_params</span> <span class="o">=</span> <span class="n">plant_tuner</span><span class="o">.</span><span class="n">get_best_parameters</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="parameter-sensitivity-and-design-trade-offs">
+<h3>Parameter Sensitivity and Design Trade-offs<a class="headerlink" href="#parameter-sensitivity-and-design-trade-offs" title="Link to this heading"></a></h3>
+<p><strong>Neural Network Trade-offs:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Larger networks: better capacity but slower training</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">))</span>  <span class="c1"># vs Dense(64) - capacity vs speed</span>
+
+<span class="c1"># Higher dropout: less overfitting but slower convergence</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>  <span class="c1"># vs Dropout(0.2) - generalization vs training</span>
+</pre></div>
+</div>
+<p><strong>Chemical Plant Trade-offs:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Larger equipment: better performance but higher cost</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">300.0</span><span class="p">))</span>  <span class="c1"># vs V=150.0 - conversion vs capital cost</span>
+
+<span class="c1"># Tighter control: better performance but higher complexity</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ControlValve</span><span class="p">(</span><span class="n">response_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>  <span class="c1"># vs 2.0 - control vs stability</span>
+</pre></div>
+</div>
+<p><strong>Sensitivity Analysis (analogous to hyperparameter importance):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Neural network parameter sensitivity</span>
+<span class="n">sensitivity</span> <span class="o">=</span> <span class="n">analyze_hyperparameter_importance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">)</span>
+<span class="c1"># Output: learning_rate=0.8, dropout=0.6, layer_size=0.4</span>
+
+<span class="c1"># Plant parameter sensitivity</span>
+<span class="n">sensitivity</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">analyze_parameter_sensitivity</span><span class="p">(</span><span class="n">economic_objective</span><span class="p">)</span>
+<span class="c1"># Output: reactor_volume=0.9, pipe_diameter=0.7, reflux_ratio=0.5</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-design-workflow">
+<h3>Practical Design Workflow<a class="headerlink" href="#practical-design-workflow" title="Link to this heading"></a></h3>
+<p><strong>1. Initial Design (Default Hyperparameters):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start with reasonable defaults (like pre-trained models)</span>
+<span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Initial Design&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">150.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor&quot;</span><span class="p">)</span>        <span class="c1"># Standard reactor size</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PipeFlow</span><span class="p">(</span><span class="n">diameter</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pipe&quot;</span><span class="p">)</span> <span class="c1"># Standard pipe size</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DistillationColumn</span><span class="p">(</span><span class="n">N_trays</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">)</span> <span class="c1"># Standard column</span>
+</pre></div>
+</div>
+<p><strong>2. Parameter Screening (Coarse Grid Search):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Quick screening of major parameters</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">parameter_sweep</span><span class="p">({</span>
+    <span class="s1">&#39;reactor.V&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>           <span class="c1"># ±33% variation</span>
+    <span class="s1">&#39;pipe.diameter&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">],</span>   <span class="c1"># ±33% variation</span>
+    <span class="s1">&#39;column.N_trays&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>         <span class="c1"># ±25% variation</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p><strong>3. Fine-tuning (Local Optimization):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Refine around best configuration</span>
+<span class="n">best_config</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_best_configuration</span><span class="p">()</span>
+<span class="n">optimized_plant</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">fine_tune_parameters</span><span class="p">(</span>
+    <span class="n">base_config</span><span class="o">=</span><span class="n">best_config</span><span class="p">,</span>
+    <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>  <span class="c1"># ±5% variation</span>
+    <span class="n">objective</span><span class="o">=</span><span class="s1">&#39;maximize_profit&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>4. Validation and Robustness (like model validation):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Test performance under different conditions</span>
+<span class="n">validation_scenarios</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;feed_rate&#39;</span><span class="p">:</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">nominal_feed</span><span class="p">},</span>    <span class="c1"># Low throughput</span>
+    <span class="p">{</span><span class="s1">&#39;feed_rate&#39;</span><span class="p">:</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">nominal_feed</span><span class="p">},</span>    <span class="c1"># High throughput</span>
+    <span class="p">{</span><span class="s1">&#39;ambient_temp&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">},</span>                <span class="c1"># Winter conditions</span>
+    <span class="p">{</span><span class="s1">&#39;ambient_temp&#39;</span><span class="p">:</span> <span class="mf">35.0</span><span class="p">}</span>                <span class="c1"># Summer conditions</span>
+<span class="p">]</span>
+
+<span class="n">robustness</span> <span class="o">=</span> <span class="n">optimized_plant</span><span class="o">.</span><span class="n">validate_design</span><span class="p">(</span><span class="n">validation_scenarios</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This analogy helps engineers familiar with machine learning quickly understand chemical
+plant optimization, while showing chemical engineers how modern ML optimization
+techniques can be applied to process design.</p>
+</section>
+</section>
+<section id="complete-semantic-api-reference">
+<h2><strong>Complete Semantic API Reference</strong><a class="headerlink" href="#complete-semantic-api-reference" title="Link to this heading"></a></h2>
+<section id="plant-construction">
+<h3>Plant Construction<a class="headerlink" href="#plant-construction" title="Link to this heading"></a></h3>
+<p><strong>Create Plant (like keras.Sequential):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unit.plant</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalPlant</span><span class="p">,</span> <span class="n">PlantConfiguration</span>
+
+<span class="c1"># Basic plant</span>
+<span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;My Plant&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plant with configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">PlantConfiguration</span><span class="p">(</span>
+    <span class="n">operating_hours</span><span class="o">=</span><span class="mf">8000.0</span><span class="p">,</span>
+    <span class="n">electricity_cost</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span>
+    <span class="n">steam_cost</span><span class="o">=</span><span class="mf">18.0</span>
+<span class="p">)</span>
+<span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Advanced Plant&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Add Units (like model.add(layers)):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sequential addition</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CentrifugalPump</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pump1&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PipeFlow</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">diameter</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pipeline1&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">7.2e10</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor1&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DistillationColumn</span><span class="p">(</span><span class="n">N_trays</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;column1&quot;</span><span class="p">)</span>
+
+<span class="c1"># Chaining (fluent interface)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Pump</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pump1&quot;</span><span class="p">)</span> \
+     <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Reactor</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor1&quot;</span><span class="p">)</span> \
+     <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Column</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;column1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Connect Units (functional API):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple connections</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;pump1&quot;</span><span class="p">,</span> <span class="s2">&quot;pipeline1&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_stream&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;pipeline1&quot;</span><span class="p">,</span> <span class="s2">&quot;reactor1&quot;</span><span class="p">,</span> <span class="s2">&quot;reactor_feed&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;reactor1&quot;</span><span class="p">,</span> <span class="s2">&quot;column1&quot;</span><span class="p">,</span> <span class="s2">&quot;reactor_effluent&quot;</span><span class="p">)</span>
+
+<span class="c1"># Complex networks</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;column1&quot;</span><span class="p">,</span> <span class="s2">&quot;pump2&quot;</span><span class="p">,</span> <span class="s2">&quot;distillate&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;column1&quot;</span><span class="p">,</span> <span class="s2">&quot;pump3&quot;</span><span class="p">,</span> <span class="s2">&quot;bottoms&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;pump2&quot;</span><span class="p">,</span> <span class="s2">&quot;mixer1&quot;</span><span class="p">,</span> <span class="s2">&quot;recycle_stream&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="plant-compilation">
+<h3>Plant Compilation<a class="headerlink" href="#plant-compilation" title="Link to this heading"></a></h3>
+<p><strong>Compile for Optimization (like model.compile):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Economic optimization</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;economic&quot;</span><span class="p">,</span>           <span class="c1"># Strategy</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;total_cost&quot;</span><span class="p">,</span>             <span class="c1"># Minimize total cost</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;profit&quot;</span><span class="p">,</span> <span class="s2">&quot;efficiency&quot;</span><span class="p">]</span> <span class="c1"># Track these metrics</span>
+<span class="p">)</span>
+
+<span class="c1"># Environmental optimization</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;environmental&quot;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;carbon_footprint&quot;</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;emissions&quot;</span><span class="p">,</span> <span class="s2">&quot;energy_use&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Safety optimization</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;safety&quot;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;risk_index&quot;</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;safety_margin&quot;</span><span class="p">,</span> <span class="s2">&quot;hazard_level&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Available Optimizers:</strong>
+- <code class="docutils literal notranslate"><span class="pre">economic</span></code> - Minimize costs, maximize profit
+- <code class="docutils literal notranslate"><span class="pre">environmental</span></code> - Minimize environmental impact
+- <code class="docutils literal notranslate"><span class="pre">safety</span></code> - Maximize safety margins
+- <code class="docutils literal notranslate"><span class="pre">energy</span></code> - Minimize energy consumption
+- <code class="docutils literal notranslate"><span class="pre">custom</span></code> - Define your own objective function</p>
+</section>
+<section id="plant-operations">
+<h3>Plant Operations<a class="headerlink" href="#plant-operations" title="Link to this heading"></a></h3>
+<p><strong>Optimize Plant (like model.fit):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic optimization</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">target_production</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">)</span>
+
+<span class="c1"># Optimization with constraints</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
+    <span class="n">target_production</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>
+    <span class="n">constraints</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;max_pressure&quot;</span><span class="p">:</span> <span class="mf">10e5</span><span class="p">,</span>      <span class="c1"># 10 bar max</span>
+        <span class="s2">&quot;min_conversion&quot;</span><span class="p">:</span> <span class="mf">0.85</span><span class="p">,</span>    <span class="c1"># 85% min conversion</span>
+        <span class="s2">&quot;max_temperature&quot;</span><span class="p">:</span> <span class="mf">400.0</span><span class="p">,</span>  <span class="c1"># 400 K max temp</span>
+        <span class="s2">&quot;energy_limit&quot;</span><span class="p">:</span> <span class="mf">5000.0</span>     <span class="c1"># 5 MW max energy</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Multi-objective optimization</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span>
+    <span class="n">objectives</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;minimize_cost&quot;</span><span class="p">,</span> <span class="s2">&quot;maximize_safety&quot;</span><span class="p">],</span>
+    <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>  <span class="c1"># 70% cost, 30% safety</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Simulate Plant Dynamics (like model.predict):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dynamic simulation</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span>
+    <span class="n">duration</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span>     <span class="c1"># 24 hours</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>     <span class="c1"># 30 minute steps</span>
+    <span class="n">disturbances</span><span class="o">=</span><span class="p">{</span>     <span class="c1"># Process disturbances</span>
+        <span class="s2">&quot;feed_flow&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;step&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="mf">12.0</span><span class="p">,</span> <span class="s2">&quot;magnitude&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">},</span>
+        <span class="s2">&quot;ambient_temp&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ramp&quot;</span><span class="p">,</span> <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mf">25.0</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="mf">35.0</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Scenario analysis</span>
+<span class="n">scenarios</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_rate&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;high_demand&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_rate&quot;</span><span class="p">:</span> <span class="mi">1500</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;maintenance&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_rate&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">scenario</span> <span class="ow">in</span> <span class="n">scenarios</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">scenario</span><span class="o">=</span><span class="n">scenario</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Evaluate Performance (like model.evaluate):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Performance at operating conditions</span>
+<span class="n">performance</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">evaluate</span><span class="p">({</span>
+    <span class="s2">&quot;feed_flow&quot;</span><span class="p">:</span> <span class="mf">1200.0</span><span class="p">,</span>
+    <span class="s2">&quot;feed_temperature&quot;</span><span class="p">:</span> <span class="mf">25.0</span><span class="p">,</span>
+    <span class="s2">&quot;reactor_temperature&quot;</span><span class="p">:</span> <span class="mf">85.0</span><span class="p">,</span>
+    <span class="s2">&quot;column_reflux_ratio&quot;</span><span class="p">:</span> <span class="mf">3.5</span>
+<span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Overall efficiency: </span><span class="si">{</span><span class="n">performance</span><span class="p">[</span><span class="s1">&#39;plant&#39;</span><span class="p">][</span><span class="s1">&#39;efficiency&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Production rate: </span><span class="si">{</span><span class="n">performance</span><span class="p">[</span><span class="s1">&#39;plant&#39;</span><span class="p">][</span><span class="s1">&#39;production&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kg/h&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Energy consumption: </span><span class="si">{</span><span class="n">performance</span><span class="p">[</span><span class="s1">&#39;plant&#39;</span><span class="p">][</span><span class="s1">&#39;energy&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kW&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="plant-analysis">
+<h3>Plant Analysis<a class="headerlink" href="#plant-analysis" title="Link to this heading"></a></h3>
+<p><strong>Plant Summary (like model.summary):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plant</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Output:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>============================================================
+Chemical Plant: Advanced Production Plant
+============================================================
+Configuration:
+  Operating hours: 8,000 h/year
+  Electricity cost: $0.120/kWh
+  Steam cost: $18.00/ton
+
+Process Units (7 total):
+Unit Name            Type                 Parameters
+----------------------------------------------------------------------
+feed_pump            CentrifugalPump      H0=50.0m
+feed_pipeline        PipeFlow             L=200.0m
+main_reactor         CSTR                 V=150.0L
+outlet_pipe          PipeFlow             L=50.0m
+separation_column    DistillationColumn   Trays=12
+control_valve        ControlValve         Cv_max=15.0
+product_pump         CentrifugalPump      H0=35.0m
+
+Connections (6 total):
+  feed_pump → feed_pipeline (feed_stream)
+  feed_pipeline → main_reactor (reactor_feed)
+  main_reactor → outlet_pipe (reactor_effluent)
+  outlet_pipe → separation_column (column_feed)
+  separation_column → control_valve (reflux_stream)
+  control_valve → product_pump (product_stream)
+
+Optimization:
+  Optimizer: economic
+  Loss function: total_cost
+  Metrics: profit, efficiency, conversion
+
+Performance:
+  Production rate: 1,000 kg/h
+  Energy consumption: 2,500 kW
+  Overall efficiency: 82%
+  Estimated profit: $1,250/h
+============================================================
+</pre></div>
+</div>
+<p><strong>Save and Load Plants (like model.save/load):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save plant configuration</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">save_plant</span><span class="p">(</span><span class="s2">&quot;my_plant.json&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load plant configuration</span>
+<span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="o">.</span><span class="n">load_plant</span><span class="p">(</span><span class="s2">&quot;my_plant.json&quot;</span><span class="p">)</span>
+
+<span class="c1"># Export to different formats</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="s2">&quot;my_plant.xml&quot;</span><span class="p">)</span>    <span class="c1"># Process flow diagram</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="s2">&quot;my_plant.py&quot;</span><span class="p">)</span>     <span class="c1"># Python code</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="s2">&quot;my_plant.pdf&quot;</span><span class="p">)</span>    <span class="c1"># Documentation</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="real-world-example-complete-chemical-plant">
+<h2><strong>Real-World Example: Complete Chemical Plant</strong><a class="headerlink" href="#real-world-example-complete-chemical-plant" title="Link to this heading"></a></h2>
+<p>This example demonstrates:</p>
+<ul class="simple">
+<li><p><strong>Plant Configuration</strong> - Setting up plant-wide parameters</p></li>
+<li><p><strong>Sequential Unit Addition</strong> - Building the plant step by step</p></li>
+<li><p><strong>Functional Connections</strong> - Creating process flow networks</p></li>
+<li><p><strong>Compilation</strong> - Preparing for optimization</p></li>
+<li><p><strong>Optimization</strong> - Finding optimal operating conditions</p></li>
+<li><p><strong>Simulation</strong> - Dynamic plant behavior analysis</p></li>
+<li><p><strong>Economic Analysis</strong> - Profit and cost calculations</p></li>
+</ul>
+</section>
+<section id="learning-path-from-simple-to-advanced">
+<h2><strong>Learning Path: From Simple to Advanced</strong><a class="headerlink" href="#learning-path-from-simple-to-advanced" title="Link to this heading"></a></h2>
+<p><strong>Level 1: Basic Plant (5 minutes)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Simple Plant&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Pump</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">30.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Tank</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">100.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tank&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;tank&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;economic&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">()</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Level 2: Process Plant (15 minutes)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Process Plant&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Pump</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;feed_pump&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Reactor</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">HeatExchanger</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cooler&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Separator</span><span class="p">(</span><span class="o">...</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;separator&quot;</span><span class="p">)</span>
+
+<span class="c1"># Connect all units</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;feed_pump&quot;</span><span class="p">,</span> <span class="s2">&quot;reactor&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;reactor&quot;</span><span class="p">,</span> <span class="s2">&quot;cooler&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;cooler&quot;</span><span class="p">,</span> <span class="s2">&quot;separator&quot;</span><span class="p">)</span>
+
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;economic&quot;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;profit&quot;</span><span class="p">,</span> <span class="s2">&quot;conversion&quot;</span><span class="p">])</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">target_production</span><span class="o">=</span><span class="mf">500.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Level 3: Integrated Plant (30 minutes)</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Complete plant with recycle, control, and optimization</span>
+<span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Integrated Plant&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">PlantConfiguration</span><span class="p">(</span><span class="o">...</span><span class="p">))</span>
+
+<span class="c1"># Add all units with detailed parameters</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CentrifugalPump</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.78</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;feed_pump&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">PipeFlow</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mf">200.0</span><span class="p">,</span> <span class="n">diameter</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;feed_line&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">150.0</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">7.2e10</span><span class="p">,</span> <span class="n">Ea</span><span class="o">=</span><span class="mi">72750</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">HeatExchanger</span><span class="p">(</span><span class="n">U</span><span class="o">=</span><span class="mf">500.0</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="mf">25.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cooler&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">BinaryDistillationColumn</span><span class="p">(</span><span class="n">N_trays</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">2.5</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;column&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ControlValve</span><span class="p">(</span><span class="n">Cv_max</span><span class="o">=</span><span class="mf">15.0</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reflux_valve&quot;</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CentrifugalPump</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">25.0</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.72</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;recycle_pump&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create complex flow network</span>
+<span class="c1"># ... connections with recycle streams</span>
+
+<span class="c1"># Advanced optimization</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;multi_objective&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;cost&quot;</span><span class="p">,</span> <span class="s2">&quot;emissions&quot;</span><span class="p">])</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">target_production</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="p">{</span><span class="o">...</span><span class="p">})</span>
+
+<span class="c1"># Dynamic analysis</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mf">168.0</span><span class="p">,</span> <span class="n">scenarios</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-features">
+<h2><strong>Advanced Features</strong><a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h2>
+<p><strong>Custom Optimizers:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">custom_economic_optimizer</span><span class="p">(</span><span class="n">plant_state</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom optimization function.&quot;&quot;&quot;</span>
+    <span class="n">revenue</span> <span class="o">=</span> <span class="n">calculate_revenue</span><span class="p">(</span><span class="n">plant_state</span><span class="p">)</span>
+    <span class="n">costs</span> <span class="o">=</span> <span class="n">calculate_costs</span><span class="p">(</span><span class="n">plant_state</span><span class="p">)</span>
+    <span class="n">environmental_penalty</span> <span class="o">=</span> <span class="n">calculate_emissions</span><span class="p">(</span><span class="n">plant_state</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">revenue</span> <span class="o">-</span> <span class="n">costs</span> <span class="o">-</span> <span class="n">environmental_penalty</span><span class="p">)</span>  <span class="c1"># Maximize profit</span>
+
+<span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">custom_economic_optimizer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Dynamic Disturbances:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">disturbances</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;feed_composition&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;random_walk&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="s2">&quot;std&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>
+        <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">42</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;ambient_temperature&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;seasonal&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;amplitude&quot;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>
+        <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="mf">24.0</span>  <span class="c1"># hours</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">plant</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">duration</span><span class="o">=</span><span class="mf">720.0</span><span class="p">,</span> <span class="n">disturbances</span><span class="o">=</span><span class="n">disturbances</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Multi-Scenario Analysis:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scenarios</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Base Case&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_rate&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;feed_temp&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;High Production&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_rate&quot;</span><span class="p">:</span> <span class="mi">1500</span><span class="p">,</span> <span class="s2">&quot;feed_temp&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Winter Operation&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_rate&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;feed_temp&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Summer Operation&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_rate&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;feed_temp&quot;</span><span class="p">:</span> <span class="mi">35</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">analyze_scenarios</span><span class="p">(</span><span class="n">scenarios</span><span class="p">)</span>
+<span class="n">plant</span><span class="o">.</span><span class="n">compare_scenarios</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="why-this-matters">
+<h2><strong>Why This Matters</strong><a class="headerlink" href="#why-this-matters" title="Link to this heading"></a></h2>
+<p><strong>For Students:</strong>
+- Learn process control with familiar ML syntax
+- Immediate results without complex setup
+- Progressive complexity as skills develop
+- Real engineering problems from day one</p>
+<p><strong>For Engineers:</strong>
+- Rapid prototyping of plant designs
+- Economic optimization built-in
+- Professional-grade results
+- Easy to explain and share</p>
+<p><strong>For Industry:</strong>
+- Fast concept evaluation
+- No expensive licensing
+- Integration with modern data tools
+- Customizable for specific needs</p>
+<p><strong>For Researchers:</strong>
+- Focus on algorithms, not implementation
+- Easy to extend and modify
+- Publication-ready results
+- Community-driven development</p>
+</section>
+<section id="the-future-of-chemical-engineering-software">
+<h2><strong>The Future of Chemical Engineering Software</strong><a class="headerlink" href="#the-future-of-chemical-engineering-software" title="Link to this heading"></a></h2>
+<p>SPROCLIB’s Semantic Plant Design API represents a paradigm shift in how we approach chemical engineering software:</p>
+<dl class="simple">
+<dt><strong>From Complex → Simple</strong></dt><dd><p>Intuitive APIs replace complex configuration files</p>
+</dd>
+<dt><strong>From Fragmented → Unified</strong></dt><dd><p>Single framework handles all aspects of plant design</p>
+</dd>
+<dt><strong>From Expensive → Free</strong></dt><dd><p>Open source eliminates licensing barriers</p>
+</dd>
+<dt><strong>From Static → Dynamic</strong></dt><dd><p>Real-time optimization and simulation built-in</p>
+</dd>
+<dt><strong>From Isolated → Connected</strong></dt><dd><p>Integration with modern Python data science ecosystem</p>
+</dd>
+</dl>
+<p>—</p>
+<p><strong>Ready to revolutionize your chemical plant design workflow?</strong></p>
+<p><strong>Next Steps:</strong>
+1. Try the <a class="reference internal" href="examples/semantic_plant_example.html"><span class="doc">Complete Plant Design Example</span></a>
+2. Explore the <span class="xref std std-doc">api/plant_package</span>
+3. Learn <span class="xref std std-doc">user_guide/optimization_strategies</span>
+4. Build your first plant in 5 minutes!</p>
+<p><em>Chemical engineering software is here.</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user_guide/examples/control_examples.html" class="btn btn-neutral float-left" title="Control Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="semantic_examples.html" class="btn btn-neutral float-right" title="Complete Semantic Plant Design Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

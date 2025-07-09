@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>optimization.economic_optimization &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/semantic_examples.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">optimization.economic_optimization</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for optimization.economic_optimization</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Economic Optimization for SPROCLIB</span>
+
+<span class="sd">This module provides economic optimization tools for process operations</span>
+<span class="sd">including profit maximization, cost minimization, and production planning.</span>
+
+<span class="sd">Author: Thorsten Gressling &lt;gressling@paramus.ai&gt;</span>
+<span class="sd">License: MIT License</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">linprog</span><span class="p">,</span> <span class="n">minimize</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="EconomicOptimization">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.EconomicOptimization">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">EconomicOptimization</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Economic optimization tools for process control.&quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="EconomicOptimization.__init__">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.EconomicOptimization.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Economic Optimization&quot;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize economic optimization.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            name: Optimization problem name</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Economic optimization &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; initialized&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="EconomicOptimization.linear_programming">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.EconomicOptimization.linear_programming">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">linear_programming</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">c</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">A_ub</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">b_ub</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">A_eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">b_eq</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;highs&#39;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Solve linear programming problem: min c^T x subject to constraints.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            c: Objective function coefficients</span>
+<span class="sd">            A_ub, b_ub: Inequality constraints A_ub @ x &lt;= b_ub</span>
+<span class="sd">            A_eq, b_eq: Equality constraints A_eq @ x = b_eq</span>
+<span class="sd">            bounds: Variable bounds [(min, max), ...]</span>
+<span class="sd">            method: Solver method</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Optimization results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">linprog</span><span class="p">(</span>
+                <span class="n">c</span><span class="p">,</span> <span class="n">A_ub</span><span class="o">=</span><span class="n">A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="o">=</span><span class="n">b_ub</span><span class="p">,</span> <span class="n">A_eq</span><span class="o">=</span><span class="n">A_eq</span><span class="p">,</span> <span class="n">b_eq</span><span class="o">=</span><span class="n">b_eq</span><span class="p">,</span>
+                <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span>
+            <span class="p">)</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                <span class="s1">&#39;slack&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">slack</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s1">&#39;slack&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="s1">&#39;problem_type&#39;</span><span class="p">:</span> <span class="s1">&#39;linear_programming&#39;</span>
+            <span class="p">}</span>
+            
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear programming solved successfully: objective = </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear programming failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear programming error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                <span class="s1">&#39;problem_type&#39;</span><span class="p">:</span> <span class="s1">&#39;linear_programming&#39;</span>
+            <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="EconomicOptimization.production_optimization">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.EconomicOptimization.production_optimization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">production_optimization</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">production_rates</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">costs</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">prices</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">capacity_constraints</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+        <span class="n">demand_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">material_balances</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Optimize production planning for maximum profit.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            production_rates: Production variables [units/time]</span>
+<span class="sd">            costs: Unit production costs [$/unit]</span>
+<span class="sd">            prices: Product prices [$/unit]</span>
+<span class="sd">            capacity_constraints: Maximum production capacities [units/time]</span>
+<span class="sd">            demand_constraints: Minimum demand requirements [units/time]</span>
+<span class="sd">            material_balances: Material balance constraints</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Optimization results with profit analysis</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_products</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">production_rates</span><span class="p">)</span>
+        
+        <span class="c1"># Maximize profit = prices^T * x - costs^T * x</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">prices</span> <span class="o">-</span> <span class="n">costs</span><span class="p">)</span>  <span class="c1"># Negative for minimization</span>
+        
+        <span class="c1"># Build constraint matrices</span>
+        <span class="n">A_ub</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">b_ub</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># Capacity constraints: x &lt;= capacity</span>
+        <span class="n">A_ub</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_products</span><span class="p">))</span>
+        <span class="n">b_ub</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">capacity_constraints</span><span class="p">)</span>
+        
+        <span class="c1"># Convert to arrays</span>
+        <span class="n">A_ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A_ub</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_products</span><span class="p">)</span>
+        <span class="n">b_ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">b_ub</span><span class="p">)</span>
+        
+        <span class="c1"># Demand constraints (if provided)</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_products</span><span class="p">):</span>
+            <span class="n">min_demand</span> <span class="o">=</span> <span class="n">demand_constraints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">demand_constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="n">max_capacity</span> <span class="o">=</span> <span class="n">capacity_constraints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">bounds</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">min_demand</span><span class="p">,</span> <span class="n">max_capacity</span><span class="p">))</span>
+        
+        <span class="c1"># Material balance constraints (if provided)</span>
+        <span class="n">A_eq</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">b_eq</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">material_balances</span><span class="p">:</span>
+            <span class="c1"># Simple material balance implementation</span>
+            <span class="c1"># In practice, this would be more sophisticated</span>
+            <span class="k">pass</span>
+        
+        <span class="c1"># Solve optimization</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_programming</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="p">,</span> <span class="n">A_eq</span><span class="p">,</span> <span class="n">b_eq</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="c1"># Calculate profit metrics</span>
+            <span class="n">optimal_production</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+            <span class="n">total_revenue</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">optimal_production</span><span class="p">)</span>
+            <span class="n">total_cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">costs</span><span class="p">,</span> <span class="n">optimal_production</span><span class="p">)</span>
+            <span class="n">total_profit</span> <span class="o">=</span> <span class="n">total_revenue</span> <span class="o">-</span> <span class="n">total_cost</span>
+            
+            <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="s1">&#39;optimal_production&#39;</span><span class="p">:</span> <span class="n">optimal_production</span><span class="p">,</span>
+                <span class="s1">&#39;total_revenue&#39;</span><span class="p">:</span> <span class="n">total_revenue</span><span class="p">,</span>
+                <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="n">total_cost</span><span class="p">,</span>
+                <span class="s1">&#39;total_profit&#39;</span><span class="p">:</span> <span class="n">total_profit</span><span class="p">,</span>
+                <span class="s1">&#39;profit_margin&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">total_profit</span> <span class="o">/</span> <span class="n">total_revenue</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="k">if</span> <span class="n">total_revenue</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="p">})</span>
+            
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Production optimization: profit = $</span><span class="si">{</span><span class="n">total_profit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    
+<div class="viewcode-block" id="EconomicOptimization.utility_optimization">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.EconomicOptimization.utility_optimization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">utility_optimization</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">utility_costs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">utility_demands</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+        <span class="n">utility_capacities</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
+        <span class="n">time_horizon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">24</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Optimize utility usage (steam, electricity, cooling water).</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            utility_costs: Cost per unit for each utility</span>
+<span class="sd">            utility_demands: Demand profiles for each utility</span>
+<span class="sd">            utility_capacities: Maximum capacity for each utility</span>
+<span class="sd">            time_horizon: Planning horizon [hours]</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Optimization results for utility scheduling</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">utilities</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">utility_costs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">n_utilities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">utilities</span><span class="p">)</span>
+        
+        <span class="c1"># Decision variables: utility usage at each time period</span>
+        <span class="n">n_vars</span> <span class="o">=</span> <span class="n">n_utilities</span> <span class="o">*</span> <span class="n">time_horizon</span>
+        
+        <span class="c1"># Objective: minimize total utility cost</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_vars</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">utility</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">utilities</span><span class="p">):</span>
+            <span class="n">cost</span> <span class="o">=</span> <span class="n">utility_costs</span><span class="p">[</span><span class="n">utility</span><span class="p">]</span>
+            <span class="n">start_idx</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">time_horizon</span>
+            <span class="n">end_idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">time_horizon</span>
+            <span class="n">c</span><span class="p">[</span><span class="n">start_idx</span><span class="p">:</span><span class="n">end_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">cost</span>
+        
+        <span class="c1"># Constraints</span>
+        <span class="n">A_ub</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">b_ub</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">A_eq</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">b_eq</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="c1"># Capacity constraints</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">utility</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">utilities</span><span class="p">):</span>
+            <span class="n">capacity</span> <span class="o">=</span> <span class="n">utility_capacities</span><span class="p">[</span><span class="n">utility</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">):</span>
+                <span class="n">constraint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_vars</span><span class="p">)</span>
+                <span class="n">constraint</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">time_horizon</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">A_ub</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constraint</span><span class="p">)</span>
+                <span class="n">b_ub</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">capacity</span><span class="p">)</span>
+        
+        <span class="c1"># Demand constraints (must meet minimum demand)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">utility</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">utilities</span><span class="p">):</span>
+            <span class="n">demand</span> <span class="o">=</span> <span class="n">utility_demands</span><span class="p">[</span><span class="n">utility</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">time_horizon</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">demand</span><span class="p">))):</span>
+                <span class="n">constraint</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_vars</span><span class="p">)</span>
+                <span class="n">constraint</span><span class="p">[</span><span class="n">i</span> <span class="o">*</span> <span class="n">time_horizon</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">A_ub</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">constraint</span><span class="p">)</span>
+                <span class="n">b_ub</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="n">demand</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>  <span class="c1"># Negative for &gt;= constraint</span>
+        
+        <span class="c1"># Convert to arrays</span>
+        <span class="n">A_ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A_ub</span><span class="p">)</span> <span class="k">if</span> <span class="n">A_ub</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">b_ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">b_ub</span><span class="p">)</span> <span class="k">if</span> <span class="n">b_ub</span> <span class="k">else</span> <span class="kc">None</span>
+        
+        <span class="c1"># Variable bounds (non-negative)</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_vars</span><span class="p">)]</span>
+        
+        <span class="c1"># Solve optimization</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_programming</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bounds</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="c1"># Reshape results by utility and time</span>
+            <span class="n">optimal_usage</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_utilities</span><span class="p">,</span> <span class="n">time_horizon</span><span class="p">)</span>
+            
+            <span class="n">utility_schedules</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">utility</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">utilities</span><span class="p">):</span>
+                <span class="n">utility_schedules</span><span class="p">[</span><span class="n">utility</span><span class="p">]</span> <span class="o">=</span> <span class="n">optimal_usage</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span>
+            
+            <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="s1">&#39;utility_schedules&#39;</span><span class="p">:</span> <span class="n">utility_schedules</span><span class="p">,</span>
+                <span class="s1">&#39;total_cost&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">],</span>
+                <span class="s1">&#39;time_horizon&#39;</span><span class="p">:</span> <span class="n">time_horizon</span>
+            <span class="p">})</span>
+            
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Utility optimization: total cost = $</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">result</span></div>
+
+    
+<div class="viewcode-block" id="EconomicOptimization.economic_mpc">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.EconomicOptimization.economic_mpc">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">economic_mpc</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">process_model</span><span class="p">,</span>
+        <span class="n">economic_objective</span><span class="p">:</span> <span class="nb">callable</span><span class="p">,</span>
+        <span class="n">constraints</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span>
+        <span class="n">prediction_horizon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">control_horizon</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Economic Model Predictive Control optimization.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            process_model: Process model for predictions</span>
+<span class="sd">            economic_objective: Economic objective function</span>
+<span class="sd">            constraints: List of constraint dictionaries</span>
+<span class="sd">            prediction_horizon: Prediction horizon</span>
+<span class="sd">            control_horizon: Control horizon</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Economic MPC solution</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">control_horizon</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">control_horizon</span> <span class="o">=</span> <span class="n">prediction_horizon</span>
+        
+        <span class="c1"># This is a simplified implementation</span>
+        <span class="c1"># Full economic MPC requires more sophisticated formulation</span>
+        
+        <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">u_sequence</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Economic objective over prediction horizon.&quot;&quot;&quot;</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Simulate process with control sequence</span>
+                <span class="n">total_cost</span> <span class="o">=</span> <span class="mf">0.0</span>
+                
+                <span class="c1"># Simple cost accumulation</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">u_k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">u_sequence</span><span class="p">):</span>
+                    <span class="n">cost_k</span> <span class="o">=</span> <span class="n">economic_objective</span><span class="p">(</span><span class="n">u_k</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+                    <span class="n">total_cost</span> <span class="o">+=</span> <span class="n">cost_k</span>
+                
+                <span class="k">return</span> <span class="n">total_cost</span>
+            
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Economic objective evaluation error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mf">1e6</span>  <span class="c1"># Large penalty for infeasible solutions</span>
+        
+        <span class="c1"># Initial guess for control sequence</span>
+        <span class="n">n_inputs</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">process_model</span><span class="p">,</span> <span class="s1">&#39;n_inputs&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">control_horizon</span> <span class="o">*</span> <span class="n">n_inputs</span><span class="p">)</span>
+        
+        <span class="c1"># Convert constraints to scipy format</span>
+        <span class="n">scipy_constraints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">constraint</span> <span class="ow">in</span> <span class="n">constraints</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">constraint</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ineq&#39;</span><span class="p">:</span>
+                <span class="n">scipy_constraints</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ineq&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">constraint</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">]</span>
+                <span class="p">})</span>
+            <span class="k">elif</span> <span class="n">constraint</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;eq&#39;</span><span class="p">:</span>
+                <span class="n">scipy_constraints</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;eq&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="n">constraint</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">]</span>
+                <span class="p">})</span>
+        
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Solve optimization</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+                <span class="n">objective</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;SLSQP&#39;</span><span class="p">,</span>
+                <span class="n">constraints</span><span class="o">=</span><span class="n">scipy_constraints</span>
+            <span class="p">)</span>
+            
+            <span class="n">optimal_sequence</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">control_horizon</span><span class="p">,</span> <span class="n">n_inputs</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
+                <span class="s1">&#39;optimal_control_sequence&#39;</span><span class="p">:</span> <span class="n">optimal_sequence</span><span class="p">,</span>
+                <span class="s1">&#39;optimal_cost&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span>
+                <span class="s1">&#39;first_control_action&#39;</span><span class="p">:</span> <span class="n">optimal_sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                <span class="s1">&#39;problem_type&#39;</span><span class="p">:</span> <span class="s1">&#39;economic_mpc&#39;</span>
+            <span class="p">}</span>
+        
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Economic MPC optimization error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+                <span class="s1">&#39;problem_type&#39;</span><span class="p">:</span> <span class="s1">&#39;economic_mpc&#39;</span>
+            <span class="p">}</span></div>
+
+    
+<div class="viewcode-block" id="EconomicOptimization.investment_optimization">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.EconomicOptimization.investment_optimization">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">investment_optimization</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">investment_options</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span>
+        <span class="n">budget_constraint</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">time_horizon</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">discount_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Optimize capital investment decisions.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            investment_options: List of investment options with costs and returns</span>
+<span class="sd">            budget_constraint: Total available budget</span>
+<span class="sd">            time_horizon: Investment time horizon [years]</span>
+<span class="sd">            discount_rate: Discount rate for NPV calculation</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Investment optimization results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_options</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">investment_options</span><span class="p">)</span>
+        
+        <span class="c1"># Decision variables: binary selection of investment options</span>
+        <span class="c1"># For simplicity, treat as continuous [0, 1] and round</span>
+        
+        <span class="c1"># Calculate NPV for each option</span>
+        <span class="n">npvs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">costs</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">option</span> <span class="ow">in</span> <span class="n">investment_options</span><span class="p">:</span>
+            <span class="n">initial_cost</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;initial_cost&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">annual_return</span> <span class="o">=</span> <span class="n">option</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;annual_return&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            
+            <span class="c1"># Calculate NPV</span>
+            <span class="n">npv</span> <span class="o">=</span> <span class="o">-</span><span class="n">initial_cost</span>
+            <span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">time_horizon</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">npv</span> <span class="o">+=</span> <span class="n">annual_return</span> <span class="o">/</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">discount_rate</span><span class="p">)</span> <span class="o">**</span> <span class="n">year</span><span class="p">)</span>
+            
+            <span class="n">npvs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">npv</span><span class="p">)</span>
+            <span class="n">costs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">initial_cost</span><span class="p">)</span>
+        
+        <span class="c1"># Objective: maximize total NPV</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">npvs</span><span class="p">)</span>  <span class="c1"># Negative for minimization</span>
+        
+        <span class="c1"># Budget constraint</span>
+        <span class="n">A_ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">costs</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">b_ub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">budget_constraint</span><span class="p">])</span>
+        
+        <span class="c1"># Variable bounds [0, 1] for selection</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_options</span><span class="p">)]</span>
+        
+        <span class="c1"># Solve optimization</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_programming</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">A_ub</span><span class="p">,</span> <span class="n">b_ub</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+            <span class="c1"># Round to get binary decisions (simplified)</span>
+            <span class="n">selections</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+            <span class="n">selected_options</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">selected</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">selections</span><span class="p">)</span> <span class="k">if</span> <span class="n">selected</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">]</span>
+            
+            <span class="n">total_npv</span> <span class="o">=</span> <span class="o">-</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">]</span>  <span class="c1"># Convert back to positive</span>
+            <span class="n">total_cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">costs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">selected_options</span><span class="p">])</span>
+            
+            <span class="n">result</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="s1">&#39;selected_options&#39;</span><span class="p">:</span> <span class="n">selected_options</span><span class="p">,</span>
+                <span class="s1">&#39;selection_vector&#39;</span><span class="p">:</span> <span class="n">selections</span><span class="p">,</span>
+                <span class="s1">&#39;total_npv&#39;</span><span class="p">:</span> <span class="n">total_npv</span><span class="p">,</span>
+                <span class="s1">&#39;total_investment_cost&#39;</span><span class="p">:</span> <span class="n">total_cost</span><span class="p">,</span>
+                <span class="s1">&#39;roi_percent&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">total_npv</span> <span class="o">/</span> <span class="n">total_cost</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="k">if</span> <span class="n">total_cost</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="p">})</span>
+            
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Investment optimization: NPV = $</span><span class="si">{</span><span class="n">total_npv</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, ROI = </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;roi_percent&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">result</span></div>
+</div>
+
+
+<span class="c1"># Standalone function wrappers for backward compatibility</span>
+<div class="viewcode-block" id="optimize_operation">
+<a class="viewcode-back" href="../../api/optimization_package.html#optimization.economic_optimization.optimize_operation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">optimize_operation</span><span class="p">(</span>
+    <span class="n">objective_func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">,</span>
+    <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;SLSQP&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Optimize process operation using nonlinear programming.</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        objective_func: Objective function to minimize</span>
+<span class="sd">        x0: Initial guess</span>
+<span class="sd">        constraints: List of constraint dictionaries</span>
+<span class="sd">        bounds: Variable bounds [(min, max), ...]</span>
+<span class="sd">        method: Optimization method</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        Optimization results</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+            <span class="n">objective_func</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span>
+            <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;x_optimal&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+            <span class="s1">&#39;f_optimal&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span>
+            <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+            <span class="s1">&#39;iterations&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">nit</span><span class="p">,</span>
+            <span class="s1">&#39;function_evaluations&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">nfev</span>
+        <span class="p">}</span>
+    
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operation optimization error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
+            <span class="s1">&#39;x_optimal&#39;</span><span class="p">:</span> <span class="n">x0</span><span class="p">,</span>
+            <span class="s1">&#39;f_optimal&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+        <span class="p">}</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

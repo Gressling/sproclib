@@ -1,0 +1,58 @@
+SPROCLIB Example Output: compressor_examples
+============================================================
+Generated on: 2025-07-06 13:44:57
+============================================================
+
+STDOUT:
+----------------------------------------
+SPROCLIB Compressor Examples
+==================================================
+=== Simple Compressor Example ===
+Compressor created: Basic Compressor
+Type: Compressor
+
+Operating conditions:
+Inlet pressure: 1.0 bar
+Outlet pressure: 5.0 bar
+Flow rate: 100.0 kg/h
+Efficiency: 0.8
+Compression ratio: 5.00
+
+Simple compressor example completed successfully!
+
+=== Comprehensive Compressor Example ===
+Performance Analysis:
+--------------------------------------------------------------------------------
+Condition    P_in (bar)   P_out (bar)  Flow (kg/h)  Ratio    Efficiency
+--------------------------------------------------------------------------------
+Case 1       1.0          3.0          80.0         3.00     0.75      
+Case 2       1.0          5.0          100.0        5.00     0.80      
+Case 3       1.0          8.0          120.0        8.00     0.78      
+Case 4       2.0          10.0         150.0        5.00     0.82      
+
+--- Multi-Stage Compression Analysis ---
+Multi-stage compression from 1.0 to 16.0 bar
+Number of stages: 3
+Total compression ratio: 16.00
+Optimal stage ratio: 2.52
+
+Stage-by-stage pressure progression:
+Error running examples: 'charmap' codec can't encode character '\u2192' in position 14: character maps to <undefined>
+
+
+STDERR:
+----------------------------------------
+Traceback (most recent call last):
+  File "C:\htdocs\github\paramus-experiments\paramus-experiments\paramus\chemistry\process_control\examples\compressor_examples.py", line 181, in main
+    comprehensive_compressor_example()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\htdocs\github\paramus-experiments\paramus-experiments\paramus\chemistry\process_control\examples\compressor_examples.py", line 122, in comprehensive_compressor_example
+    print(f"Stage {stage_num}: {p_in:.2f} \u2192 {p_out:.2f} bar (ratio: {p_out/p_in:.2f})")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 14: character maps to <undefined>
+
+
+Return code: 0

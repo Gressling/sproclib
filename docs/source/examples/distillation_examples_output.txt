@@ -1,0 +1,134 @@
+SPROCLIB Example Output: distillation_examples
+============================================================
+Generated on: 2025-07-06 13:45:03
+============================================================
+
+STDOUT:
+----------------------------------------
+SPROCLIB Distillation Examples
+==================================================
+=== Simple Distillation Examples ===
+
+--- Binary Distillation Column ---
+Distillation column created: Basic Binary Column
+Type: BinaryDistillationColumn
+
+Column specifications:
+Feed rate: 1000.0 kmol/h
+Feed composition (light): 0.40
+Distillate rate: 400.0 kmol/h
+Bottoms rate: 600.0 kmol/h
+Reflux ratio: 2.5
+
+Material balance:
+Light component in feed: 400.0 kmol/h
+Heavy component in feed: 600.0 kmol/h
+
+Separation performance:
+Distillate purity: 95.0%
+Bottoms purity (heavy): 95.0%
+Light component recovery: 95.0%
+
+--- Single Distillation Tray ---
+Distillation tray created: Equilibrium Tray
+Type: DistillationTray
+
+Tray operating conditions:
+Liquid flow rate: 2500.0 kmol/h
+Vapor flow rate: 3000.0 kmol/h
+Liquid composition: 0.300
+Relative volatility: 2.5
+Vapor composition (equilibrium): 0.517
+Actual vapor composition: 0.200
+Murphree tray efficiency: -0.460
+
+Simple distillation examples completed successfully!
+
+=== Comprehensive Distillation Examples ===
+
+--- McCabe-Thiele Method Analysis ---
+McCabe-Thiele Analysis:
+Relative volatility: 2.4
+Feed composition: 0.45
+Distillate composition: 0.95
+Bottoms composition: 0.05
+q-value (feed condition): 1.0
+Minimum reflux ratio: 1.35
+
+R/Rmin   R        Theoretical Stages Energy (relative)
+-------------------------------------------------------
+1.2      1.62     14.0               1.20           
+1.5      2.03     12.8               1.50           
+2.0      2.70     11.3               2.00           
+3.0      4.06     9.7                3.00           
+
+--- Tray-by-Tray Calculation ---
+Tray-by-tray calculation with R = 2.03
+Rectifying line: y = 0.670x + 0.314
+
+Stage  x_liquid   y_vapor    y_operating 
+---------------------------------------------
+1      0.950      0.979      0.950       
+2      0.993      0.997      0.979       
+3      1.020      1.008      0.997       
+4      1.037      1.015      1.008       
+5      1.047      1.019      1.015       
+6      1.053      1.022      1.019       
+7      1.057      1.023      1.022       
+8      1.059      1.024      1.023       
+9      1.060      1.024      1.024       
+10     1.061      1.024      1.024       
+11     1.061      1.025      1.024       
+12     1.061      1.025      1.025       
+13     1.062      1.025      1.025       
+14     1.062      1.025      1.025       
+15     1.062      1.025      1.025       
+Total theoretical stages: 15
+
+--- Multi-Component Distillation ---
+Multi-component system:
+Component  Feed (mol%)  Rel. Volatility
+----------------------------------------
+Light      30.0         4.0            
+Medium     40.0         2.0            
+Heavy      30.0         1.0            
+
+Flash vaporization at different temperatures:
+Temp (�C)  Vapor Fraction  Light in Vapor  Heavy in Liquid
+-----------------------------------------------------------------
+80         0.50            0.372           0.429          
+100        0.50            0.365           0.437          
+120        0.50            0.360           0.444          
+140        0.50            0.354           0.450          
+
+--- Tray Hydraulics ---
+Sieve Tray Design:
+Tray diameter: 3.0 m
+Active area: 6.01 m�
+Hole area: 0.60 m�
+Weir height: 0.05 m
+
+Liquid Rate  Vapor Rate   Weep Rate    Pressure Drop   Flooding %  
+---------------------------------------------------------------------------
+50           2000         10.8         0.00            30.8        
+100          4000         1.5          0.00            61.6        
+150          6000         0.0          0.00            92.5        
+200          8000         0.0          0.01            123.3       
+250          10000        0.0          0.01            154.1       
+
+--- Energy Analysis ---
+Energy requirements for different separations:
+Separation      Alpha    Recovery (%) Min Stages   Energy Index
+----------------------------------------------------------------------
+Easy            3.0      95           5.4          1.79        
+Moderate        2.0      95           8.5          4.25        
+Difficult       1.5      95           14.5         9.68        
+Very Difficult  1.2      90           32.3         26.92       
+
+Comprehensive distillation examples completed successfully!
+
+==================================================
+All distillation examples completed successfully!
+
+
+Return code: 0

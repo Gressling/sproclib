@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>steady_state Function &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../_static/semantic_examples.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="dynamics Function" href="dynamics.html" />
+    <link rel="prev" title="SlurryPipeline Class" href="SlurryPipeline.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../api/transport_package.html">Transport (Pipes, Drums)Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#package-structure">Package Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../api/transport_package.html#continuous-liquid-transport">Continuous Liquid Transport</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Transport Continuous Liquid Module</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PipeFlow.html">PipeFlow Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PeristalticFlow.html">PeristalticFlow Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SlurryPipeline.html">SlurryPipeline Class</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">steady_state Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dynamics.html">dynamics Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#model-selection-guide">Model Selection Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#features">Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#module-structure">Module Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#api-reference">API Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#performance-and-validation">Performance and Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#contributing">Contributing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#license-and-citation">License and Citation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#indices-and-tables">Indices and Tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#continuous-solid-transport">Continuous Solid Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#batch-transport-operations">Batch Transport Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#analysis-functions">Analysis Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#quick-usage-examples">Quick Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#advanced-applications">Advanced Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Transport Continuous Liquid Module</a></li>
+      <li class="breadcrumb-item active">steady_state Function</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/transport/continuous/liquid/steady_state.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="steady-state-function">
+<h1>steady_state Function<a class="headerlink" href="#steady-state-function" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">steady_state</span></code> function provides unified steady-state analysis capabilities across all transport models in the continuous liquid module. This function enables comparative analysis and model selection for process control applications.</p>
+<a class="reference internal image-reference" href="../../../_images/steady_state_example_plots.png"><img alt="Steady-State Analysis Comparison" class="align-center" src="../../../_images/steady_state_example_plots.png" style="width: 800px;" />
+</a>
+</section>
+<section id="function-description">
+<h2>Function Description<a class="headerlink" href="#function-description" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">steady_state</span></code> function implements steady-state calculations for fluid transport systems, providing equilibrium solutions for pressure, temperature, flow rate, and concentration distributions. Each transport model implements its specific steady-state behavior while maintaining a consistent interface.</p>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Model-Agnostic Interface</strong>: Consistent input/output format across models</p></li>
+<li><p><strong>Comparative Analysis</strong>: Side-by-side model performance evaluation</p></li>
+<li><p><strong>Parameter Sensitivity</strong>: Analysis of input parameter effects</p></li>
+<li><p><strong>Design Point Calculation</strong>: Operating point determination</p></li>
+<li><p><strong>Performance Mapping</strong>: Model capability assessment</p></li>
+</ul>
+</section>
+</section>
+<section id="mathematical-framework">
+<h2>Mathematical Framework<a class="headerlink" href="#mathematical-framework" title="Link to this heading"></a></h2>
+<p>The steady-state analysis solves the equilibrium equations for each transport model:</p>
+<p><strong>General Form</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dx}{dt} = f(x, u) = 0\]</div>
+<p>Where:
+- <span class="math notranslate nohighlight">\(x\)</span> = state vector (pressure, temperature, concentration)
+- <span class="math notranslate nohighlight">\(u\)</span> = input vector (boundary conditions, flow rates)
+- <span class="math notranslate nohighlight">\(f\)</span> = model-specific dynamics function</p>
+<p><strong>Model-Specific Implementations</strong>:</p>
+<p><strong>PipeFlow</strong>: Darcy-Weisbach pressure drop with thermal effects
+<strong>PeristalticFlow</strong>: Positive displacement flow with backpressure correction
+<strong>SlurryPipeline</strong>: Multiphase pressure drop with settling effects</p>
+</section>
+<section id="input-output-formats">
+<h2>Input/Output Formats<a class="headerlink" href="#input-output-formats" title="Link to this heading"></a></h2>
+<p>Each model has specific input and output formats optimized for its application:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># PipeFlow</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">P_inlet</span><span class="p">,</span> <span class="n">T_inlet</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">]</span>       <span class="c1"># [Pa, K, m³/s]</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">P_outlet</span><span class="p">,</span> <span class="n">T_outlet</span><span class="p">]</span>               <span class="c1"># [Pa, K]</span>
+
+<span class="c1"># PeristalticFlow</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">P_inlet</span><span class="p">,</span> <span class="n">pump_speed</span><span class="p">,</span> <span class="n">occlusion</span><span class="p">]</span>    <span class="c1"># [Pa, RPM, -]</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">flow_rate</span><span class="p">,</span> <span class="n">P_outlet</span><span class="p">]</span>              <span class="c1"># [m³/s, Pa]</span>
+
+<span class="c1"># SlurryPipeline</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">P_inlet</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">,</span> <span class="n">c_solid</span><span class="p">]</span>       <span class="c1"># [Pa, m³/s, -]</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">P_outlet</span><span class="p">,</span> <span class="n">c_solid_out</span><span class="p">]</span>            <span class="c1"># [Pa, -]</span>
+</pre></div>
+</div>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="cross-model-comparison">
+<h3>Cross-Model Comparison<a class="headerlink" href="#cross-model-comparison" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">steady_state Function Example</span>
+<span class="sd">=============================</span>
+<span class="sd">Demonstration of the steady_state function for process control transport models.</span>
+
+<span class="sd">This example shows how to use the steady_state function with different transport models</span>
+<span class="sd">including PipeFlow, PeristalticFlow, and SlurryPipeline.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;Agg&#39;</span><span class="p">)</span>  <span class="c1"># Use non-GUI backend</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PipeFlow</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PeristalticFlow</span><span class="w"> </span><span class="kn">import</span> <span class="n">PeristalticFlow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">SlurryPipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">SlurryPipeline</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main function demonstrating steady_state function usage&quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;steady_state Function Example&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=============================&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demonstration of steady_state function across transport models&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Timestamp: 2025-07-09&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    
+    <span class="c1"># Example 1: PipeFlow steady_state</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">EXAMPLE 1: PipeFlow steady_state Function&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">45</span><span class="p">)</span>
+    
+    <span class="n">pipe</span> <span class="o">=</span> <span class="n">PipeFlow</span><span class="p">(</span>
+        <span class="n">pipe_length</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>      <span class="c1"># 1 km</span>
+        <span class="n">pipe_diameter</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>       <span class="c1"># 20 cm</span>
+        <span class="n">roughness</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>          <span class="c1"># Steel pipe</span>
+        <span class="n">fluid_density</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>    <span class="c1"># Water</span>
+        <span class="n">fluid_viscosity</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>    <span class="c1"># Water viscosity</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SteadyStatePipe&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model: </span><span class="si">{</span><span class="n">pipe</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pipe: </span><span class="si">{</span><span class="n">pipe</span><span class="o">.</span><span class="n">pipe_length</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km x </span><span class="si">{</span><span class="n">pipe</span><span class="o">.</span><span class="n">pipe_diameter</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> cm&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Material: Steel (roughness = </span><span class="si">{</span><span class="n">pipe</span><span class="o">.</span><span class="n">roughness</span><span class="si">:</span><span class="s2">.0e</span><span class="si">}</span><span class="s2"> m)&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># steady_state expects [P_inlet, T_inlet, flow_rate]</span>
+    <span class="n">inlet_pressures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">200000</span><span class="p">,</span> <span class="mi">300000</span><span class="p">,</span> <span class="mi">400000</span><span class="p">,</span> <span class="mi">500000</span><span class="p">])</span>  <span class="c1"># Pa</span>
+    <span class="n">inlet_temperature</span> <span class="o">=</span> <span class="mf">293.15</span>  <span class="c1"># K (20°C)</span>
+    <span class="n">flow_rate</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># m³/s</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Steady-State Analysis for </span><span class="si">{</span><span class="n">flow_rate</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m³/s:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inlet P | Outlet P | Pressure Drop | Velocity | Reynolds&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(kPa)   | (kPa)    | (kPa)         | (m/s)    | Number&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    
+    <span class="n">pipe_results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">p_in</span> <span class="ow">in</span> <span class="n">inlet_pressures</span><span class="p">:</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">p_in</span><span class="p">,</span> <span class="n">inlet_temperature</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">])</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">steady_state</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        
+        <span class="n">p_out</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">t_out</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        
+        <span class="c1"># Calculate velocity and Reynolds number for display</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="n">flow_rate</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">pipe_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">reynolds</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fluid_density</span> <span class="o">*</span> <span class="n">velocity</span> <span class="o">*</span> <span class="n">pipe</span><span class="o">.</span><span class="n">pipe_diameter</span> <span class="o">/</span> <span class="n">pipe</span><span class="o">.</span><span class="n">fluid_viscosity</span>
+        <span class="n">pressure_drop</span> <span class="o">=</span> <span class="n">p_in</span> <span class="o">-</span> <span class="n">p_out</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">p_in</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">7.0f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">p_out</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">8.0f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">pressure_drop</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">12.0f</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">velocity</span><span class="si">:</span><span class="s2">7.2f</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">reynolds</span><span class="si">:</span><span class="s2">8.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">pipe_results</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;p_in&#39;</span><span class="p">:</span> <span class="n">p_in</span><span class="p">,</span> <span class="s1">&#39;p_out&#39;</span><span class="p">:</span> <span class="n">p_out</span><span class="p">,</span> <span class="s1">&#39;velocity&#39;</span><span class="p">:</span> <span class="n">velocity</span><span class="p">,</span> <span class="s1">&#39;reynolds&#39;</span><span class="p">:</span> <span class="n">reynolds</span>
+        <span class="p">})</span>
+    
+    <span class="c1"># Example 2: PeristalticFlow steady_state</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">EXAMPLE 2: PeristalticFlow steady_state Function&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="n">pump</span> <span class="o">=</span> <span class="n">PeristalticFlow</span><span class="p">(</span>
+        <span class="n">tube_diameter</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>      <span class="c1"># 10 mm tube</span>
+        <span class="n">tube_length</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>         <span class="c1"># 50 cm in pump head</span>
+        <span class="n">pump_speed</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>        <span class="c1"># 100 RPM</span>
+        <span class="n">occlusion_factor</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>    <span class="c1"># 90% occlusion</span>
+        <span class="n">fluid_density</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>    <span class="c1"># Water</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SteadyStatePump&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model: </span><span class="si">{</span><span class="n">pump</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tube: </span><span class="si">{</span><span class="n">pump</span><span class="o">.</span><span class="n">tube_diameter</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> mm ID x </span><span class="si">{</span><span class="n">pump</span><span class="o">.</span><span class="n">tube_length</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> cm&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speed: </span><span class="si">{</span><span class="n">pump</span><span class="o">.</span><span class="n">pump_speed</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> RPM, Occlusion: </span><span class="si">{</span><span class="n">pump</span><span class="o">.</span><span class="n">occlusion_factor</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># steady_state expects [P_inlet, pump_speed, occlusion_level]</span>
+    <span class="n">pump_speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">150</span><span class="p">])</span>  <span class="c1"># RPM</span>
+    <span class="n">inlet_pressure</span> <span class="o">=</span> <span class="mf">101325.0</span>  <span class="c1"># Atmospheric</span>
+    <span class="n">occlusion_level</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Full occlusion</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Steady-State Analysis at </span><span class="si">{</span><span class="n">inlet_pressure</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kPa inlet:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Speed | Flow Rate | Outlet P | Backpressure&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(RPM) | (mL/min)  | (kPa)    | Effect&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    
+    <span class="n">pump_results</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
+<p>The comprehensive example demonstrates:</p>
+<ul class="simple">
+<li><p><strong>PipeFlow Analysis</strong>: Pressure drop calculations for clean fluids</p></li>
+<li><p><strong>PeristalticFlow Mapping</strong>: Speed-flow relationships for precision dosing</p></li>
+<li><p><strong>SlurryPipeline Assessment</strong>: Multiphase flow with particle effects</p></li>
+<li><p><strong>Comparative Performance</strong>: Model selection guidelines</p></li>
+</ul>
+</section>
+<section id="example-output">
+<h3>Example Output<a class="headerlink" href="#example-output" title="Link to this heading"></a></h3>
+<p>Key output sections include:</p>
+<ul class="simple">
+<li><p>PipeFlow pressure drop and Reynolds number analysis</p></li>
+<li><p>PeristalticFlow speed calibration and backpressure effects</p></li>
+<li><p>SlurryPipeline concentration changes and settling effects</p></li>
+<li><p>Model comparison table with input/output formats</p></li>
+</ul>
+</section>
+</section>
+<section id="model-selection-guidelines">
+<h2>Model Selection Guidelines<a class="headerlink" href="#model-selection-guidelines" title="Link to this heading"></a></h2>
+<p><strong>Use PipeFlow for</strong>:</p>
+<ul class="simple">
+<li><p>Single-phase liquid transport</p></li>
+<li><p>Long-distance pipeline systems</p></li>
+<li><p>High-pressure applications</p></li>
+<li><p>Temperature-sensitive processes</p></li>
+</ul>
+<p><strong>Use PeristalticFlow for</strong>:</p>
+<ul class="simple">
+<li><p>Precise fluid dosing</p></li>
+<li><p>Chemical compatibility requirements</p></li>
+<li><p>Low-flow rate applications</p></li>
+<li><p>Analytical instrumentation</p></li>
+</ul>
+<p><strong>Use SlurryPipeline for</strong>:</p>
+<ul class="simple">
+<li><p>Solid-liquid transport</p></li>
+<li><p>Mining and dredging applications</p></li>
+<li><p>Particle suspension systems</p></li>
+<li><p>Concentration-critical processes</p></li>
+</ul>
+</section>
+<section id="performance-comparison">
+<h2>Performance Comparison<a class="headerlink" href="#performance-comparison" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Model Performance Characteristics</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Characteristic</p></th>
+<th class="head"><p>PipeFlow</p></th>
+<th class="head"><p>PeristalticFlow</p></th>
+<th class="head"><p>SlurryPipeline</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Accuracy</p></td>
+<td><p>±2-5%</p></td>
+<td><p>±1-3%</p></td>
+<td><p>±5-10%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pressure Range</p></td>
+<td><p>0-100 bar</p></td>
+<td><p>0-10 bar</p></td>
+<td><p>0-50 bar</p></td>
+</tr>
+<tr class="row-even"><td><p>Flow Range</p></td>
+<td><p>0.001-10 m³/s</p></td>
+<td><p>0.1-1000 mL/min</p></td>
+<td><p>0.01-5 m³/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Application</p></td>
+<td><p>General purpose</p></td>
+<td><p>Precision dosing</p></td>
+<td><p>Multiphase transport</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading"></a></h2>
+<p>The steady-state analysis generates comprehensive visualization including:</p>
+<ol class="arabic simple">
+<li><p><strong>Pressure Drop Comparison</strong>: Clean vs slurry flow pressure losses</p></li>
+<li><p><strong>Reynolds Number Analysis</strong>: Flow regime identification</p></li>
+<li><p><strong>Flow Rate Relationships</strong>: Model-specific performance curves</p></li>
+<li><p><strong>Model Characteristics</strong>: Complexity vs application scope comparison</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/steady_state_example_plots.png"><img alt="Comprehensive Steady-State Analysis" class="align-center" src="../../../_images/steady_state_example_plots.png" style="width: 100%;" />
+</a>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">steady_state</span></code> function is used for:</p>
+<ul class="simple">
+<li><p><strong>Process Design</strong>: Equipment sizing and selection</p></li>
+<li><p><strong>System Optimization</strong>: Operating point determination</p></li>
+<li><p><strong>Model Validation</strong>: Experimental data comparison</p></li>
+<li><p><strong>Sensitivity Analysis</strong>: Parameter effect assessment</p></li>
+<li><p><strong>Performance Mapping</strong>: Operating envelope definition</p></li>
+</ul>
+</section>
+<section id="computational-aspects">
+<h2>Computational Aspects<a class="headerlink" href="#computational-aspects" title="Link to this heading"></a></h2>
+<p><strong>Solution Methods</strong>:</p>
+<ul class="simple">
+<li><p><strong>Direct Calculation</strong>: Explicit algebraic solutions where possible</p></li>
+<li><p><strong>Iterative Methods</strong>: Newton-Raphson for implicit equations</p></li>
+<li><p><strong>Convergence Criteria</strong>: Relative tolerance of 1e-6</p></li>
+<li><p><strong>Robustness</strong>: Bounds checking and physical constraints</p></li>
+</ul>
+<p><strong>Performance Metrics</strong>:</p>
+<ul class="simple">
+<li><p><strong>Computation Time</strong>: &lt; 1 ms per evaluation (typical)</p></li>
+<li><p><strong>Memory Usage</strong>: Minimal state storage requirements</p></li>
+<li><p><strong>Numerical Stability</strong>: Validated across operating ranges</p></li>
+<li><p><strong>Error Handling</strong>: Graceful degradation for edge cases</p></li>
+</ul>
+</section>
+<section id="technical-implementation">
+<h2>Technical Implementation<a class="headerlink" href="#technical-implementation" title="Link to this heading"></a></h2>
+<p>The steady-state function implements:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">steady_state</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inputs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate steady-state solution for transport model</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    model : TransportModel</span>
+<span class="sd">        Transport model instance (PipeFlow, PeristalticFlow, SlurryPipeline)</span>
+<span class="sd">    inputs : array_like</span>
+<span class="sd">        Model-specific input vector</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    outputs : array_like</span>
+<span class="sd">        Model-specific output vector</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Validate inputs</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">validate_inputs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+
+    <span class="c1"># Calculate steady-state solution</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">steady_state</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="c1"># Validate outputs</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">validate_outputs</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">outputs</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<p><strong>Input Validation</strong>:</p>
+<ul class="simple">
+<li><p>Check physical bounds (positive pressures, flows)</p></li>
+<li><p>Verify units and dimensional consistency</p></li>
+<li><p>Handle edge cases (zero flow, extreme conditions)</p></li>
+</ul>
+<p><strong>Output Analysis</strong>:</p>
+<ul class="simple">
+<li><p>Compare results across models when applicable</p></li>
+<li><p>Validate against known analytical solutions</p></li>
+<li><p>Check conservation principles (mass, energy)</p></li>
+</ul>
+<p><strong>Error Handling</strong>:</p>
+<ul class="simple">
+<li><p>Provide meaningful error messages</p></li>
+<li><p>Implement fallback calculations</p></li>
+<li><p>Log convergence issues for debugging</p></li>
+</ul>
+</section>
+<section id="technical-references">
+<h2>Technical References<a class="headerlink" href="#technical-references" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Bird, R.B., Stewart, W.E. &amp; Lightfoot, E.N. (2007). <em>Transport Phenomena</em>, 2nd Edition. John Wiley &amp; Sons.</p></li>
+<li><p>Welty, J.R. et al. (2007). <em>Fundamentals of Momentum, Heat, and Mass Transfer</em>, 5th Edition. John Wiley &amp; Sons.</p></li>
+<li><p>McCabe, W.L., Smith, J.C. &amp; Harriott, P. (2004). <em>Unit Operations of Chemical Engineering</em>, 7th Edition. McGraw-Hill.</p></li>
+<li><p>Perry, R.H. &amp; Green, D.W. (2007). <em>Perry’s Chemical Engineers’ Handbook</em>, 8th Edition. McGraw-Hill.</p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="PipeFlow.html"><span class="doc">PipeFlow Class</span></a> - Pipeline transport modeling</p></li>
+<li><p><a class="reference internal" href="PeristalticFlow.html"><span class="doc">PeristalticFlow Class</span></a> - Peristaltic pump modeling</p></li>
+<li><p><a class="reference internal" href="SlurryPipeline.html"><span class="doc">SlurryPipeline Class</span></a> - Multiphase slurry transport</p></li>
+<li><p><a class="reference internal" href="dynamics.html"><span class="doc">dynamics Function</span></a> - Dynamic modeling functions</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SlurryPipeline.html" class="btn btn-neutral float-left" title="SlurryPipeline Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dynamics.html" class="btn btn-neutral float-right" title="dynamics Function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

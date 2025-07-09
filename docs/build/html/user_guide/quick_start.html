@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start Guide &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/semantic_examples.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Basic Concepts" href="basic_concepts.html" />
+    <link rel="prev" title="Installation and Setup" href="installation_setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migration Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="installation_setup.html">Installation and Setup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick Start Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#your-first-transport-model">Your First Transport Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#essential-workflows">Essential Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-tasks">Common Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_concepts.html">Basic Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="process_modeling.html">Process Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control_design.html">Control Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation_analysis.html">Simulation Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization_methods.html">Optimization Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transport_overview.html">Transport Systems Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_transport.html">Pipeline Transport Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pump_systems.html">Pump Systems Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiphase_flow.html">Multiphase Flow Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced_control.html">Advanced Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system_integration.html">System Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_models.html">Custom Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/complete_process_examples.html">Complete Process Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/transport_examples.html">Transport Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/control_examples.html">Control Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/optimization_examples.html">Optimization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#learning-path">Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#key-features-covered">Key Features Covered</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#getting-help">Getting Help</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../user_guide.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/user_guide/quick_start.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start-guide">
+<h1>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading"></a></h1>
+<p>Get up and running with SPROCLIB transport modeling in minutes.</p>
+<section id="your-first-transport-model">
+<h2>Your First Transport Model<a class="headerlink" href="#your-first-transport-model" title="Link to this heading"></a></h2>
+<p>Create a simple pipeline model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
+
+<span class="c1"># Create a water pipeline</span>
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipeFlow</span><span class="p">(</span>
+    <span class="n">pipe_length</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>    <span class="c1"># 1 km</span>
+    <span class="n">pipe_diameter</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>     <span class="c1"># 20 cm</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;My First Pipeline&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Calculate pressure drop</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">steady_state</span><span class="p">([</span><span class="mi">300000</span><span class="p">,</span> <span class="mf">293.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Outlet pressure: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> kPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="essential-workflows">
+<h2>Essential Workflows<a class="headerlink" href="#essential-workflows" title="Link to this heading"></a></h2>
+<p><strong>1. Steady-State Analysis</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define operating conditions</span>
+<span class="n">inlet_pressure</span> <span class="o">=</span> <span class="mi">300000</span>  <span class="c1"># Pa</span>
+<span class="n">inlet_temperature</span> <span class="o">=</span> <span class="mf">293.15</span>  <span class="c1"># K</span>
+<span class="n">flow_rate</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># m³/s</span>
+
+<span class="c1"># Calculate steady-state</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">steady_state</span><span class="p">([</span><span class="n">inlet_pressure</span><span class="p">,</span> <span class="n">inlet_temperature</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">])</span>
+<span class="n">outlet_pressure</span><span class="p">,</span> <span class="n">outlet_temperature</span> <span class="o">=</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p><strong>2. Dynamic Analysis</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="c1"># Define system dynamics</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">system_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="p">[</span><span class="mi">300000</span><span class="p">,</span> <span class="mf">293.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]</span>  <span class="c1"># Constant inputs</span>
+    <span class="k">return</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+<span class="c1"># Initial conditions</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250000</span><span class="p">,</span> <span class="mf">293.15</span><span class="p">]</span>  <span class="c1"># Initial state</span>
+
+<span class="c1"># Solve ODE</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">system_dynamics</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">x0</span><span class="p">,</span> <span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>3. Parameter Studies</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Study pressure drop vs flow rate</span>
+<span class="n">flow_rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">pressure_drops</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">Q</span> <span class="ow">in</span> <span class="n">flow_rates</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">steady_state</span><span class="p">([</span><span class="mi">300000</span><span class="p">,</span> <span class="mf">293.15</span><span class="p">,</span> <span class="n">Q</span><span class="p">])</span>
+    <span class="n">pressure_drop</span> <span class="o">=</span> <span class="mi">300000</span> <span class="o">-</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pressure_drops</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pressure_drop</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">flow_rates</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pressure_drops</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Flow Rate (L/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure Drop (kPa)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="common-tasks">
+<h2>Common Tasks<a class="headerlink" href="#common-tasks" title="Link to this heading"></a></h2>
+<p><strong>Model Configuration</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update model parameters</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">pipe_diameter</span> <span class="o">=</span> <span class="mf">0.25</span>  <span class="c1"># Change diameter</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">roughness</span> <span class="o">=</span> <span class="mf">5e-5</span>      <span class="c1"># Change roughness</span>
+
+<span class="c1"># Update fluid properties</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fluid_density</span> <span class="o">=</span> <span class="mi">850</span>   <span class="c1"># Different fluid</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">fluid_viscosity</span> <span class="o">=</span> <span class="mf">2e-3</span>
+</pre></div>
+</div>
+<p><strong>Error Handling</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">steady_state</span><span class="p">([</span><span class="n">inlet_pressure</span><span class="p">,</span> <span class="n">inlet_temperature</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">])</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid operating conditions: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Calculation failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Model Validation</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get model information</span>
+<span class="n">model_info</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model_info</span><span class="p">)</span>
+
+<span class="c1"># Check operating envelope</span>
+<span class="n">max_velocity</span> <span class="o">=</span> <span class="mf">4.0</span>  <span class="c1"># m/s</span>
+<span class="n">max_flow</span> <span class="o">=</span> <span class="n">max_velocity</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">pipeline</span><span class="o">.</span><span class="n">pipe_diameter</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum recommended flow: </span><span class="si">{</span><span class="n">max_flow</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> L/s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Explore <a class="reference internal" href="transport_overview.html"><span class="doc">Transport Systems Overview</span></a> for comprehensive modeling</p></li>
+<li><p>Learn <a class="reference internal" href="pipeline_transport.html"><span class="doc">Pipeline Transport Tutorial</span></a> for advanced techniques</p></li>
+<li><p>Try <a class="reference internal" href="examples/transport_examples.html"><span class="doc">Transport Examples</span></a> for practical applications</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation_setup.html" class="btn btn-neutral float-left" title="Installation and Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basic_concepts.html" class="btn btn-neutral float-right" title="Basic Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

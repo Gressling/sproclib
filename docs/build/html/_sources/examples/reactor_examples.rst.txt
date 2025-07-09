@@ -1,0 +1,163 @@
+
+Reactor Examples
+================
+
+This example demonstrates the usage of reactor units in SPROCLIB.
+
+Example Output
+--------------
+
+.. code-block:: text
+
+    SPROCLIB Reactor Examples
+    ==================================================
+    === Simple Reactor Examples ===
+    
+    --- Continuous Stirred Tank Reactor (CSTR) ---
+    CSTR created: Basic CSTR
+    Type: CSTR
+    
+    Reactor specifications:
+    Volume: 2.0 m�
+    Flow rate: 0.5 m�/h
+    Residence time: 4.0 hours
+    Inlet concentration: 2.0 mol/L
+    Rate constant: 0.3 h^-1
+    
+    Results:
+    Outlet concentration: 0.91 mol/L
+    Conversion: 54.5%
+    
+    --- Plug Flow Reactor (PFR) ---
+    PFR created: Basic PFR
+    Type: PlugFlowReactor
+    
+    Reactor specifications:
+    Length: 10.0 m
+    Diameter: 0.5 m
+    Volume: 1.96 m�
+    Flow rate: 0.5 m�/h
+    Space time: 3.9 hours
+    
+    Results:
+    Outlet concentration: 0.62 mol/L
+    Conversion: 69.2%
+    
+    --- Batch Reactor ---
+    Batch reactor created: Basic Batch Reactor
+    Type: BatchReactor
+    
+    Batch specifications:
+    Volume: 1.5 m�
+    Initial concentration: 3.0 mol/L
+    Reaction time: 2.0 hours
+    Rate constant: 0.3 h^-1
+    
+    Results:
+    Final concentration: 1.65 mol/L
+    Conversion: 45.1%
+    
+    Simple reactor examples completed successfully!
+    
+    === Comprehensive Reactor Examples ===
+    
+    --- Complex Kinetics Analysis ---
+    Parallel Reactions: A  ->  B (desired), A  ->  C (undesired)
+    k1 (A -> B): 0.5 h^-1, k2 (A -> C): 0.2 h^-1
+    Feed concentration: 2.0 mol/L
+    
+    Volume (m�)  tau (h)  CA (mol/L)   CB (mol/L)   CC (mol/L)   Selectivity 
+    --------------------------------------------------------------------------------
+    0.5          0.50     1.481        0.370        0.148        0.714       
+    1.0          1.00     1.176        0.588        0.235        0.714       
+    1.5          1.50     0.976        0.732        0.293        0.714       
+    2.0          2.00     0.833        0.833        0.333        0.714       
+    2.5          2.50     0.727        0.909        0.364        0.714       
+    3.0          3.00     0.645        0.968        0.387        0.714       
+    3.5          3.50     0.580        1.014        0.406        0.714       
+    4.0          4.00     0.526        1.053        0.421        0.714       
+    4.5          4.50     0.482        1.084        0.434        0.714       
+    5.0          5.00     0.444        1.111        0.444        0.714       
+    
+    --- Temperature Effects on Reaction ---
+    Arrhenius Kinetics Analysis:
+    A = 1e+08 h^-1, Ea = 50 kJ/mol
+    
+    Temp (degC) Temp (K)   k (h^-1)     Conversion (%)  Rate Ratio  
+    ----------------------------------------------------------------------
+    27         300        0.20         16.4            0.06        
+    37         310        0.38         27.3            0.11        
+    47         320        0.69         40.8            0.20        
+    57         330        1.22         54.9            0.35        
+    67         340        2.08         67.5            0.60        
+    77         350        3.45         77.5            1.00        
+    87         360        5.56         84.8            1.61        
+    97         370        8.73         89.7            2.53        
+    107        380        13.39        93.1            3.88        
+    117        390        20.09        95.3            5.83        
+    127        400        29.54        96.7            8.57        
+    
+    --- Semi-Batch Reactor Operation ---
+    Fed-Batch Operation:
+    Initial volume: 1.0 m�
+    Feed rate: 0.1 m�/h
+    Feed concentration: 5.0 mol/L
+    Operation time: 5.0 hours
+    
+    Time (h)   Volume (m�)  CA (mol/L)   Total moles  Conversion (%) 
+    ---------------------------------------------------------------------------
+    0.0        1.00         0.000        0.00         0.0            
+    0.5        1.05         0.215        0.23         9.5            
+    1.0        1.10         0.372        0.41         18.1           
+    1.5        1.15         0.483        0.56         25.9           
+    2.0        1.20         0.559        0.67         33.0           
+    2.5        1.25         0.607        0.76         39.3           
+    3.0        1.30         0.633        0.82         45.1           
+    3.5        1.35         0.644        0.87         50.3           
+    4.0        1.40         0.642        0.90         55.1           
+    4.5        1.45         0.631        0.91         59.3           
+    5.0        1.50         0.613        0.92         63.2           
+    
+    --- Fixed Bed Reactor Analysis ---
+    Fixed Bed Specifications:
+    Bed length: 3.0 m
+    Bed diameter: 1.0 m
+    Particle diameter: 5 mm
+    Bed porosity: 0.4
+    Catalyst mass: 1696 kg
+    
+    Velocity (m/s)  Re       Pressure Drop (bar) Contact Time (s)  
+    -----------------------------------------------------------------
+    0.10            500      0.101              12.0              
+    0.20            1000     0.202              6.0               
+    0.30            1500     0.304              4.0               
+    0.40            2000     0.405              3.0               
+    0.50            2500     0.506              2.4               
+    0.60            3000     0.607              2.0               
+    0.70            3500     0.709              1.7               
+    0.80            4000     0.810              1.5               
+    0.90            4500     0.911              1.3               
+    1.00            5000     1.012              1.2               
+    
+    --- Fluidized Bed Reactor Analysis ---
+    Fluidized Bed Specifications:
+    Particle density: 2500 kg/m�
+    Fluid density: 1.2 kg/m�
+    Error running examples: 'charmap' codec can't encode character '\u03bc' in position 19: character maps to <undefined>
+
+Source Code
+-----------
+
+The complete source code for this example can be found in:
+``examples/reactor_examples.py``
+
+Key Features Demonstrated
+-------------------------
+
+* Simple usage examples for quick learning
+* Comprehensive analysis for advanced applications  
+* Real engineering calculations and parameters
+* Educational explanations and insights
+
+This example is part of the refactored SPROCLIB where each unit class 
+is now in its own file for better modularity and maintainability.

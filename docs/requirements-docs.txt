@@ -1,0 +1,20 @@
+# Documentation Build Requirements
+# These packages are required for building the Sphinx documentation
+
+# Core Sphinx packages
+sphinx>=8.0.0
+sphinx-rtd-theme>=3.0.0
+sphinx-autodoc-typehints>=3.0.0
+
+# MyST Parser for Markdown support
+myst-parser>=4.0.0
+
+# Additional Sphinx extensions
+sphinxcontrib-plantuml
+sphinxcontrib-mermaid
+
+# Documentation utilities
+docutils>=0.21.0
+
+# Required for full documentation features
+pillow  # For image processing in docs

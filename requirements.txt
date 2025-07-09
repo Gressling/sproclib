@@ -1,0 +1,29 @@
+# Standard Process Control Library Requirements
+# Core scientific computing
+numpy>=1.20.0
+scipy>=1.7.0
+matplotlib>=3.4.0
+
+# Optional dependencies for advanced features
+# Optimization
+cvxpy>=1.2.0  # For convex optimization
+pyomo>=6.0.0  # For algebraic modeling
+
+# Data analysis
+pandas>=1.3.0  # For data handling
+jupyter>=1.0.0  # For interactive development
+
+# Control systems (optional)
+python-control>=0.9.0  # Advanced control systems analysis
+
+# Testing
+pytest>=6.0.0
+pytest-cov>=2.12.0
+
+# Documentation (for building docs)
+sphinx>=8.0.0
+sphinx-rtd-theme>=3.0.0
+sphinx-autodoc-typehints>=3.0.0
+myst-parser>=4.0.0
+docutils>=0.21.0
+pillow>=9.0.0

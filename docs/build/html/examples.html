@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/semantic_examples.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Complete Plant Design Example" href="examples/semantic_plant_example.html" />
+    <link rel="prev" title="TensorFlow/Keras vs SPROCLIB Comparison" href="tensorflow_comparison.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/semantic_plant_example.html">Complete Plant Design Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/complete_process_examples.html">Complete Process Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/compressor_examples.html">Compressor Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/distillation_examples.html">Distillation Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/heat_exchanger_examples.html">Heat Exchanger Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/pump_examples.html">Pump Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/reactor_examples.html">Reactor Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tank_examples.html">Tank Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/utilities_examples.html">Utilities Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/valve_examples.html">Valve Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#semantic-plant-design-examples">Semantic Plant Design Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-categories">Example Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#legacy-example-complete-tank-control-system">Legacy Example: Complete Tank Control System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-3-transfer-function-analysis">Example 3: Transfer Function Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-4-batch-process-optimization">Example 4: Batch Process Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/examples.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
+<p>This section contains examples demonstrating the usage of all SPROCLIB units,
+including the <strong>Semantic Plant Design API</strong> that brings TensorFlow/Keras-style
+syntax to chemical process control.</p>
+<p><strong>Featured: Semantic Plant Design Examples</strong> - Experience the semantic API
+for chemical plant design with familiar machine learning syntax.</p>
+<p>The examples are organized by unit type and demonstrate real engineering calculations
+with educational explanations.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Example Categories:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/semantic_plant_example.html">Complete Plant Design Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/semantic_plant_example.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/complete_process_examples.html">Complete Process Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/complete_process_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/complete_process_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/complete_process_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/compressor_examples.html">Compressor Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/compressor_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/compressor_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/compressor_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/distillation_examples.html">Distillation Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/distillation_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/distillation_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/distillation_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/heat_exchanger_examples.html">Heat Exchanger Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/heat_exchanger_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/heat_exchanger_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/heat_exchanger_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/pump_examples.html">Pump Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/pump_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/pump_examples.html#generated-plot">Generated Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/pump_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/pump_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/reactor_examples.html">Reactor Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/reactor_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/reactor_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/reactor_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/tank_examples.html">Tank Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/tank_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tank_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/tank_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/utilities_examples.html">Utilities Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/utilities_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/utilities_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/utilities_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/valve_examples.html">Valve Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/valve_examples.html#example-output">Example Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/valve_examples.html#source-code">Source Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/valve_examples.html#key-features-demonstrated">Key Features Demonstrated</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Each example demonstrates:</p>
+<ul class="simple">
+<li><p><strong>Simple Examples</strong>: Basic usage patterns and fundamental concepts</p></li>
+<li><p><strong>Advanced Examples</strong>: Advanced analysis with realistic engineering scenarios</p></li>
+<li><p><strong>Code Output</strong>: Complete execution results showing calculations and analysis</p></li>
+<li><p><strong>Engineering Context</strong>: Real-world applications and best practices</p></li>
+</ul>
+<p>All examples are fully executable and include:</p>
+<ul class="simple">
+<li><p>Process modeling and simulation</p></li>
+<li><p>Control system design and analysis</p></li>
+<li><p>Parameter estimation and optimization</p></li>
+<li><p>Performance evaluation and visualization</p></li>
+<li><p>Error handling and validation</p></li>
+</ul>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<p>To run any example, navigate to the examples directory and execute the Python file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">examples</span>
+<span class="n">python</span> <span class="n">pump_examples</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Or run all examples and capture outputs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">capture_examples_output</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+<section id="semantic-plant-design-examples">
+<h2>Semantic Plant Design Examples<a class="headerlink" href="#semantic-plant-design-examples" title="Link to this heading"></a></h2>
+<p><strong>Featured: TensorFlow/Keras-Style API</strong></p>
+<p>SPROCLIB introduces a semantic API for chemical plant design,
+using familiar syntax from machine learning frameworks:</p>
+<p><strong>Complete Semantic Plant Example</strong>:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Complete Semantic Plant Design Examples</span><a class="headerlink" href="#id1" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">SPROCLIB Comprehensive Examples Collection</span>
+
+<span class="sd">This module contains a collection of examples demonstrating various</span>
+<span class="sd">features of the SPROCLIB semantic plant design API.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.plant</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalPlant</span><span class="p">,</span> <span class="n">PlantConfiguration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.pump.centrifugal</span><span class="w"> </span><span class="kn">import</span> <span class="n">CentrifugalPump</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.reactor.cstr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.distillation.column</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinaryDistillationColumn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.heat_exchanger</span><span class="w"> </span><span class="kn">import</span> <span class="n">HeatExchanger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.valve.control</span><span class="w"> </span><span class="kn">import</span> <span class="n">ControlValve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.controller.pid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">basic_plant_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Basic plant example demonstrating fundamental concepts.</span>
+<span class="sd">    </span>
+<span class="sd">    This example shows:</span>
+<span class="sd">    - Plant creation</span>
+<span class="sd">    - Adding units</span>
+<span class="sd">    - Basic connections</span>
+<span class="sd">    - Simple optimization</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Basic Plant Example&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    
+    <span class="c1"># Create basic plant</span>
+    <span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Basic Plant&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Add units</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CentrifugalPump</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">)</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">1e8</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Connect units</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;reactor&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_stream&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Compile and optimize</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;economic&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;total_cost&quot;</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">target_production</span><span class="o">=</span><span class="mf">500.0</span><span class="p">)</span>
+    
+    <span class="c1"># Display results</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Key Semantic Features Demonstrated</strong>:</p>
+<ul class="simple">
+<li><p><strong>Sequential Plant Building</strong> - Add units like neural network layers</p></li>
+<li><p><strong>Functional Connections</strong> - Connect units with stream specifications</p></li>
+<li><p><strong>ML-Style Compilation</strong> - Configure optimization objectives</p></li>
+<li><p><strong>Training-Style Optimization</strong> - Optimize plant like training a model</p></li>
+<li><p><strong>Model-Style Evaluation</strong> - Evaluate performance with test conditions</p></li>
+</ul>
+<p><strong>Benefits of Semantic API</strong>:</p>
+<p>✅ <strong>Familiar Syntax</strong> - Leverage TensorFlow/Keras knowledge
+✅ <strong>Rapid Prototyping</strong> - Build plants in minutes, not hours
+✅ <strong>Educational Excellence</strong> - Perfect for teaching process control
+✅ <strong>Professional Results</strong> - Industrial-grade calculations with simple syntax</p>
+<p>See the complete semantic examples in:
+- <a class="reference internal" href="semantic_plant_design.html"><span class="doc">Semantic Plant Design</span></a> - Full API documentation
+- <a class="reference internal" href="semantic_examples.html"><span class="doc">Complete Semantic Plant Design Examples</span></a> - Working examples and tutorials
+- <a class="reference internal" href="tensorflow_comparison.html"><span class="doc">TensorFlow/Keras vs SPROCLIB Comparison</span></a> - Side-by-side syntax comparison</p>
+</section>
+<section id="example-categories">
+<h2>Example Categories<a class="headerlink" href="#example-categories" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Process Units</strong></dt><dd><ul class="simple">
+<li><p>Pumps and Compressors</p></li>
+<li><p>Tanks and Vessels</p></li>
+<li><p>Valves and Flow Control</p></li>
+<li><p>Heat Exchangers</p></li>
+<li><p>Reactors (CSTR, PFR, Batch, etc.)</p></li>
+<li><p>Distillation Columns</p></li>
+</ul>
+</dd>
+<dt><strong>Utilities and Analysis</strong></dt><dd><ul class="simple">
+<li><p>Linear Approximation</p></li>
+<li><p>Statistical Analysis</p></li>
+<li><p>Control System Design</p></li>
+</ul>
+</dd>
+<dt><strong>Complete Process Examples</strong></dt><dd><ul class="simple">
+<li><p>Integrated process control systems</p></li>
+<li><p>Multi-unit operations</p></li>
+<li><p>Advanced control strategies</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="legacy-example-complete-tank-control-system">
+<h2>Legacy Example: Complete Tank Control System<a class="headerlink" href="#legacy-example-complete-tank-control-system" title="Link to this heading"></a></h2>
+<p>The following is the original example demonstrating basic tank control:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Tank Control Example</span><a class="headerlink" href="#id2" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">SPROCLIB Comprehensive Examples Collection</span>
+
+<span class="sd">This module contains a collection of examples demonstrating various</span>
+<span class="sd">features of the SPROCLIB semantic plant design API.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.plant</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalPlant</span><span class="p">,</span> <span class="n">PlantConfiguration</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.pump.centrifugal</span><span class="w"> </span><span class="kn">import</span> <span class="n">CentrifugalPump</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.reactor.cstr</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.distillation.column</span><span class="w"> </span><span class="kn">import</span> <span class="n">BinaryDistillationColumn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.heat_exchanger</span><span class="w"> </span><span class="kn">import</span> <span class="n">HeatExchanger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.unit.valve.control</span><span class="w"> </span><span class="kn">import</span> <span class="n">ControlValve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control.controller.pid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">basic_plant_example</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Basic plant example demonstrating fundamental concepts.</span>
+<span class="sd">    </span>
+<span class="sd">    This example shows:</span>
+<span class="sd">    - Plant creation</span>
+<span class="sd">    - Adding units</span>
+<span class="sd">    - Basic connections</span>
+<span class="sd">    - Simple optimization</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Basic Plant Example&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    
+    <span class="c1"># Create basic plant</span>
+    <span class="n">plant</span> <span class="o">=</span> <span class="n">ChemicalPlant</span><span class="p">(</span><span class="s2">&quot;Basic Plant&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Add units</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CentrifugalPump</span><span class="p">(</span><span class="n">H0</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">)</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">1e8</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;reactor&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Connect units</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;reactor&quot;</span><span class="p">,</span> <span class="s2">&quot;feed_stream&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Compile and optimize</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;economic&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;total_cost&quot;</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">plant</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">target_production</span><span class="o">=</span><span class="mf">500.0</span><span class="p">)</span>
+    
+    <span class="c1"># Display results</span>
+    <span class="n">plant</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<p>This example demonstrates:</p>
+<ul class="simple">
+<li><p>Process modeling with the Tank class</p></li>
+<li><p>Linear approximation for control design</p></li>
+<li><p>FOPDT parameter identification</p></li>
+<li><p>Automated PID tuning</p></li>
+<li><p>Closed-loop simulation and analysis</p></li>
+</ul>
+<p>Run this example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">examples</span><span class="o">.</span><span class="n">py</span>
+
+    <span class="c1"># CSTR dynamics</span>
+    <span class="n">current_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">concentrations</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="n">T_cool_cmd</span><span class="p">]</span>
+
+    <span class="n">derivatives</span> <span class="o">=</span> <span class="n">cstr</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">current_state</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+
+    <span class="n">concentrations</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">concentrations</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">derivatives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">derivatives</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">T_setpoint</span><span class="p">,</span> <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Setpoint&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">temperatures</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Temperature&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;CSTR Temperature Control&#39;</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">concentrations</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Concentration&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;CA (mol/L)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">coolant_temps</span><span class="p">,</span> <span class="s1">&#39;m-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Coolant Temperature&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;T_cool (K)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Performance analysis</span>
+<span class="n">step_time</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">final_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">temperatures</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">:])</span>  <span class="c1"># Average of last 100 points</span>
+<span class="n">target_temp</span> <span class="o">=</span> <span class="mf">360.0</span>
+
+<span class="n">settling_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">time</span> <span class="o">&gt;</span> <span class="n">step_time</span><span class="p">)</span> <span class="o">&amp;</span>
+                       <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">temperatures</span> <span class="o">-</span> <span class="n">target_temp</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="n">target_temp</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">settling_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">settling_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">-</span> <span class="n">step_time</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">settling_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nPerformance for setpoint change 350-&gt;360 K:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Settling time (2%): </span><span class="si">{</span><span class="n">settling_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final temperature: </span><span class="si">{</span><span class="n">final_temp</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Steady-state error: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">final_temp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">target_temp</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-3-transfer-function-analysis">
+<h2>Example 3: Transfer Function Analysis<a class="headerlink" href="#example-3-transfer-function-analysis" title="Link to this heading"></a></h2>
+<p>Frequency domain analysis of a process control system.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Frequency Domain Analysis</span><a class="headerlink" href="#id3" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span><span class="p">,</span> <span class="n">PIDController</span>
+ <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+ <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+ <span class="c1"># Create process transfer function (FOPDT)</span>
+ <span class="n">process</span> <span class="o">=</span> <span class="n">TransferFunction</span><span class="o">.</span><span class="n">first_order_plus_dead_time</span><span class="p">(</span>
+     <span class="n">K</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Process&quot;</span>
+ <span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Process transfer function: G(s) = </span><span class="si">{</span><span class="n">process</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Design PID controller</span>
+ <span class="n">pid_params</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span>
+     <span class="p">{</span><span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s1">&#39;theta&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ziegler_nichols&#39;</span><span class="p">,</span>
+     <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PID&#39;</span>
+ <span class="p">)</span>
+
+ <span class="c1"># Create controller transfer function</span>
+ <span class="c1"># PID: C(s) = Kp + Ki/s + Kd*s</span>
+ <span class="n">Kp</span><span class="p">,</span> <span class="n">Ki</span><span class="p">,</span> <span class="n">Kd</span> <span class="o">=</span> <span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">],</span> <span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Ki&#39;</span><span class="p">],</span> <span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kd&#39;</span><span class="p">]</span>
+
+ <span class="c1"># For analysis, approximate derivative as Kd*s/(tau_d*s + 1) with tau_d = Kd/10/Kp</span>
+ <span class="n">tau_d</span> <span class="o">=</span> <span class="n">Kd</span> <span class="o">/</span> <span class="p">(</span><span class="mi">10</span> <span class="o">*</span> <span class="n">Kp</span><span class="p">)</span> <span class="k">if</span> <span class="n">Kp</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.1</span>
+
+ <span class="c1"># PID transfer function: (Kp*(tau_d*s + 1) + Ki*tau_d/s + Kd*s) / (tau_d*s + 1)</span>
+ <span class="n">controller_num</span> <span class="o">=</span> <span class="p">[</span><span class="n">Kd</span> <span class="o">+</span> <span class="n">Kp</span><span class="o">*</span><span class="n">tau_d</span><span class="p">,</span> <span class="n">Kp</span> <span class="o">+</span> <span class="n">Ki</span><span class="o">*</span><span class="n">tau_d</span><span class="p">,</span> <span class="n">Ki</span><span class="p">]</span>
+ <span class="n">controller_den</span> <span class="o">=</span> <span class="p">[</span><span class="n">tau_d</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Note: added zero for integrator</span>
+
+ <span class="n">controller</span> <span class="o">=</span> <span class="n">TransferFunction</span><span class="p">(</span><span class="n">controller_num</span><span class="p">,</span> <span class="n">controller_den</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PID Controller&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Closed-loop analysis</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nController: C(s) = </span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PID Parameters: Kp=</span><span class="si">{</span><span class="n">Kp</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Ki=</span><span class="si">{</span><span class="n">Ki</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Kd=</span><span class="si">{</span><span class="n">Kd</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Open-loop analysis</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n=== Open-Loop Analysis ===&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Create frequency vector</span>
+ <span class="n">frequencies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># 0.001 to 10 rad/min</span>
+
+ <span class="c1"># Process Bode plot</span>
+ <span class="n">process_bode</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">bode_plot</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+ <span class="c1"># Controller Bode plot</span>
+ <span class="n">controller_bode</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">bode_plot</span><span class="p">(</span><span class="n">frequencies</span><span class="o">=</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+ <span class="c1"># Open-loop = Process * Controller</span>
+ <span class="n">open_loop_mag</span> <span class="o">=</span> <span class="n">process_bode</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">controller_bode</span><span class="p">[</span><span class="s1">&#39;magnitude&#39;</span><span class="p">]</span>
+ <span class="n">open_loop_phase</span> <span class="o">=</span> <span class="n">process_bode</span><span class="p">[</span><span class="s1">&#39;phase&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">controller_bode</span><span class="p">[</span><span class="s1">&#39;phase&#39;</span><span class="p">]</span>
+
+ <span class="c1"># Stability analysis</span>
+ <span class="c1"># Find gain crossover (where |GC| = 1)</span>
+ <span class="n">gain_crossover_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">open_loop_mag</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">))</span>
+ <span class="n">gain_crossover_freq</span> <span class="o">=</span> <span class="n">frequencies</span><span class="p">[</span><span class="n">gain_crossover_idx</span><span class="p">]</span>
+ <span class="n">phase_margin</span> <span class="o">=</span> <span class="mi">180</span> <span class="o">+</span> <span class="n">open_loop_phase</span><span class="p">[</span><span class="n">gain_crossover_idx</span><span class="p">]</span>
+
+ <span class="c1"># Find phase crossover (where phase = -180°)</span>
+ <span class="n">phase_crossover_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">open_loop_phase</span> <span class="o">+</span> <span class="mi">180</span><span class="p">))</span>
+ <span class="n">phase_crossover_freq</span> <span class="o">=</span> <span class="n">frequencies</span><span class="p">[</span><span class="n">phase_crossover_idx</span><span class="p">]</span>
+ <span class="n">gain_margin_db</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">open_loop_mag</span><span class="p">[</span><span class="n">phase_crossover_idx</span><span class="p">])</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gain crossover frequency: </span><span class="si">{</span><span class="n">gain_crossover_freq</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> rad/min&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase margin: </span><span class="si">{</span><span class="n">phase_margin</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> degrees&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase crossover frequency: </span><span class="si">{</span><span class="n">phase_crossover_freq</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> rad/min&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gain margin: </span><span class="si">{</span><span class="n">gain_margin_db</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> dB&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Closed-loop analysis</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n=== Closed-Loop Analysis ===&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Closed-loop transfer function: GC/(1+GC)</span>
+ <span class="c1"># This requires careful polynomial manipulation for general case</span>
+ <span class="c1"># For demonstration, we&#39;ll compute frequency response directly</span>
+
+ <span class="n">closed_loop_mag</span> <span class="o">=</span> <span class="n">open_loop_mag</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="n">open_loop_mag</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">open_loop_phase</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span>
+                                          <span class="p">(</span><span class="n">open_loop_mag</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">open_loop_phase</span><span class="p">)))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+ <span class="c1"># Plot analysis results</span>
+ <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+ <span class="c1"># Open-loop Bode plot</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">open_loop_mag</span><span class="p">),</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">gain_crossover_freq</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Magnitude (dB)&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Open-Loop Bode Plot&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="n">open_loop_phase</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=-</span><span class="mi">180</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">gain_crossover_freq</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Phase (degrees)&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (rad/min)&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="c1"># Nyquist plot</span>
+ <span class="n">real_part</span> <span class="o">=</span> <span class="n">open_loop_mag</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">open_loop_phase</span><span class="p">))</span>
+ <span class="n">imag_part</span> <span class="o">=</span> <span class="n">open_loop_mag</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">open_loop_phase</span><span class="p">))</span>
+
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">real_part</span><span class="p">,</span> <span class="n">imag_part</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;GC(jω)&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Critical Point (-1,0)&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Real Part&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Imaginary Part&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Nyquist Plot&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+
+ <span class="c1"># Closed-loop frequency response</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">frequencies</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">closed_loop_mag</span><span class="p">),</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;-3 dB&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Magnitude (dB)&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency (rad/min)&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Closed-Loop Frequency Response&#39;</span><span class="p">)</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+ <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+ <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+ <span class="c1"># Step response analysis</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n=== Step Response Analysis ===&quot;</span><span class="p">)</span>
+ <span class="n">step_time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+
+ <span class="c1"># Approximate closed-loop step response</span>
+ <span class="c1"># (This would normally require inverse Laplace transform)</span>
+ <span class="c1"># For demonstration, we&#39;ll simulate</span>
+
+ <span class="c1"># Simple approximation for closed-loop response</span>
+ <span class="n">tau_cl</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">gain_crossover_freq</span>  <span class="c1"># Approximate closed-loop time constant</span>
+ <span class="n">step_response</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">step_time</span> <span class="o">/</span> <span class="n">tau_cl</span><span class="p">)</span>
+
+ <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">step_time</span><span class="p">,</span> <span class="n">step_response</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Closed-loop Step Response&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Final Value&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.98</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;2% Settling&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Response&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Closed-Loop Step Response&#39;</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+ <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+ <span class="c1"># Summary</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n=== Control System Summary ===&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System appears </span><span class="si">{</span><span class="s1">&#39;STABLE&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">phase_margin</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">gain_margin_db</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;UNSTABLE&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gain margin: </span><span class="si">{</span><span class="n">gain_margin_db</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> dB (&gt;6 dB recommended)&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase margin: </span><span class="si">{</span><span class="n">phase_margin</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">° (&gt;30° recommended)&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bandwidth (approx): </span><span class="si">{</span><span class="n">gain_crossover_freq</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> rad/min&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="example-4-batch-process-optimization">
+<h2>Example 4: Batch Process Optimization<a class="headerlink" href="#example-4-batch-process-optimization" title="Link to this heading"></a></h2>
+<p>Optimize a batch reactor operation for maximum profit.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">Batch Process Optimization</span><a class="headerlink" href="#id4" title="Link to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimization</span><span class="p">,</span> <span class="n">StateTaskNetwork</span>
+ <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+ <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
+ <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+ <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+ <span class="c1"># Define batch reactor model</span>
+ <span class="k">def</span><span class="w"> </span><span class="nf">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
+     <span class="n">Batch</span> <span class="n">reactor</span><span class="p">:</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span> <span class="o">-&gt;</span> <span class="n">C</span>
+     <span class="n">Temperature</span><span class="o">-</span><span class="n">dependent</span> <span class="n">kinetics</span>
+     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
+     <span class="n">CA</span><span class="p">,</span> <span class="n">CB</span><span class="p">,</span> <span class="n">CC</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">state</span>
+
+     <span class="c1"># Arrhenius kinetics</span>
+     <span class="n">k</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;k0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">T</span><span class="p">)</span>
+
+     <span class="c1"># Reaction rate</span>
+     <span class="n">rate</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">CA</span> <span class="o">*</span> <span class="n">CB</span>
+
+     <span class="c1"># Energy balance (simplified)</span>
+     <span class="n">Q_reaction</span> <span class="o">=</span> <span class="n">rate</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;dHr&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span>  <span class="c1"># Heat generation</span>
+     <span class="n">Q_removal</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;UA&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;T_ambient&#39;</span><span class="p">])</span>  <span class="c1"># Heat removal</span>
+
+     <span class="n">dT_dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">Q_reaction</span> <span class="o">-</span> <span class="n">Q_removal</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;rho&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;Cp&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">])</span>
+
+     <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="n">rate</span><span class="p">,</span> <span class="o">-</span><span class="n">rate</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">dT_dt</span><span class="p">]</span>
+
+ <span class="c1"># Batch reactor parameters</span>
+ <span class="n">reactor_params</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>        <span class="c1"># Volume (L)</span>
+     <span class="s1">&#39;k0&#39;</span><span class="p">:</span> <span class="mf">1e12</span><span class="p">,</span>       <span class="c1"># Pre-exponential factor (L/mol/min)</span>
+     <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="mi">8000</span><span class="p">,</span>        <span class="c1"># Activation energy (K)</span>
+     <span class="s1">&#39;dHr&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">50000</span><span class="p">,</span>    <span class="c1"># Heat of reaction (J/mol)</span>
+     <span class="s1">&#39;UA&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>      <span class="c1"># Heat transfer coefficient (J/min/K)</span>
+     <span class="s1">&#39;rho&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>      <span class="c1"># Density (g/L)</span>
+     <span class="s1">&#39;Cp&#39;</span><span class="p">:</span> <span class="mf">4.18</span><span class="p">,</span>       <span class="c1"># Heat capacity (J/g/K)</span>
+     <span class="s1">&#39;T_ambient&#39;</span><span class="p">:</span> <span class="mi">300</span>  <span class="c1"># Ambient temperature (K)</span>
+ <span class="p">}</span>
+
+ <span class="k">def</span><span class="w"> </span><span class="nf">simulate_batch</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
+     <span class="n">Simulate</span> <span class="n">batch</span> <span class="n">reactor</span> <span class="k">with</span> <span class="n">temperature</span> <span class="n">profile</span>
+     <span class="n">T_profile_params</span><span class="p">:</span> <span class="p">[</span><span class="n">T_initial</span><span class="p">,</span> <span class="n">T_final</span><span class="p">,</span> <span class="n">ramp_time</span><span class="p">]</span>
+     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
+     <span class="n">T_initial</span><span class="p">,</span> <span class="n">T_final</span><span class="p">,</span> <span class="n">ramp_time</span> <span class="o">=</span> <span class="n">T_profile_params</span>
+
+     <span class="c1"># Define temperature profile</span>
+     <span class="k">def</span><span class="w"> </span><span class="nf">temperature_profile</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+         <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">ramp_time</span><span class="p">:</span>
+             <span class="k">return</span> <span class="n">T_initial</span> <span class="o">+</span> <span class="p">(</span><span class="n">T_final</span> <span class="o">-</span> <span class="n">T_initial</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="n">ramp_time</span>
+         <span class="k">else</span><span class="p">:</span>
+             <span class="k">return</span> <span class="n">T_final</span>
+
+     <span class="c1"># Modified dynamics function with temperature profile</span>
+     <span class="k">def</span><span class="w"> </span><span class="nf">dynamics_with_profile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+         <span class="n">T_setpoint</span> <span class="o">=</span> <span class="n">temperature_profile</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+         <span class="c1"># For simplicity, assume perfect temperature control</span>
+         <span class="n">modified_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">T_setpoint</span><span class="p">]</span>
+         <span class="k">return</span> <span class="n">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">modified_state</span><span class="p">,</span> <span class="n">reactor_params</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+     <span class="c1"># Initial conditions</span>
+     <span class="n">CA0</span><span class="p">,</span> <span class="n">CB0</span><span class="p">,</span> <span class="n">CC0</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.0</span>  <span class="c1"># mol/L</span>
+     <span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="n">CA0</span><span class="p">,</span> <span class="n">CB0</span><span class="p">,</span> <span class="n">CC0</span><span class="p">,</span> <span class="n">T_initial</span><span class="p">]</span>
+
+     <span class="c1"># Simulate</span>
+     <span class="n">batch_time</span> <span class="o">=</span> <span class="mi">120</span>  <span class="c1"># minutes</span>
+     <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+         <span class="n">dynamics_with_profile</span><span class="p">,</span>
+         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">batch_time</span><span class="p">],</span>
+         <span class="n">initial_state</span><span class="p">,</span>
+         <span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-6</span>
+     <span class="p">)</span>
+
+     <span class="k">if</span> <span class="n">plot_results</span><span class="p">:</span>
+         <span class="n">t_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">batch_time</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+         <span class="n">y_plot</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">t_plot</span><span class="p">)</span>
+         <span class="n">T_plot</span> <span class="o">=</span> <span class="p">[</span><span class="n">temperature_profile</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">t_plot</span><span class="p">]</span>
+
+         <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CA&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CB&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">y_plot</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;CC&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Concentration (mol/L)&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Concentrations&#39;</span><span class="p">)</span>
+
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">T_plot</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Temperature Profile&#39;</span><span class="p">)</span>
+
+         <span class="c1"># Reaction rate</span>
+         <span class="n">rates</span> <span class="o">=</span> <span class="p">[]</span>
+         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t_plot</span><span class="p">)):</span>
+             <span class="n">k</span> <span class="o">=</span> <span class="n">reactor_params</span><span class="p">[</span><span class="s1">&#39;k0&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">reactor_params</span><span class="p">[</span><span class="s1">&#39;E&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">T_plot</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+             <span class="n">rate</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">y_plot</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">y_plot</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">]</span>
+             <span class="n">rates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
+
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">rates</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Reaction Rate (mol/L/min)&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Reaction Rate&#39;</span><span class="p">)</span>
+
+         <span class="c1"># Cumulative production</span>
+         <span class="n">CC_production</span> <span class="o">=</span> <span class="n">y_plot</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">reactor_params</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span>  <span class="c1"># kmol</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">CC_production</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Product C (kmol)&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+         <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Cumulative Production&#39;</span><span class="p">)</span>
+
+         <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+     <span class="c1"># Return final concentrations</span>
+     <span class="n">final_state</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+     <span class="k">return</span> <span class="n">final_state</span>
+
+ <span class="c1"># Define economic objective</span>
+ <span class="k">def</span><span class="w"> </span><span class="nf">batch_profit</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">):</span>
+     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Calculate batch profit for given temperature profile</span><span class="se">\&quot;\&quot;\&quot;</span>
+     <span class="k">try</span><span class="p">:</span>
+         <span class="n">final_state</span> <span class="o">=</span> <span class="n">simulate_batch</span><span class="p">(</span><span class="n">T_profile_params</span><span class="p">)</span>
+         <span class="n">CA_final</span><span class="p">,</span> <span class="n">CB_final</span><span class="p">,</span> <span class="n">CC_final</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">final_state</span>
+
+         <span class="c1"># Revenue from product C</span>
+         <span class="n">product_value</span> <span class="o">=</span> <span class="n">CC_final</span> <span class="o">*</span> <span class="n">reactor_params</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># kmol * $/kmol</span>
+
+         <span class="c1"># Cost of unreacted raw materials (opportunity cost)</span>
+         <span class="n">waste_cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">CA_final</span> <span class="o">+</span> <span class="n">CB_final</span><span class="p">)</span> <span class="o">*</span> <span class="n">reactor_params</span><span class="p">[</span><span class="s1">&#39;V&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># kmol * $/kmol</span>
+
+         <span class="c1"># Energy cost (proportional to temperature)</span>
+         <span class="n">T_initial</span><span class="p">,</span> <span class="n">T_final</span><span class="p">,</span> <span class="n">ramp_time</span> <span class="o">=</span> <span class="n">T_profile_params</span>
+         <span class="n">avg_temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">T_initial</span> <span class="o">+</span> <span class="n">T_final</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+         <span class="n">energy_cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">avg_temp</span> <span class="o">-</span> <span class="mi">300</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">120</span>  <span class="c1"># $/K/min * K * min</span>
+
+         <span class="n">profit</span> <span class="o">=</span> <span class="n">product_value</span> <span class="o">-</span> <span class="n">waste_cost</span> <span class="o">-</span> <span class="n">energy_cost</span>
+
+         <span class="k">return</span> <span class="o">-</span><span class="n">profit</span>  <span class="c1"># Negative for minimization</span>
+
+     <span class="k">except</span><span class="p">:</span>
+         <span class="k">return</span> <span class="mf">1e6</span>  <span class="c1"># Large penalty for failed simulations</span>
+
+ <span class="c1"># Optimization</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Batch Reactor Optimization ===&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Decision variables: [T_initial, T_final, ramp_time]</span>
+ <span class="c1"># Bounds: Temperature 300-400 K, ramp time 0-60 min</span>
+ <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">)]</span>
+
+ <span class="c1"># Initial guess</span>
+ <span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">320</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial guess: T_initial=</span><span class="si">{</span><span class="n">x0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">K, T_final=</span><span class="si">{</span><span class="n">x0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">K, ramp_time=</span><span class="si">{</span><span class="n">x0</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">min&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Simulate initial case</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nSimulating initial case...&quot;</span><span class="p">)</span>
+ <span class="n">initial_profit</span> <span class="o">=</span> <span class="o">-</span><span class="n">batch_profit</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial profit: $</span><span class="si">{</span><span class="n">initial_profit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Optimize</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nOptimizing...&quot;</span><span class="p">)</span>
+ <span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+     <span class="n">batch_profit</span><span class="p">,</span>
+     <span class="n">x0</span><span class="p">,</span>
+     <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span>
+     <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+     <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;disp&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;maxiter&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">}</span>
+ <span class="p">)</span>
+
+ <span class="n">optimal_params</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+ <span class="n">optimal_profit</span> <span class="o">=</span> <span class="o">-</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n=== Optimization Results ===&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal parameters:&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Initial temperature: </span><span class="si">{</span><span class="n">optimal_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final temperature: </span><span class="si">{</span><span class="n">optimal_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Ramp time: </span><span class="si">{</span><span class="n">optimal_params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nOptimal profit: $</span><span class="si">{</span><span class="n">optimal_profit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Profit improvement: $</span><span class="si">{</span><span class="n">optimal_profit</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">initial_profit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Relative improvement: </span><span class="si">{</span><span class="p">(</span><span class="n">optimal_profit</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">initial_profit</span><span class="p">)</span><span class="o">/</span><span class="n">initial_profit</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Compare optimal vs initial operation</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">n=== Comparison: Initial vs Optimal ===&quot;</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nInitial operation:&quot;</span><span class="p">)</span>
+ <span class="n">initial_final</span> <span class="o">=</span> <span class="n">simulate_batch</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final concentrations: CA=</span><span class="si">{</span><span class="n">initial_final</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, CB=</span><span class="si">{</span><span class="n">initial_final</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, CC=</span><span class="si">{</span><span class="n">initial_final</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> mol/L&quot;</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nOptimal operation:&quot;</span><span class="p">)</span>
+ <span class="n">optimal_final</span> <span class="o">=</span> <span class="n">simulate_batch</span><span class="p">(</span><span class="n">optimal_params</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final concentrations: CA=</span><span class="si">{</span><span class="n">optimal_final</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, CB=</span><span class="si">{</span><span class="n">optimal_final</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, CC=</span><span class="si">{</span><span class="n">optimal_final</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> mol/L&quot;</span><span class="p">)</span>
+
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nProduct improvement: </span><span class="si">{</span><span class="p">(</span><span class="n">optimal_final</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">initial_final</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">/</span><span class="n">initial_final</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+
+ <span class="c1"># Plot optimal operation</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">nPlotting optimal operation...&quot;</span><span class="p">)</span>
+ <span class="n">simulate_batch</span><span class="p">(</span><span class="n">optimal_params</span><span class="p">,</span> <span class="n">plot_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="running-the-examples">
+<h2>Running the Examples<a class="headerlink" href="#running-the-examples" title="Link to this heading"></a></h2>
+<p>To run these examples:</p>
+<ol class="arabic">
+<li><p><strong>Individual Examples</strong>: Copy and paste the code into Python scripts</p></li>
+<li><p><strong>Complete Examples</strong>: Run the main examples file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">examples</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Interactive Exploration</strong>: Use Jupyter notebooks for step-by-step analysis</p></li>
+</ol>
+<p>Each example includes:</p>
+<ul class="simple">
+<li><p><strong>Complete, runnable code</strong></p></li>
+<li><p><strong>Detailed explanations</strong> of the control concepts</p></li>
+<li><p><strong>Performance analysis</strong> and metrics</p></li>
+<li><p><strong>Visualization</strong> of results</p></li>
+<li><p><strong>Extension suggestions</strong> for further exploration</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="tutorials.html"><span class="doc">Tutorials</span></a> - Step-by-step learning guides</p></li>
+<li><p><a class="reference internal" href="api/units_package.html"><span class="doc">Units Operations Package</span></a> - Modular API documentation</p></li>
+<li><p><a class="reference internal" href="theory.html"><span class="doc">Theory and Background</span></a> - Mathematical background on control theory</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tensorflow_comparison.html" class="btn btn-neutral float-left" title="TensorFlow/Keras vs SPROCLIB Comparison" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples/semantic_plant_example.html" class="btn btn-neutral float-right" title="Complete Plant Design Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

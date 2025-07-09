@@ -1,0 +1,22 @@
+SPROCLIB Examples Documentation Summary
+==================================================
+Generated on: 2025-07-06 13:45:53
+Total examples: 9
+Documentation files: 10 (including index)
+
+Generated Files:
+--------------------
+index.rst (master index)
+complete_process_examples.rst
+compressor_examples.rst
+distillation_examples.rst
+heat_exchanger_examples.rst
+pump_examples.rst
+reactor_examples.rst
+tank_examples.rst
+utilities_examples.rst
+valve_examples.rst
+
+Captured Outputs Directory:
+------------------------------
+captured_outputs/ (all original outputs and images)

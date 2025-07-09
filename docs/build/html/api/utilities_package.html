@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utilities Package &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/semantic_examples.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Legacy Package" href="legacy.html" />
+    <link rel="prev" title="Scheduling Package" href="scheduling_package.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utilities Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-utilities.control_utils">Control Utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.tune_pid"><code class="docutils literal notranslate"><span class="pre">tune_pid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.simulate_process"><code class="docutils literal notranslate"><span class="pre">simulate_process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.calculate_ise"><code class="docutils literal notranslate"><span class="pre">calculate_ise()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.calculate_iae"><code class="docutils literal notranslate"><span class="pre">calculate_iae()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.calculate_itae"><code class="docutils literal notranslate"><span class="pre">calculate_itae()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.design_lead_lag"><code class="docutils literal notranslate"><span class="pre">design_lead_lag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.root_locus_design"><code class="docutils literal notranslate"><span class="pre">root_locus_design()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.frequency_domain_design"><code class="docutils literal notranslate"><span class="pre">frequency_domain_design()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.step_response_test"><code class="docutils literal notranslate"><span class="pre">step_response_test()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.linearize"><code class="docutils literal notranslate"><span class="pre">linearize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.disturbance_rejection"><code class="docutils literal notranslate"><span class="pre">disturbance_rejection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.control_utils.model_predictive_control"><code class="docutils literal notranslate"><span class="pre">model_predictive_control()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utilities.math_utils">Math Utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.math_utils.step_response"><code class="docutils literal notranslate"><span class="pre">step_response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.math_utils.bode_plot"><code class="docutils literal notranslate"><span class="pre">bode_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.math_utils.linearize"><code class="docutils literal notranslate"><span class="pre">linearize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.math_utils.stability_check"><code class="docutils literal notranslate"><span class="pre">stability_check()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.math_utils.routh_hurwitz"><code class="docutils literal notranslate"><span class="pre">routh_hurwitz()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.math_utils.frequency_response"><code class="docutils literal notranslate"><span class="pre">frequency_response()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-utilities.data_utils">Data Utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.data_utils.filter_data"><code class="docutils literal notranslate"><span class="pre">filter_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.data_utils.resample_data"><code class="docutils literal notranslate"><span class="pre">resample_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.data_utils.detect_outliers"><code class="docutils literal notranslate"><span class="pre">detect_outliers()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.data_utils.smooth_data"><code class="docutils literal notranslate"><span class="pre">smooth_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.data_utils.calculate_statistics"><code class="docutils literal notranslate"><span class="pre">calculate_statistics()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.data_utils.calculate_skewness"><code class="docutils literal notranslate"><span class="pre">calculate_skewness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilities.data_utils.calculate_kurtosis"><code class="docutils literal notranslate"><span class="pre">calculate_kurtosis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-usage">Quick Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Utilities Package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/api/utilities_package.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utilities-package">
+<h1>Utilities Package<a class="headerlink" href="#utilities-package" title="Link to this heading"></a></h1>
+<p>The utilities package provides essential control design utilities, mathematical tools,
+and data processing functions for process control applications.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is part of the modern modular structure of SPROCLIB. For legacy compatibility,
+see <a class="reference internal" href="legacy.html"><span class="doc">Legacy Package</span></a>.</p>
+</div>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<section id="module-utilities.control_utils">
+<span id="control-utils"></span><h3>Control Utils<a class="headerlink" href="#module-utilities.control_utils" title="Link to this heading"></a></h3>
+<p>Control Utilities for SPROCLIB</p>
+<p>This module provides utility functions specifically for control system design,
+tuning, and performance evaluation.</p>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.tune_pid">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">tune_pid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ziegler_nichols'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PID'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#tune_pid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.tune_pid" title="Link to this definition"></a></dt>
+<dd><p>Automatic PID tuning using empirical rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_params</strong> – Process model parameters</p></li>
+<li><p><strong>method</strong> – Tuning method (‘ziegler_nichols’, ‘amigo’, ‘lambda_tuning’)</p></li>
+<li><p><strong>controller_type</strong> – Controller type (‘P’, ‘PI’, ‘PID’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with PID parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.simulate_process">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">simulate_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">model:</span> <span class="pre">~typing.Callable,</span> <span class="pre">t_span:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">float],</span> <span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480651984'&gt;,</span> <span class="pre">u_profile:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480652320'&gt;],</span> <span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'RK45',</span> <span class="pre">max_step:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480075264'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#simulate_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.simulate_process" title="Link to this definition"></a></dt>
+<dd><p>Simulate a process model with given input profile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – Function f(t, x, u) returning dx/dt</p></li>
+<li><p><strong>t_span</strong> – Time span (start, end)</p></li>
+<li><p><strong>x0</strong> – Initial conditions</p></li>
+<li><p><strong>u_profile</strong> – Function u(t) returning inputs</p></li>
+<li><p><strong>method</strong> – Integration method</p></li>
+<li><p><strong>max_step</strong> – Maximum step size</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with simulation results</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.calculate_ise">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">calculate_ise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480650640'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480650304'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#calculate_ise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.calculate_ise" title="Link to this definition"></a></dt>
+<dd><p>Calculate Integral of Squared Error (ISE).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Time array</p></li>
+<li><p><strong>error</strong> – Error signal array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ISE value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.calculate_iae">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">calculate_iae</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480649968'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480649632'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#calculate_iae"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.calculate_iae" title="Link to this definition"></a></dt>
+<dd><p>Calculate Integral of Absolute Error (IAE).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Time array</p></li>
+<li><p><strong>error</strong> – Error signal array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>IAE value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.calculate_itae">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">calculate_itae</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480649296'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480653328'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#calculate_itae"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.calculate_itae" title="Link to this definition"></a></dt>
+<dd><p>Calculate Integral of Time-weighted Absolute Error (ITAE).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Time array</p></li>
+<li><p><strong>error</strong> – Error signal array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ITAE value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.design_lead_lag">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">design_lead_lag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zero</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pole</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='1744480653664'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480654000'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#design_lead_lag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.design_lead_lag" title="Link to this definition"></a></dt>
+<dd><p>Design lead-lag compensator transfer function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zero</strong> – Zero location</p></li>
+<li><p><strong>pole</strong> – Pole location</p></li>
+<li><p><strong>gain</strong> – DC gain</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (numerator, denominator) coefficients</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.root_locus_design">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">root_locus_design</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">plant_num:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480655680'&gt;,</span> <span class="pre">plant_den:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480656016'&gt;,</span> <span class="pre">desired_poles:</span> <span class="pre">~typing.List[complex]</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#root_locus_design"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.root_locus_design" title="Link to this definition"></a></dt>
+<dd><p>Design controller using root locus method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plant_num</strong> – Plant numerator coefficients</p></li>
+<li><p><strong>plant_den</strong> – Plant denominator coefficients</p></li>
+<li><p><strong>desired_poles</strong> – Desired closed-loop pole locations</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with controller design results</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.frequency_domain_design">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">frequency_domain_design</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plant_num:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480656352'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plant_den:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480656688'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gain_margin_db:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">6.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_margin_deg:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">45.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#frequency_domain_design"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.frequency_domain_design" title="Link to this definition"></a></dt>
+<dd><p>Design controller using frequency domain specifications.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plant_num</strong> – Plant numerator coefficients</p></li>
+<li><p><strong>plant_den</strong> – Plant denominator coefficients</p></li>
+<li><p><strong>gain_margin_db</strong> – Desired gain margin [dB]</p></li>
+<li><p><strong>phase_margin_deg</strong> – Desired phase margin [degrees]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with controller design results</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.step_response_test">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">step_response_test</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">data:</span> <span class="pre">~typing.Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480657024'&gt;],</span> <span class="pre">step_time:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#step_response_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.step_response_test" title="Link to this definition"></a></dt>
+<dd><p>Analyze step response test data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – Dictionary with ‘t’ and ‘y’ arrays</p></li>
+<li><p><strong>step_time</strong> – Time when step was applied</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with step response characteristics</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.linearize">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">linearize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_func:</span> <span class="pre">~typing.Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_ss:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480658032'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ss:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480658368'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-06</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='1744480658704'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480659040'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#linearize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.linearize" title="Link to this definition"></a></dt>
+<dd><p>Linearize a nonlinear model around an operating point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_func</strong> – Function f(x, u) returning dx/dt</p></li>
+<li><p><strong>x_ss</strong> – Steady-state states</p></li>
+<li><p><strong>u_ss</strong> – Steady-state inputs</p></li>
+<li><p><strong>epsilon</strong> – Perturbation size for finite differences</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A, B matrices for linear model dx/dt = A*x + B*u</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.disturbance_rejection">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">disturbance_rejection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">plant_tf:</span> <span class="pre">~typing.Tuple[&lt;MagicMock</span> <span class="pre">id='1744480660720'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480661056'&gt;],</span> <span class="pre">controller_tf:</span> <span class="pre">~typing.Tuple[&lt;MagicMock</span> <span class="pre">id='1744480662736'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480663072'&gt;],</span> <span class="pre">disturbance_type:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'step',</span> <span class="pre">w:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480664752'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#disturbance_rejection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.disturbance_rejection" title="Link to this definition"></a></dt>
+<dd><p>Analyze disturbance rejection performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plant_tf</strong> – Plant transfer function (num, den)</p></li>
+<li><p><strong>controller_tf</strong> – Controller transfer function (num, den)</p></li>
+<li><p><strong>disturbance_type</strong> – Type of disturbance (‘step’, ‘ramp’, ‘frequency’)</p></li>
+<li><p><strong>w</strong> – Frequency vector for analysis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with disturbance rejection analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.control_utils.model_predictive_control">
+<span class="sig-prename descclassname"><span class="pre">utilities.control_utils.</span></span><span class="sig-name descname"><span class="pre">model_predictive_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481223072'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481223408'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481223744'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481224080'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_horizon:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_horizon:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/control_utils.html#model_predictive_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.control_utils.model_predictive_control" title="Link to this definition"></a></dt>
+<dd><p>Basic Model Predictive Control formulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – State-space matrices</p></li>
+<li><p><strong>B</strong> – State-space matrices</p></li>
+<li><p><strong>Q</strong> – State and input weighting matrices</p></li>
+<li><p><strong>R</strong> – State and input weighting matrices</p></li>
+<li><p><strong>prediction_horizon</strong> – Prediction horizon N</p></li>
+<li><p><strong>control_horizon</strong> – Control horizon M (default: same as prediction horizon)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with MPC formulation matrices</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utilities.math_utils">
+<span id="math-utils"></span><h3>Math Utils<a class="headerlink" href="#module-utilities.math_utils" title="Link to this heading"></a></h3>
+<p>Math Utilities for SPROCLIB</p>
+<p>This module provides mathematical utility functions for process control
+including signal processing, numerical methods, and mathematical operations.</p>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.math_utils.step_response">
+<span class="sig-prename descclassname"><span class="pre">utilities.math_utils.</span></span><span class="sig-name descname"><span class="pre">step_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480063168'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_final:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_magnitude:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480064176'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/math_utils.html#step_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.math_utils.step_response" title="Link to this definition"></a></dt>
+<dd><p>Calculate step response of a system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>system</strong> – Transfer function object or (num, den) tuple</p></li>
+<li><p><strong>t</strong> – Time vector (optional)</p></li>
+<li><p><strong>t_final</strong> – Final time if t not provided</p></li>
+<li><p><strong>input_magnitude</strong> – Step magnitude</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with ‘t’ and ‘y’ arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.math_utils.bode_plot">
+<span class="sig-prename descclassname"><span class="pre">utilities.math_utils.</span></span><span class="sig-name descname"><span class="pre">bode_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">system</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480065184'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'Bode</span> <span class="pre">Plot'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478583648'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/math_utils.html#bode_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.math_utils.bode_plot" title="Link to this definition"></a></dt>
+<dd><p>Generate Bode plot for frequency response analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>system</strong> – Transfer function object or (num, den) tuple</p></li>
+<li><p><strong>w</strong> – Frequency vector (optional)</p></li>
+<li><p><strong>plot</strong> – Whether to create plot</p></li>
+<li><p><strong>title</strong> – Plot title</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with frequency, magnitude, and phase data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.math_utils.linearize">
+<span class="sig-prename descclassname"><span class="pre">utilities.math_utils.</span></span><span class="sig-name descname"><span class="pre">linearize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_ss:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480059808'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ss:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480060144'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-06</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='1744480060480'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480060816'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/math_utils.html#linearize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.math_utils.linearize" title="Link to this definition"></a></dt>
+<dd><p>Linearize a nonlinear model around an operating point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_func</strong> – Function f(x, u) returning dx/dt</p></li>
+<li><p><strong>x_ss</strong> – Steady-state states</p></li>
+<li><p><strong>u_ss</strong> – Steady-state inputs</p></li>
+<li><p><strong>epsilon</strong> – Perturbation size for finite differences</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A, B matrices for linear model dx/dt = A*x + B*u</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.math_utils.stability_check">
+<span class="sig-prename descclassname"><span class="pre">utilities.math_utils.</span></span><span class="sig-name descname"><span class="pre">stability_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480067200'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/utilities/math_utils.html#stability_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.math_utils.stability_check" title="Link to this definition"></a></dt>
+<dd><p>Check if a linear system is stable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>A</strong> – State matrix</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if stable, False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.math_utils.routh_hurwitz">
+<span class="sig-prename descclassname"><span class="pre">utilities.math_utils.</span></span><span class="sig-name descname"><span class="pre">routh_hurwitz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeffs:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480067536'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/math_utils.html#routh_hurwitz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.math_utils.routh_hurwitz" title="Link to this definition"></a></dt>
+<dd><p>Routh-Hurwitz stability criterion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coeffs</strong> – Characteristic polynomial coefficients</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with stability analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.math_utils.frequency_response">
+<span class="sig-prename descclassname"><span class="pre">utilities.math_utils.</span></span><span class="sig-name descname"><span class="pre">frequency_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480067872'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">den:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480068208'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480068544'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='1744480068880'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480069216'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/math_utils.html#frequency_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.math_utils.frequency_response" title="Link to this definition"></a></dt>
+<dd><p>Calculate frequency response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num</strong> – Numerator coefficients</p></li>
+<li><p><strong>den</strong> – Denominator coefficients</p></li>
+<li><p><strong>w</strong> – Frequency vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Magnitude and phase arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-utilities.data_utils">
+<span id="data-utils"></span><h3>Data Utils<a class="headerlink" href="#module-utilities.data_utils" title="Link to this heading"></a></h3>
+<p>Data Utilities for SPROCLIB</p>
+<p>This module provides data processing utilities for process control
+including filtering, resampling, and data analysis functions.</p>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.data_utils.filter_data">
+<span class="sig-prename descclassname"><span class="pre">utilities.data_utils.</span></span><span class="sig-name descname"><span class="pre">filter_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480070560'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_type:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'lowpass'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'butterworth'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480070896'&gt;</span></span></span><a class="reference internal" href="../_modules/utilities/data_utils.html#filter_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.data_utils.filter_data" title="Link to this definition"></a></dt>
+<dd><p>Filter time series data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – Input data array</p></li>
+<li><p><strong>filter_type</strong> – Type of filter (‘lowpass’, ‘highpass’, ‘bandpass’)</p></li>
+<li><p><strong>cutoff</strong> – Cutoff frequency (normalized)</p></li>
+<li><p><strong>order</strong> – Filter order</p></li>
+<li><p><strong>method</strong> – Filter method (‘butterworth’, ‘chebyshev’, ‘bessel’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered data array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.data_utils.resample_data">
+<span class="sig-prename descclassname"><span class="pre">utilities.data_utils.</span></span><span class="sig-name descname"><span class="pre">resample_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480071232'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480071568'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_dt:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'linear'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='1744480071904'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480072240'&gt;]</span></span></span><a class="reference internal" href="../_modules/utilities/data_utils.html#resample_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.data_utils.resample_data" title="Link to this definition"></a></dt>
+<dd><p>Resample time series data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Original time array</p></li>
+<li><p><strong>data</strong> – Original data array</p></li>
+<li><p><strong>new_dt</strong> – New sampling interval</p></li>
+<li><p><strong>method</strong> – Interpolation method</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New time array and resampled data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.data_utils.detect_outliers">
+<span class="sig-prename descclassname"><span class="pre">utilities.data_utils.</span></span><span class="sig-name descname"><span class="pre">detect_outliers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479157760'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'iqr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479152384'&gt;</span></span></span><a class="reference internal" href="../_modules/utilities/data_utils.html#detect_outliers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.data_utils.detect_outliers" title="Link to this definition"></a></dt>
+<dd><p>Detect outliers in data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – Input data array</p></li>
+<li><p><strong>method</strong> – Detection method (‘iqr’, ‘zscore’, ‘modified_zscore’)</p></li>
+<li><p><strong>threshold</strong> – Threshold for outlier detection</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean array indicating outliers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.data_utils.smooth_data">
+<span class="sig-prename descclassname"><span class="pre">utilities.data_utils.</span></span><span class="sig-name descname"><span class="pre">smooth_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478568528'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'moving_average'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478568864'&gt;</span></span></span><a class="reference internal" href="../_modules/utilities/data_utils.html#smooth_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.data_utils.smooth_data" title="Link to this definition"></a></dt>
+<dd><p>Smooth data using various methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – Input data array</p></li>
+<li><p><strong>window_size</strong> – Size of smoothing window</p></li>
+<li><p><strong>method</strong> – Smoothing method (‘moving_average’, ‘savgol’, ‘exponential’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Smoothed data array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.data_utils.calculate_statistics">
+<span class="sig-prename descclassname"><span class="pre">utilities.data_utils.</span></span><span class="sig-name descname"><span class="pre">calculate_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480069888'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/utilities/data_utils.html#calculate_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.data_utils.calculate_statistics" title="Link to this definition"></a></dt>
+<dd><p>Calculate basic statistics for data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – Input data array</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with statistical measures</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.data_utils.calculate_skewness">
+<span class="sig-prename descclassname"><span class="pre">utilities.data_utils.</span></span><span class="sig-name descname"><span class="pre">calculate_skewness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480061824'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/utilities/data_utils.html#calculate_skewness"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.data_utils.calculate_skewness" title="Link to this definition"></a></dt>
+<dd><p>Calculate skewness of data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utilities.data_utils.calculate_kurtosis">
+<span class="sig-prename descclassname"><span class="pre">utilities.data_utils.</span></span><span class="sig-name descname"><span class="pre">calculate_kurtosis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744480062160'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/utilities/data_utils.html#calculate_kurtosis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utilities.data_utils.calculate_kurtosis" title="Link to this definition"></a></dt>
+<dd><p>Calculate kurtosis of data.</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="quick-usage">
+<h2>Quick Usage<a class="headerlink" href="#quick-usage" title="Link to this heading"></a></h2>
+<p>PID Controller Tuning:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span>
+
+<span class="c1"># Define process model parameters</span>
+<span class="n">model_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>    <span class="c1"># Process gain</span>
+    <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>  <span class="c1"># Time constant</span>
+    <span class="s1">&#39;theta&#39;</span><span class="p">:</span> <span class="mf">1.0</span> <span class="c1"># Dead time</span>
+<span class="p">}</span>
+
+<span class="c1"># Auto-tune PID controller</span>
+<span class="n">pid_params</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span>
+    <span class="n">model_params</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ziegler_nichols&#39;</span><span class="p">,</span>
+    <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PID&#39;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kp = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ki = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Ki&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kd = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kd&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Process Linearization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">linearize</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Define nonlinear model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reactor_model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+    <span class="n">T</span><span class="p">,</span> <span class="n">Ca</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">Tc</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Reactor dynamics</span>
+    <span class="n">dT_dt</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">Tc</span> <span class="o">-</span> <span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">Ca</span>
+    <span class="n">dCa_dt</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.2</span> <span class="o">*</span> <span class="n">Ca</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1000</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">dT_dt</span><span class="p">,</span> <span class="n">dCa_dt</span><span class="p">])</span>
+
+<span class="c1"># Linearize around operating point</span>
+<span class="n">x_ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">350</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>  <span class="c1"># Temperature, Concentration</span>
+<span class="n">u_ss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">340</span><span class="p">])</span>       <span class="c1"># Coolant temperature</span>
+
+<span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">linearize</span><span class="p">(</span><span class="n">reactor_model</span><span class="p">,</span> <span class="n">x_ss</span><span class="p">,</span> <span class="n">u_ss</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State matrix A:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Input matrix B:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Mathematical Utilities:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">utilities.math_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">numerical_derivative</span><span class="p">,</span> <span class="n">integrate_ode</span>
+
+<span class="c1"># Numerical differentiation</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">df_dx</span> <span class="o">=</span> <span class="n">numerical_derivative</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;central&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;df/dx at x=2: </span><span class="si">{</span><span class="n">df_dx</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Data Processing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">utilities.data_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">filter_data</span><span class="p">,</span> <span class="n">resample_data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Generate noisy data</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+
+<span class="c1"># Filter data</span>
+<span class="n">filtered</span> <span class="o">=</span> <span class="n">filter_data</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">filter_type</span><span class="o">=</span><span class="s1">&#39;lowpass&#39;</span><span class="p">,</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># Resample data</span>
+<span class="n">t_new</span><span class="p">,</span> <span class="n">signal_new</span> <span class="o">=</span> <span class="n">resample_data</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">filtered</span><span class="p">,</span> <span class="n">new_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scheduling_package.html" class="btn btn-neutral float-left" title="Scheduling Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="legacy.html" class="btn btn-neutral float-right" title="Legacy Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

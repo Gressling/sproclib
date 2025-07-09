@@ -1,0 +1,548 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functions Legacy Package &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/semantic_examples.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Models Legacy Package (Deprecated)" href="models_legacy_package.html" />
+    <link rel="prev" title="Controllers Legacy Package" href="controllers_legacy_package.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="legacy.html">Legacy Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="legacy.html#migration-guide">Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="legacy.html#benefits-of-migration">Benefits of Migration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="legacy.html#legacy-modules-reference">Legacy Modules Reference</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="analysis_legacy_package.html">Analysis Legacy Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_legacy_package.html">Controllers Legacy Package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Functions Legacy Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#functions-documentation">Functions Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#core-functions">Core Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controller-design">Controller Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#simulation-and-analysis">Simulation and Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimization-functions">Optimization Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-control">Advanced Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-guidelines">Performance Guidelines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="models_legacy_package.html">Models Legacy Package (Deprecated)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="legacy.html#module-legacy">Legacy Package API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="legacy.html">Legacy Package</a></li>
+      <li class="breadcrumb-item active">Functions Legacy Package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/api/functions_legacy_package.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="functions-legacy-package">
+<h1>Functions Legacy Package<a class="headerlink" href="#functions-legacy-package" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation covers the legacy functions interface.</p>
+<p><strong>For new projects, use the modular utility packages instead:</strong>
+<a class="reference internal" href="utilities_package.html"><span class="doc">Utilities Package</span></a> - Modern modular utility functions</p>
+<p>The legacy interface is maintained for backward compatibility via the legacy package.</p>
+</div>
+<p>The functions module provides utility functions for common process control tasks, including PID tuning, system identification, linearization, and analysis.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The functions module contains utility functions that work with all process units and analysis tools. These functions provide convenient methods for common process control engineering tasks.</p>
+<p>For examples of function usage with process units, see:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> - Comprehensive examples showing function integration</p></li>
+<li><p><a class="reference internal" href="units_package.html"><span class="doc">Units Operations Package</span></a> - Process units that work with utility functions</p></li>
+</ul>
+</div>
+<section id="functions-documentation">
+<h2>Functions Documentation<a class="headerlink" href="#functions-documentation" title="Link to this heading"></a></h2>
+</section>
+<section id="core-functions">
+<h2>Core Functions<a class="headerlink" href="#core-functions" title="Link to this heading"></a></h2>
+<section id="step-response-analysis">
+<h3>Step Response Analysis<a class="headerlink" href="#step-response-analysis" title="Link to this heading"></a></h3>
+<p>Calculate the step response of a system from its transfer function.</p>
+<p><strong>Mathematical Background:</strong></p>
+<p>For a transfer function <span class="math notranslate nohighlight">\(G(s)\)</span>, the step response is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}y(t) = \\mathcal{L}^{-1}\\left\\{\\frac{G(s)}{s}\\right\\}\end{split}\]</div>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">step_response</span>
+
+<span class="c1"># Define transfer function (FOPDT)</span>
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]</span>  <span class="c1"># K = 2.0</span>
+<span class="n">den</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>  <span class="c1"># tau*s + 1 with tau = 5.0</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">step_response</span><span class="p">((</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">),</span> <span class="n">time_points</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">final_time</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Response&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Step Response&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="frequency-domain-analysis">
+<h3>Frequency Domain Analysis<a class="headerlink" href="#frequency-domain-analysis" title="Link to this heading"></a></h3>
+<p>Generate Bode plots for frequency domain analysis.</p>
+<p><strong>Mathematical Foundation:</strong></p>
+<p>The Bode plot shows:</p>
+<ul class="simple">
+<li><p><strong>Magnitude:</strong> <span class="math notranslate nohighlight">\(|G(j\\omega)|\)</span> in dB = <span class="math notranslate nohighlight">\(20\\log_{10}|G(j\\omega)|\)</span></p></li>
+<li><p><strong>Phase:</strong> <span class="math notranslate nohighlight">\(\\angle G(j\\omega)\)</span> in degrees</p></li>
+</ul>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">bode_plot</span>
+
+<span class="c1"># Transfer function coefficients</span>
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]</span>
+<span class="n">den</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+
+<span class="n">bode_data</span> <span class="o">=</span> <span class="n">bode_plot</span><span class="p">((</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">),</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Access frequency response data</span>
+<span class="n">frequencies</span> <span class="o">=</span> <span class="n">bode_data</span><span class="p">[</span><span class="s1">&#39;frequency&#39;</span><span class="p">]</span>
+<span class="n">magnitude_db</span> <span class="o">=</span> <span class="n">bode_data</span><span class="p">[</span><span class="s1">&#39;magnitude_db&#39;</span><span class="p">]</span>
+<span class="n">phase_deg</span> <span class="o">=</span> <span class="n">bode_data</span><span class="p">[</span><span class="s1">&#39;phase_deg&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="system-identification">
+<h3>System Identification<a class="headerlink" href="#system-identification" title="Link to this heading"></a></h3>
+<p>Fit First-Order Plus Dead Time (FOPDT) model to step response data.</p>
+<p><strong>FOPDT Model:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}G(s) = \\frac{K e^{-\\theta s}}{\\tau s + 1}\end{split}\]</div>
+<p>Where:
+- <span class="math notranslate nohighlight">\(K\)</span> = Process gain
+- <span class="math notranslate nohighlight">\(\\tau\)</span> = Time constant
+- <span class="math notranslate nohighlight">\(\\theta\)</span> = Dead time</p>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">fit_fopdt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Generate synthetic data</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="c1"># Simulate step response with noise</span>
+<span class="n">response</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">time</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">5</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.05</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Fit FOPDT model</span>
+<span class="n">params</span> <span class="o">=</span> <span class="n">fit_fopdt</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">step_size</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fitted parameters:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;K = </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tau = </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;theta = </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;theta&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="controller-design">
+<h2>Controller Design<a class="headerlink" href="#controller-design" title="Link to this heading"></a></h2>
+<section id="pid-tuning">
+<h3>PID Tuning<a class="headerlink" href="#pid-tuning" title="Link to this heading"></a></h3>
+<p>Automatically tune PID controller parameters using various methods.</p>
+<p><strong>Tuning Methods:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Ziegler-Nichols</strong> - Classic step response method</p></li>
+<li><p><strong>AMIGO</strong> - Advanced method for integrating processes</p></li>
+<li><p><strong>IMC</strong> - Internal Model Control tuning</p></li>
+</ol>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span>
+
+<span class="c1"># Process model parameters (FOPDT)</span>
+<span class="n">process_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>     <span class="c1"># Process gain</span>
+    <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>   <span class="c1"># Time constant (min)</span>
+    <span class="s1">&#39;theta&#39;</span><span class="p">:</span> <span class="mf">1.0</span>  <span class="c1"># Dead time (min)</span>
+<span class="p">}</span>
+
+<span class="c1"># Tune PID using Ziegler-Nichols</span>
+<span class="n">pid_zn</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span><span class="n">process_params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ziegler_nichols&#39;</span><span class="p">,</span> <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PID&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ziegler-Nichols: Kp=</span><span class="si">{</span><span class="n">pid_zn</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Ki=</span><span class="si">{</span><span class="n">pid_zn</span><span class="p">[</span><span class="s1">&#39;Ki&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Kd=</span><span class="si">{</span><span class="n">pid_zn</span><span class="p">[</span><span class="s1">&#39;Kd&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tune PI using AMIGO method</span>
+<span class="n">pid_amigo</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span><span class="n">process_params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;amigo&#39;</span><span class="p">,</span> <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PI&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AMIGO: Kp=</span><span class="si">{</span><span class="n">pid_amigo</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Ki=</span><span class="si">{</span><span class="n">pid_amigo</span><span class="p">[</span><span class="s1">&#39;Ki&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="linearization">
+<h3>Linearization<a class="headerlink" href="#linearization" title="Link to this heading"></a></h3>
+<p>Linearize nonlinear process models around operating points.</p>
+<p><strong>Mathematical Approach:</strong></p>
+<p>For a nonlinear system <span class="math notranslate nohighlight">\(\\dot{x} = f(x,u)\)</span>, the linearization around <span class="math notranslate nohighlight">\((x_0, u_0)\)</span> gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A = \\left.\\frac{\\partial f}{\\partial x}\\right|_{x_0,u_0}, \\quad B = \\left.\\frac{\\partial f}{\\partial u}\\right|_{x_0,u_0}\end{split}\]</div>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">linearize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span>
+
+<span class="c1"># Create nonlinear tank model</span>
+<span class="n">tank</span> <span class="o">=</span> <span class="n">Tank</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1"># Linearize around operating point</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]</span>  <span class="c1"># height = 2.0 m</span>
+<span class="n">u0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">]</span>  <span class="c1"># q_in = 4.0 L/min</span>
+
+<span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">linearize</span><span class="p">(</span><span class="n">tank</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">u0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear model matrices:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;A = </span><span class="si">{</span><span class="n">A</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;B = </span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="simulation-and-analysis">
+<h2>Simulation and Analysis<a class="headerlink" href="#simulation-and-analysis" title="Link to this heading"></a></h2>
+<section id="process-simulation">
+<h3>Process Simulation<a class="headerlink" href="#process-simulation" title="Link to this heading"></a></h3>
+<p>Simulate process dynamics with time-varying inputs.</p>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">simulate_process</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">models</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Create CSTR model</span>
+<span class="n">cstr</span> <span class="o">=</span> <span class="n">CSTR</span><span class="p">(</span><span class="n">V</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">k0</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span> <span class="n">dHr</span><span class="o">=-</span><span class="mi">50000</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">Cp</span><span class="o">=</span><span class="mf">4.18</span><span class="p">)</span>
+
+<span class="c1"># Define time vector and inputs</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Step change in inlet concentration at t=50</span>
+<span class="n">CA_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>  <span class="c1"># q_in = 10 L/min</span>
+    <span class="n">CA_in</span><span class="p">,</span>                    <span class="c1"># CA_in step change</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">300</span><span class="p">,</span> <span class="c1"># T_in = 300 K</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">290</span>  <span class="c1"># T_cool = 290 K</span>
+<span class="p">])</span>
+
+<span class="c1"># Initial conditions</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">350</span><span class="p">]</span>  <span class="c1"># [CA, T]</span>
+
+<span class="c1"># Simulate</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">simulate_process</span><span class="p">(</span><span class="n">cstr</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">][:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Concentration (mol/L)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">][:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="stability-analysis">
+<h3>Stability Analysis<a class="headerlink" href="#stability-analysis" title="Link to this heading"></a></h3>
+<p>Analyze system stability from transfer function or state-space model.</p>
+<p><strong>Stability Criteria:</strong></p>
+<ul class="simple">
+<li><p><strong>Poles Analysis</strong> - All poles must have negative real parts</p></li>
+<li><p><strong>Gain Margin</strong> - Factor by which gain can increase before instability</p></li>
+<li><p><strong>Phase Margin</strong> - Additional phase lag before instability</p></li>
+</ul>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">stability_analysis</span>
+
+<span class="c1"># Transfer function for analysis</span>
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">]</span>
+<span class="n">den</span> <span class="o">=</span> <span class="p">[</span><span class="mf">25.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>  <span class="c1"># Second-order system</span>
+
+<span class="n">stability</span> <span class="o">=</span> <span class="n">stability_analysis</span><span class="p">((</span><span class="n">num</span><span class="p">,</span> <span class="n">den</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System stable: </span><span class="si">{</span><span class="n">stability</span><span class="p">[</span><span class="s1">&#39;stable&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Poles: </span><span class="si">{</span><span class="n">stability</span><span class="p">[</span><span class="s1">&#39;poles&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">stability</span><span class="p">[</span><span class="s1">&#39;gain_margin_db&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gain margin: </span><span class="si">{</span><span class="n">stability</span><span class="p">[</span><span class="s1">&#39;gain_margin_db&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> dB&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Phase margin: </span><span class="si">{</span><span class="n">stability</span><span class="p">[</span><span class="s1">&#39;phase_margin_deg&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> degrees&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="optimization-functions">
+<h2>Optimization Functions<a class="headerlink" href="#optimization-functions" title="Link to this heading"></a></h2>
+<section id="process-optimization">
+<h3>Process Optimization<a class="headerlink" href="#process-optimization" title="Link to this heading"></a></h3>
+<p>Optimize process operating conditions for maximum profit or minimum cost.</p>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_operation</span>
+
+<span class="c1"># Define objective function (profit)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">profit_function</span><span class="p">(</span><span class="n">variables</span><span class="p">):</span>
+    <span class="n">temperature</span><span class="p">,</span> <span class="n">flow_rate</span> <span class="o">=</span> <span class="n">variables</span>
+    <span class="n">revenue</span> <span class="o">=</span> <span class="n">production_rate</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">flow_rate</span><span class="p">)</span> <span class="o">*</span> <span class="n">product_price</span>
+    <span class="n">energy_cost</span> <span class="o">=</span> <span class="n">energy_consumption</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span> <span class="o">*</span> <span class="n">energy_price</span>
+    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">revenue</span> <span class="o">-</span> <span class="n">energy_cost</span><span class="p">)</span>  <span class="c1"># Negative for minimization</span>
+
+<span class="c1"># Define constraints</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ineq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">400</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]},</span>  <span class="c1"># T &lt;= 400 K</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ineq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">250</span><span class="p">},</span>  <span class="c1"># T &gt;= 250 K</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ineq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">20</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]},</span>   <span class="c1"># Flow &lt;= 20 L/min</span>
+    <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;ineq&#39;</span><span class="p">,</span> <span class="s1">&#39;fun&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">5</span><span class="p">}</span>     <span class="c1"># Flow &gt;= 5 L/min</span>
+<span class="p">]</span>
+
+<span class="c1"># Initial guess</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>  <span class="c1"># [Temperature, Flow rate]</span>
+
+<span class="c1"># Optimize</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">optimize_operation</span><span class="p">(</span><span class="n">profit_function</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal temperature: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal flow rate: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> L/min&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum profit: $</span><span class="si">{</span><span class="o">-</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;fun&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-control">
+<h2>Advanced Control<a class="headerlink" href="#advanced-control" title="Link to this heading"></a></h2>
+<section id="disturbance-rejection">
+<h3>Disturbance Rejection<a class="headerlink" href="#disturbance-rejection" title="Link to this heading"></a></h3>
+<p>Analyze and design for disturbance rejection performance.</p>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">disturbance_rejection</span>
+
+<span class="c1"># Plant and controller transfer functions</span>
+<span class="n">plant_tf</span> <span class="o">=</span> <span class="p">([</span><span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>      <span class="c1"># Process</span>
+<span class="n">controller_tf</span> <span class="o">=</span> <span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># PI controller</span>
+
+<span class="c1"># Analyze step disturbance rejection</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">disturbance_rejection</span><span class="p">(</span>
+    <span class="n">plant_tf</span><span class="p">,</span>
+    <span class="n">controller_tf</span><span class="p">,</span>
+    <span class="n">disturbance_type</span><span class="o">=</span><span class="s1">&#39;step&#39;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Steady-state error: </span><span class="si">{</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;steady_state_error&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Settling time: </span><span class="si">{</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;settling_time&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="model-predictive-control">
+<h3>Model Predictive Control<a class="headerlink" href="#model-predictive-control" title="Link to this heading"></a></h3>
+<p>Basic Model Predictive Control (MPC) implementation.</p>
+<p><strong>MPC Formulation:</strong></p>
+<p>MPC solves the optimization problem:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\\min_{\\Delta u} \\sum_{i=1}^{N_p} ||y_{k+i} - r_{k+i}||_Q^2 + \\sum_{i=0}^{N_c-1} ||\\Delta u_{k+i}||_R^2\end{split}\]</div>
+<p>Subject to constraints on inputs, outputs, and input moves.</p>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">model_predictive_control</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># System matrices (discrete-time state space)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+
+<span class="c1"># MPC parameters</span>
+<span class="n">prediction_horizon</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">control_horizon</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># Output weight</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">]])</span>  <span class="c1"># Input weight</span>
+
+<span class="c1"># Current state and reference</span>
+<span class="n">current_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+<span class="n">reference</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.0</span><span class="p">])</span>
+
+<span class="c1"># Compute MPC control action</span>
+<span class="n">control_action</span> <span class="o">=</span> <span class="n">model_predictive_control</span><span class="p">(</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span>
+    <span class="n">prediction_horizon</span><span class="p">,</span> <span class="n">control_horizon</span><span class="p">,</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span>
+    <span class="n">current_state</span><span class="p">,</span> <span class="n">reference</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MPC control action: </span><span class="si">{</span><span class="n">control_action</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading"></a></h2>
+<section id="helper-functions">
+<h3>Helper Functions<a class="headerlink" href="#helper-functions" title="Link to this heading"></a></h3>
+<p>The module includes several utility functions for common tasks:</p>
+<ul class="simple">
+<li><p><strong>Input validation</strong> - Check parameter ranges and types</p></li>
+<li><p><strong>Unit conversions</strong> - Convert between different unit systems</p></li>
+<li><p><strong>Data preprocessing</strong> - Filter and condition measurement data</p></li>
+<li><p><strong>Plotting utilities</strong> - Standardized plotting functions</p></li>
+</ul>
+</section>
+</section>
+<section id="performance-guidelines">
+<h2>Performance Guidelines<a class="headerlink" href="#performance-guidelines" title="Link to this heading"></a></h2>
+<section id="function-selection">
+<h3>Function Selection<a class="headerlink" href="#function-selection" title="Link to this heading"></a></h3>
+<p>Choose appropriate functions based on your application:</p>
+<ul class="simple">
+<li><p><strong>step_response()</strong> - Quick system characterization</p></li>
+<li><p><strong>bode_plot()</strong> - Frequency domain design</p></li>
+<li><p><strong>tune_pid()</strong> - Automated controller design</p></li>
+<li><p><strong>simulate_process()</strong> - Detailed dynamic analysis</p></li>
+</ul>
+</section>
+<section id="computational-efficiency">
+<h3>Computational Efficiency<a class="headerlink" href="#computational-efficiency" title="Link to this heading"></a></h3>
+<p>For better performance:</p>
+<ul class="simple">
+<li><p>Use appropriate time steps (not too small)</p></li>
+<li><p>Cache expensive calculations (steady-state solutions)</p></li>
+<li><p>Vectorize operations when possible</p></li>
+<li><p>Consider parallel processing for parameter studies</p></li>
+</ul>
+</section>
+<section id="error-handling">
+<h3>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading"></a></h3>
+<p>All functions include comprehensive error checking:</p>
+<ul class="simple">
+<li><p>Parameter validation</p></li>
+<li><p>Numerical stability checks</p></li>
+<li><p>Graceful degradation for edge cases</p></li>
+<li><p>Informative error messages</p></li>
+</ul>
+</section>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="controllers_legacy_package.html"><span class="doc">Controllers Legacy Package</span></a> - PID controllers that use these tuning functions</p></li>
+<li><p><a class="reference internal" href="models_legacy_package.html"><span class="doc">Models Legacy Package (Deprecated)</span></a> - Process models for simulation and linearization</p></li>
+<li><p><a class="reference internal" href="analysis_legacy_package.html"><span class="doc">Analysis Legacy Package</span></a> - Advanced analysis classes</p></li>
+<li><p><a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> - Complete examples using these functions</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="controllers_legacy_package.html" class="btn btn-neutral float-left" title="Controllers Legacy Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="models_legacy_package.html" class="btn btn-neutral float-right" title="Models Legacy Package (Deprecated)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

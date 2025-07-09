@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorials &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/semantic_examples.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/tutorials.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorials">
+<h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading"></a></h1>
+<p>This section provides step-by-step tutorials for common process control tasks.</p>
+<section id="tutorial-1-basic-tank-level-control">
+<h2>Tutorial 1: Basic Tank Level Control<a class="headerlink" href="#tutorial-1-basic-tank-level-control" title="Link to this heading"></a></h2>
+<p>Learn the fundamentals of level control using a gravity-drained tank.</p>
+<p><strong>Objective:</strong> Design a PID controller for tank level control</p>
+<p><strong>Step 1: Model the Process</strong></p>
+<p>Start by creating a tank model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tank</span><span class="p">,</span> <span class="n">PIDController</span><span class="p">,</span> <span class="n">simulate_process</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Create tank model (1 m² area, valve coefficient 2.0)</span>
+<span class="n">tank</span> <span class="o">=</span> <span class="n">Tank</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Level Control Tank&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check steady-state behavior</span>
+<span class="n">steady_state</span> <span class="o">=</span> <span class="n">tank</span><span class="o">.</span><span class="n">steady_state</span><span class="p">({</span><span class="s1">&#39;q_in&#39;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;For q_in = 4.0 L/min, steady-state height = </span><span class="si">{</span><span class="n">steady_state</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Linearize Around Operating Point</strong></p>
+<p>For controller design, we need a linear model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearApproximation</span>
+
+<span class="c1"># Create linearization tool</span>
+<span class="n">linear_approx</span> <span class="o">=</span> <span class="n">LinearApproximation</span><span class="p">(</span><span class="n">tank</span><span class="p">)</span>
+
+<span class="c1"># Linearize around q_in = 4.0 L/min (h_ss = 4.0 m)</span>
+<span class="n">u_nominal</span> <span class="o">=</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">]</span>
+<span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">linear_approx</span><span class="o">.</span><span class="n">linearize</span><span class="p">(</span><span class="n">u_nominal</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Linear model: A = </span><span class="si">{</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, B = </span><span class="si">{</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 3: Design PID Controller</strong></p>
+<p>Use automated tuning to design the controller:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span><span class="p">,</span> <span class="n">fit_fopdt</span>
+
+<span class="c1"># First, identify FOPDT parameters from step response</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">step_response</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">time</span><span class="o">/</span><span class="mi">4</span><span class="p">))</span>  <span class="c1"># Approximate step response</span>
+
+<span class="n">fopdt_params</span> <span class="o">=</span> <span class="n">fit_fopdt</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">step_response</span><span class="p">,</span> <span class="n">step_size</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;FOPDT parameters: K=</span><span class="si">{</span><span class="n">fopdt_params</span><span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, tau=</span><span class="si">{</span><span class="n">fopdt_params</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Tune PID using Ziegler-Nichols</span>
+<span class="n">pid_params</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span><span class="n">fopdt_params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ziegler_nichols&#39;</span><span class="p">,</span> <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PID&#39;</span><span class="p">)</span>
+
+<span class="c1"># Create PID controller</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="o">**</span><span class="n">pid_params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;PID parameters: Kp=</span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Ki=</span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Ki&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, Kd=</span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kd&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 4: Closed-Loop Simulation</strong></p>
+<p>Test the controller performance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation parameters</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">setpoint</span> <span class="o">=</span> <span class="mf">3.0</span>  <span class="c1"># Desired height (m)</span>
+<span class="n">initial_height</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Starting height (m)</span>
+
+<span class="c1"># Storage for results</span>
+<span class="n">heights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">control_outputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">heights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">initial_height</span>
+
+<span class="c1"># Closed-loop simulation</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)):</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># PID control</span>
+    <span class="n">q_in</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">setpoint</span><span class="p">,</span> <span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">q_in</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">q_in</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># Limit flow rate 0-10 L/min</span>
+    <span class="n">control_outputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">q_in</span>
+
+    <span class="c1"># Process dynamics</span>
+    <span class="n">dhdt</span> <span class="o">=</span> <span class="n">tank</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="n">q_in</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dhdt</span> <span class="o">*</span> <span class="n">dt</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">heights</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tank Height&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">setpoint</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Setpoint&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Height (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tank Level Control&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">control_outputs</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Flow Rate&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Flow Rate (L/min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Step 5: Performance Analysis</strong></p>
+<p>Evaluate controller performance:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate performance metrics</span>
+<span class="n">settling_time_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">heights</span> <span class="o">-</span> <span class="n">setpoint</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="n">setpoint</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">settling_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">settling_time_idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">settling_time_idx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+
+<span class="n">overshoot</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">heights</span><span class="p">)</span> <span class="o">-</span> <span class="n">setpoint</span><span class="p">)</span> <span class="o">/</span> <span class="n">setpoint</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">steady_state_error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">heights</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">setpoint</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Performance Metrics:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Settling time (2%): </span><span class="si">{</span><span class="n">settling_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> min&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Overshoot: </span><span class="si">{</span><span class="n">overshoot</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Steady-state error: </span><span class="si">{</span><span class="n">steady_state_error</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tutorial-2-cstr-temperature-control">
+<h2>Tutorial 2: CSTR Temperature Control<a class="headerlink" href="#tutorial-2-cstr-temperature-control" title="Link to this heading"></a></h2>
+<p>Design a cascade control system for a CSTR with temperature control.</p>
+<p><strong>Objective:</strong> Control reactor temperature with cascade control structure</p>
+<p><strong>Step 1: Model the CSTR</strong></p>
+<p>Create a detailed CSTR model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSTR</span>
+
+<span class="c1"># Create CSTR with realistic parameters</span>
+<span class="n">cstr</span> <span class="o">=</span> <span class="n">CSTR</span><span class="p">(</span>
+    <span class="n">V</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>        <span class="c1"># Volume (L)</span>
+    <span class="n">k0</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span>      <span class="c1"># Pre-exponential factor (1/min)</span>
+    <span class="n">E</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>       <span class="c1"># Activation energy (K)</span>
+    <span class="n">dHr</span><span class="o">=-</span><span class="mi">50000</span><span class="p">,</span>   <span class="c1"># Heat of reaction (J/mol)</span>
+    <span class="n">rho</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>     <span class="c1"># Density (g/L)</span>
+    <span class="n">Cp</span><span class="o">=</span><span class="mf">4.18</span><span class="p">,</span>      <span class="c1"># Heat capacity (J/g/K)</span>
+    <span class="n">UA</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span>     <span class="c1"># Heat transfer coefficient (J/min/K)</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Main Reactor&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Find steady-state operating point</span>
+<span class="n">operating_conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;q_in&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>    <span class="c1"># Flow rate (L/min)</span>
+    <span class="s1">&#39;CA_in&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>    <span class="c1"># Inlet concentration (mol/L)</span>
+    <span class="s1">&#39;T_in&#39;</span><span class="p">:</span> <span class="mf">300.0</span><span class="p">,</span>   <span class="c1"># Inlet temperature (K)</span>
+    <span class="s1">&#39;T_cool&#39;</span><span class="p">:</span> <span class="mf">285.0</span>  <span class="c1"># Coolant temperature (K)</span>
+<span class="p">}</span>
+
+<span class="n">ss</span> <span class="o">=</span> <span class="n">cstr</span><span class="o">.</span><span class="n">steady_state</span><span class="p">(</span><span class="n">operating_conditions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Steady-state: CA = </span><span class="si">{</span><span class="n">ss</span><span class="p">[</span><span class="s1">&#39;CA&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> mol/L, T = </span><span class="si">{</span><span class="n">ss</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Design Primary (Temperature) Controller</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Linearize CSTR around operating point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearApproximation</span>
+
+<span class="n">linear_cstr</span> <span class="o">=</span> <span class="n">LinearApproximation</span><span class="p">(</span><span class="n">cstr</span><span class="p">)</span>
+<span class="n">u_nominal</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">285.0</span><span class="p">]</span>  <span class="c1"># [q, CA_in, T_in, T_cool]</span>
+
+<span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">linear_cstr</span><span class="o">.</span><span class="n">linearize</span><span class="p">(</span><span class="n">u_nominal</span><span class="p">)</span>
+
+<span class="c1"># Extract temperature dynamics (T_cool -&gt; T)</span>
+<span class="c1"># For FOPDT approximation from step test</span>
+<span class="n">temp_params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span> <span class="s1">&#39;theta&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">}</span>
+
+<span class="c1"># Tune PI controller for temperature</span>
+<span class="n">temp_pid</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span><span class="n">temp_params</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;amigo&#39;</span><span class="p">,</span> <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PI&#39;</span><span class="p">)</span>
+<span class="n">temp_controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="o">**</span><span class="n">temp_pid</span><span class="p">,</span> <span class="n">output_limits</span><span class="o">=</span><span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Step 3: Add Disturbance Rejection</strong></p>
+<p>Test response to inlet temperature disturbances:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation with inlet temperature disturbance</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Step disturbance in T_in at t=50</span>
+<span class="n">T_in_profile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">time</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="mf">305.0</span><span class="p">)</span>
+
+<span class="c1"># Simulate with temperature control</span>
+<span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">coolant_temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+<span class="n">temperatures</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ss</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span>
+<span class="n">coolant_temps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">285.0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)):</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Temperature controller</span>
+    <span class="n">T_setpoint</span> <span class="o">=</span> <span class="mf">350.0</span>
+    <span class="n">T_cool_cmd</span> <span class="o">=</span> <span class="n">temp_controller</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">T_setpoint</span><span class="p">,</span> <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">T_cool_cmd</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">270</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">T_cool_cmd</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>  <span class="c1"># Limit coolant temperature</span>
+    <span class="n">coolant_temps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">T_cool_cmd</span>
+
+    <span class="c1"># Process dynamics</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">T_in_profile</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">T_cool_cmd</span><span class="p">]</span>
+    <span class="n">states</span> <span class="o">=</span> <span class="p">[</span><span class="n">ss</span><span class="p">[</span><span class="s1">&#39;CA&#39;</span><span class="p">],</span> <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>  <span class="c1"># Assume CA constant for simplicity</span>
+
+    <span class="n">derivatives</span> <span class="o">=</span> <span class="n">cstr</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">states</span><span class="p">,</span> <span class="n">inputs</span><span class="p">)</span>
+    <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">temperatures</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">derivatives</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">dt</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">T_in_profile</span><span class="p">,</span> <span class="s1">&#39;r:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;T_in (Disturbance)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;T_in (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">temperatures</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Reactor Temperature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Setpoint&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">coolant_temps</span><span class="p">,</span> <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Coolant Temperature&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;T_cool (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="tutorial-3-optimization-of-batch-process">
+<h2>Tutorial 3: Optimization of Batch Process<a class="headerlink" href="#tutorial-3-optimization-of-batch-process" title="Link to this heading"></a></h2>
+<p>Optimize a batch reactor operation for maximum profit.</p>
+<p><strong>Objective:</strong> Find optimal temperature profile for batch reactor</p>
+<p><strong>Step 1: Define Batch Reactor Model</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">temperature_profile</span><span class="p">):</span>
+    \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Batch reactor with temperature-dependent kinetics</span><span class="se">\&quot;\&quot;\&quot;</span>
+    <span class="n">CA</span><span class="p">,</span> <span class="n">CB</span> <span class="o">=</span> <span class="n">state</span>
+
+    <span class="c1"># Get temperature at current time</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">temperature_profile</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">temperature_profile</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Arrhenius kinetics: A -&gt; B</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mf">1e8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">8000</span><span class="o">/</span><span class="n">T</span><span class="p">)</span>  <span class="c1"># Rate constant</span>
+
+    <span class="c1"># Reaction rates</span>
+    <span class="n">rA</span> <span class="o">=</span> <span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">CA</span>
+    <span class="n">rB</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">CA</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">rA</span><span class="p">,</span> <span class="n">rB</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Step 2: Set up Optimization Problem</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">process_control</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optimization</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">objective_function</span><span class="p">(</span><span class="n">T_profile</span><span class="p">):</span>
+    \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Negative profit (for minimization)</span><span class="se">\&quot;\&quot;\&quot;</span>
+
+    <span class="c1"># Create temperature profile</span>
+    <span class="n">time_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>  <span class="c1"># 0 to 120 min, 13 points</span>
+    <span class="n">temp_profile</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time_points</span><span class="p">,</span>
+        <span class="s1">&#39;temp&#39;</span><span class="p">:</span> <span class="n">T_profile</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Simulate batch reactor</span>
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>  <span class="c1"># CA0 = 1.0, CB0 = 0.0</span>
+
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_reactor_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">temp_profile</span><span class="p">),</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">],</span>
+        <span class="n">initial_state</span><span class="p">,</span>
+        <span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Final concentrations</span>
+    <span class="n">final_state</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">CB_final</span> <span class="o">=</span> <span class="n">final_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Profit calculation</span>
+    <span class="n">product_value</span> <span class="o">=</span> <span class="n">CB_final</span> <span class="o">*</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># $/mol * mol/L * L</span>
+
+    <span class="c1"># Energy cost (higher temperature = higher cost)</span>
+    <span class="n">avg_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">T_profile</span><span class="p">)</span>
+    <span class="n">energy_cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">avg_temp</span> <span class="o">-</span> <span class="mi">300</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="mi">120</span>  <span class="c1"># $/K/min * K * min</span>
+
+    <span class="n">profit</span> <span class="o">=</span> <span class="n">product_value</span> <span class="o">-</span> <span class="n">energy_cost</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="n">profit</span>  <span class="c1"># Negative for minimization</span>
+</pre></div>
+</div>
+<p><strong>Step 3: Solve Optimization</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
+
+<span class="c1"># Initial guess - constant temperature</span>
+<span class="n">initial_temp_profile</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span> <span class="o">*</span> <span class="mi">320</span>  <span class="c1"># 320 K</span>
+
+<span class="c1"># Constraints - temperature limits</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">)]</span>  <span class="c1"># 300-400 K for each point</span>
+
+<span class="c1"># Optimize</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+    <span class="n">objective_function</span><span class="p">,</span>
+    <span class="n">initial_temp_profile</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;L-BFGS-B&#39;</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span>
+<span class="p">)</span>
+
+<span class="n">optimal_temps</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+<span class="n">max_profit</span> <span class="o">=</span> <span class="o">-</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum profit: $</span><span class="si">{</span><span class="n">max_profit</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal temperature profile:&quot;</span><span class="p">)</span>
+
+<span class="n">time_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">time_points</span><span class="p">,</span> <span class="n">optimal_temps</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  t=</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">5.1f</span><span class="si">}</span><span class="s2"> min: T=</span><span class="si">{</span><span class="n">T</span><span class="si">:</span><span class="s2">5.1f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 4: Analyze Results</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare optimal vs. constant temperature operation</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot optimal temperature profile</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_points</span><span class="p">,</span> <span class="n">optimal_temps</span><span class="p">,</span> <span class="s1">&#39;ro-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Optimal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">320</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Constant (320K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Temperature Profiles&#39;</span><span class="p">)</span>
+
+<span class="c1"># Simulate both cases and plot concentrations</span>
+<span class="c1"># ... (simulation code)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After completing these tutorials, you should be able to:</p>
+<ol class="arabic simple">
+<li><p><strong>Model chemical processes</strong> using the provided classes</p></li>
+<li><p><strong>Design PID controllers</strong> with automated tuning</p></li>
+<li><p><strong>Analyze system performance</strong> using frequency domain methods</p></li>
+<li><p><strong>Optimize process operations</strong> for economic objectives</p></li>
+</ol>
+<p>Continue with:</p>
+<ul class="simple">
+<li><p><strong>Advanced Examples</strong> - More complex multi-unit processes</p></li>
+<li><p><strong>Theory Section</strong> - Mathematical background on control concepts</p></li>
+<li><p><strong>API Reference</strong> - Detailed documentation of all functions and classes</p></li>
+</ul>
+<p>For more advanced topics, explore:</p>
+<ul class="simple">
+<li><p><strong>Model Predictive Control</strong> for multivariable processes</p></li>
+<li><p><strong>Batch Scheduling</strong> for campaign optimization</p></li>
+<li><p><strong>Nonlinear Control</strong> for highly nonlinear processes</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

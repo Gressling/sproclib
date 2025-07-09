@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optimization Package &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/semantic_examples.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scheduling Package" href="scheduling_package.html" />
+    <link rel="prev" title="Simulation Package" href="simulation_package.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Optimization Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-optimization.economic_optimization">Economic Optimization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optimization.economic_optimization.EconomicOptimization"><code class="docutils literal notranslate"><span class="pre">EconomicOptimization</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimization.economic_optimization.optimize_operation"><code class="docutils literal notranslate"><span class="pre">optimize_operation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-optimization.parameter_estimation">Parameter Estimation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optimization.parameter_estimation.ParameterEstimation"><code class="docutils literal notranslate"><span class="pre">ParameterEstimation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimization.parameter_estimation.estimate_fopdt_parameters"><code class="docutils literal notranslate"><span class="pre">estimate_fopdt_parameters()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-optimization.process_optimization">Process Optimization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#optimization.process_optimization.ProcessOptimization"><code class="docutils literal notranslate"><span class="pre">ProcessOptimization</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-usage">Quick Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Optimization Package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/api/optimization_package.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="optimization-package">
+<h1>Optimization Package<a class="headerlink" href="#optimization-package" title="Link to this heading"></a></h1>
+<p>The optimization package provides economic optimization tools, process optimization,
+and parameter estimation capabilities for process control systems.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is part of the modern modular structure of SPROCLIB. For legacy compatibility,
+see <a class="reference internal" href="legacy.html"><span class="doc">Legacy Package</span></a>.</p>
+</div>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<section id="module-optimization.economic_optimization">
+<span id="economic-optimization"></span><h3>Economic Optimization<a class="headerlink" href="#module-optimization.economic_optimization" title="Link to this heading"></a></h3>
+<p>Economic Optimization for SPROCLIB</p>
+<p>This module provides economic optimization tools for process operations
+including profit maximization, cost minimization, and production planning.</p>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="optimization.economic_optimization.EconomicOptimization">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">optimization.economic_optimization.</span></span><span class="sig-name descname"><span class="pre">EconomicOptimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Economic</span> <span class="pre">Optimization'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#EconomicOptimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.EconomicOptimization" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Economic optimization tools for process control.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.economic_optimization.EconomicOptimization.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Economic</span> <span class="pre">Optimization'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#EconomicOptimization.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.EconomicOptimization.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize economic optimization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Optimization problem name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.economic_optimization.EconomicOptimization.linear_programming">
+<span class="sig-name descname"><span class="pre">linear_programming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479146336'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A_ub:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744479145328'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_ub:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478570544'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">A_eq:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478571552'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_eq:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478572560'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds:</span> <span class="pre">~typing.List[~typing.Tuple]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'highs'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#EconomicOptimization.linear_programming"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.EconomicOptimization.linear_programming" title="Link to this definition"></a></dt>
+<dd><p>Solve linear programming problem: min c^T x subject to constraints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c</strong> – Objective function coefficients</p></li>
+<li><p><strong>A_ub</strong> – Inequality constraints A_ub &#64; x &lt;= b_ub</p></li>
+<li><p><strong>b_ub</strong> – Inequality constraints A_ub &#64; x &lt;= b_ub</p></li>
+<li><p><strong>A_eq</strong> – Equality constraints A_eq &#64; x = b_eq</p></li>
+<li><p><strong>b_eq</strong> – Equality constraints A_eq &#64; x = b_eq</p></li>
+<li><p><strong>bounds</strong> – Variable bounds [(min, max), …]</p></li>
+<li><p><strong>method</strong> – Solver method</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optimization results</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.economic_optimization.EconomicOptimization.production_optimization">
+<span class="sig-name descname"><span class="pre">production_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">production_rates:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478573568'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">costs:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478573904'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prices:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478574240'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity_constraints:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478574576'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">demand_constraints:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478574912'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material_balances:</span> <span class="pre">~typing.Dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478575920'&gt;]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#EconomicOptimization.production_optimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.EconomicOptimization.production_optimization" title="Link to this definition"></a></dt>
+<dd><p>Optimize production planning for maximum profit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>production_rates</strong> – Production variables [units/time]</p></li>
+<li><p><strong>costs</strong> – Unit production costs [$/unit]</p></li>
+<li><p><strong>prices</strong> – Product prices [$/unit]</p></li>
+<li><p><strong>capacity_constraints</strong> – Maximum production capacities [units/time]</p></li>
+<li><p><strong>demand_constraints</strong> – Minimum demand requirements [units/time]</p></li>
+<li><p><strong>material_balances</strong> – Material balance constraints</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optimization results with profit analysis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.economic_optimization.EconomicOptimization.utility_optimization">
+<span class="sig-name descname"><span class="pre">utility_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">utility_costs:</span> <span class="pre">~typing.Dict[str,</span> <span class="pre">float],</span> <span class="pre">utility_demands:</span> <span class="pre">~typing.Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478576928'&gt;],</span> <span class="pre">utility_capacities:</span> <span class="pre">~typing.Dict[str,</span> <span class="pre">float],</span> <span class="pre">time_horizon:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">24</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#EconomicOptimization.utility_optimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.EconomicOptimization.utility_optimization" title="Link to this definition"></a></dt>
+<dd><p>Optimize utility usage (steam, electricity, cooling water).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>utility_costs</strong> – Cost per unit for each utility</p></li>
+<li><p><strong>utility_demands</strong> – Demand profiles for each utility</p></li>
+<li><p><strong>utility_capacities</strong> – Maximum capacity for each utility</p></li>
+<li><p><strong>time_horizon</strong> – Planning horizon [hours]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optimization results for utility scheduling</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.economic_optimization.EconomicOptimization.economic_mpc">
+<span class="sig-name descname"><span class="pre">economic_mpc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">economic_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_horizon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_horizon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#EconomicOptimization.economic_mpc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.EconomicOptimization.economic_mpc" title="Link to this definition"></a></dt>
+<dd><p>Economic Model Predictive Control optimization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_model</strong> – Process model for predictions</p></li>
+<li><p><strong>economic_objective</strong> – Economic objective function</p></li>
+<li><p><strong>constraints</strong> – List of constraint dictionaries</p></li>
+<li><p><strong>prediction_horizon</strong> – Prediction horizon</p></li>
+<li><p><strong>control_horizon</strong> – Control horizon</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Economic MPC solution</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.economic_optimization.EconomicOptimization.investment_optimization">
+<span class="sig-name descname"><span class="pre">investment_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">investment_options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget_constraint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_horizon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discount_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#EconomicOptimization.investment_optimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.EconomicOptimization.investment_optimization" title="Link to this definition"></a></dt>
+<dd><p>Optimize capital investment decisions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>investment_options</strong> – List of investment options with costs and returns</p></li>
+<li><p><strong>budget_constraint</strong> – Total available budget</p></li>
+<li><p><strong>time_horizon</strong> – Investment time horizon [years]</p></li>
+<li><p><strong>discount_rate</strong> – Discount rate for NPV calculation</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Investment optimization results</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="optimization.economic_optimization.optimize_operation">
+<span class="sig-prename descclassname"><span class="pre">optimization.economic_optimization.</span></span><span class="sig-name descname"><span class="pre">optimize_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objective_func:</span> <span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478577936'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints:</span> <span class="pre">~typing.List[~typing.Dict]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds:</span> <span class="pre">~typing.List[~typing.Tuple]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'SLSQP'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/economic_optimization.html#optimize_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.economic_optimization.optimize_operation" title="Link to this definition"></a></dt>
+<dd><p>Optimize process operation using nonlinear programming.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>objective_func</strong> – Objective function to minimize</p></li>
+<li><p><strong>x0</strong> – Initial guess</p></li>
+<li><p><strong>constraints</strong> – List of constraint dictionaries</p></li>
+<li><p><strong>bounds</strong> – Variable bounds [(min, max), …]</p></li>
+<li><p><strong>method</strong> – Optimization method</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Optimization results</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-optimization.parameter_estimation">
+<span id="parameter-estimation"></span><h3>Parameter Estimation<a class="headerlink" href="#module-optimization.parameter_estimation" title="Link to this heading"></a></h3>
+<p>Parameter Estimation for SPROCLIB</p>
+<p>This module provides parameter estimation tools for process control
+systems using experimental data and optimization techniques.</p>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="optimization.parameter_estimation.ParameterEstimation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">optimization.parameter_estimation.</span></span><span class="sig-name descname"><span class="pre">ParameterEstimation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Parameter</span> <span class="pre">Estimation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optimization/parameter_estimation.html#ParameterEstimation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.parameter_estimation.ParameterEstimation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Parameter estimation for process models.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.parameter_estimation.ParameterEstimation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Parameter</span> <span class="pre">Estimation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optimization/parameter_estimation.html#ParameterEstimation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.parameter_estimation.ParameterEstimation.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize parameter estimation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Estimation name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.parameter_estimation.ParameterEstimation.estimate_parameters">
+<span class="sig-name descname"><span class="pre">estimate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">model_func:</span> <span class="pre">~typing.Callable,</span> <span class="pre">t_data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478579952'&gt;,</span> <span class="pre">y_data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478580288'&gt;,</span> <span class="pre">param_bounds:</span> <span class="pre">~typing.List[~typing.Tuple[float,</span> <span class="pre">float]],</span> <span class="pre">initial_guess:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478578944'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'least_squares'</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/parameter_estimation.html#ParameterEstimation.estimate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.parameter_estimation.ParameterEstimation.estimate_parameters" title="Link to this definition"></a></dt>
+<dd><p>Estimate model parameters from experimental data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_func</strong> – Model function that takes (t, params) and returns y</p></li>
+<li><p><strong>t_data</strong> – Time data</p></li>
+<li><p><strong>y_data</strong> – Output data</p></li>
+<li><p><strong>param_bounds</strong> – Parameter bounds [(min, max), …]</p></li>
+<li><p><strong>initial_guess</strong> – Initial parameter guess</p></li>
+<li><p><strong>method</strong> – Estimation method</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Parameter estimation results</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.parameter_estimation.ParameterEstimation.validate_model">
+<span class="sig-name descname"><span class="pre">validate_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_func:</span> <span class="pre">~typing.Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478580624'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_validation:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478580960'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_validation:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478581296'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/parameter_estimation.html#ParameterEstimation.validate_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.parameter_estimation.ParameterEstimation.validate_model" title="Link to this definition"></a></dt>
+<dd><p>Validate model with independent validation data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_func</strong> – Model function</p></li>
+<li><p><strong>parameters</strong> – Estimated parameters</p></li>
+<li><p><strong>t_validation</strong> – Validation time data</p></li>
+<li><p><strong>y_validation</strong> – Validation output data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Validation results</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="optimization.parameter_estimation.estimate_fopdt_parameters">
+<span class="sig-prename descclassname"><span class="pre">optimization.parameter_estimation.</span></span><span class="sig-name descname"><span class="pre">estimate_fopdt_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478581632'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744478581968'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_magnitude:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/optimization/parameter_estimation.html#estimate_fopdt_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.parameter_estimation.estimate_fopdt_parameters" title="Link to this definition"></a></dt>
+<dd><p>Estimate FOPDT parameters from step response data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t_data</strong> – Time data</p></li>
+<li><p><strong>y_data</strong> – Step response data</p></li>
+<li><p><strong>step_magnitude</strong> – Magnitude of step input</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Estimated FOPDT parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-optimization.process_optimization">
+<span id="process-optimization"></span><h3>Process Optimization<a class="headerlink" href="#module-optimization.process_optimization" title="Link to this heading"></a></h3>
+<p>Process Optimization for SPROCLIB</p>
+<p>This module provides basic process optimization functionality.</p>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="optimization.process_optimization.ProcessOptimization">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">optimization.process_optimization.</span></span><span class="sig-name descname"><span class="pre">ProcessOptimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Process</span> <span class="pre">Optimization'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optimization/process_optimization.html#ProcessOptimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.process_optimization.ProcessOptimization" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Basic process optimization class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.process_optimization.ProcessOptimization.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Process</span> <span class="pre">Optimization'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optimization/process_optimization.html#ProcessOptimization.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.process_optimization.ProcessOptimization.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize process optimization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Optimization name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="optimization.process_optimization.ProcessOptimization.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objective_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/optimization/process_optimization.html#ProcessOptimization.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#optimization.process_optimization.ProcessOptimization.optimize" title="Link to this definition"></a></dt>
+<dd><p>Basic optimization method.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="quick-usage">
+<h2>Quick Usage<a class="headerlink" href="#quick-usage" title="Link to this heading"></a></h2>
+<p>Economic Optimization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">optimization.economic_optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">EconomicOptimization</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Create optimizer</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">EconomicOptimization</span><span class="p">(</span><span class="s2">&quot;Production Planning&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define production planning problem</span>
+<span class="n">costs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>      <span class="c1"># Production costs</span>
+<span class="n">prices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">])</span>     <span class="c1"># Product prices</span>
+<span class="n">capacity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>  <span class="c1"># Production capacities</span>
+<span class="n">demand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>     <span class="c1"># Market demand</span>
+
+<span class="c1"># Solve optimization</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">production_optimization</span><span class="p">(</span>
+    <span class="n">costs</span><span class="o">=</span><span class="n">costs</span><span class="p">,</span>
+    <span class="n">prices</span><span class="o">=</span><span class="n">prices</span><span class="p">,</span>
+    <span class="n">capacity_constraints</span><span class="o">=</span><span class="n">capacity</span><span class="p">,</span>
+    <span class="n">demand_constraints</span><span class="o">=</span><span class="n">demand</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal production: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;optimal_production&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Maximum profit: $</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;max_profit&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Parameter Estimation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">optimization.parameter_estimation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParameterEstimation</span>
+
+<span class="c1"># Create parameter estimator</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">ParameterEstimation</span><span class="p">()</span>
+
+<span class="c1"># Estimate parameters from data</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">estimator</span><span class="o">.</span><span class="n">least_squares_estimation</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model_function</span><span class="p">,</span>
+    <span class="n">initial_guess</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="simulation_package.html" class="btn btn-neutral float-left" title="Simulation Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scheduling_package.html" class="btn btn-neutral float-right" title="Scheduling Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

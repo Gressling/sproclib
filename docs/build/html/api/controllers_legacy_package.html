@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Controllers Legacy Package &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/semantic_examples.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Functions Legacy Package" href="functions_legacy_package.html" />
+    <link rel="prev" title="Analysis Legacy Package" href="analysis_legacy_package.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="legacy.html">Legacy Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="legacy.html#migration-guide">Migration Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="legacy.html#benefits-of-migration">Benefits of Migration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="legacy.html#legacy-modules-reference">Legacy Modules Reference</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="analysis_legacy_package.html">Analysis Legacy Package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Controllers Legacy Package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-legacy.controllers">Controllers Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-features">Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="functions_legacy_package.html">Functions Legacy Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models_legacy_package.html">Models Legacy Package (Deprecated)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="legacy.html#module-legacy">Legacy Package API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="legacy.html">Legacy Package</a></li>
+      <li class="breadcrumb-item active">Controllers Legacy Package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/api/controllers_legacy_package.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="controllers-legacy-package">
+<h1>Controllers Legacy Package<a class="headerlink" href="#controllers-legacy-package" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This documentation covers the legacy controllers interface.</p>
+<p><strong>For new projects, use the modular controller package instead:</strong>
+<a class="reference internal" href="controllers_package.html"><span class="doc">Controllers Package</span></a> - Modern modular controller structure</p>
+<p>The legacy interface is maintained for backward compatibility via the legacy package.</p>
+</div>
+<p>The controllers module provides control algorithms that work with all process units in the modular structure. These controllers can be applied to any process unit that follows the standard ProcessModel interface.</p>
+<p>For examples of controller usage with process units, see:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../examples.html"><span class="doc">Examples</span></a> - Comprehensive examples showing controller integration</p></li>
+<li><p><a class="reference internal" href="units_package.html"><span class="doc">Units Operations Package</span></a> - Process units that work with controllers</p></li>
+<li><p><a class="reference internal" href="controllers_package.html"><span class="doc">Controllers Package</span></a> - Modern modular controller documentation</p></li>
+</ul>
+<section id="module-legacy.controllers">
+<span id="controllers-documentation"></span><h2>Controllers Documentation<a class="headerlink" href="#module-legacy.controllers" title="Link to this heading"></a></h2>
+<p>Controller Module for SPROCLIB - Standard Process Control Library (Legacy Interface)</p>
+<p>This module maintains backward compatibility by importing from the new modular
+controller package structure. For new code, import directly from the controller package:</p>
+<dl class="simple">
+<dt>New modular imports (recommended):</dt><dd><p>from controller.pid.PIDController import PIDController
+from controller.tuning.ZieglerNicholsTuning import ZieglerNicholsTuning
+from controller.tuning.AMIGOTuning import AMIGOTuning
+from controller.tuning.RelayTuning import RelayTuning
+from controller.model_based.IMCController import IMCController
+from controller.state_space.StateSpaceController import StateSpaceController</p>
+</dd>
+<dt>Legacy imports (backward compatibility):</dt><dd><p>from controllers import PIDController, ZieglerNicholsTuning, AMIGOTuning, RelayTuning, IMCController</p>
+</dd>
+</dl>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.PIDController">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">PIDController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Kp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ki</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.PIDController" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Advanced PID Controller implementation with anti-windup, bumpless transfer,
+setpoint weighting, and derivative filtering.</p>
+<p>Implementation with modern industrial features for robust process control.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.PIDController.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Kp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ki</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.PIDController.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize PID Controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Kp</strong> – Proportional gain</p></li>
+<li><p><strong>Ki</strong> – Integral gain</p></li>
+<li><p><strong>Kd</strong> – Derivative gain</p></li>
+<li><p><strong>MV_bar</strong> – Bias term for manipulated variable</p></li>
+<li><p><strong>beta</strong> – Setpoint weighting for proportional term (0-1)</p></li>
+<li><p><strong>gamma</strong> – Setpoint weighting for derivative term (0-1)</p></li>
+<li><p><strong>N</strong> – Derivative filter parameter</p></li>
+<li><p><strong>MV_min</strong> – Minimum output value</p></li>
+<li><p><strong>MV_max</strong> – Maximum output value</p></li>
+<li><p><strong>direct_action</strong> – If True, increase output for positive error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.PIDController.get_status">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.PIDController.get_status" title="Link to this definition"></a></dt>
+<dd><p>Get controller status information.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.PIDController.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.PIDController.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset controller internal state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.PIDController.set_auto_mode">
+<span class="sig-name descname"><span class="pre">set_auto_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.set_auto_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.PIDController.set_auto_mode" title="Link to this definition"></a></dt>
+<dd><p>Switch to automatic mode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.PIDController.set_manual_mode">
+<span class="sig-name descname"><span class="pre">set_manual_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mv_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.set_manual_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.PIDController.set_manual_mode" title="Link to this definition"></a></dt>
+<dd><p>Switch to manual mode with specified output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.PIDController.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">SP</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">PV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">TR</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.PIDController.update" title="Link to this definition"></a></dt>
+<dd><p>Update PID controller output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Current time</p></li>
+<li><p><strong>SP</strong> – Setpoint</p></li>
+<li><p><strong>PV</strong> – Process variable (measurement)</p></li>
+<li><p><strong>TR</strong> – Tracking signal for bumpless transfer (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Manipulated variable output</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MV</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.TuningRule">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">TuningRule</span></span><a class="reference internal" href="../_modules/controller/base/TuningRule.html#TuningRule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.TuningRule" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/abc.html#abc.ABC" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
+<p>Abstract base class for PID tuning rules.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.TuningRule.calculate_parameters">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calculate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/base/TuningRule.html#TuningRule.calculate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.TuningRule.calculate_parameters" title="Link to this definition"></a></dt>
+<dd><p>Calculate PID parameters from process model parameters.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.ZieglerNicholsTuning">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">ZieglerNicholsTuning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PID'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/tuning/ZieglerNicholsTuning.html#ZieglerNicholsTuning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.ZieglerNicholsTuning" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="controllers_package.html#controller.base.TuningRule.TuningRule" title="controller.base.TuningRule.TuningRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">TuningRule</span></code></a></p>
+<p>Ziegler-Nichols tuning rules for PID controllers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.ZieglerNicholsTuning.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PID'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/tuning/ZieglerNicholsTuning.html#ZieglerNicholsTuning.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.ZieglerNicholsTuning.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize Ziegler-Nichols tuning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>controller_type</strong> – “P”, “PI”, or “PID”</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.ZieglerNicholsTuning.calculate_parameters">
+<span class="sig-name descname"><span class="pre">calculate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/tuning/ZieglerNicholsTuning.html#ZieglerNicholsTuning.calculate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.ZieglerNicholsTuning.calculate_parameters" title="Link to this definition"></a></dt>
+<dd><p>Calculate PID parameters using Ziegler-Nichols tuning rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_params</strong> – Must contain ‘K’, ‘tau’, ‘theta’ for FOPDT model</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with ‘Kp’, ‘Ki’, ‘Kd’ parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.AMIGOTuning">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">AMIGOTuning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PID'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/tuning/AMIGOTuning.html#AMIGOTuning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.AMIGOTuning" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="controllers_package.html#controller.base.TuningRule.TuningRule" title="controller.base.TuningRule.TuningRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">TuningRule</span></code></a></p>
+<p>AMIGO tuning rules for robust PID control.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.AMIGOTuning.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PID'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/tuning/AMIGOTuning.html#AMIGOTuning.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.AMIGOTuning.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize AMIGO tuning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>controller_type</strong> – “PI” or “PID”</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.AMIGOTuning.calculate_parameters">
+<span class="sig-name descname"><span class="pre">calculate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/tuning/AMIGOTuning.html#AMIGOTuning.calculate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.AMIGOTuning.calculate_parameters" title="Link to this definition"></a></dt>
+<dd><p>Calculate PID parameters using AMIGO tuning rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_params</strong> – Must contain ‘K’, ‘tau’, ‘theta’ for FOPDT model</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with ‘Kp’, ‘Ki’, ‘Kd’, ‘beta’, ‘gamma’ parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.RelayTuning">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">RelayTuning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relay_amplitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/tuning/RelayTuning.html#RelayTuning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.RelayTuning" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="controllers_package.html#controller.base.TuningRule.TuningRule" title="controller.base.TuningRule.TuningRule"><code class="xref py py-class docutils literal notranslate"><span class="pre">TuningRule</span></code></a></p>
+<p>Relay tuning method for PID controllers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.RelayTuning.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relay_amplitude</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/tuning/RelayTuning.html#RelayTuning.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.RelayTuning.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize relay tuning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>relay_amplitude</strong> – Amplitude of relay signal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.RelayTuning.calculate_parameters">
+<span class="sig-name descname"><span class="pre">calculate_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/tuning/RelayTuning.html#RelayTuning.calculate_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.RelayTuning.calculate_parameters" title="Link to this definition"></a></dt>
+<dd><p>Calculate PID parameters from relay test results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_params</strong> – Must contain ‘Pu’ (ultimate period), ‘a’ (amplitude)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary with ‘Kp’, ‘Ki’, ‘Kd’ parameters</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">IMCController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ProcessModelInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_time_constant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'IMC_Controller'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Internal Model Control (IMC) Controller.</p>
+<p>IMC uses the inverse of the process model to cancel process dynamics,
+providing excellent setpoint tracking and disturbance rejection.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ProcessModelInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_time_constant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'IMC_Controller'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize IMC controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_model</strong> – Process model implementing ProcessModelInterface</p></li>
+<li><p><strong>filter_time_constant</strong> – IMC filter time constant λ [time units]</p></li>
+<li><p><strong>filter_order</strong> – Order of IMC filter (1 or 2)</p></li>
+<li><p><strong>name</strong> – Controller name for identification</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController.closed_loop_response">
+<span class="sig-name descname"><span class="pre">closed_loop_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">omega:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081276480'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='2319081276816'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081277152'&gt;]</span></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController.closed_loop_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController.closed_loop_response" title="Link to this definition"></a></dt>
+<dd><p>Calculate closed-loop frequency response.</p>
+<p>For IMC: T(s) = G(s)*Q(s) / (1 + G(s)*Q(s))</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>omega</strong> – Frequency array [rad/time]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (magnitude, phase)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController.frequency_response">
+<span class="sig-name descname"><span class="pre">frequency_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">omega:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080715808'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='2319080716144'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080716480'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080716816'&gt;]</span></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController.frequency_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController.frequency_response" title="Link to this definition"></a></dt>
+<dd><p>Calculate frequency response of the IMC controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>omega</strong> – Frequency array [rad/time]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (magnitude, phase, frequency)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController.get_tuning_parameters">
+<span class="sig-name descname"><span class="pre">get_tuning_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController.get_tuning_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController.get_tuning_parameters" title="Link to this definition"></a></dt>
+<dd><p>Get current tuning parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset controller internal state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController.set_output_limits">
+<span class="sig-name descname"><span class="pre">set_output_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController.set_output_limits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController.set_output_limits" title="Link to this definition"></a></dt>
+<dd><p>Set output saturation limits.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.IMCController.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">setpoint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_variable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">feedforward</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#IMCController.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.IMCController.update" title="Link to this definition"></a></dt>
+<dd><p>Update IMC controller and calculate control output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Current time</p></li>
+<li><p><strong>setpoint</strong> – Desired setpoint value</p></li>
+<li><p><strong>process_variable</strong> – Current process variable (measurement)</p></li>
+<li><p><strong>feedforward</strong> – Optional feedforward signal</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Controller output (manipulated variable)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.FOPDTModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">FOPDTModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#FOPDTModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.FOPDTModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessModelInterface</span></code></p>
+<p>First Order Plus Dead Time (FOPDT) model for IMC.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.FOPDTModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#FOPDTModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.FOPDTModel.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize FOPDT model: G(s) = K * exp(-θs) / (τs + 1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>K</strong> – Process gain</p></li>
+<li><p><strong>tau</strong> – Time constant [time units]</p></li>
+<li><p><strong>theta</strong> – Dead time [time units]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.FOPDTModel.inverse_transfer_function">
+<span class="sig-name descname"><span class="pre">inverse_transfer_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#FOPDTModel.inverse_transfer_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.FOPDTModel.inverse_transfer_function" title="Link to this definition"></a></dt>
+<dd><p>Inverse FOPDT: G⁻¹(s) = (τs + 1) * exp(θs) / K</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.FOPDTModel.step_response">
+<span class="sig-name descname"><span class="pre">step_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080711776'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080711440'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#FOPDTModel.step_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.FOPDTModel.step_response" title="Link to this definition"></a></dt>
+<dd><p>Step response: y(t) = K * (1 - exp(-(t-θ)/τ)) * u(t-θ)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.FOPDTModel.transfer_function">
+<span class="sig-name descname"><span class="pre">transfer_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#FOPDTModel.transfer_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.FOPDTModel.transfer_function" title="Link to this definition"></a></dt>
+<dd><p>FOPDT transfer function G(s) = K * exp(-θs) / (τs + 1)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.SOPDTModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">SOPDTModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#SOPDTModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.SOPDTModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ProcessModelInterface</span></code></p>
+<p>Second Order Plus Dead Time model for IMC.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.SOPDTModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#SOPDTModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.SOPDTModel.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize SOPDT model: G(s) = K * exp(-θs) / ((τ₁s + 1)(τ₂s + 1))</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>K</strong> – Process gain</p></li>
+<li><p><strong>tau1</strong> – First time constant [time units]</p></li>
+<li><p><strong>tau2</strong> – Second time constant [time units]</p></li>
+<li><p><strong>theta</strong> – Dead time [time units]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.SOPDTModel.inverse_transfer_function">
+<span class="sig-name descname"><span class="pre">inverse_transfer_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#SOPDTModel.inverse_transfer_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.SOPDTModel.inverse_transfer_function" title="Link to this definition"></a></dt>
+<dd><p>Inverse SOPDT transfer function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.SOPDTModel.step_response">
+<span class="sig-name descname"><span class="pre">step_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080715136'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080715472'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#SOPDTModel.step_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.SOPDTModel.step_response" title="Link to this definition"></a></dt>
+<dd><p>Step response for second-order system</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.SOPDTModel.transfer_function">
+<span class="sig-name descname"><span class="pre">transfer_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#complex" title="(in Python v3.13)"><span class="pre">complex</span></a></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#SOPDTModel.transfer_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.SOPDTModel.transfer_function" title="Link to this definition"></a></dt>
+<dd><p>SOPDT transfer function</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.controllers.tune_imc_lambda">
+<span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">tune_imc_lambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ProcessModelInterface</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_settling_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">overshoot_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/controller/model_based/IMCController.html#tune_imc_lambda"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.tune_imc_lambda" title="Link to this definition"></a></dt>
+<dd><p>Tune IMC filter time constant λ based on desired performance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>process_model</strong> – Process model</p></li>
+<li><p><strong>desired_settling_time</strong> – Desired 2% settling time</p></li>
+<li><p><strong>overshoot_limit</strong> – Maximum allowed overshoot (0.05 = 5%)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Recommended λ value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">StateSpaceController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="controllers_package.html#controller.state_space.StateSpaceController.StateSpaceModel" title="controller.state_space.StateSpaceController.StateSpaceModel"><span class="pre">StateSpaceModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'lqr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'StateSpaceController'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>State-Space Controller using full state feedback.</p>
+<p>Implements various state-space control methods:
+- Pole placement
+- Linear Quadratic Regulator (LQR)
+- State observer design</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="controllers_package.html#controller.state_space.StateSpaceController.StateSpaceModel" title="controller.state_space.StateSpaceController.StateSpaceModel"><span class="pre">StateSpaceModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'lqr'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'StateSpaceController'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize state-space controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – State-space model</p></li>
+<li><p><strong>control_method</strong> – Control method (‘pole_placement’, ‘lqr’)</p></li>
+<li><p><strong>name</strong> – Controller name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.closed_loop_simulation">
+<span class="sig-name descname"><span class="pre">closed_loop_simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081285552'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080712784'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080713120'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319080714800'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measurement_noise:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081777744'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='2319081778752'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081779088'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081779424'&gt;]</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.closed_loop_simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.closed_loop_simulation" title="Link to this definition"></a></dt>
+<dd><p>Simulate closed-loop system response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Time array</p></li>
+<li><p><strong>r</strong> – Reference signals [len(t) x n_outputs]</p></li>
+<li><p><strong>x0</strong> – Initial state [n_states]</p></li>
+<li><p><strong>d</strong> – Disturbances [len(t) x n_disturbances] (optional)</p></li>
+<li><p><strong>measurement_noise</strong> – Measurement noise [len(t) x n_outputs] (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (states, outputs, control_inputs)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.design_lqr_controller">
+<span class="sig-name descname"><span class="pre">design_lqr_controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Q:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081772032'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081772368'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081772704'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081773712'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.design_lqr_controller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.design_lqr_controller" title="Link to this definition"></a></dt>
+<dd><p>Design Linear Quadratic Regulator (LQR) controller.</p>
+<p>Minimizes cost function: J = ∫(x’Qx + u’Ru + 2x’Nu) dt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Q</strong> – State weighting matrix [n_states x n_states]</p></li>
+<li><p><strong>R</strong> – Input weighting matrix [n_inputs x n_inputs]</p></li>
+<li><p><strong>N</strong> – Cross-weighting matrix [n_states x n_inputs] (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>State feedback gain matrix K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.design_observer">
+<span class="sig-name descname"><span class="pre">design_observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observer_poles:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081774720'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'pole_placement'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081775056'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.design_observer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.design_observer" title="Link to this definition"></a></dt>
+<dd><p>Design state observer (Luenberger observer).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>observer_poles</strong> – Desired observer poles</p></li>
+<li><p><strong>method</strong> – Observer design method (‘pole_placement’, ‘lqr’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Observer gain matrix L</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.design_pole_placement_controller">
+<span class="sig-name descname"><span class="pre">design_pole_placement_controller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_poles:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081774048'&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081774384'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.design_pole_placement_controller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.design_pole_placement_controller" title="Link to this definition"></a></dt>
+<dd><p>Design controller using pole placement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>desired_poles</strong> – Desired closed-loop poles</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>State feedback gain matrix K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.design_reference_tracking">
+<span class="sig-name descname"><span class="pre">design_reference_tracking</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081775392'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.design_reference_tracking"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.design_reference_tracking" title="Link to this definition"></a></dt>
+<dd><p>Design reference tracking for step inputs.</p>
+<p>Calculates feedforward gain N such that steady-state error is zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Reference tracking matrix N</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.get_controller_info">
+<span class="sig-name descname"><span class="pre">get_controller_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.get_controller_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.get_controller_info" title="Link to this definition"></a></dt>
+<dd><p>Get controller information and parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset controller internal state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.set_control_limits">
+<span class="sig-name descname"><span class="pre">set_control_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u_min:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081283872'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_max:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081285888'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.set_control_limits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.set_control_limits" title="Link to this definition"></a></dt>
+<dd><p>Set control input saturation limits.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceController.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081775728'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081776064'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081776400'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081282528'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081283536'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceController.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceController.update" title="Link to this definition"></a></dt>
+<dd><p>Update controller and calculate control action.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Current time</p></li>
+<li><p><strong>y</strong> – Measured outputs [n_outputs]</p></li>
+<li><p><strong>r</strong> – Reference signals [n_outputs]</p></li>
+<li><p><strong>x</strong> – Full state measurement [n_states] (optional, uses observer if not provided)</p></li>
+<li><p><strong>d</strong> – Known disturbances [n_disturbances] (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Control input u [n_inputs]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">StateSpaceModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081281520'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081281184'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081280848'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081280512'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081286896'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081287904'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_names:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_names:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_names:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'StateSpaceModel'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>State-space model representation for control design.</p>
+<p>Represents a linear time-invariant system:
+dx/dt = A*x + B*u + E*d
+y = C*x + D*u + F*d</p>
+<p>Where:
+- x: state vector
+- u: input vector (manipulated variables)
+- d: disturbance vector
+- y: output vector (measured variables)</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081281520'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081281184'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">C:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081280848'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">D:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081280512'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">E:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081286896'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">F:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081287904'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_names:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_names:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_names:</span> <span class="pre">~typing.List[str]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'StateSpaceModel'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize state-space model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – State matrix [n_states x n_states]</p></li>
+<li><p><strong>B</strong> – Input matrix [n_states x n_inputs]</p></li>
+<li><p><strong>C</strong> – Output matrix [n_outputs x n_states]</p></li>
+<li><p><strong>D</strong> – Feedthrough matrix [n_outputs x n_inputs] (optional)</p></li>
+<li><p><strong>E</strong> – Disturbance state matrix [n_states x n_disturbances] (optional)</p></li>
+<li><p><strong>F</strong> – Disturbance output matrix [n_outputs x n_disturbances] (optional)</p></li>
+<li><p><strong>state_names</strong> – Names of state variables</p></li>
+<li><p><strong>input_names</strong> – Names of input variables</p></li>
+<li><p><strong>output_names</strong> – Names of output variables</p></li>
+<li><p><strong>name</strong> – Model name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.controllability_matrix">
+<span class="sig-name descname"><span class="pre">controllability_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081770688'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.controllability_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.controllability_matrix" title="Link to this definition"></a></dt>
+<dd><p>Calculate controllability matrix [B AB A²B … A^(n-1)B]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.is_controllable">
+<span class="sig-name descname"><span class="pre">is_controllable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.is_controllable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.is_controllable" title="Link to this definition"></a></dt>
+<dd><p>Check if system is controllable</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.is_observable">
+<span class="sig-name descname"><span class="pre">is_observable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.is_observable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.is_observable" title="Link to this definition"></a></dt>
+<dd><p>Check if system is observable</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.is_stable">
+<span class="sig-name descname"><span class="pre">is_stable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.is_stable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.is_stable" title="Link to this definition"></a></dt>
+<dd><p>Check if system is stable (all eigenvalues have negative real parts)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.observability_matrix">
+<span class="sig-name descname"><span class="pre">observability_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081771024'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.observability_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.observability_matrix" title="Link to this definition"></a></dt>
+<dd><p>Calculate observability matrix [C; CA; CA²; …; CA^(n-1)]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.poles">
+<span class="sig-name descname"><span class="pre">poles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081771360'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.poles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.poles" title="Link to this definition"></a></dt>
+<dd><p>Get system poles (eigenvalues of A matrix)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.simulate">
+<span class="sig-name descname"><span class="pre">simulate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081288912'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081289248'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081289584'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081289920'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='2319081290928'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081291264'&gt;]</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.simulate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.simulate" title="Link to this definition"></a></dt>
+<dd><p>Simulate state-space model response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Time array</p></li>
+<li><p><strong>u</strong> – Input array [len(t) x n_inputs]</p></li>
+<li><p><strong>x0</strong> – Initial state [n_states]</p></li>
+<li><p><strong>d</strong> – Disturbance array [len(t) x n_disturbances] (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (states, outputs) arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.step_response">
+<span class="sig-name descname"><span class="pre">step_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081768336'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_index:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_magnitude:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='2319081768672'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081769008'&gt;]</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.step_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.step_response" title="Link to this definition"></a></dt>
+<dd><p>Calculate step response for specified input.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Time array</p></li>
+<li><p><strong>input_index</strong> – Index of input for step test</p></li>
+<li><p><strong>step_magnitude</strong> – Magnitude of step input</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of (states, outputs) arrays</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.controllers.StateSpaceModel.zeros">
+<span class="sig-name descname"><span class="pre">zeros</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">&lt;MagicMock</span> <span class="pre">id='2319081771696'&gt;</span></span></span><a class="reference internal" href="../_modules/controller/state_space/StateSpaceController.html#StateSpaceModel.zeros"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.controllers.StateSpaceModel.zeros" title="Link to this definition"></a></dt>
+<dd><p>Calculate system zeros (transmission zeros)</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="pidcontroller">
+<h3>PIDController<a class="headerlink" href="#pidcontroller" title="Link to this heading"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.controllers.</span></span><span class="sig-name descname"><span class="pre">PIDController</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Kp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ki</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Advanced PID Controller implementation with anti-windup, bumpless transfer,
+setpoint weighting, and derivative filtering.</p>
+<p>Implementation with modern industrial features for robust process control.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Kp</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ki</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Kd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_bar</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gamma</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">5.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MV_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direct_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>Initialize PID Controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Kp</strong> – Proportional gain</p></li>
+<li><p><strong>Ki</strong> – Integral gain</p></li>
+<li><p><strong>Kd</strong> – Derivative gain</p></li>
+<li><p><strong>MV_bar</strong> – Bias term for manipulated variable</p></li>
+<li><p><strong>beta</strong> – Setpoint weighting for proportional term (0-1)</p></li>
+<li><p><strong>gamma</strong> – Setpoint weighting for derivative term (0-1)</p></li>
+<li><p><strong>N</strong> – Derivative filter parameter</p></li>
+<li><p><strong>MV_min</strong> – Minimum output value</p></li>
+<li><p><strong>MV_max</strong> – Maximum output value</p></li>
+<li><p><strong>direct_action</strong> – If True, increase output for positive error</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>Reset controller internal state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">SP</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">PV</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">TR</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Update PID controller output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> – Current time</p></li>
+<li><p><strong>SP</strong> – Setpoint</p></li>
+<li><p><strong>PV</strong> – Process variable (measurement)</p></li>
+<li><p><strong>TR</strong> – Tracking signal for bumpless transfer (optional)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Manipulated variable output</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>MV</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">set_auto_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.set_auto_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd><p>Switch to automatic mode.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">set_manual_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mv_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.set_manual_mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd><p>Switch to manual mode with specified output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">get_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/controller/pid/PIDController.html#PIDController.get_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd><p>Get controller status information.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>The PIDController class implements a full-featured PID controller with:</p>
+<ul class="simple">
+<li><p><strong>Anti-windup protection</strong> - Prevents integrator saturation</p></li>
+<li><p><strong>Bumpless transfer</strong> - Smooth transitions between manual/auto modes</p></li>
+<li><p><strong>Setpoint weighting</strong> - Advanced setpoint tracking</p></li>
+<li><p><strong>Output limiting</strong> - Configurable output constraints</p></li>
+</ul>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">legacy.controllers</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
+
+<span class="c1"># Create controller with tuned parameters</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span>
+    <span class="n">Kp</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">output_limits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+    <span class="n">anti_windup</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Control loop</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time_steps</span><span class="p">:</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">setpoint</span> <span class="o">-</span> <span class="n">process_variable</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">setpoint</span><span class="p">,</span> <span class="n">process_variable</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="c1"># Apply output to process...</span>
+</pre></div>
+</div>
+</section>
+<section id="tuningrule">
+<h3>TuningRule<a class="headerlink" href="#tuningrule" title="Link to this heading"></a></h3>
+<p>The TuningRule class provides automated PID tuning methods:</p>
+<ul class="simple">
+<li><p><strong>Ziegler-Nichols</strong> - Classic tuning rules for step response</p></li>
+<li><p><strong>AMIGO</strong> - Advanced method for integrating processes</p></li>
+<li><p><strong>Relay Tuning</strong> - Automatic tuning using relay feedback</p></li>
+</ul>
+<p>Example Usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">controllers</span><span class="w"> </span><span class="kn">import</span> <span class="n">TuningRule</span>
+
+<span class="c1"># Create tuning rule object</span>
+<span class="n">tuner</span> <span class="o">=</span> <span class="n">TuningRule</span><span class="p">()</span>
+
+<span class="c1"># Tune using Ziegler-Nichols method</span>
+<span class="n">pid_params</span> <span class="o">=</span> <span class="n">tuner</span><span class="o">.</span><span class="n">ziegler_nichols</span><span class="p">(</span><span class="n">K</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="c1"># Apply to controller</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="o">**</span><span class="n">pid_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<section id="controller-methods">
+<h3>Controller Methods<a class="headerlink" href="#controller-methods" title="Link to this heading"></a></h3>
+</section>
+<section id="tuning-methods">
+<h3>Tuning Methods<a class="headerlink" href="#tuning-methods" title="Link to this heading"></a></h3>
+</section>
+</section>
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading"></a></h2>
+<section id="anti-windup-protection">
+<h3>Anti-windup Protection<a class="headerlink" href="#anti-windup-protection" title="Link to this heading"></a></h3>
+<p>The PID controller includes sophisticated anti-windup protection to prevent integrator saturation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span>
+    <span class="n">Kp</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">anti_windup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">output_limits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>When the controller output hits limits, the integrator is automatically adjusted to prevent windup.</p>
+</section>
+<section id="setpoint-weighting">
+<h3>Setpoint Weighting<a class="headerlink" href="#setpoint-weighting" title="Link to this heading"></a></h3>
+<p>For processes sensitive to setpoint changes, setpoint weighting reduces overshoot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span>
+    <span class="n">Kp</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">Ki</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">Kd</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">setpoint_weight_proportional</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span>
+    <span class="n">setpoint_weight_derivative</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This creates a “softer” response to setpoint changes while maintaining disturbance rejection.</p>
+</section>
+<section id="bumpless-transfer">
+<h3>Bumpless Transfer<a class="headerlink" href="#bumpless-transfer" title="Link to this heading"></a></h3>
+<p>Smooth transitions between manual and automatic modes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Switch to manual mode</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">set_manual_mode</span><span class="p">(</span><span class="n">manual_output</span><span class="o">=</span><span class="mf">50.0</span><span class="p">)</span>
+
+<span class="c1"># Later, switch back to auto (no output bump)</span>
+<span class="n">controller</span><span class="o">.</span><span class="n">set_auto_mode</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Use appropriate sample times (typically 1/10th to 1/4th of the process time constant)</p></li>
+<li><p>Tune controllers based on process characteristics, not just trial and error</p></li>
+<li><p>Consider using derivative filtering for noisy measurements</p></li>
+<li><p>Implement proper exception handling for control loops</p></li>
+</ul>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="models_legacy_package.html"><span class="doc">Models Legacy Package (Deprecated)</span></a> - Process models for control design</p></li>
+<li><p><a class="reference internal" href="functions_legacy_package.html"><span class="doc">Functions Legacy Package</span></a> - Utility functions including tune_pid()</p></li>
+<li><p><a class="reference internal" href="../theory.html"><span class="doc">Theory and Background</span></a> - Control theory background</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="analysis_legacy_package.html" class="btn btn-neutral float-left" title="Analysis Legacy Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="functions_legacy_package.html" class="btn btn-neutral float-right" title="Functions Legacy Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

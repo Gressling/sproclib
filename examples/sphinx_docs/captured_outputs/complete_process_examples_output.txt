@@ -1,0 +1,29 @@
+SPROCLIB Example Output: complete_process_examples
+============================================================
+Generated on: 2025-07-06 13:45:05
+============================================================
+
+STDOUT:
+----------------------------------------
+SPROCLIB Complete Process Examples
+==================================================
+=== Simple Integrated Process ===
+Error running examples: 'charmap' codec can't encode character '\u2192' in position 24: character maps to <undefined>
+
+
+STDERR:
+----------------------------------------
+Traceback (most recent call last):
+  File "C:\htdocs\github\paramus-experiments\paramus-experiments\paramus\chemistry\process_control\examples\complete_process_examples.py", line 344, in main
+    simple_integrated_process()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\htdocs\github\paramus-experiments\paramus-experiments\paramus\chemistry\process_control\examples\complete_process_examples.py", line 37, in simple_integrated_process
+    print("Process Flow: Feed Tank \u2192 Pump \u2192 CSTR \u2192 Heat Exchanger \u2192 Product")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 24: character maps to <undefined>
+
+
+Return code: 0

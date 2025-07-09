@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legacy Package &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/semantic_examples.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Analysis Legacy Package" href="analysis_legacy_package.html" />
+    <link rel="prev" title="Utilities Package" href="utilities_package.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Legacy Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#migration-guide">Migration Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#legacy-analysis-module">Legacy Analysis Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#legacy-functions-module">Legacy Functions Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benefits-of-migration">Benefits of Migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#legacy-modules-reference">Legacy Modules Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="analysis_legacy_package.html">Analysis Legacy Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controllers_legacy_package.html">Controllers Legacy Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="functions_legacy_package.html">Functions Legacy Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="models_legacy_package.html">Models Legacy Package (Deprecated)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-legacy">Legacy Package API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.TransferFunction"><code class="docutils literal notranslate"><span class="pre">TransferFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.Simulation"><code class="docutils literal notranslate"><span class="pre">Simulation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.Optimization"><code class="docutils literal notranslate"><span class="pre">Optimization</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.StateTaskNetwork"><code class="docutils literal notranslate"><span class="pre">StateTaskNetwork</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.step_response"><code class="docutils literal notranslate"><span class="pre">step_response()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.bode_plot"><code class="docutils literal notranslate"><span class="pre">bode_plot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.linearize"><code class="docutils literal notranslate"><span class="pre">linearize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.tune_pid"><code class="docutils literal notranslate"><span class="pre">tune_pid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.simulate_process"><code class="docutils literal notranslate"><span class="pre">simulate_process()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.optimize_operation"><code class="docutils literal notranslate"><span class="pre">optimize_operation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.fit_fopdt"><code class="docutils literal notranslate"><span class="pre">fit_fopdt()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.stability_analysis"><code class="docutils literal notranslate"><span class="pre">stability_analysis()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.disturbance_rejection"><code class="docutils literal notranslate"><span class="pre">disturbance_rejection()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#legacy.model_predictive_control"><code class="docutils literal notranslate"><span class="pre">model_predictive_control()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Legacy Package</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/api/legacy.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="legacy-package">
+<h1>Legacy Package<a class="headerlink" href="#legacy-package" title="Link to this heading"></a></h1>
+<p>The legacy package provides backward compatibility for existing SPROCLIB code.
+It contains wrapper modules that maintain the old API while internally using
+the new modular structure.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The legacy package is deprecated and will be removed in a future version.
+Please migrate to the modern modular packages:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="analysis_package.html"><span class="doc">Analysis Package</span></a> - Analysis tools</p></li>
+<li><p><a class="reference internal" href="simulation_package.html"><span class="doc">Simulation Package</span></a> - Simulation capabilities</p></li>
+<li><p><a class="reference internal" href="optimization_package.html"><span class="doc">Optimization Package</span></a> - Optimization algorithms</p></li>
+<li><p><a class="reference internal" href="scheduling_package.html"><span class="doc">Scheduling Package</span></a> - Batch scheduling</p></li>
+<li><p><a class="reference internal" href="utilities_package.html"><span class="doc">Utilities Package</span></a> - Control utilities</p></li>
+</ul>
+</div>
+<section id="migration-guide">
+<h2>Migration Guide<a class="headerlink" href="#migration-guide" title="Link to this heading"></a></h2>
+<p>The legacy modules provide the same functionality as before, but with deprecation warnings.
+Here’s how to migrate your code:</p>
+<section id="legacy-analysis-module">
+<h3>Legacy Analysis Module<a class="headerlink" href="#legacy-analysis-module" title="Link to this heading"></a></h3>
+<p><strong>Old way (deprecated):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">legacy.analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span><span class="p">,</span> <span class="n">Simulation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">legacy.functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">step_response</span><span class="p">,</span> <span class="n">tune_pid</span>
+</pre></div>
+</div>
+<p><strong>New way (recommended):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">analysis.transfer_function</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">simulation.process_simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessSimulation</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analysis.system_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">step_response</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span>
+</pre></div>
+</div>
+</section>
+<section id="legacy-functions-module">
+<h3>Legacy Functions Module<a class="headerlink" href="#legacy-functions-module" title="Link to this heading"></a></h3>
+<p><strong>Old way (deprecated):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">legacy.functions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">step_response</span><span class="p">,</span> <span class="n">bode_plot</span><span class="p">,</span> <span class="n">tune_pid</span><span class="p">,</span>
+    <span class="n">simulate_process</span><span class="p">,</span> <span class="n">optimize_operation</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>New way (recommended):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">analysis.system_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">step_response</span><span class="p">,</span> <span class="n">bode_plot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span><span class="p">,</span> <span class="n">simulate_process</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">optimization.economic_optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_operation</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="benefits-of-migration">
+<h2>Benefits of Migration<a class="headerlink" href="#benefits-of-migration" title="Link to this heading"></a></h2>
+<p>Migrating to the new modular structure provides:</p>
+<ul class="simple">
+<li><p><strong>Better Organization</strong>: Functions grouped by purpose</p></li>
+<li><p><strong>Improved Performance</strong>: Only import what you need</p></li>
+<li><p><strong>Enhanced Documentation</strong>: Module-specific documentation</p></li>
+<li><p><strong>Future Support</strong>: New features added to modular packages</p></li>
+<li><p><strong>Type Safety</strong>: Better IDE support and type hints</p></li>
+</ul>
+</section>
+<section id="legacy-modules-reference">
+<h2>Legacy Modules Reference<a class="headerlink" href="#legacy-modules-reference" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These modules are provided for backward compatibility only.
+All new development should use the modern modular packages.</p>
+</div>
+<p>For detailed documentation of legacy interfaces, see:</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Legacy Interface Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="analysis_legacy_package.html">Analysis Legacy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="controllers_legacy_package.html">Controllers Legacy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions_legacy_package.html">Functions Legacy Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models_legacy_package.html">Models Legacy Package (Deprecated)</a></li>
+</ul>
+</div>
+<section id="module-legacy">
+<span id="legacy-package-api"></span><h3>Legacy Package API<a class="headerlink" href="#module-legacy" title="Link to this heading"></a></h3>
+<p>Legacy Module for SPROCLIB - Standard Process Control Library</p>
+<p>This package contains backward compatibility wrappers for legacy code.
+New code should use the modern modular packages instead.</p>
+<p>Author: Thorsten Gressling &lt;<a class="reference external" href="mailto:gressling&#37;&#52;&#48;paramus&#46;ai">gressling<span>&#64;</span>paramus<span>&#46;</span>ai</a>&gt;
+License: MIT License</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.TransferFunction">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">TransferFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num:</span> <span class="pre">~typing.List[float]</span> <span class="pre">|</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744477270912'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">den:</span> <span class="pre">~typing.List[float]</span> <span class="pre">|</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744477269568'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'G(s)'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#TransferFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.TransferFunction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="analysis_package.html#analysis.transfer_function.TransferFunction" title="analysis.transfer_function.TransferFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">TransferFunction</span></code></a></p>
+<p>Legacy wrapper for analysis.transfer_function.TransferFunction</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.Simulation">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">Simulation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Simulation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Simulation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Simulation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Legacy wrapper for simulation.process_simulation.ProcessSimulation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.Simulation.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Simulation'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Simulation.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Simulation.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.Simulation.plot_results">
+<span class="sig-name descname"><span class="pre">plot_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">variables</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.13)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">(12,</span> <span class="pre">8)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Simulation.plot_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Simulation.plot_results" title="Link to this definition"></a></dt>
+<dd><p>Plot simulation results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.Simulation.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_span</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_profile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.13)"><span class="pre">Callable</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'RK45'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-09</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/legacy/analysis.html#Simulation.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Simulation.run" title="Link to this definition"></a></dt>
+<dd><p>Run simulation with specified input profile.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.Optimization">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">Optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Optimization'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Optimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Optimization" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Legacy wrapper for optimization.economic_optimization.EconomicOptimization</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.Optimization.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Optimization'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Optimization.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Optimization.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.Optimization.economic_optimization">
+<span class="sig-name descname"><span class="pre">economic_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Optimization.economic_optimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Optimization.economic_optimization" title="Link to this definition"></a></dt>
+<dd><p>Legacy economic optimization method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.Optimization.linear_programming">
+<span class="sig-name descname"><span class="pre">linear_programming</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Optimization.linear_programming"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Optimization.linear_programming" title="Link to this definition"></a></dt>
+<dd><p>Legacy linear programming method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.Optimization.nonlinear_optimization">
+<span class="sig-name descname"><span class="pre">nonlinear_optimization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#Optimization.nonlinear_optimization"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.Optimization.nonlinear_optimization" title="Link to this definition"></a></dt>
+<dd><p>Legacy nonlinear optimization method.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="legacy.StateTaskNetwork">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">StateTaskNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'STN'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#StateTaskNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.StateTaskNetwork" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="scheduling_package.html#scheduling.state_task_network.StateTaskNetwork" title="scheduling.state_task_network.StateTaskNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">StateTaskNetwork</span></code></a></p>
+<p>Legacy wrapper for scheduling.state_task_network.StateTaskNetwork</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="legacy.StateTaskNetwork.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'STN'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/legacy/analysis.html#StateTaskNetwork.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.StateTaskNetwork.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize State-Task Network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Network name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.step_response">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">step_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">system:</span> <span class="pre">TransferFunction</span> <span class="pre">|</span> <span class="pre">~typing.Tuple[&lt;MagicMock</span> <span class="pre">id='1744480074592'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481224416'&gt;],</span> <span class="pre">t:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481226096'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">t_final:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">10.0,</span> <span class="pre">input_magnitude:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481227104'&gt;]</span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#step_response"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.step_response" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for analysis.system_analysis.step_response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.bode_plot">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">bode_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">system:</span> <span class="pre">TransferFunction</span> <span class="pre">|</span> <span class="pre">~typing.Tuple[&lt;MagicMock</span> <span class="pre">id='1744481228112'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481228448'&gt;],</span> <span class="pre">w:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481230128'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">plot:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">title:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'Bode</span> <span class="pre">Plot'</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481231136'&gt;]</span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#bode_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.bode_plot" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for analysis.system_analysis.bode_plot</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.linearize">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">linearize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_func:</span> <span class="pre">~typing.Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_ss:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481232144'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u_ss:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481232480'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1e-06</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple[&lt;MagicMock</span> <span class="pre">id='1744481232816'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481233152'&gt;]</span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#linearize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.linearize" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for utilities.control_utils.linearize</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.tune_pid">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">tune_pid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ziegler_nichols'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PID'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#tune_pid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.tune_pid" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for utilities.control_utils.tune_pid</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.simulate_process">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">simulate_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">model:</span> <span class="pre">~typing.Callable,</span> <span class="pre">t_span:</span> <span class="pre">~typing.Tuple[float,</span> <span class="pre">float],</span> <span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481234832'&gt;,</span> <span class="pre">u_profile:</span> <span class="pre">~typing.Callable[[float],</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481235168'&gt;],</span> <span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'RK45',</span> <span class="pre">max_step:</span> <span class="pre">float</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict[str,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481236176'&gt;]</span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#simulate_process"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.simulate_process" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for utilities.control_utils.simulate_process</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.optimize_operation">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">optimize_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objective_func:</span> <span class="pre">~typing.Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481237184'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints:</span> <span class="pre">~typing.List[~typing.Dict]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds:</span> <span class="pre">~typing.List[~typing.Tuple]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'SLSQP'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#optimize_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.optimize_operation" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for optimization.economic_optimization.optimize_operation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.fit_fopdt">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">fit_fopdt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481237520'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481237856'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_magnitude:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_guess:</span> <span class="pre">~typing.Tuple[float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float]</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#fit_fopdt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.fit_fopdt" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for analysis.model_identification.fit_fopdt</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.stability_analysis">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">stability_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481238192'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_name:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'System'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#stability_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.stability_analysis" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for analysis.system_analysis.stability_analysis</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.disturbance_rejection">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">disturbance_rejection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">plant_tf:</span> <span class="pre">~typing.Tuple[&lt;MagicMock</span> <span class="pre">id='1744481238528'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481878096'&gt;],</span> <span class="pre">controller_tf:</span> <span class="pre">~typing.Tuple[&lt;MagicMock</span> <span class="pre">id='1744481879776'&gt;,</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481880112'&gt;],</span> <span class="pre">disturbance_type:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'step',</span> <span class="pre">w:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481881792'&gt;</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#disturbance_rejection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.disturbance_rejection" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for utilities.control_utils.disturbance_rejection</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="legacy.model_predictive_control">
+<span class="sig-prename descclassname"><span class="pre">legacy.</span></span><span class="sig-name descname"><span class="pre">model_predictive_control</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">A:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481882800'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">B:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481883136'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Q:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481883472'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">R:</span> <span class="pre">&lt;MagicMock</span> <span class="pre">id='1744481883808'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_horizon:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_horizon:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.13)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.13)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/legacy/functions.html#model_predictive_control"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#legacy.model_predictive_control" title="Link to this definition"></a></dt>
+<dd><p>Legacy wrapper for utilities.control_utils.model_predictive_control</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="utilities_package.html" class="btn btn-neutral float-left" title="Utilities Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="analysis_legacy_package.html" class="btn btn-neutral float-right" title="Analysis Legacy Package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

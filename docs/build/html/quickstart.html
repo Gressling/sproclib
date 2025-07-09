@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Start Guide &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/semantic_examples.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Migration Guide" href="migration.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modern-imports-recommended">Modern Imports (Recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#legacy-imports-backward-compatible">Legacy Imports (Backward Compatible)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-1-transfer-function-analysis">Example 1: Transfer Function Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-2-pid-controller-auto-tuning">Example 2: PID Controller Auto-Tuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-3-process-simulation">Example 3: Process Simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-3-pid-tuning">Example 3: PID Tuning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-4-transfer-function-analysis">Example 4: Transfer Function Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-5-cstr-modeling">Example 5: CSTR Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-concepts-to-explore">Key Concepts to Explore</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tips-for-success">Tips for Success</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Quick Start Guide</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/quickstart.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quick-start-guide">
+<h1>Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Link to this heading"></a></h1>
+<p>This guide will get you up and running with the Standard Process Control Library using the modern modular architecture.</p>
+<section id="modern-imports-recommended">
+<h2>Modern Imports (Recommended)<a class="headerlink" href="#modern-imports-recommended" title="Link to this heading"></a></h2>
+<p>Import components from the new modular packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analysis tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analysis.transfer_function</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analysis.system_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">step_response</span><span class="p">,</span> <span class="n">bode_plot</span>
+
+<span class="c1"># Control utilities</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span><span class="p">,</span> <span class="n">simulate_process</span>
+
+<span class="c1"># Simulation tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">simulation.process_simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessSimulation</span>
+
+<span class="c1"># Optimization tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">optimization.economic_optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">EconomicOptimization</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</section>
+<section id="legacy-imports-backward-compatible">
+<h2>Legacy Imports (Backward Compatible)<a class="headerlink" href="#legacy-imports-backward-compatible" title="Link to this heading"></a></h2>
+<p>If you have existing code, legacy imports still work:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Legacy imports (with deprecation warnings)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">legacy.analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">legacy.functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span><span class="p">,</span> <span class="n">step_response</span>
+
+<span class="c1"># Or direct legacy package import</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">legacy</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span><span class="p">,</span> <span class="n">tune_pid</span>
+</pre></div>
+</div>
+</section>
+<section id="example-1-transfer-function-analysis">
+<h2>Example 1: Transfer Function Analysis<a class="headerlink" href="#example-1-transfer-function-analysis" title="Link to this heading"></a></h2>
+<p>Create and analyze a transfer function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a first-order transfer function</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">TransferFunction</span><span class="p">([</span><span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;First Order Process&quot;</span><span class="p">)</span>
+
+<span class="c1"># Analyze step response</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">step_response</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span> <span class="n">t_final</span><span class="o">=</span><span class="mf">20.0</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Output&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Step Response&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Generate Bode plot</span>
+<span class="n">bode_data</span> <span class="o">=</span> <span class="n">bode_plot</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-2-pid-controller-auto-tuning">
+<h2>Example 2: PID Controller Auto-Tuning<a class="headerlink" href="#example-2-pid-controller-auto-tuning" title="Link to this heading"></a></h2>
+<p>Auto-tune a PID controller for a process:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define process model parameters (FOPDT)</span>
+<span class="n">model_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>    <span class="c1"># Process gain</span>
+    <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>  <span class="c1"># Time constant (s)</span>
+    <span class="s1">&#39;theta&#39;</span><span class="p">:</span> <span class="mf">1.0</span> <span class="c1"># Dead time (s)</span>
+<span class="p">}</span>
+
+<span class="c1"># Auto-tune PID controller using Ziegler-Nichols method</span>
+<span class="n">pid_params</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span>
+    <span class="n">model_params</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ziegler_nichols&#39;</span><span class="p">,</span>
+    <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PID&#39;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PID Parameters:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kp = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ki = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Ki&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kd = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kd&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-3-process-simulation">
+<h2>Example 3: Process Simulation<a class="headerlink" href="#example-3-process-simulation" title="Link to this heading"></a></h2>
+<p>Simulate a dynamic process:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a simple tank model</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">tank_model</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tank dynamics: dh/dt = (Fin - Fout)/A&quot;&quot;&quot;</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Tank height</span>
+    <span class="n">Fin</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Inlet flow</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="mf">1.0</span>   <span class="c1"># Tank area</span>
+
+    <span class="c1"># Outlet flow (gravity-drained)</span>
+    <span class="n">Fout</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="c1"># Height dynamics</span>
+    <span class="n">dh_dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">Fin</span> <span class="o">-</span> <span class="n">Fout</span><span class="p">)</span> <span class="o">/</span> <span class="n">A</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">dh_dt</span><span class="p">]</span>
+
+<span class="c1"># Create simulation</span>
+<span class="n">sim</span> <span class="o">=</span> <span class="n">ProcessSimulation</span><span class="p">(</span><span class="n">tank_model</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Tank Simulation&quot;</span><span class="p">)</span>
+
+<span class="c1"># Define input profile (step change)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">input_profile</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="mf">3.0</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="k">else</span> <span class="mf">2.0</span><span class="p">]</span>  <span class="c1"># Step change at t=5</span>
+
+<span class="c1"># Run simulation</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run_open_loop</span><span class="p">(</span>
+    <span class="n">t_span</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+    <span class="n">x0</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">],</span>  <span class="c1"># Initial height = 1.0 m</span>
+    <span class="n">u_profile</span><span class="o">=</span><span class="n">input_profile</span>
+<span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">sim</span><span class="o">.</span><span class="n">plot_results</span><span class="p">()</span>
+
+<span class="c1"># Calculate steady-state height</span>
+<span class="n">h_ss</span> <span class="o">=</span> <span class="n">tank</span><span class="o">.</span><span class="n">steady_state</span><span class="p">({</span><span class="s1">&#39;q_in&#39;</span><span class="p">:</span> <span class="n">q_in</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Steady-state height: </span><span class="si">{</span><span class="n">h_ss</span><span class="p">[</span><span class="s1">&#39;h&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+
+<span class="c1"># Simulate tank dynamics</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span> <span class="o">*</span> <span class="n">q_in</span>  <span class="c1"># constant input</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">simulate_process</span><span class="p">(</span><span class="n">tank</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">h0</span><span class="p">)</span>
+
+<span class="c1"># Plot results</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;output&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (min)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Tank Height (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Tank Level Response&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="example-3-pid-tuning">
+<h2>Example 3: PID Tuning<a class="headerlink" href="#example-3-pid-tuning" title="Link to this heading"></a></h2>
+<p>Automatically tune PID parameters for a process:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define process characteristics (FOPDT model)</span>
+<span class="n">process_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>     <span class="c1"># Process gain</span>
+    <span class="s1">&#39;tau&#39;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span>   <span class="c1"># Time constant</span>
+    <span class="s1">&#39;theta&#39;</span><span class="p">:</span> <span class="mf">1.0</span>  <span class="c1"># Dead time</span>
+<span class="p">}</span>
+
+<span class="c1"># Auto-tune using Ziegler-Nichols method</span>
+<span class="n">pid_params</span> <span class="o">=</span> <span class="n">tune_pid</span><span class="p">(</span>
+    <span class="n">process_params</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;ziegler_nichols&#39;</span><span class="p">,</span>
+    <span class="n">controller_type</span><span class="o">=</span><span class="s1">&#39;PID&#39;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tuned PID parameters:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kp = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kp&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ki = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Ki&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kd = </span><span class="si">{</span><span class="n">pid_params</span><span class="p">[</span><span class="s1">&#39;Kd&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-4-transfer-function-analysis">
+<h2>Example 4: Transfer Function Analysis<a class="headerlink" href="#example-4-transfer-function-analysis" title="Link to this heading"></a></h2>
+<p>Analyze system frequency response:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create transfer function (FOPDT)</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">TransferFunction</span><span class="o">.</span><span class="n">first_order_plus_dead_time</span><span class="p">(</span>
+    <span class="n">K</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Process&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Generate Bode plot</span>
+<span class="n">bode_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">bode_plot</span><span class="p">(</span><span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Analyze stability</span>
+<span class="n">stability</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stability_analysis</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System stable: </span><span class="si">{</span><span class="n">stability</span><span class="p">[</span><span class="s1">&#39;stable&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-5-cstr-modeling">
+<h2>Example 5: CSTR Modeling<a class="headerlink" href="#example-5-cstr-modeling" title="Link to this heading"></a></h2>
+<p>Model a continuous stirred tank reactor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create CSTR model</span>
+<span class="n">cstr</span> <span class="o">=</span> <span class="n">CSTR</span><span class="p">(</span>
+    <span class="n">V</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      <span class="c1"># Volume (L)</span>
+    <span class="n">k0</span><span class="o">=</span><span class="mf">1e10</span><span class="p">,</span>    <span class="c1"># Pre-exponential factor</span>
+    <span class="n">E</span><span class="o">=</span><span class="mi">8000</span><span class="p">,</span>     <span class="c1"># Activation energy (K)</span>
+    <span class="n">dHr</span><span class="o">=-</span><span class="mi">50000</span><span class="p">,</span> <span class="c1"># Heat of reaction (J/mol)</span>
+    <span class="n">rho</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>   <span class="c1"># Density (g/L)</span>
+    <span class="n">Cp</span><span class="o">=</span><span class="mf">4.18</span><span class="p">,</span>    <span class="c1"># Heat capacity (J/g/K)</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Reactor&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Define operating conditions</span>
+<span class="n">conditions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;q_in&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span>    <span class="c1"># Flow rate (L/min)</span>
+    <span class="s1">&#39;CA_in&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>    <span class="c1"># Inlet concentration (mol/L)</span>
+    <span class="s1">&#39;T_in&#39;</span><span class="p">:</span> <span class="mf">300.0</span><span class="p">,</span>   <span class="c1"># Inlet temperature (K)</span>
+    <span class="s1">&#39;T_cool&#39;</span><span class="p">:</span> <span class="mf">290.0</span>  <span class="c1"># Cooling temperature (K)</span>
+<span class="p">}</span>
+
+<span class="c1"># Find steady state</span>
+<span class="n">steady_state</span> <span class="o">=</span> <span class="n">cstr</span><span class="o">.</span><span class="n">steady_state</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Steady-state concentration: </span><span class="si">{</span><span class="n">steady_state</span><span class="p">[</span><span class="s1">&#39;CA&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> mol/L&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Steady-state temperature: </span><span class="si">{</span><span class="n">steady_state</span><span class="p">[</span><span class="s1">&#39;T&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Now that you’ve seen the basics, explore these resources:</p>
+<ol class="arabic simple">
+<li><p><strong>Detailed Tutorials</strong>: Learn specific control techniques</p></li>
+<li><p><strong>API Reference</strong>: Complete function and class documentation</p></li>
+<li><p><strong>Examples</strong>: Real-world chemical engineering applications</p></li>
+<li><p><strong>Theory</strong>: Background on control theory concepts</p></li>
+</ol>
+</section>
+<section id="key-concepts-to-explore">
+<h2>Key Concepts to Explore<a class="headerlink" href="#key-concepts-to-explore" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Process Modeling</strong>: Tank, CSTR, and custom models</p></li>
+<li><p><strong>Controller Design</strong>: PID, feedforward, cascade control</p></li>
+<li><p><strong>System Analysis</strong>: Transfer functions, frequency domain</p></li>
+<li><p><strong>Optimization</strong>: Linear programming, nonlinear optimization</p></li>
+<li><p><strong>Advanced Control</strong>: Model predictive control, state feedback</p></li>
+</ul>
+</section>
+<section id="tips-for-success">
+<h2>Tips for Success<a class="headerlink" href="#tips-for-success" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Start Simple</strong>: Begin with basic PID control before moving to advanced topics</p></li>
+<li><p><strong>Understand Your Process</strong>: Model the physical system before designing control</p></li>
+<li><p><strong>Test Thoroughly</strong>: Use the built-in test functions to validate your models</p></li>
+<li><p><strong>Visualize Results</strong>: Always plot your simulation results</p></li>
+<li><p><strong>Read the Theory</strong>: Understand the control concepts behind the code</p></li>
+</ol>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Check the <strong>API Reference</strong> for detailed function documentation</p></li>
+<li><p>Look at <strong>Examples</strong> for working code snippets</p></li>
+<li><p>Review <strong>Theory</strong> sections for background concepts</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">test_library.py</span></code> to verify installation</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="migration.html" class="btn btn-neutral float-right" title="Migration Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

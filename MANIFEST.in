@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+include COMPRESSOR_PUMP_GUIDE.md
+include REFERENCES_CLEANUP_SUMMARY.md
+recursive-include documentation *.md
+recursive-include docs *
+recursive-exclude docs/build *
+include examples.py
+include test_*.py
+global-exclude *.pyc
+global-exclude __pycache__

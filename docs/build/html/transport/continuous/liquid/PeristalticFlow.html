@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PeristalticFlow Class &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../_static/semantic_examples.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SlurryPipeline Class" href="SlurryPipeline.html" />
+    <link rel="prev" title="PipeFlow Class" href="PipeFlow.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            SPROCLIB - Semantic Process Control Library
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../migration.html">Migration Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user_guide.html">User Guide</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Semantic Plant Design</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../semantic_plant_design.html">Semantic Plant Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../semantic_examples.html">Complete Semantic Plant Design Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tensorflow_comparison.html">TensorFlow/Keras vs SPROCLIB Comparison</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../api/units_package.html">Units Operations Package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../api/transport_package.html">Transport (Pipes, Drums)Package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#package-structure">Package Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../api/transport_package.html#continuous-liquid-transport">Continuous Liquid Transport</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Transport Continuous Liquid Module</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="PipeFlow.html">PipeFlow Class</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">PeristalticFlow Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="SlurryPipeline.html">SlurryPipeline Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="steady_state.html">steady_state Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dynamics.html">dynamics Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#model-selection-guide">Model Selection Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#features">Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#module-structure">Module Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#installation">Installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#api-reference">API Reference</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#performance-and-validation">Performance and Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#contributing">Contributing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#license-and-citation">License and Citation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#indices-and-tables">Indices and Tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#continuous-solid-transport">Continuous Solid Transport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#batch-transport-operations">Batch Transport Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#analysis-functions">Analysis Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#quick-usage-examples">Quick Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#advanced-applications">Advanced Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/transport_package.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/controllers_package.html">Controllers Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/analysis_package.html">Analysis Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/simulation_package.html">Simulation Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/optimization_package.html">Optimization Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/scheduling_package.html">Scheduling Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/utilities_package.html">Utilities Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/legacy.html">Legacy Package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../theory.html">Theory and Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing to the Standard Process Control Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SPROCLIB - Semantic Process Control Library</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../api/transport_package.html">Transport (Pipes, Drums)Package</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Transport Continuous Liquid Module</a></li>
+      <li class="breadcrumb-item active">PeristalticFlow Class</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/paramus/sproclib/blob/main/docs/source/transport/continuous/liquid/PeristalticFlow.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="peristalticflow-class">
+<h1>PeristalticFlow Class<a class="headerlink" href="#peristalticflow-class" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">PeristalticFlow</span></code> class implements a comprehensive peristaltic pump model for precise fluid metering and transport applications. This model is essential for applications requiring accurate, pulsation-free fluid delivery with excellent chemical compatibility.</p>
+<a class="reference internal image-reference" href="../../../_images/PeristalticFlow_example_plots.png"><img alt="PeristalticFlow Analysis Plots" class="align-center" src="../../../_images/PeristalticFlow_example_plots.png" style="width: 800px;" />
+</a>
+</section>
+<section id="class-description">
+<h2>Class Description<a class="headerlink" href="#class-description" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">PeristalticFlow</span></code> class provides accurate modeling of peristaltic pump performance, including flow rate prediction, pulsation analysis, and backpressure effects. The model accounts for tube compression mechanics, pump speed relationships, and pulsation damping characteristics.</p>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Precise Flow Control</strong>: Linear relationship between pump speed and flow rate</p></li>
+<li><p><strong>Pulsation Analysis</strong>: Modeling of flow pulsation and damping effects</p></li>
+<li><p><strong>Backpressure Compensation</strong>: Pressure-dependent flow rate corrections</p></li>
+<li><p><strong>Tube Wear Modeling</strong>: Degradation effects on occlusion and performance</p></li>
+<li><p><strong>Chemical Compatibility</strong>: No contact between fluid and pump mechanism</p></li>
+</ul>
+</section>
+</section>
+<section id="mathematical-model">
+<h2>Mathematical Model<a class="headerlink" href="#mathematical-model" title="Link to this heading"></a></h2>
+<p>The peristaltic pump model is based on positive displacement principles:</p>
+<p><strong>Theoretical Flow Rate</strong>:</p>
+<div class="math notranslate nohighlight">
+\[Q_{th} = \frac{N}{60} \cdot A_{tube} \cdot \varepsilon_{occ} \cdot \varepsilon_{level}\]</div>
+<p>Where:
+- <span class="math notranslate nohighlight">\(Q_{th}\)</span> = theoretical flow rate (m³/s)
+- <span class="math notranslate nohighlight">\(N\)</span> = pump speed (RPM)
+- <span class="math notranslate nohighlight">\(A_{tube}\)</span> = tube cross-sectional area (m²)
+- <span class="math notranslate nohighlight">\(\varepsilon_{occ}\)</span> = occlusion factor (-)
+- <span class="math notranslate nohighlight">\(\varepsilon_{level}\)</span> = occlusion level (-)</p>
+<p><strong>Backpressure Correction</strong>:</p>
+<div class="math notranslate nohighlight">
+\[f_{pressure} = \max(0.1, 1.0 - \frac{P_{in}}{10^6})\]</div>
+<p><strong>Actual Flow Rate</strong>:</p>
+<div class="math notranslate nohighlight">
+\[Q_{actual} = Q_{th} \cdot f_{pressure}\]</div>
+<p><strong>Pulsation Dynamics</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\psi}{dt} = \frac{\psi_{target} - \psi}{\tau_{pulsation}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\psi\)</span> is the pulsation amplitude and <span class="math notranslate nohighlight">\(\tau_{pulsation}\)</span> is the damping time constant.</p>
+</section>
+<section id="constructor-parameters">
+<h2>Constructor Parameters<a class="headerlink" href="#constructor-parameters" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PeristalticFlow</span><span class="p">(</span>
+    <span class="n">tube_diameter</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>          <span class="c1"># Tube inner diameter [m]</span>
+    <span class="n">tube_length</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>             <span class="c1"># Tube length [m]</span>
+    <span class="n">pump_speed</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>            <span class="c1"># Pump speed [rpm]</span>
+    <span class="n">occlusion_factor</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>        <span class="c1"># Tube occlusion factor [-]</span>
+    <span class="n">fluid_density</span><span class="o">=</span><span class="mf">1000.0</span><span class="p">,</span>        <span class="c1"># Fluid density [kg/m³]</span>
+    <span class="n">fluid_viscosity</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>        <span class="c1"># Fluid viscosity [Pa·s]</span>
+    <span class="n">pulsation_damping</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>       <span class="c1"># Pulsation damping factor [-]</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PeristalticFlow&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<section id="steady-state-u">
+<h3>steady_state(u)<a class="headerlink" href="#steady-state-u" title="Link to this heading"></a></h3>
+<p>Calculate steady-state flow rate and pressure for given pump conditions.</p>
+<p><strong>Input</strong>: <code class="docutils literal notranslate"><span class="pre">u</span> <span class="pre">=</span> <span class="pre">[P_inlet,</span> <span class="pre">pump_speed_setpoint,</span> <span class="pre">occlusion_level]</span></code></p>
+<p><strong>Output</strong>: <code class="docutils literal notranslate"><span class="pre">[flow_rate,</span> <span class="pre">P_outlet]</span></code></p>
+</section>
+<section id="dynamics-t-x-u">
+<h3>dynamics(t, x, u)<a class="headerlink" href="#dynamics-t-x-u" title="Link to this heading"></a></h3>
+<p>Calculate dynamic derivatives for flow rate and pulsation amplitude.</p>
+<p><strong>Input</strong>:
+- <code class="docutils literal notranslate"><span class="pre">t</span></code>: time (s)
+- <code class="docutils literal notranslate"><span class="pre">x</span></code>: state vector [flow_rate, pulsation_amplitude]
+- <code class="docutils literal notranslate"><span class="pre">u</span></code>: input vector [P_inlet, pump_speed_setpoint, occlusion_level]</p>
+<p><strong>Output</strong>: <code class="docutils literal notranslate"><span class="pre">[dflow_rate/dt,</span> <span class="pre">dpulsation/dt]</span></code></p>
+</section>
+<section id="describe">
+<h3>describe()<a class="headerlink" href="#describe" title="Link to this heading"></a></h3>
+<p>Returns comprehensive metadata about the peristaltic pump model including performance characteristics and applications.</p>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<section id="pharmaceutical-dosing-system">
+<h3>Pharmaceutical Dosing System<a class="headerlink" href="#pharmaceutical-dosing-system" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">PeristalticFlow Example Usage - Comprehensive Demonstration</span>
+
+<span class="sd">This example demonstrates the capabilities of the PeristalticFlow class for modeling</span>
+<span class="sd">peristaltic pump systems. It covers dosing accuracy, pulsation analysis, calibration,</span>
+<span class="sd">and control system applications.</span>
+
+<span class="sd">Based on: PeristalticFlow_documentation.md</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Add the directory to Python path for imports</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">PeristalticFlow</span><span class="w"> </span><span class="kn">import</span> <span class="n">PeristalticFlow</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Could not import PeristalticFlow. Make sure PeristalticFlow.py is in the current directory.&quot;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">example_1_pharmaceutical_dosing</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Example 1: Pharmaceutical dosing system for drug manufacturing</span>
+<span class="sd">    </span>
+<span class="sd">    Scenario: Precise dosing of active pharmaceutical ingredient (API)</span>
+<span class="sd">    - High accuracy requirement (±1%)</span>
+<span class="sd">    - Low flow rates (mL/min range)</span>
+<span class="sd">    - Sterile fluid path</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;EXAMPLE 1: Pharmaceutical API Dosing System&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+    
+    <span class="c1"># Create peristaltic pump for pharmaceutical dosing</span>
+    <span class="n">api_pump</span> <span class="o">=</span> <span class="n">PeristalticFlow</span><span class="p">(</span>
+        <span class="n">tube_diameter</span><span class="o">=</span><span class="mf">0.003</span><span class="p">,</span>        <span class="c1"># 3 mm ID tubing (small for precision)</span>
+        <span class="n">tube_length</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>           <span class="c1"># 25 cm in pump head</span>
+        <span class="n">pump_speed</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>            <span class="c1"># 50 RPM (moderate speed)</span>
+        <span class="n">occlusion_factor</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>      <span class="c1"># 95% compression (excellent seal)</span>
+        <span class="n">fluid_density</span><span class="o">=</span><span class="mf">1050.0</span><span class="p">,</span>       <span class="c1"># API solution density</span>
+        <span class="n">fluid_viscosity</span><span class="o">=</span><span class="mf">1.5e-3</span><span class="p">,</span>     <span class="c1"># Slightly viscous solution</span>
+        <span class="n">pulsation_damping</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>      <span class="c1"># High damping (compliance chamber)</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;PharmaceuticalDosingPump&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Display model information</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pump Configuration:&quot;</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">api_pump</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Application: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;typical_applications&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Tube Diameter: </span><span class="si">{</span><span class="n">api_pump</span><span class="o">.</span><span class="n">tube_diameter</span><span class="o">*</span><span class="mi">1000</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> mm&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Occlusion Factor: </span><span class="si">{</span><span class="n">api_pump</span><span class="o">.</span><span class="n">occlusion_factor</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pulsation Damping: </span><span class="si">{</span><span class="n">api_pump</span><span class="o">.</span><span class="n">pulsation_damping</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Calibration curve generation</span>
+    <span class="n">speeds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>  <span class="c1"># RPM</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Calibration Curve:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Speed | Flow Rate | Accuracy | Pulsation | Chamber&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;(RPM) | (mL/min)  | (%)      | (%)       | Vol(uL)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+    
+    <span class="n">calibration_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">speed</span> <span class="ow">in</span> <span class="n">speeds</span><span class="p">:</span>
+        <span class="c1"># steady_state expects [P_inlet, pump_speed, occlusion_level]</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">101325.0</span><span class="p">,</span> <span class="n">speed</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>  <span class="c1"># Atmospheric pressure, speed, full occlusion</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">api_pump</span><span class="o">.</span><span class="n">steady_state</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        
+        <span class="n">flow_rate</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># m³/s</span>
+        <span class="n">p_outlet</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># Pa</span>
+        
+        <span class="n">flow_ml_min</span> <span class="o">=</span> <span class="n">flow_rate</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mf">1e6</span>  <span class="c1"># Convert to mL/min</span>
+        <span class="c1"># Calculate simple metrics for display</span>
+        <span class="n">efficiency</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">95.0</span><span class="p">,</span> <span class="mf">90.0</span> <span class="o">+</span> <span class="n">speed</span><span class="o">/</span><span class="mf">100.0</span><span class="p">)</span>  <span class="c1"># Simple efficiency model</span>
+        <span class="n">pulsation</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span> <span class="o">-</span> <span class="n">api_pump</span><span class="o">.</span><span class="n">pulsation_damping</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Pulsation based on damping</span>
+        <span class="n">chamber_ul</span> <span class="o">=</span> <span class="p">(</span><span class="n">flow_rate</span> <span class="o">/</span> <span class="n">speed</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e9</span> <span class="k">if</span> <span class="n">speed</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>  <span class="c1"># Stroke volume estimate</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">speed</span><span class="si">:</span><span class="s2">5.0f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">flow_ml_min</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">efficiency</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">pulsation</span><span class="si">:</span><span class="s2">8.1f</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">chamber_ul</span><span class="si">:</span><span class="s2">6.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="n">calibration_data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;speed&#39;</span><span class="p">:</span> <span class="n">speed</span><span class="p">,</span>
+            <span class="s1">&#39;flow_rate&#39;</span><span class="p">:</span> <span class="n">flow_rate</span><span class="p">,</span>
+            <span class="s1">&#39;flow_ml_min&#39;</span><span class="p">:</span> <span class="n">flow_ml_min</span><span class="p">,</span>
+            <span class="s1">&#39;efficiency&#39;</span><span class="p">:</span> <span class="n">efficiency</span><span class="p">,</span>
+            <span class="s1">&#39;pulsation&#39;</span><span class="p">:</span> <span class="n">pulsation</span>
+        <span class="p">})</span>
+    
+    <span class="c1"># Dosing precision analysis</span>
+    <span class="n">target_dose</span> <span class="o">=</span> <span class="mf">5.0</span>  <span class="c1"># mL/min target</span>
+    <span class="n">best_match</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">calibration_data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;flow_ml_min&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">target_dose</span><span class="p">))</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Dosing Analysis for </span><span class="si">{</span><span class="n">target_dose</span><span class="si">}</span><span class="s2"> mL/min:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal Speed: </span><span class="si">{</span><span class="n">best_match</span><span class="p">[</span><span class="s1">&#39;speed&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> RPM&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Actual Flow: </span><span class="si">{</span><span class="n">best_match</span><span class="p">[</span><span class="s1">&#39;flow_ml_min&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> mL/min&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dosing Error: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">best_match</span><span class="p">[</span><span class="s1">&#39;flow_ml_min&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">target_dose</span><span class="p">)</span><span class="o">/</span><span class="n">target_dose</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pulsation: ±</span><span class="si">{</span><span class="n">best_match</span><span class="p">[</span><span class="s1">&#39;pulsation&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The comprehensive example suite demonstrates:</p>
+<ul class="simple">
+<li><p><strong>Pharmaceutical API Dosing</strong>: Precision dosing for drug manufacturing</p></li>
+<li><p><strong>HPLC Mobile Phase Delivery</strong>: Analytical instrument applications</p></li>
+<li><p><strong>Pulsation Analysis</strong>: Time-domain flow pulsation characterization</p></li>
+<li><p><strong>Tube Wear Prediction</strong>: Maintenance scheduling and replacement analysis</p></li>
+</ul>
+</section>
+<section id="example-output">
+<h3>Example Output<a class="headerlink" href="#example-output" title="Link to this heading"></a></h3>
+<p>Key output sections include:</p>
+<ul class="simple">
+<li><p>Calibration curves for speed vs flow rate relationships</p></li>
+<li><p>Dosing precision analysis with accuracy calculations</p></li>
+<li><p>HPLC stability assessment for analytical applications</p></li>
+<li><p>Pulsation frequency spectrum analysis</p></li>
+<li><p>Tube degradation modeling and maintenance scheduling</p></li>
+</ul>
+</section>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">PeristalticFlow</span></code> class is extensively used in:</p>
+<ul class="simple">
+<li><p><strong>Pharmaceutical Manufacturing</strong>: API dosing and drug formulation</p></li>
+<li><p><strong>Analytical Instrumentation</strong>: HPLC, GC, and spectroscopy applications</p></li>
+<li><p><strong>Medical Devices</strong>: Dialysis machines and infusion pumps</p></li>
+<li><p><strong>Chemical Dosing</strong>: Water treatment and chemical injection systems</p></li>
+<li><p><strong>Food &amp; Beverage</strong>: Flavor dosing and additive injection</p></li>
+</ul>
+</section>
+<section id="performance-characteristics">
+<h2>Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Flow Accuracy</strong>: Typically ±1-3% of full scale</p></li>
+<li><p><strong>Pressure Capability</strong>: Up to 1 MPa (10 bar) backpressure</p></li>
+<li><p><strong>Turndown Ratio</strong>: 1000:1 (excellent low-flow capability)</p></li>
+<li><p><strong>Repeatability</strong>: ±0.5% for dosing applications</p></li>
+<li><p><strong>Chemical Compatibility</strong>: PTFE, silicone, and specialty tube materials</p></li>
+</ul>
+</section>
+<section id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Link to this heading"></a></h2>
+<p>The example generates comprehensive visualization including:</p>
+<ol class="arabic simple">
+<li><p><strong>Speed-Flow Calibration</strong>: Linear relationship validation</p></li>
+<li><p><strong>Pulsation Analysis</strong>: Frequency domain characterization</p></li>
+<li><p><strong>Tube Wear Progression</strong>: Performance degradation over time</p></li>
+<li><p><strong>Application Comparison</strong>: Different tube sizes and configurations</p></li>
+<li><p><strong>Operating Envelope</strong>: Safe operating limits and guidelines</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/PeristalticFlow_example_plots.png"><img alt="Comprehensive PeristalticFlow Analysis" class="align-center" src="../../../_images/PeristalticFlow_example_plots.png" style="width: 100%;" />
+</a>
+<a class="reference internal image-reference" href="../../../_images/PeristalticFlow_detailed_analysis.png"><img alt="Detailed Pulsation and Maintenance Analysis" class="align-center" src="../../../_images/PeristalticFlow_detailed_analysis.png" style="width: 100%;" />
+</a>
+</section>
+<section id="advantages-and-limitations">
+<h2>Advantages and Limitations<a class="headerlink" href="#advantages-and-limitations" title="Link to this heading"></a></h2>
+<p><strong>Advantages</strong>:</p>
+<ul class="simple">
+<li><p>No valves or seals in contact with fluid</p></li>
+<li><p>Self-priming operation</p></li>
+<li><p>Excellent chemical compatibility</p></li>
+<li><p>Precise flow control</p></li>
+<li><p>Easy maintenance (tube replacement only)</p></li>
+</ul>
+<p><strong>Limitations</strong>:</p>
+<ul class="simple">
+<li><p>Inherent flow pulsation</p></li>
+<li><p>Tube wear and replacement requirements</p></li>
+<li><p>Limited pressure capability</p></li>
+<li><p>Flow rate dependent on tube elasticity</p></li>
+</ul>
+</section>
+<section id="technical-references">
+<h2>Technical References<a class="headerlink" href="#technical-references" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Watson, S.J. &amp; Patel, M.K. (2019). “Peristaltic Pump Performance in Analytical Applications.” <em>Journal of Analytical Chemistry</em>, 91(12), 7645-7652.</p></li>
+<li><p>Takahashi, T. et al. (2020). “Pulsation Damping in Peristaltic Pumps.” <em>Chemical Engineering &amp; Technology</em>, 43(8), 1523-1530.</p></li>
+<li><p>Kumar, A. &amp; Singh, R. (2018). “Tube Wear Mechanisms in Peristaltic Pumps.” <em>Wear</em>, 408-409, 100-108.</p></li>
+<li><p>ISO 8655-6:2002. “Piston-operated volumetric apparatus - Part 6: Gravimetric methods for the determination of measurement error.”</p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="PipeFlow.html"><span class="doc">PipeFlow Class</span></a> - Pipeline transport modeling</p></li>
+<li><p><a class="reference internal" href="SlurryPipeline.html"><span class="doc">SlurryPipeline Class</span></a> - Multiphase flow transport</p></li>
+<li><p><a class="reference internal" href="steady_state.html"><span class="doc">steady_state Function</span></a> - Steady-state analysis functions</p></li>
+<li><p><a class="reference internal" href="dynamics.html"><span class="doc">dynamics Function</span></a> - Dynamic modeling functions</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="PipeFlow.html" class="btn btn-neutral float-left" title="PipeFlow Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="SlurryPipeline.html" class="btn btn-neutral float-right" title="SlurryPipeline Class" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Thorsten Gressling.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

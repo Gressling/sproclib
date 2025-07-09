@@ -1,0 +1,61 @@
+SPROCLIB Example Output: utilities_examples
+============================================================
+Generated on: 2025-07-06 13:45:04
+============================================================
+
+STDOUT:
+----------------------------------------
+SPROCLIB Utilities Examples
+==================================================
+=== Simple Utilities Examples ===
+
+--- Linear Approximation ---
+Linear approximation created for model: Test Model
+Type: LinearApproximation
+
+Data points:
+X values: [10, 20, 30, 40, 50]
+Y values: [25, 45, 70, 90, 115]
+
+Linear approximation:
+Slope: 2.250
+Intercept: 1.500
+Equation: y = 2.250x + 1.500
+R-squared: 0.9985
+
+Interpolation/Extrapolation:
+X        Y (predicted)   Type           
+----------------------------------------
+15       35.25           Interpolation  
+25       57.75           Interpolation  
+35       80.25           Interpolation  
+55       125.25          Extrapolation  
+
+Simple utilities examples completed successfully!
+
+=== Comprehensive Utilities Examples ===
+
+--- Multiple Linear Regression ---
+Multiple Linear Regression Analysis:
+Conversion = f(Temperature, Pressure, Residence Time)
+
+Regression equation:
+Error running examples: 'charmap' codec can't encode character '\u03c4' in position 54: character maps to <undefined>
+
+
+STDERR:
+----------------------------------------
+Traceback (most recent call last):
+  File "C:\htdocs\github\paramus-experiments\paramus-experiments\paramus\chemistry\process_control\examples\utilities_examples.py", line 370, in main
+    comprehensive_utilities_examples()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\htdocs\github\paramus-experiments\paramus-experiments\paramus\chemistry\process_control\examples\utilities_examples.py", line 141, in comprehensive_utilities_examples
+    print(f"Conversion = {coefficients[0]:.4f} + {coefficients[1]:.6f}*T + {coefficients[2]:.4f}*P + {coefficients[3]:.4f}*\u03c4")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u03c4' in position 54: character maps to <undefined>
+
+
+Return code: 0
