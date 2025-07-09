@@ -1,22 +1,24 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>legacy.analysis &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=70140151" />
 
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -33,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -114,26 +119,26 @@
 <span class="sd">License: MIT License</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="c1"># Import from new modular structure</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="c1"># Try relative imports first (when used as a package)</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..analysis.transfer_function</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span> <span class="k">as</span> <span class="n">_TransferFunction</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..simulation.process_simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessSimulation</span> <span class="k">as</span> <span class="n">_ProcessSimulation</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..optimization.economic_optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">EconomicOptimization</span> <span class="k">as</span> <span class="n">_EconomicOptimization</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..scheduling.state_task_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateTaskNetwork</span> <span class="k">as</span> <span class="n">_StateTaskNetwork</span>
+    <span class="kn">from</span> <span class="nn">..analysis.transfer_function</span> <span class="kn">import</span> <span class="n">TransferFunction</span> <span class="k">as</span> <span class="n">_TransferFunction</span>
+    <span class="kn">from</span> <span class="nn">..simulation.process_simulation</span> <span class="kn">import</span> <span class="n">ProcessSimulation</span> <span class="k">as</span> <span class="n">_ProcessSimulation</span>
+    <span class="kn">from</span> <span class="nn">..optimization.economic_optimization</span> <span class="kn">import</span> <span class="n">EconomicOptimization</span> <span class="k">as</span> <span class="n">_EconomicOptimization</span>
+    <span class="kn">from</span> <span class="nn">..scheduling.state_task_network</span> <span class="kn">import</span> <span class="n">StateTaskNetwork</span> <span class="k">as</span> <span class="n">_StateTaskNetwork</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="c1"># Fall back to absolute imports (when used as standalone module)</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span> <span class="nn">os</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
     
-    <span class="kn">from</span><span class="w"> </span><span class="nn">analysis.transfer_function</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span> <span class="k">as</span> <span class="n">_TransferFunction</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">simulation.process_simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessSimulation</span> <span class="k">as</span> <span class="n">_ProcessSimulation</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">optimization.economic_optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">EconomicOptimization</span> <span class="k">as</span> <span class="n">_EconomicOptimization</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">scheduling.state_task_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateTaskNetwork</span> <span class="k">as</span> <span class="n">_StateTaskNetwork</span>
+    <span class="kn">from</span> <span class="nn">analysis.transfer_function</span> <span class="kn">import</span> <span class="n">TransferFunction</span> <span class="k">as</span> <span class="n">_TransferFunction</span>
+    <span class="kn">from</span> <span class="nn">simulation.process_simulation</span> <span class="kn">import</span> <span class="n">ProcessSimulation</span> <span class="k">as</span> <span class="n">_ProcessSimulation</span>
+    <span class="kn">from</span> <span class="nn">optimization.economic_optimization</span> <span class="kn">import</span> <span class="n">EconomicOptimization</span> <span class="k">as</span> <span class="n">_EconomicOptimization</span>
+    <span class="kn">from</span> <span class="nn">scheduling.state_task_network</span> <span class="kn">import</span> <span class="n">StateTaskNetwork</span> <span class="k">as</span> <span class="n">_StateTaskNetwork</span>
 
 <span class="c1"># Backward compatibility warning</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
@@ -148,7 +153,7 @@
 <span class="c1"># Legacy compatibility classes - just pass through to new implementations</span>
 <div class="viewcode-block" id="TransferFunction">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.TransferFunction">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">TransferFunction</span><span class="p">(</span><span class="n">_TransferFunction</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TransferFunction</span><span class="p">(</span><span class="n">_TransferFunction</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Legacy wrapper for analysis.transfer_function.TransferFunction&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
@@ -156,12 +161,12 @@
 
 <div class="viewcode-block" id="Simulation">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Simulation">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">Simulation</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Simulation</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Legacy wrapper for simulation.process_simulation.ProcessSimulation&quot;&quot;&quot;</span>
     
 <div class="viewcode-block" id="Simulation.__init__">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Simulation.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Simulation&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Simulation&quot;</span><span class="p">):</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="s2">&quot;Simulation class is deprecated. Use simulation.process_simulation.ProcessSimulation instead.&quot;</span><span class="p">,</span>
             <span class="ne">DeprecationWarning</span><span class="p">,</span>
@@ -175,7 +180,7 @@
     
 <div class="viewcode-block" id="Simulation.run">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Simulation.run">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">t_span</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">x0</span><span class="p">,</span>
@@ -190,7 +195,7 @@
     
 <div class="viewcode-block" id="Simulation.plot_results">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Simulation.plot_results">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">plot_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">)):</span>
+    <span class="k">def</span> <span class="nf">plot_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">variables</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">)):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot simulation results.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sim</span><span class="o">.</span><span class="n">plot_results</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">figsize</span><span class="p">)</span></div>
 </div>
@@ -199,12 +204,12 @@
 
 <div class="viewcode-block" id="Optimization">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Optimization">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">Optimization</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">Optimization</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Legacy wrapper for optimization.economic_optimization.EconomicOptimization&quot;&quot;&quot;</span>
     
 <div class="viewcode-block" id="Optimization.__init__">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Optimization.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Optimization&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Optimization&quot;</span><span class="p">):</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="s2">&quot;Optimization class is deprecated. Use optimization.economic_optimization.EconomicOptimization instead.&quot;</span><span class="p">,</span>
             <span class="ne">DeprecationWarning</span><span class="p">,</span>
@@ -217,21 +222,21 @@
     
 <div class="viewcode-block" id="Optimization.linear_programming">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Optimization.linear_programming">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">linear_programming</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">linear_programming</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Legacy linear programming method.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opt</span><span class="o">.</span><span class="n">linear_programming</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="Optimization.nonlinear_optimization">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Optimization.nonlinear_optimization">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">nonlinear_optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">nonlinear_optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Legacy nonlinear optimization method.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opt</span><span class="o">.</span><span class="n">nonlinear_optimization</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     
 <div class="viewcode-block" id="Optimization.economic_optimization">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.Optimization.economic_optimization">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">economic_optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">economic_optimization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Legacy economic optimization method.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opt</span><span class="o">.</span><span class="n">production_planning</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>
@@ -240,12 +245,12 @@
 
 <div class="viewcode-block" id="StateTaskNetwork">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.StateTaskNetwork">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">StateTaskNetwork</span><span class="p">(</span><span class="n">_StateTaskNetwork</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">StateTaskNetwork</span><span class="p">(</span><span class="n">_StateTaskNetwork</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Legacy wrapper for scheduling.state_task_network.StateTaskNetwork&quot;&quot;&quot;</span>
     
 <div class="viewcode-block" id="StateTaskNetwork.__init__">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.StateTaskNetwork.__init__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;STN&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;STN&quot;</span><span class="p">):</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="s2">&quot;StateTaskNetwork should be imported from scheduling.state_task_network instead.&quot;</span><span class="p">,</span>
             <span class="ne">DeprecationWarning</span><span class="p">,</span>

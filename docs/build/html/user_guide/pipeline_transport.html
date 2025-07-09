@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -7,17 +5,21 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pipeline Transport Tutorial &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=70140151" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -36,6 +38,9 @@
           <a href="../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -221,9 +226,9 @@ effective pipeline modeling techniques.</p>
 <section id="creating-your-first-pipeline-model">
 <h3>Creating Your First Pipeline Model<a class="headerlink" href="#creating-your-first-pipeline-model" title="Link to this heading"></a></h3>
 <p>Let’s start with a simple water pipeline:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transport.continuous.liquid</span> <span class="kn">import</span> <span class="n">PipeFlow</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="c1"># Create a basic water pipeline model</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipeFlow</span><span class="p">(</span>
@@ -376,10 +381,10 @@ Q = 0.050 m³/s, v = 1.59 m/s, ΔP = 7796 Pa
 <section id="pipeline-dynamics">
 <h3>Pipeline Dynamics<a class="headerlink" href="#pipeline-dynamics" title="Link to this heading"></a></h3>
 <p>Analyze transient behavior for control system design:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">integrate</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
 
 <span class="c1"># Define dynamic system for step response analysis</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">pipeline_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">u_step</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pipeline_dynamics</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">u_step</span><span class="p">):</span>
     <span class="c1"># State variables: [P_out, T_out]</span>
     <span class="c1"># Input step in flow rate</span>
     <span class="n">P_in</span><span class="p">,</span> <span class="n">T_in</span><span class="p">,</span> <span class="n">Q_base</span> <span class="o">=</span> <span class="mi">300000</span><span class="p">,</span> <span class="mf">293.15</span><span class="p">,</span> <span class="mf">0.05</span>
@@ -435,7 +440,7 @@ Q = 0.050 m³/s, v = 1.59 m/s, ΔP = 7796 Pa
 <section id="transfer-function-analysis">
 <h3>Transfer Function Analysis<a class="headerlink" href="#transfer-function-analysis" title="Link to this heading"></a></h3>
 <p>Derive transfer functions for control design:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">linearize_model</span><span class="p">,</span> <span class="n">tune_pid</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utilities.control_utils</span> <span class="kn">import</span> <span class="n">linearize_model</span><span class="p">,</span> <span class="n">tune_pid</span>
 
 <span class="c1"># Linearize around operating point</span>
 <span class="n">operating_point</span> <span class="o">=</span> <span class="p">{</span>
@@ -580,17 +585,17 @@ Q = 0.050 m³/s, v = 1.59 m/s, ΔP = 7796 Pa
 <section id="closed-loop-control-system">
 <h3>Closed-Loop Control System<a class="headerlink" href="#closed-loop-control-system" title="Link to this heading"></a></h3>
 <p>Implement a complete flow control system:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">PIDController</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">simulation.process_simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessSimulation</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">utilities.control_utils</span> <span class="kn">import</span> <span class="n">PIDController</span>
+<span class="kn">from</span> <span class="nn">simulation.process_simulation</span> <span class="kn">import</span> <span class="n">ProcessSimulation</span>
 
 <span class="c1"># Create integrated control system</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">PipelineControlSystem</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">controller_params</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PipelineControlSystem</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">controller_params</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span> <span class="o">=</span> <span class="n">PIDController</span><span class="p">(</span><span class="o">**</span><span class="n">controller_params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setpoint</span> <span class="o">=</span> <span class="mf">0.05</span>  <span class="c1"># Target flow rate (m³/s)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">control_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">disturbances</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">control_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">disturbances</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Current flow rate (measured variable)</span>
         <span class="n">current_flow</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">setpoint</span>
 
@@ -629,9 +634,9 @@ Q = 0.050 m³/s, v = 1.59 m/s, ΔP = 7796 Pa
 <section id="performance-optimization">
 <h3>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h3>
 <p>Optimize pipeline design for minimum energy consumption:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">optimization.parameter_estimation</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_design</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">optimization.parameter_estimation</span> <span class="kn">import</span> <span class="n">optimize_design</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">pipeline_optimization_objective</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">pipeline_optimization_objective</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
     \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span>
     <span class="n">Objective</span> <span class="n">function</span> <span class="k">for</span> <span class="n">pipeline</span> <span class="n">optimization</span><span class="o">.</span>
     <span class="n">Minimize</span> <span class="n">pumping</span> <span class="n">energy</span> <span class="k">while</span> <span class="n">maintaining</span> <span class="n">flow</span> <span class="n">requirements</span><span class="o">.</span>
@@ -697,8 +702,8 @@ Q = 0.050 m³/s, v = 1.59 m/s, ΔP = 7796 Pa
 <span class="c1"># - Reliability: 99.5% uptime required</span>
 <span class="c1"># - Energy efficiency: Minimize pumping costs</span>
 
-<span class="k">class</span><span class="w"> </span><span class="nc">CoolingWaterSystem</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">CoolingWaterSystem</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Main supply pipeline</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">main_pipeline</span> <span class="o">=</span> <span class="n">PipeFlow</span><span class="p">(</span>
             <span class="n">pipe_length</span><span class="o">=</span><span class="mf">3000.0</span><span class="p">,</span>      <span class="c1"># 3 km main line</span>
@@ -721,7 +726,7 @@ Q = 0.050 m³/s, v = 1.59 m/s, ΔP = 7796 Pa
             <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Distribution Header&quot;</span>
         <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_system_performance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_flow_rate</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">calculate_system_performance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total_flow_rate</span><span class="p">):</span>
         \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Calculate total system pressure drop and energy requirements.</span><span class="se">\&quot;\&quot;\&quot;</span>
 
         <span class="c1"># Main pipeline analysis</span>
@@ -749,7 +754,7 @@ Q = 0.050 m³/s, v = 1.59 m/s, ΔP = 7796 Pa
             <span class="s1">&#39;final_temperature&#39;</span><span class="p">:</span> <span class="n">dist_result</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="p">}</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_operating_envelope</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">analyze_operating_envelope</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         \<span class="s2">&quot;</span><span class="se">\&quot;\&quot;</span><span class="s2">Analyze system performance across operating range.</span><span class="se">\&quot;\&quot;\&quot;</span>
         <span class="n">flow_rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>  <span class="c1"># 150-250 L/s range</span>
         <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>

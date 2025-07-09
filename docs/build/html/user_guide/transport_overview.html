@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../">
 <head>
@@ -7,18 +5,22 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Transport Systems Overview &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=70140151" />
 
   
-      <script src="../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      <script src="../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -37,6 +39,9 @@
           <a href="../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -345,9 +350,9 @@ Use <code class="docutils literal notranslate"><span class="pre">SlurryPipeline<
 <p>Transport models integrate seamlessly with other SPROCLIB components:</p>
 <section id="control-system-integration">
 <h3>Control System Integration<a class="headerlink" href="#control-system-integration" title="Link to this heading"></a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">PipeFlow</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tune_pid</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">simulation.process_simulation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessSimulation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transport.continuous.liquid</span> <span class="kn">import</span> <span class="n">PipeFlow</span>
+<span class="kn">from</span> <span class="nn">utilities.control_utils</span> <span class="kn">import</span> <span class="n">tune_pid</span>
+<span class="kn">from</span> <span class="nn">simulation.process_simulation</span> <span class="kn">import</span> <span class="n">ProcessSimulation</span>
 
 <span class="c1"># Create transport model</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">PipeFlow</span><span class="p">(</span><span class="n">pipe_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">pipe_diameter</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
@@ -364,14 +369,14 @@ Use <code class="docutils literal notranslate"><span class="pre">SlurryPipeline<
 </section>
 <section id="optimization-integration">
 <h3>Optimization Integration<a class="headerlink" href="#optimization-integration" title="Link to this heading"></a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transport.continuous.liquid</span><span class="w"> </span><span class="kn">import</span> <span class="n">SlurryPipeline</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">optimization.parameter_estimation</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_parameters</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transport.continuous.liquid</span> <span class="kn">import</span> <span class="n">SlurryPipeline</span>
+<span class="kn">from</span> <span class="nn">optimization.parameter_estimation</span> <span class="kn">import</span> <span class="n">optimize_parameters</span>
 
 <span class="c1"># Create slurry transport model</span>
 <span class="n">slurry</span> <span class="o">=</span> <span class="n">SlurryPipeline</span><span class="p">(</span><span class="n">pipe_length</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">pipe_diameter</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 
 <span class="c1"># Optimize operating conditions</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
     <span class="n">velocity</span><span class="p">,</span> <span class="n">concentration</span> <span class="o">=</span> <span class="n">params</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">slurry</span><span class="o">.</span><span class="n">steady_state</span><span class="p">([</span><span class="mi">400000</span><span class="p">,</span> <span class="n">concentration</span><span class="p">,</span> <span class="n">velocity</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Minimize pressure drop</span>

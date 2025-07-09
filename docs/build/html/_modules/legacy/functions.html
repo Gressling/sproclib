@@ -1,22 +1,24 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>legacy.functions &mdash; SPROCLIB - The TensorFlow/Keras for Chemical Engineering</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=70140151" />
 
   
-      <script src="../../_static/jquery.js?v=5d32c60e"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=8d563738"></script>
-      <script src="../../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="../../_static/semantic_examples.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=8d563738"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/semantic_examples.js?v=29722ac0"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -33,6 +35,9 @@
           <a href="../../index.html" class="icon icon-home">
             SPROCLIB - Semantic Process Control Library
           </a>
+              <div class="version">
+                1.0.0
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -116,50 +121,50 @@
 <span class="sd">License: MIT License</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..analysis.transfer_function</span><span class="w"> </span><span class="kn">import</span> <span class="n">TransferFunction</span>
+    <span class="kn">from</span> <span class="nn">..analysis.transfer_function</span> <span class="kn">import</span> <span class="n">TransferFunction</span>
 
 <span class="c1"># Import from new modular structure</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="c1"># Try relative imports first (when used as a package)</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..analysis.system_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span> <span class="nn">..analysis.system_analysis</span> <span class="kn">import</span> <span class="p">(</span>
         <span class="n">step_response</span> <span class="k">as</span> <span class="n">_step_response</span><span class="p">,</span>
         <span class="n">bode_plot</span> <span class="k">as</span> <span class="n">_bode_plot</span><span class="p">,</span>
         <span class="n">stability_analysis</span> <span class="k">as</span> <span class="n">_stability_analysis</span>
     <span class="p">)</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..analysis.model_identification</span><span class="w"> </span><span class="kn">import</span> <span class="n">fit_fopdt</span> <span class="k">as</span> <span class="n">_fit_fopdt</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span> <span class="nn">..analysis.model_identification</span> <span class="kn">import</span> <span class="n">fit_fopdt</span> <span class="k">as</span> <span class="n">_fit_fopdt</span>
+    <span class="kn">from</span> <span class="nn">..utilities.control_utils</span> <span class="kn">import</span> <span class="p">(</span>
         <span class="n">tune_pid</span> <span class="k">as</span> <span class="n">_tune_pid</span><span class="p">,</span>
         <span class="n">linearize</span> <span class="k">as</span> <span class="n">_linearize</span><span class="p">,</span>
         <span class="n">simulate_process</span> <span class="k">as</span> <span class="n">_simulate_process</span><span class="p">,</span>
         <span class="n">model_predictive_control</span> <span class="k">as</span> <span class="n">_model_predictive_control</span><span class="p">,</span>
         <span class="n">disturbance_rejection</span> <span class="k">as</span> <span class="n">_disturbance_rejection</span>
     <span class="p">)</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">..optimization.economic_optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_operation</span> <span class="k">as</span> <span class="n">_optimize_operation</span>
+    <span class="kn">from</span> <span class="nn">..optimization.economic_optimization</span> <span class="kn">import</span> <span class="n">optimize_operation</span> <span class="k">as</span> <span class="n">_optimize_operation</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="c1"># Fall back to absolute imports (when used as standalone module)</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span> <span class="nn">os</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)))</span>
     
-    <span class="kn">from</span><span class="w"> </span><span class="nn">analysis.system_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span> <span class="nn">analysis.system_analysis</span> <span class="kn">import</span> <span class="p">(</span>
         <span class="n">step_response</span> <span class="k">as</span> <span class="n">_step_response</span><span class="p">,</span>
         <span class="n">bode_plot</span> <span class="k">as</span> <span class="n">_bode_plot</span><span class="p">,</span>
         <span class="n">stability_analysis</span> <span class="k">as</span> <span class="n">_stability_analysis</span>
     <span class="p">)</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">analysis.model_identification</span><span class="w"> </span><span class="kn">import</span> <span class="n">fit_fopdt</span> <span class="k">as</span> <span class="n">_fit_fopdt</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">utilities.control_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="kn">from</span> <span class="nn">analysis.model_identification</span> <span class="kn">import</span> <span class="n">fit_fopdt</span> <span class="k">as</span> <span class="n">_fit_fopdt</span>
+    <span class="kn">from</span> <span class="nn">utilities.control_utils</span> <span class="kn">import</span> <span class="p">(</span>
         <span class="n">tune_pid</span> <span class="k">as</span> <span class="n">_tune_pid</span><span class="p">,</span>
         <span class="n">linearize</span> <span class="k">as</span> <span class="n">_linearize</span><span class="p">,</span>
         <span class="n">simulate_process</span> <span class="k">as</span> <span class="n">_simulate_process</span><span class="p">,</span>
         <span class="n">model_predictive_control</span> <span class="k">as</span> <span class="n">_model_predictive_control</span><span class="p">,</span>
         <span class="n">disturbance_rejection</span> <span class="k">as</span> <span class="n">_disturbance_rejection</span>
     <span class="p">)</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">optimization.economic_optimization</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize_operation</span> <span class="k">as</span> <span class="n">_optimize_operation</span>
+    <span class="kn">from</span> <span class="nn">optimization.economic_optimization</span> <span class="kn">import</span> <span class="n">optimize_operation</span> <span class="k">as</span> <span class="n">_optimize_operation</span>
 
 <span class="c1"># Backward compatibility warning</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
@@ -174,7 +179,7 @@
 <span class="c1"># Legacy function wrappers - pass through to new implementations</span>
 <div class="viewcode-block" id="step_response">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.step_response">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">step_response</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">step_response</span><span class="p">(</span>
     <span class="n">system</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;TransferFunction&#39;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
     <span class="n">t</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">t_final</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
@@ -192,7 +197,7 @@
 
 <div class="viewcode-block" id="bode_plot">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.bode_plot">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">bode_plot</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">bode_plot</span><span class="p">(</span>
     <span class="n">system</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="s1">&#39;TransferFunction&#39;</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]],</span>
     <span class="n">w</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">plot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -210,7 +215,7 @@
 
 <div class="viewcode-block" id="linearize">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.linearize">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">linearize</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">linearize</span><span class="p">(</span>
     <span class="n">model_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
     <span class="n">x_ss</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">u_ss</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -228,7 +233,7 @@
 
 <div class="viewcode-block" id="tune_pid">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.tune_pid">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">tune_pid</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">tune_pid</span><span class="p">(</span>
     <span class="n">model_params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
     <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;ziegler_nichols&quot;</span><span class="p">,</span>
     <span class="n">controller_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;PID&quot;</span>
@@ -245,7 +250,7 @@
 
 <div class="viewcode-block" id="simulate_process">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.simulate_process">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">simulate_process</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">simulate_process</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
     <span class="n">t_span</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
     <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -265,7 +270,7 @@
 
 <div class="viewcode-block" id="optimize_operation">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.optimize_operation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">optimize_operation</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">optimize_operation</span><span class="p">(</span>
     <span class="n">objective_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
     <span class="n">x0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -284,7 +289,7 @@
 
 <div class="viewcode-block" id="fit_fopdt">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.fit_fopdt">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">fit_fopdt</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">fit_fopdt</span><span class="p">(</span>
     <span class="n">t_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">y_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">step_magnitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -302,7 +307,7 @@
 
 <div class="viewcode-block" id="stability_analysis">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.stability_analysis">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">stability_analysis</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">stability_analysis</span><span class="p">(</span>
     <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">system_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;System&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
@@ -318,7 +323,7 @@
 
 <div class="viewcode-block" id="disturbance_rejection">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.disturbance_rejection">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">disturbance_rejection</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">disturbance_rejection</span><span class="p">(</span>
     <span class="n">plant_tf</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
     <span class="n">controller_tf</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
     <span class="n">disturbance_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;step&quot;</span><span class="p">,</span>
@@ -336,7 +341,7 @@
 
 <div class="viewcode-block" id="model_predictive_control">
 <a class="viewcode-back" href="../../api/legacy.html#legacy.model_predictive_control">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">model_predictive_control</span><span class="p">(</span>
+<span class="k">def</span> <span class="nf">model_predictive_control</span><span class="p">(</span>
     <span class="n">A</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">B</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">Q</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
