@@ -10,6 +10,14 @@ import sys
 sys.path.insert(0, os.path.abspath('../../'))
 sys.path.insert(0, os.path.abspath('../../../'))
 
+# Add these autodoc settings
+autodoc_default_options = {
+    'members': True,
+    'undoc-members': True,
+    'show-inheritance': True,
+    'special-members': '__init__',
+}
+
 # Mock external dependencies that aren't available during documentation build
 import sys
 from unittest.mock import MagicMock
@@ -33,11 +41,15 @@ for mod_name in MOCK_MODULES:
 # Also add to autodoc_mock_imports for additional safety
 autodoc_mock_imports = MOCK_MODULES
 
+# Avoid documenting private methods that cause issues
+autodoc_member_order = 'bysource'
+autodoc_typehints = 'description'
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'SPROCLIB - Semantic Process Control Library'
-copyright = '2024, Thorsten Gressling'
+project = 'SPROCLIB - Standard Process Control Library'
+copyright = '2025, Thorsten Gressling - MIT License'
 author = 'Thorsten Gressling'
 release = '1.0.0'
 
@@ -124,7 +136,7 @@ html_context = {
 }
 
 # Add custom configuration for semantic plant design
-html_title = 'SPROCLIB - Semantic Chemical Process Control Library'
+html_title = 'SPROCLIB - Standard Chemical Process Control Library'
 html_short_title = 'SPROCLIB Chemical Process Control Library'
 
 # Custom sidebar - simplified
