@@ -1,4 +1,4 @@
-Transport (Pipes, Drums)Package
+Transport Package
 =================
 
 The transport package provides comprehensive modeling capabilities for fluid and material transport
@@ -9,37 +9,82 @@ transport operations across different phases and flow regimes.
    This is part of the modern modular structure of SPROCLIB. The transport package includes
    advanced physics-based models for process engineering applications.
 
-Package Structure
------------------
-
-The transport package is organized by operational mode and phase:
-
-* **Continuous Transport** - Steady-state and dynamic transport operations
-  
-  * **Liquid Transport** - PipeFlow, PeristalticFlow, SlurryPipeline
-  * **Solid Transport** - PneumaticConveying, ConveyorBelt, GravityChute, ScrewFeeder
-
-* **Batch Transport** - Discrete material handling and transfer operations
-  
-  * **Liquid Transport** - BatchTransferPumping
-  * **Solid Transport** - DrumBinTransfer, VacuumTransfer
-
-All transport models inherit from the ProcessModel base class and provide both steady-state and dynamic analysis capabilities.
-
-Continuous Liquid Transport
----------------------------
-
-The continuous liquid transport module provides three specialized models for different
-transport applications. These models are fully documented with examples and validation data.
-
 .. toctree::
    :maxdepth: 2
-   :caption: Liquid Transport Models:
+   :caption: Transport Operations:
 
-   ../transport/continuous/liquid/index
+   ../transport/continuous/index
+   ../transport/batch/index
 
-Submodules
-----------
+Package Overview
+----------------
+
+The transport package is organized by operational mode and provides comprehensive modeling for:
+
+**Continuous Transport Operations**:
+
+* **Liquid Transport** - PipeFlow, PeristalticFlow, SlurryPipeline
+* **Solid Transport** - PneumaticConveying, ConveyorBelt, GravityChute, ScrewFeeder
+
+**Batch Transport Operations**:
+
+* **Liquid Transfer** - BatchTransferPumping
+* **Solid Handling** - DrumBinTransfer, VacuumTransfer
+
+All transport models inherit from the ProcessModel base class and provide both steady-state and dynamic analysis capabilities for comprehensive system characterization.
+
+Transport
+---------
+
+Continuous Liquid Transport
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   ../transport/continuous/liquid/PipeFlow
+   ../transport/continuous/liquid/PeristalticFlow
+   ../transport/continuous/liquid/SlurryPipeline
+
+Continuous Solid Transport
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   ../transport/continuous/solid/PneumaticConveying
+   ../transport/continuous/solid/ConveyorBelt
+   ../transport/continuous/solid/GravityChute
+   ../transport/continuous/solid/ScrewFeeder
+
+Batch Liquid Transport
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   ../transport/batch/liquid/BatchTransferPumping
+
+Batch Solid Transport
+~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   ../transport/batch/solid/DrumBinTransfer
+   ../transport/batch/solid/VacuumTransfer
+
+Analysis Functions
+~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+
+   ../transport/continuous/liquid/steady_state
+   ../transport/continuous/liquid/dynamics
+
+Detailed Model Documentation
+----------------------------
 
 Single-Phase Pipeline Flow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,186 +92,46 @@ Single-Phase Pipeline Flow
 See detailed documentation: :doc:`../transport/continuous/liquid/PipeFlow`
 
 The ``PipeFlow`` class implements comprehensive pipeline transport modeling for clean
-liquids using the Darcy-Weisbach equation and friction factor correlations.
-
-**Key Features:**
-
-* Pressure drop calculations for laminar and turbulent flow
-* Reynolds number analysis and flow regime identification  
-* Temperature-dependent fluid properties
-* Elevation change effects
-* Multiple friction factor correlations
+liquids using the Darcy-Weisbach equation and friction factor correlations. Features include
+pressure drop calculations, Reynolds number analysis, temperature-dependent properties, and
+multiple friction factor correlations.
 
 Positive Displacement Pumping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See detailed documentation: :doc:`../transport/continuous/liquid/PeristalticFlow`
 
-The ``PeristalticFlow`` class models peristaltic pump systems for precise fluid
-metering and chemical transfer applications.
-
-**Key Features:**
-
-* Precise flow rate control and prediction
-* Pulsation analysis and damping effects
-* Backpressure compensation
-* Tube wear and occlusion modeling
-* Chemical compatibility considerations
+The ``PeristalticFlow`` class models peristaltic pump systems for precise fluid metering and
+chemical transfer applications. Features include precise flow control, pulsation analysis,
+backpressure compensation, and tube wear modeling.
 
 Multiphase Slurry Transport
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See detailed documentation: :doc:`../transport/continuous/liquid/SlurryPipeline`
 
-The ``SlurryPipeline`` class provides multiphase transport modeling for solid-liquid
-slurry systems in mining, dredging, and industrial applications.
-
-**Key Features:**
-
-* Critical velocity prediction using Durand equation
-* Particle settling and concentration effects
-* Multiphase pressure drop calculations
-* Operating envelope determination
-* Concentration tracking
-
-Continuous Solid Transport
----------------------------
-
-The continuous solid transport module provides four specialized models for different
-solid handling applications in process systems.
-
-Pneumatic Conveying
-~~~~~~~~~~~~~~~~~~~
-
-The ``PneumaticConveying`` class models pneumatic transport systems for bulk solids
-using air or gas as the carrier medium.
-
-**Key Features:**
-
-* Dilute and dense phase conveying analysis
-* Pressure drop calculations for particle-gas flow
-* Minimum transport velocity prediction
-* Material degradation assessment
-* Power consumption optimization
-
-Conveyor Belt Systems
-~~~~~~~~~~~~~~~~~~~~~
-
-The ``ConveyorBelt`` class provides mechanical conveying analysis for continuous
-solid transport using belt conveyors.
-
-**Key Features:**
-
-* Belt tension and power calculations
-* Inclined conveyor analysis
-* Material flow rate control
-* Belt speed optimization
-* Loading and discharge dynamics
-
-Gravity Chute Transport
-~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``GravityChute`` class models gravity-driven solid transport through chutes
-and hoppers with flow control considerations.
-
-**Key Features:**
-
-* Flow rate prediction for bulk solids
-* Angle of repose and flow characteristics
-* Choking and bridging analysis
-* Discharge control and flow regulation
-* Particle size distribution effects
-
-Screw Feeder Systems
-~~~~~~~~~~~~~~~~~~~~
-
-The ``ScrewFeeder`` class provides analysis for screw conveyors and feeders
-used in controlled solid transport applications.
-
-**Key Features:**
-
-* Volumetric and gravimetric feeding control
-* Screw geometry optimization
-* Fill factor and efficiency analysis
-* Power requirement calculations
-* Material handling characteristics
-
-Batch Transport Operations
---------------------------
-
-The batch transport module provides models for discrete material transfer operations
-commonly used in batch processing and discrete manufacturing.
+The ``SlurryPipeline`` class provides multiphase transport modeling for solid-liquid slurry
+systems. Features include critical velocity prediction, particle settling effects, multiphase
+pressure drop calculations, and operating envelope determination.
 
 Batch Liquid Transfer
 ~~~~~~~~~~~~~~~~~~~~~
 
-The ``BatchTransferPumping`` class models batch liquid transfer operations including
-pump-based transfer systems for precise volume control.
+See detailed documentation: :doc:`../transport/batch/liquid/BatchTransferPumping`
 
-**Key Features:**
-
-* Batch volume accuracy and control
-* Transfer time optimization
-* Pump priming and cavitation analysis
-* Level control integration
-* Contamination prevention strategies
-
-Batch Solid Transfer
-~~~~~~~~~~~~~~~~~~~~
-
-**Drum and Bin Transfer**
-
-The ``DrumBinTransfer`` class models solid transfer between containers including
-drums, bins, and hoppers for batch operations.
-
-**Key Features:**
-
-* Discharge rate modeling
-* Flow control and metering
-* Container design optimization
-* Material handling safety
-* Batch accuracy and repeatability
-
-**Vacuum Transfer Systems**
-
-The ``VacuumTransfer`` class provides analysis for pneumatic vacuum transfer
-of bulk solids in batch operations.
-
-**Key Features:**
-
-* Vacuum system design and sizing
-* Material pickup and transport
-* Filter system integration
-* Energy efficiency optimization
-* Dust control and containment
-
-Analysis Functions
-------------------
-
-Steady-State Analysis
-~~~~~~~~~~~~~~~~~~~~~
-
-See detailed documentation: :doc:`../transport/continuous/liquid/steady_state`
-
-Comprehensive steady-state analysis tools for equilibrium transport calculations.
-
-Dynamic Analysis
-~~~~~~~~~~~~~~~~
-
-See detailed documentation: :doc:`../transport/continuous/liquid/dynamics`
-
-Dynamic analysis capabilities for transient transport phenomena and control system design.
+The ``BatchTransferPumping`` class models batch liquid transfer operations using pumps with
+comprehensive hydraulic analysis. Features include batch volume control, transfer time
+optimization, pump performance integration, and level control capabilities.
 
 Quick Usage Examples
 --------------------
 
-Continuous Liquid Transport
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Continuous Transport
+~~~~~~~~~~~~~~~~~~~~
 
 Pipeline Flow Analysis::
 
     from transport.continuous.liquid import PipeFlow
-    import numpy as np
     
     # Create pipeline model
     pipe = PipeFlow(
@@ -239,22 +144,6 @@ Pipeline Flow Analysis::
     # Steady-state analysis
     result = pipe.steady_state([300000, 293.15, 0.05])  # [P_in, T_in, Q]
     P_out, T_out = result
-
-Peristaltic Pump Control::
-
-    from transport.continuous.liquid import PeristalticFlow
-    
-    # Create peristaltic pump model
-    pump = PeristalticFlow(
-        tube_diameter=0.01,      # 10 mm tube
-        pump_speed=100,          # 100 RPM
-        n_rollers=3,             # 3-roller head
-        tube_length=0.5          # 50 cm tube
-    )
-    
-    # Flow rate calculation
-    result = pump.steady_state([101325, 100, 0.95])  # [P_in, speed, occlusion]
-    flow_rate, pulsation = result
 
 Slurry Transport Design::
 
@@ -273,44 +162,8 @@ Slurry Transport Design::
     result = slurry.steady_state([400000, 0.15, 2.5])  # [P_in, C_in, v]
     P_out, C_out, v_critical = result
 
-Continuous Solid Transport
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Pneumatic Conveying Analysis::
-
-    from transport.continuous.solid import PneumaticConveying
-    
-    # Create pneumatic conveying model
-    conveyor = PneumaticConveying(
-        pipe_length=200.0,       # 200 m transport line
-        pipe_diameter=0.15,      # 15 cm diameter
-        particle_diameter=3e-3,  # 3 mm particles
-        particle_density=1200.0, # Plastic pellets
-        gas_density=1.2          # Air at standard conditions
-    )
-    
-    # Minimum transport velocity
-    result = conveyor.steady_state([150000, 15.0, 0.5])  # [P_in, v_gas, C_solid]
-    P_out, v_min, power_required = result
-
-Conveyor Belt Operations::
-
-    from transport.continuous.solid import ConveyorBelt
-    
-    # Create belt conveyor model
-    belt = ConveyorBelt(
-        belt_length=100.0,       # 100 m conveyor
-        belt_width=1.2,          # 1.2 m width
-        inclination_angle=15.0,  # 15 degree incline
-        material_density=800.0   # Bulk density
-    )
-    
-    # Belt design analysis
-    result = belt.steady_state([10.0, 2.0, 0.8])  # [capacity, speed, load_factor]
-    tension, power, efficiency = result
-
-Batch Transport Operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+Batch Transport
+~~~~~~~~~~~~~~~
 
 Batch Liquid Transfer::
 
@@ -353,30 +206,24 @@ Integrated Transport Systems
 Combining multiple transport models for complex process systems::
 
     from transport.continuous.liquid import PipeFlow
-    from transport.continuous.solid import ConveyorBelt
     from transport.batch.liquid import BatchTransferPumping
     
     # Multi-phase process with different transport mechanisms
     class IntegratedProcess:
         def __init__(self):
-            # Liquid transport pipeline
+            # Continuous liquid transport
             self.liquid_line = PipeFlow(pipe_length=500, pipe_diameter=0.2)
-            
-            # Solid handling conveyor
-            self.solid_conveyor = ConveyorBelt(belt_length=200, belt_width=1.0)
             
             # Batch transfer system
             self.batch_transfer = BatchTransferPumping(tank_volume=5.0, transfer_volume=1.0)
         
-        def process_cycle(self, liquid_flow, solid_rate, batch_volume):
-            # Coordinate all transport operations
+        def process_cycle(self, liquid_flow, batch_volume):
+            # Coordinate transport operations
             liquid_result = self.liquid_line.steady_state([200000, 293.15, liquid_flow])
-            solid_result = self.solid_conveyor.steady_state([solid_rate, 1.5, 0.9])
             batch_result = self.batch_transfer.steady_state([batch_volume, 101325, 293.15])
             
             return {
                 'liquid_pressure_drop': liquid_result[0] - 200000,
-                'solid_power_required': solid_result[1],
                 'batch_transfer_time': batch_result[0]
             }
 
@@ -400,43 +247,10 @@ Transport models with control system design::
     sim = ProcessSimulation(pipeline, controller_params=pid_params)
     results = sim.run(time_span=3600)
 
-Optimization and Design
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Multi-objective transport system optimization::
-
-    from transport.continuous.solid import PneumaticConveying
-    from optimization.parameter_estimation import optimize_design
-    
-    # Define multi-objective design problem
-    def transport_optimization(params):
-        pipe_diameter, gas_velocity, particle_loading = params
-        
-        # Create conveying system
-        conveyor = PneumaticConveying(
-            pipe_length=300, 
-            pipe_diameter=pipe_diameter,
-            particle_diameter=2e-3
-        )
-        
-        result = conveyor.steady_state([180000, gas_velocity, particle_loading])
-        
-        # Multi-objective: minimize power, maximize capacity
-        power_consumption = result[2]
-        transport_capacity = particle_loading * gas_velocity * (pipe_diameter**2)
-        
-        return power_consumption / transport_capacity  # Power per unit capacity
-    
-    # Optimize system design
-    optimal_design = optimize_design(
-        transport_optimization,
-        bounds=[(0.1, 0.4), (10.0, 30.0), (0.1, 2.0)],  # [diameter, velocity, loading]
-        constraints={'min_transport_velocity': 15.0}
-    )
-
 See Also
 --------
 
+* :doc:`../transport/index` - Complete transport module documentation
 * :doc:`simulation_package` - Process simulation with transport models
 * :doc:`optimization_package` - Transport system optimization  
 * :doc:`utilities_package` - Control design utilities

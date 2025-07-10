@@ -69,7 +69,7 @@ Contents
 
 .. toctree::
    :maxdepth: 3
-   :caption: API Reference
+   :caption: Process Control and Modeling
 
    api/units_package
    api/transport_package
