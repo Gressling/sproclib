@@ -1,0 +1,48 @@
+Tank Model Example
+==================
+
+1. Creating Tank Model
+Tank Name: Tank
+Description: Gravity-drained tank model for level control applications
+Cross-sectional Area: 1.5 m²
+Discharge Coefficient: 0.4 m²/min
+
+2. Simulation Setup
+Initial height: 1.0 m
+Simulation time: 30 minutes
+
+3. Steady-State Analysis
+Initial flow rate: 0.5 m³/min
+Initial steady-state height: 1.562 m
+Final flow rate: 0.8 m³/min
+Final steady-state height: 4.000 m
+
+4. Time Constant Analysis
+Time constant at initial operating point: 9.38 min
+Time constant at final operating point: 15.00 min
+
+5. Step Response Simulation
+Simulation completed successfully
+Final height: 3.559 m
+Final outlet flow: 0.755 m³/min
+Final volume: 5.338 m³
+
+6. Performance Metrics
+Height: 3.559 m
+Outlet flow: 0.755 m³/min
+Volume: 5.338 m³
+Time constant: 14.15 min
+Mass balance error: 0.045425 m³/min
+Residence time: 7.07 min
+
+7. Response Analysis
+Time to reach 63.2% of step change: 14.90 min
+Theoretical time constant: 15.00 min
+Settling time (2% criterion): 25.00 min
+
+8. Creating Visualizations
+Main plot saved as 'Tank_example_plots.png'
+Detailed analysis plot saved as 'Tank_detailed_analysis.png'
+
+Example completed successfully!
+=====================================

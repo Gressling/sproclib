@@ -126,6 +126,57 @@ class Tank(ProcessModel):
             return 2 * self.A * np.sqrt(h_op) / self.C
         return float('inf')
     
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the Tank model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'name': 'Tank',
+            'class_name': 'Tank',
+            'description': 'Gravity-drained tank model for level control applications',
+            'algorithm': 'First-order nonlinear ODE based on material balance and Torricelli\'s law',
+            'equations': {
+                'dynamics': 'dh/dt = (q_in - C*sqrt(h))/A',
+                'outlet_flow': 'q_out = C*sqrt(h)',
+                'volume': 'V = A*h',
+                'steady_state': 'h_ss = (q_in/C)²',
+                'time_constant': 'τ = 2*A*sqrt(h)/C'
+            },
+            'parameters': {
+                'A': {'description': 'Cross-sectional area', 'units': 'm²', 'typical_range': '[0.1, 10]'},
+                'C': {'description': 'Discharge coefficient', 'units': 'm²/min', 'typical_range': '[0.01, 1]'}
+            },
+            'state_variables': self.state_variables,
+            'inputs': self.inputs,
+            'outputs': self.outputs,
+            'typical_applications': [
+                'Level control systems',
+                'Process dynamics studies',
+                'Controller tuning applications',
+                'Educational demonstrations'
+            ],
+            'working_ranges': {
+                'height': {'min': 0.0, 'max': 10.0, 'units': 'm'},
+                'flow_rate': {'min': 0.0, 'max': 5.0, 'units': 'm³/min'},
+                'time_constant': {'typical': [1, 100], 'units': 'min'}
+            },
+            'assumptions': [
+                'Incompressible fluid',
+                'Constant cross-sectional area',
+                'Gravity-driven discharge',
+                'Turbulent flow through outlet'
+            ],
+            'limitations': [
+                'Cannot handle negative heights',
+                'Assumes steady discharge coefficient',
+                'Neglects fluid acceleration effects'
+            ]
+        }
+
     def get_performance_metrics(self, x: np.ndarray, u: np.ndarray) -> Dict[str, float]:
         """
         Calculate performance metrics.

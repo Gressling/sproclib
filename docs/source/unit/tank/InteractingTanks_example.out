@@ -1,0 +1,50 @@
+InteractingTanks Model Example
+==============================
+
+1. Creating InteractingTanks Model
+System Name: InteractingTanks
+Description: Two interacting tanks in series for process dynamics studies
+Tank 1 - Area: 1.2 m², Discharge: 0.3 m²/min
+Tank 2 - Area: 0.8 m², Discharge: 0.25 m²/min
+
+2. Simulation Setup
+Initial heights: Tank 1 = 1.5 m, Tank 2 = 0.8 m
+Simulation time: 60 minutes
+
+3. Steady-State Analysis
+Initial flow rate: 0.4 m³/min
+Initial steady-state heights: Tank 1 = 1.778 m, Tank 2 = 2.560 m
+Final flow rate: 0.7 m³/min
+Final steady-state heights: Tank 1 = 5.444 m, Tank 2 = 7.840 m
+
+4. Linearized Time Constants
+Tank 1 time constant: 18.67 min
+Tank 2 time constant: 17.92 min
+
+5. Step Response Simulation
+Simulation completed successfully
+Final heights: Tank 1 = 5.229 m, Tank 2 = 6.782 m
+Final inter-tank flow: 0.686 m³/min
+Final outlet flow: 0.651 m³/min
+
+6. Response Analysis
+Tank 2 - Time to reach 63.2% of step change: 34.90 min
+Tank 2 - Settling time (2% criterion): 50.00 min
+
+7. Mass Balance Verification
+Maximum mass balance error: 5.55e-17 m³/min
+Mass balance verification: PASSED
+
+8. Creating Visualizations
+Main plot saved as 'InteractingTanks_example_plots.png'
+Detailed analysis plot saved as 'InteractingTanks_detailed_analysis.png'
+
+9. System Characteristics Summary
+================================
+Tank 1 dominant time constant: 18.67 min
+Tank 2 dominant time constant: 17.92 min
+Tank 1 is the slower tank (ratio: 1.04)
+System exhibits strong interaction
+
+Example completed successfully!
+=====================================
