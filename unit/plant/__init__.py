@@ -1,27 +1,26 @@
 """
-Plant Package for SPROCLIB - Process Plant Design and Optimization
+SPROCLIB Plant Package - Semantic Plant Design API
+=================================================
 
-This package provides high-level plant design capabilities with semantic APIs
-similar to TensorFlow/Keras for intuitive chemical plant construction.
+This package provides a TensorFlow/Keras-style API for chemical plant design,
+optimization, and simulation.
 
 Classes:
-    ChemicalPlant: Main plant container and orchestrator
-    ProcessUnit: Base class for all process equipment
-    Stream: Material and energy stream connections
-    PlantOptimizer: Plant-wide optimization framework
-    
-Author: Thorsten Gressling <gressling@paramus.ai>
-License: MIT License
+    ProcessUnit: Base class for all process units
+    ChemicalPlant: Main plant class with semantic API
+    PlantConfiguration: Plant-wide configuration parameters
 """
 
-from .chemical_plant import ChemicalPlant
-from .process_unit import ProcessUnit  
-from .stream import Stream
-from .plant_optimizer import PlantOptimizer
+from .process_unit import ProcessUnit
+from .chemical_plant import ChemicalPlant, PlantConfiguration
 
 __all__ = [
-    'ChemicalPlant',
     'ProcessUnit',
+    'ChemicalPlant', 
+    'PlantConfiguration'
     'Stream', 
     'PlantOptimizer'
 ]
+
+__version__ = '1.0.0'
+__author__ = 'SPROCLIB Development Team'

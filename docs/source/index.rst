@@ -65,7 +65,7 @@ Contents
    plant/semantic_plant_design
    plant/semantic_examples
    plant/tensorflow_comparison
-   examples
+   plant/simple_example/index
 
 .. toctree::
    :maxdepth: 2
@@ -118,10 +118,10 @@ Contents
    license
    acknowledgments
 
-API Documentation
------------------
+Process Control Documentation
+-----------------------------
 
-The SPROCLIB API is organized into focused packages:
+The SPROCLIB Process Control API is organized into focused packages:
 
 **Modern Modular Packages (Recommended):**
 

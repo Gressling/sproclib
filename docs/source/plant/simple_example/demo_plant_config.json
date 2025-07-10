@@ -1,0 +1,141 @@
+{
+  "name": "Demo Chemical Plant",
+  "config": "PlantConfiguration(name='Demo Chemical Plant', operating_hours=8000.0, electricity_cost=0.12, steam_cost=18.0, cooling_water_cost=0.08, labor_cost=50.0, maintenance_factor=0.03)",
+  "units": [
+    {
+      "name": "feed_pump",
+      "type": "CentrifugalPump",
+      "parameters": {
+        "eta": 0.75,
+        "rho": 1000.0,
+        "flow_nominal": 1.0,
+        "delta_P_nominal": 200000.0,
+        "H0": 50.0,
+        "K": 20.0
+      },
+      "n_states": 0,
+      "n_inputs": 0,
+      "n_outputs": 0
+    },
+    {
+      "name": "feed_pipeline",
+      "type": "PipeFlow",
+      "parameters": {
+        "length": 200.0,
+        "diameter": 0.15,
+        "roughness": 4.6e-05
+      }
+    },
+    {
+      "name": "main_reactor",
+      "type": "CSTR",
+      "parameters": {
+        "V": 150.0,
+        "k0": 72000000000.0,
+        "Ea": 72750.0,
+        "R": 8.314,
+        "rho": 1000.0,
+        "Cp": 0.239,
+        "dHr": -50000.0,
+        "UA": 50000.0
+      },
+      "n_states": 2,
+      "n_inputs": 4,
+      "n_outputs": 4
+    },
+    {
+      "name": "reactor_outlet_pipe",
+      "type": "PipeFlow",
+      "parameters": {
+        "length": 50.0,
+        "diameter": 0.12,
+        "roughness": 4.6e-05
+      }
+    },
+    {
+      "name": "separation_column",
+      "type": "BinaryDistillationColumn",
+      "parameters": {
+        "N_trays": 12,
+        "feed_tray": 6,
+        "alpha": 2.2,
+        "tray_holdup": 1.0,
+        "reflux_drum_holdup": 5.0,
+        "reboiler_holdup": 10.0,
+        "feed_flow": 120.0,
+        "feed_composition": 0.5
+      },
+      "n_states": 0,
+      "n_inputs": 0,
+      "n_outputs": 0
+    },
+    {
+      "name": "reflux_control_valve",
+      "type": "ControlValve",
+      "parameters": {
+        "Cv_max": 15.0,
+        "valve_type": "linear",
+        "dead_time": 0.5,
+        "time_constant": 3.0,
+        "rangeability": 50.0
+      },
+      "n_states": 0,
+      "n_inputs": 0,
+      "n_outputs": 0
+    },
+    {
+      "name": "product_pump",
+      "type": "CentrifugalPump",
+      "parameters": {
+        "eta": 0.72,
+        "rho": 1000.0,
+        "flow_nominal": 1.0,
+        "delta_P_nominal": 200000.0,
+        "H0": 35.0,
+        "K": 12.0
+      },
+      "n_states": 0,
+      "n_inputs": 0,
+      "n_outputs": 0
+    }
+  ],
+  "connections": [
+    [
+      "feed_pump",
+      "feed_pipeline",
+      "feed_stream"
+    ],
+    [
+      "feed_pipeline",
+      "main_reactor",
+      "reactor_feed"
+    ],
+    [
+      "main_reactor",
+      "reactor_outlet_pipe",
+      "reactor_effluent"
+    ],
+    [
+      "reactor_outlet_pipe",
+      "separation_column",
+      "column_feed"
+    ],
+    [
+      "separation_column",
+      "reflux_control_valve",
+      "reflux_stream"
+    ],
+    [
+      "reflux_control_valve",
+      "product_pump",
+      "product_stream"
+    ]
+  ],
+  "optimizer": "economic",
+  "metrics": [
+    "profit",
+    "energy_consumption",
+    "conversion",
+    "efficiency"
+  ]
+}

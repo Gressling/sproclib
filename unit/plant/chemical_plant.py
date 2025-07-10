@@ -231,10 +231,25 @@ class ChemicalPlant:
     
     def get_config(self):
         """Get plant configuration."""
+        # Handle units that may have get_config() or get_info() methods
+        unit_configs = []
+        for unit in self.units:
+            if hasattr(unit, 'get_config'):
+                unit_configs.append(unit.get_config())
+            elif hasattr(unit, 'get_info'):
+                unit_configs.append(unit.get_info())
+            else:
+                # Fallback for basic unit information
+                unit_configs.append({
+                    'name': getattr(unit, 'name', str(unit)),
+                    'type': unit.__class__.__name__,
+                    'parameters': getattr(unit, 'parameters', {})
+                })
+        
         return {
             'name': self.name,
             'config': self.config,
-            'units': [(unit.name, type(unit).__name__) for unit in self.units],
+            'units': unit_configs,
             'connections': self.connections,
             'optimizer': self.optimizer if self.is_compiled else None,
             'metrics': self.metrics
