@@ -63,9 +63,9 @@ Contents
    :caption: Semantic Plant Design
 
    plant/semantic_plant_design
-   plant/semantic_examples
    plant/tensorflow_comparison
    plant/simple_example/index
+   .. plant/semantic_examples
 
 .. toctree::
    :maxdepth: 2
