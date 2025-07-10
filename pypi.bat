@@ -92,7 +92,14 @@ if "%choice%"=="1" (
         python -m twine upload dist/*
         if errorlevel 1 (
             echo Error: PyPI upload failed!
-            echo Check your credentials in %USERPROFILE%\.pypirc
+            echo.
+            echo Common causes:
+            echo - Version already exists (you need to bump version in pyproject.toml)
+            echo - Authentication issues (check credentials in %USERPROFILE%\.pypirc)
+            echo.
+            echo To fix version conflict:
+            echo 1. Update version in pyproject.toml (e.g., 2.0.1, 2.1.0, etc.)
+            echo 2. Re-run this script
         ) else (
             echo.
             echo ========================================
@@ -113,28 +120,6 @@ if "%choice%"=="1" (
         echo   TestPyPI: python -m twine upload --repository testpypi dist/*
         echo   PyPI:     python -m twine upload dist/*
     )
-)
-
-echo.
-echo Build process completed!
-pause
-        echo Success! Package uploaded to PyPI.
-        echo Installation: pip install sproclib
-    )
-) else (
-    echo.
-    echo Upload skipped. Manual upload commands:
-    echo.
-    echo For TestPyPI:
-    echo python -m twine upload --repository testpypi dist/*
-    echo.
-    echo For PyPI:
-    echo python -m twine upload dist/*
-    echo.
-    echo Set up credentials first:
-    echo 1. Get API token from https://pypi.org/manage/account/token/
-    echo 2. Username: __token__
-    echo 3. Password: your-api-token
 )
 
 echo.

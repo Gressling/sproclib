@@ -4,15 +4,15 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sproclib"
-version = "2.0.0"
-description = "Standard Process Control Library for chemical process control"
+version = "2.0.2"
+description = "Standard Process Control Library for chemical process control - Semantic API for chemical plant design using familiar ML patterns"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
     {name = "Thorsten Gressling", email = "gressling@paramus.ai"},
 ]
-keywords = ["process control", "chemical engineering", "PID", "simulation", "optimization"]
+keywords = ["process control", "chemical engineering", "PID", "simulation", "optimization", "semantic API", "machine learning"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
@@ -50,4 +50,12 @@ optimization = [
 Homepage = "https://github.com/gressling/sproclib"
 Repository = "https://github.com/gressling/sproclib"
 Issues = "https://github.com/gressling/sproclib/issues"
-Documentation = "https://github.com/gressling/sproclib#readme"
+Documentation = "https://sproclib.readthedocs.io/en/latest/"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sproclib*"]
+exclude = ["test*", "docs*", "examples*", "legacy*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.md", "*.rst", "*.cfg", "*.ini"]
