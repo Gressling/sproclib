@@ -92,24 +92,25 @@ intersphinx_mapping = {
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 html_static_path = ['_static']
 
 html_theme_options = {
-    'canonical_url': '',
-    'analytics_id': '',
-    'logo_only': False,
-    'display_version': True,
-    'prev_next_buttons_location': 'bottom',
-    'style_external_links': False,
-    'vcs_pageview_mode': '',
-    'style_nav_header_background': '#2980B9',
-    # Toc options
-    'collapse_navigation': True,
-    'sticky_navigation': True,
-    'navigation_depth': 4,
-    'includehidden': True,
-    'titles_only': False
+    "source_repository": "https://github.com/paramus/sproclib/",
+    "source_branch": "main",
+    "source_directory": "docs/source/",
+    "sidebar_hide_name": False,
+    "navigation_with_keys": True,
+    "top_of_page_button": "edit",
+    "announcement": None,
+    "light_css_variables": {
+        "color-brand-primary": "#2980B9",
+        "color-brand-content": "#2980B9",
+    },
+    "dark_css_variables": {
+        "color-brand-primary": "#4FC3F7",
+        "color-brand-content": "#4FC3F7",
+    },
 }
 
 # Add semantic plant design as primary content
@@ -123,8 +124,8 @@ html_context = {
 }
 
 # Add custom configuration for semantic plant design
-html_title = 'SPROCLIB - The TensorFlow/Keras for Chemical Engineering'
-html_short_title = 'SPROCLIB Semantic API'
+html_title = 'SPROCLIB - Semantic Chemical Process Control Library'
+html_short_title = 'SPROCLIB Chemical Process Control Library'
 
 # Custom sidebar - simplified
 # html_sidebars = {

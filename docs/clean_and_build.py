@@ -146,7 +146,7 @@ The semantic plant design API makes chemical engineering as intuitive as machine
     
     def build_complete(self):
         """Complete build process."""
-        print("🚀 SPROCLIB Documentation - The TensorFlow/Keras for Chemical Engineering")
+        print("🚀 SPROCLIB Documentation")
         print("=" * 75)
         
         # Clean everything

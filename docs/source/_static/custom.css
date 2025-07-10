@@ -1,23 +1,89 @@
 /* Custom CSS for SPROCLIB Documentation */
 
-/* Semantic API styling */
+/* Enhanced Dark Theme Support */
+:root {
+    --sproclib-brand-primary: #2980B9;
+    --sproclib-brand-light: #4FC3F7;
+    --sproclib-accent: #FFA726;
+}
+
+/* Light mode semantic API styling */
+[data-theme="light"] .semantic-api,
 .semantic-api {
     background-color: #f8f9fa;
-    border-left: 4px solid #007bff;
-    padding: 10px;
-    margin: 15px 0;
-}
-
-/* Code examples styling */
-.code-example {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border-left: 4px solid var(--sproclib-brand-primary);
     padding: 15px;
-    margin: 10px 0;
+    margin: 20px 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Improved readability */
-.rst-content {
-    line-height: 1.6;
+/* Dark mode semantic API styling */
+[data-theme="dark"] .semantic-api {
+    background-color: #2d3748;
+    border-left: 4px solid var(--sproclib-brand-light);
+    color: #e2e8f0;
+}
+
+/* Enhanced code examples styling */
+[data-theme="light"] .code-example,
+.code-example {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .code-example {
+    background-color: #1a202c;
+    border: 1px solid #4a5568;
+    color: #e2e8f0;
+}
+
+/* Improved readability and typography */
+.rst-content, 
+.furo-content {
+    line-height: 1.7;
+}
+
+/* Enhanced headers in dark mode */
+[data-theme="dark"] h1, 
+[data-theme="dark"] h2, 
+[data-theme="dark"] h3 {
+    color: var(--sproclib-brand-light);
+}
+
+/* Accent colors for highlights */
+.highlight-sproclib {
+    background-color: var(--sproclib-accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+}
+
+/* Enhanced navigation in dark mode */
+[data-theme="dark"] .sidebar-tree {
+    background-color: #1a202c;
+}
+
+/* Custom scrollbar for dark mode */
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: #2d3748;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 4px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: #718096;
 }

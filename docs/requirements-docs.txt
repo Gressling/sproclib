@@ -4,6 +4,7 @@
 # Core Sphinx packages
 sphinx>=4.0.0,<8.0
 sphinx-rtd-theme>=1.0.0,<3.0
+furo>=2023.0.0
 sphinx-autodoc-typehints>=1.15.0,<2.0
 
 # Documentation utilities
