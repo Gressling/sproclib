@@ -1,0 +1,79 @@
+=== DrumBinTransfer Example ===
+
+1. Creating DrumBinTransfer instances:
+----------------------------------------
+Pharmaceutical transfer: PharmaPowderTransfer
+  Container capacity: 0.3 m³
+  Max transfer rate: 80.0 kg/min
+
+Food ingredient transfer: FoodIngredientTransfer
+  Container capacity: 1.5 m³
+  Max transfer rate: 300.0 kg/min
+
+2. Steady-state analysis:
+-------------------------
+Pharmaceutical transfer results:
+  Full container, good flow:
+    Transfer rate: 60.0 kg/min
+    Batch time: 290.0 s
+
+  Half full, moderate flow:
+    Transfer rate: 57.6 kg/min
+    Batch time: 203.8 s
+
+  Low level, poor flow:
+    Transfer rate: 46.8 kg/min
+    Batch time: 133.1 s
+
+  High setpoint, excellent flow:
+    Transfer rate: 72.0 kg/min
+    Batch time: 230.0 s
+
+3. Dynamic simulation:
+--------------------
+Simulating batch transfer with pharma_transfer:
+Initial conditions: rate=0 kg/min, fill=100%
+Setpoint: 70.0 kg/min, flowability: 0.8
+
+Dynamic simulation results:
+  Final time: 182.0 s
+  Final fill level: 0.000
+  Average transfer rate: 59.8 kg/min
+
+4. Flowability sensitivity analysis:
+-----------------------------------
+Food transfer flowability sensitivity (80% fill, 80 kg/min setpoint):
+  Flowability 0.1: 80.0 kg/min
+  Flowability 0.2: 80.0 kg/min
+  Flowability 0.3: 80.0 kg/min
+  Flowability 0.4: 80.0 kg/min
+  Flowability 0.5: 80.0 kg/min
+  Flowability 0.6: 80.0 kg/min
+  Flowability 0.7: 80.0 kg/min
+  Flowability 0.8: 80.0 kg/min
+  Flowability 0.9: 80.0 kg/min
+  Flowability 1.0: 80.0 kg/min
+
+5. Model introspection:
+--------------------
+Model type: Drum/Bin Solid Transfer
+Description: Batch solid material transfer using drums or bins with conveyor discharge
+
+Key parameters:
+  container_capacity: 0.3 m³ - Container volume capacity
+  transfer_rate_max: 80.0 kg/min - Maximum discharge rate
+  material_density: 600.0 kg/m³ - Bulk density of material
+  discharge_efficiency: 0.9 - - Discharge mechanism efficiency
+  handling_time: 90.0 s - Setup and handling time per batch
+
+Operating ranges:
+  container_capacity: 0.1 - 2.0
+  transfer_rate_max: 10.0 - 500.0
+  material_density: 200.0 - 2000.0
+  discharge_efficiency: 0.5 - 1.0
+  fill_level: 0.0 - 1.0
+
+6. Creating visualization plots...
+Plots saved as DrumBinTransfer_example_plots.png and DrumBinTransfer_detailed_analysis.png
+
+=== Example completed successfully ===
