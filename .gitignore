@@ -72,6 +72,10 @@ instance/
 docs/_build/
 docs/build/
 
+# Keep build scripts
+!docs/build_docs.py
+!docs/build_docs.bat
+
 # PyBuilder
 .pybuilder/
 target/
