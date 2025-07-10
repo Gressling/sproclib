@@ -1,4 +1,4 @@
-Process Controll Package API Documentation
+Process Control Package API Documentation
 ==========================================
 
 Complete API documentation for the Standard Process Control Library (SPROCLIB).
