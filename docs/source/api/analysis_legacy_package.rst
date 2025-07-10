@@ -22,7 +22,7 @@ The analysis module provides essential tools for process control system analysis
 Analysis Documentation
 ----------------------
 
-.. automodule:: analysis
+.. automodule:: sproclib.analysis
    :members:
    :undoc-members:
    :show-inheritance:
@@ -34,7 +34,7 @@ The analysis module provides tools for system analysis, simulation, optimization
 Classes
 -------
 
-.. automodule:: analysis
+.. automodule:: sproclib.analysis
    :members:
    :undoc-members:
    :show-inheritance:
@@ -42,7 +42,7 @@ Classes
 TransferFunction
 ~~~~~~~~~~~~~~~~
 
-.. autoclass:: analysis.TransferFunction
+.. autoclass:: sproclib.analysis.TransferFunction
    :members:
    :special-members: __init__
    :show-inheritance:

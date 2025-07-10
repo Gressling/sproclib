@@ -14,7 +14,7 @@ Submodules
 Economic Optimization
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: optimization.economic_optimization
+.. automodule:: sproclib.optimization.economic_optimization
    :members:
    :undoc-members:
    :show-inheritance:
@@ -22,7 +22,7 @@ Economic Optimization
 Parameter Estimation
 ~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: optimization.parameter_estimation
+.. automodule:: sproclib.optimization.parameter_estimation
    :members:
    :undoc-members:
    :show-inheritance:
@@ -30,7 +30,7 @@ Parameter Estimation
 Process Optimization
 ~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: optimization.process_optimization
+.. automodule:: sproclib.optimization.process_optimization
    :members:
    :undoc-members:
    :show-inheritance:

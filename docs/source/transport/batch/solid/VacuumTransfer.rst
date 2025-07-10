@@ -1,7 +1,7 @@
 VacuumTransfer
 ==============
 
-.. automodule:: transport.batch.solid.VacuumTransfer
+.. automodule:: sproclib.transport.batch.solid.VacuumTransfer
    :members:
    :undoc-members:
    :show-inheritance:

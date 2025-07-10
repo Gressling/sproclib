@@ -14,7 +14,7 @@ Submodules
 Process Simulation
 ~~~~~~~~~~~~~~~~~~
 
-.. automodule:: simulation.process_simulation
+.. automodule:: sproclib.simulation.process_simulation
    :members:
    :undoc-members:
    :show-inheritance:

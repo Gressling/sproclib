@@ -14,7 +14,7 @@ Submodules
 State-Task Network
 ~~~~~~~~~~~~~~~~~~
 
-.. automodule:: scheduling.state_task_network
+.. automodule:: sproclib.scheduling.state_task_network
    :members:
    :undoc-members:
    :show-inheritance:

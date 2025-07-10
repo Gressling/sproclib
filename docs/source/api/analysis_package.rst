@@ -14,7 +14,7 @@ Submodules
 Transfer Function
 ~~~~~~~~~~~~~~~~~
 
-.. automodule:: analysis.transfer_function
+.. automodule:: sproclib.analysis.transfer_function
    :members:
    :undoc-members:
    :show-inheritance:
@@ -22,7 +22,7 @@ Transfer Function
 System Analysis
 ~~~~~~~~~~~~~~~
 
-.. automodule:: analysis.system_analysis
+.. automodule:: sproclib.analysis.system_analysis
    :members:
    :undoc-members:
    :show-inheritance:
@@ -30,7 +30,7 @@ System Analysis
 Model Identification
 ~~~~~~~~~~~~~~~~~~~~
 
-.. automodule:: analysis.model_identification
+.. automodule:: sproclib.analysis.model_identification
    :members:
    :undoc-members:
    :show-inheritance:

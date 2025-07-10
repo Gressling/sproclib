@@ -92,7 +92,7 @@ For detailed documentation of legacy interfaces, see:
 Legacy Package API
 ~~~~~~~~~~~~~~~~~~
 
-.. automodule:: legacy
+.. automodule:: sproclib.legacy
    :members:
    :undoc-members:
    :show-inheritance:

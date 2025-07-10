@@ -1,7 +1,7 @@
 DrumBinTransfer
 ================
 
-.. automodule:: transport.batch.solid.DrumBinTransfer
+.. automodule:: sproclib.transport.batch.solid.DrumBinTransfer
    :members:
    :undoc-members:
    :show-inheritance:

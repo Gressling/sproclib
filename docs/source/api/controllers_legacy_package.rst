@@ -20,7 +20,7 @@ For examples of controller usage with process units, see:
 Controllers Documentation
 -------------------------
 
-.. automodule:: legacy.controllers
+.. automodule:: sproclib.legacy.controllers
    :members:
    :undoc-members:
    :show-inheritance:
@@ -28,7 +28,7 @@ Controllers Documentation
 PIDController
 ~~~~~~~~~~~~~
 
-.. autoclass:: legacy.controllers.PIDController
+.. autoclass:: sproclib.legacy.controllers.PIDController
    :members:
    :special-members: __init__
    :show-inheritance:

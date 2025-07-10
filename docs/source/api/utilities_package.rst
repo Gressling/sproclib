@@ -14,7 +14,7 @@ Submodules
 Control Utils
 ~~~~~~~~~~~~~
 
-.. automodule:: utilities.control_utils
+.. automodule:: sproclib.utilities.control_utils
    :members:
    :undoc-members:
    :show-inheritance:
@@ -22,7 +22,7 @@ Control Utils
 Math Utils
 ~~~~~~~~~~
 
-.. automodule:: utilities.math_utils
+.. automodule:: sproclib.utilities.math_utils
    :members:
    :undoc-members:
    :show-inheritance:
@@ -30,7 +30,7 @@ Math Utils
 Data Utils
 ~~~~~~~~~~
 
-.. automodule:: utilities.data_utils
+.. automodule:: sproclib.utilities.data_utils
    :members:
    :undoc-members:
    :show-inheritance:

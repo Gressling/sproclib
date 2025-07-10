@@ -6,7 +6,7 @@ This section documents all process unit classes in SPROCLIB.
 Base Classes
 ------------
 
-.. automodule:: unit.base.ProcessModel
+.. automodule:: sproclib.unit.base
    :members:
    :undoc-members:
    :show-inheritance:
@@ -14,27 +14,12 @@ Base Classes
 Pumps and Compressors
 ---------------------
 
-.. automodule:: unit.pump
+.. automodule:: sproclib.unit.pump
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: unit.pump.base
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.pump.centrifugal
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.pump.positive_displacement
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.compressor
+.. automodule:: sproclib.unit.compressor
    :members:
    :undoc-members:
    :show-inheritance:
@@ -42,17 +27,7 @@ Pumps and Compressors
 Tanks and Vessels
 -----------------
 
-.. automodule:: unit.tank
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.tank.single
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.tank.interacting
+.. automodule:: sproclib.unit.tank
    :members:
    :undoc-members:
    :show-inheritance:
@@ -60,17 +35,7 @@ Tanks and Vessels
 Valves and Flow Control
 -----------------------
 
-.. automodule:: unit.valve
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.valve.control
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.valve.three_way
+.. automodule:: sproclib.unit.valve
    :members:
    :undoc-members:
    :show-inheritance:
@@ -78,7 +43,7 @@ Valves and Flow Control
 Heat Exchangers
 ---------------
 
-.. automodule:: unit.heat_exchanger
+.. automodule:: sproclib.unit.heat_exchanger
    :members:
    :undoc-members:
    :show-inheritance:
@@ -86,32 +51,7 @@ Heat Exchangers
 Reactors
 --------
 
-.. automodule:: unit.reactor.cstr
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.reactor.pfr
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.reactor.batch
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.reactor.semi_batch
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.reactor.fluidized_bed
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.reactor.fixed_bed
+.. automodule:: sproclib.unit.reactor
    :members:
    :undoc-members:
    :show-inheritance:
@@ -119,12 +59,7 @@ Reactors
 Distillation
 ------------
 
-.. automodule:: unit.distillation.column.BinaryDistillationColumn
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-.. automodule:: unit.distillation.tray.DistillationTray
+.. automodule:: sproclib.unit.distillation
    :members:
    :undoc-members:
    :show-inheritance:
@@ -132,7 +67,7 @@ Distillation
 Utilities
 ---------
 
-.. automodule:: unit.utilities
+.. automodule:: sproclib.unit.utilities
    :members:
    :undoc-members:
    :show-inheritance:

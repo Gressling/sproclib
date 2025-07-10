@@ -22,7 +22,7 @@ The functions module provides utility functions for common process control tasks
 Functions Documentation
 -----------------------
 
-.. automodule:: functions
+.. automodule:: sproclib.functions
    :members:
    :undoc-members:
    :show-inheritance:
