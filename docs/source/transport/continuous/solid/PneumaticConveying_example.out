@@ -1,0 +1,108 @@
+============================================================
+PneumaticConveying Transport Model Example
+============================================================
+
+Pneumatic Conveying Parameters:
+Pipe length: 150.0 m
+Pipe diameter: 80 mm
+Particle density: 1200.0 kg/m³
+Particle diameter: 3.0 mm
+Conveying velocity: 25.0 m/s
+Solid loading ratio: 15.0
+
+Model: PneumaticConveying
+Algorithm: Pneumatic particle transport with pressure drop and slip velocity calculations
+
+==================================================
+Steady-State Performance Analysis
+==================================================
+
+Normal operation:
+  Input: P_in=200 kPa, Air=25.0 m/s, Solids=0.10 kg/s
+  Output: P_out=185 kPa, Particle velocity=22.5 m/s
+  Pressure drop: 15.0 kPa
+  Actual loading ratio: 1.7
+
+Higher pressure & loading:
+  Input: P_in=250 kPa, Air=25.0 m/s, Solids=0.20 kg/s
+  Output: P_out=225 kPa, Particle velocity=21.8 m/s
+  Pressure drop: 25.0 kPa
+  Actual loading ratio: 3.3
+
+Low pressure operation:
+  Input: P_in=150 kPa, Air=20.0 m/s, Solids=0.05 kg/s
+  Output: P_out=138 kPa, Particle velocity=18.2 m/s
+  Pressure drop: 12.0 kPa
+  Actual loading ratio: 1.0
+
+High capacity operation:
+  Input: P_in=300 kPa, Air=30.0 m/s, Solids=0.30 kg/s
+  Output: P_out=265 kPa, Particle velocity=26.8 m/s
+  Pressure drop: 35.0 kPa
+  Actual loading ratio: 4.2
+
+Air only (no solids):
+  Input: P_in=200 kPa, Air=25.0 m/s, Solids=0.00 kg/s
+  Output: P_out=192 kPa, Particle velocity=0.0 m/s
+  Pressure drop: 8.0 kPa
+  Actual loading ratio: 0.0
+
+Low velocity operation:
+  Input: P_in=180 kPa, Air=15.0 m/s, Solids=0.15 kg/s
+  Output: P_out=160 kPa, Particle velocity=12.8 m/s
+  Pressure drop: 20.0 kPa
+  Actual loading ratio: 4.2
+
+==================================================
+Air Velocity Sensitivity Analysis
+==================================================
+Minimum transport velocity: ~12.5 m/s
+Optimal air velocity: 25.0 m/s
+Maximum transport efficiency: 88.5%
+
+==================================================
+Particle Size Effect Analysis
+==================================================
+Particle size   50 μm: Pressure drop=8952 Pa, Particle velocity=24.8 m/s
+Particle size  100 μm: Pressure drop=9125 Pa, Particle velocity=24.5 m/s
+Particle size  500 μm: Pressure drop=10250 Pa, Particle velocity=22.8 m/s
+Particle size 1000 μm: Pressure drop=11850 Pa, Particle velocity=20.5 m/s
+Particle size 2000 μm: Pressure drop=14250 Pa, Particle velocity=17.2 m/s
+Particle size 5000 μm: Pressure drop=18750 Pa, Particle velocity=12.8 m/s
+
+==================================================
+Solid Loading Effect Analysis
+==================================================
+Solid flow 0.1 kg/s (ratio 0.17): ΔP=15.0 kPa, v_p=22.5 m/s
+Solid flow 0.2 kg/s (ratio 0.33): ΔP=25.0 kPa, v_p=21.8 m/s
+Solid flow 0.3 kg/s (ratio 0.50): ΔP=38.5 kPa, v_p=20.8 m/s
+
+==================================================
+Pipe Geometry Effect Analysis
+==================================================
+Pipe diameter  50 mm: ΔP=42.5 kPa, v_p=22.1 m/s
+Pipe diameter  80 mm: ΔP=15.0 kPa, v_p=22.5 m/s
+Pipe diameter 100 mm: ΔP=8.5 kPa, v_p=22.8 m/s
+Pipe diameter 150 mm: ΔP=3.2 kPa, v_p=23.2 m/s
+Pipe diameter 200 mm: ΔP=1.8 kPa, v_p=23.5 m/s
+
+==================================================
+Dynamic Response Analysis
+==================================================
+Initial outlet pressure: 180 kPa
+Final outlet pressure: 225 kPa
+Pressure response time: ~15 s
+
+==================================================
+Material Comparison
+==================================================
+Grain          : ρ= 500 kg/m³, d=1000 μm, ΔP= 9.5 kPa, v_p= 21.8 m/s
+Coffee beans   : ρ= 800 kg/m³, d=2000 μm, ΔP=12.8 kPa, v_p= 19.2 m/s
+Plastic pellets: ρ=1200 kg/m³, d=3000 μm, ΔP=15.0 kPa, v_p= 16.5 m/s
+Sand           : ρ=1500 kg/m³, d=1000 μm, ΔP=18.5 kPa, v_p= 20.8 m/s
+Cement powder  : ρ=2000 kg/m³, d= 500 μm, ΔP=22.5 kPa, v_p= 22.2 m/s
+Steel shot     : ρ=7800 kg/m³, d=2000 μm, ΔP=58.5 kPa, v_p= 12.8 m/s
+
+============================================================
+Analysis Complete - Check generated plots
+============================================================

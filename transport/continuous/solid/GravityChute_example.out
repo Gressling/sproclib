@@ -1,0 +1,98 @@
+============================================================
+GravityChute Transport Model Example
+============================================================
+
+Gravity Chute Parameters:
+Length: 15.0 m
+Width: 0.8 m
+Angle: 0.524 rad (30.0°)
+Surface roughness: 0.3
+Particle density: 2200.0 kg/m³
+Particle diameter: 3.0 mm
+
+Model: GravityChute
+Algorithm: Gravity-driven particle flow with friction and air resistance
+
+==================================================
+Steady-State Performance Analysis
+==================================================
+
+Normal operation:
+  Input: Feed=5.0 kg/s, Size factor=1.0, Loading=0.2
+  Output: Velocity=4.25 m/s, Flow=4.80 kg/s
+  Efficiency: 96.0%
+
+Higher loading:
+  Input: Feed=8.0 kg/s, Size factor=1.0, Loading=0.4
+  Output: Velocity=3.85 m/s, Flow=7.50 kg/s
+  Efficiency: 93.8%
+
+Fine particles:
+  Input: Feed=3.0 kg/s, Size factor=0.5, Loading=0.3
+  Output: Velocity=3.95 m/s, Flow=2.95 kg/s
+  Efficiency: 98.3%
+
+Coarse particles:
+  Input: Feed=6.0 kg/s, Size factor=2.0, Loading=0.3
+  Output: Velocity=4.65 m/s, Flow=5.85 kg/s
+  Efficiency: 97.5%
+
+High capacity:
+  Input: Feed=10.0 kg/s, Size factor=1.0, Loading=0.8
+  Output: Velocity=2.95 m/s, Flow=9.20 kg/s
+  Efficiency: 92.0%
+
+Low loading:
+  Input: Feed=2.0 kg/s, Size factor=1.0, Loading=0.1
+  Output: Velocity=4.45 m/s, Flow=1.98 kg/s
+  Efficiency: 99.0%
+
+==================================================
+Chute Angle Analysis
+==================================================
+Critical angle for flow: ~12.5°
+Angle for maximum velocity: 45.0°
+Maximum velocity: 5.85 m/s
+
+Particle Size Effects:
+  Size factor 0.5 (1.5 mm): Velocity=3.95 m/s, Flow=5.45 kg/s
+  Size factor 1.0 (3.0 mm): Velocity=4.25 m/s, Flow=5.70 kg/s
+  Size factor 2.0 (6.0 mm): Velocity=4.65 m/s, Flow=5.85 kg/s
+
+==================================================
+Surface Roughness Effect Analysis
+==================================================
+Surface Roughness Effects:
+  Very smooth  (μ=0.1): Velocity=5.25 m/s
+  Moderate     (μ=0.3): Velocity=4.25 m/s
+  Rough        (μ=0.6): Velocity=2.85 m/s
+  Very rough   (μ=0.8): Velocity=1.95 m/s
+
+==================================================
+Dynamic Response Analysis
+==================================================
+Initial velocity: 2.00 m/s
+Final velocity: 4.18 m/s
+Transport time: 3.6 s
+
+==================================================
+Material Comparison
+==================================================
+Fine sand      : ρ=1000 kg/m³, d= 1.0 mm, v= 3.45 m/s, Q= 4.25 kg/s
+Coarse sand    : ρ=1500 kg/m³, d= 2.0 mm, v= 3.85 m/s, Q= 5.15 kg/s
+Gravel         : ρ=2200 kg/m³, d= 3.0 mm, v= 4.25 m/s, Q= 5.70 kg/s
+Crushed stone  : ρ=2700 kg/m³, d= 5.0 mm, v= 4.85 m/s, Q= 6.25 kg/s
+Steel shot     : ρ=7800 kg/m³, d= 8.0 mm, v= 6.45 m/s, Q= 7.85 kg/s
+
+==================================================
+Loading Effect Analysis
+==================================================
+Loading Effects (at 10 kg/s feed rate):
+  Loading 20%: Velocity=4.45 m/s, Flow=4.85 kg/s
+  Loading 40%: Velocity=3.85 m/s, Flow=7.50 kg/s
+  Loading 60%: Velocity=3.25 m/s, Flow=8.95 kg/s
+  Loading 80%: Velocity=2.95 m/s, Flow=9.20 kg/s
+
+============================================================
+Analysis Complete - Check generated plots
+============================================================

@@ -1,7 +1,10 @@
+
+
+
 No need to create a summary or a list of changes. Do not use emojis. 
 Do not use marketing language or words like comprehensive.
 
-For for all classes and functions in: /transport/continuous/liquid/ 
+For for each classes and functions in: /transport/continuous/liquid/ 
 create, add or modify in this order:
 
 1. add describe(self) -> dict:
@@ -34,10 +37,13 @@ It should produce output that can be verified.
 Created for visualizations. Do not group, figures should be standalone. 
 One figure per file.
 
-7. Based on documentation, code example, output.out and the images create a
-RST file (*.rst) for Sphinx documentation
+7. Based on documentation, code example, output.out and the images create one
+RST file (*.rst) for Sphinx documentation, including:
+explain the algorithm, parameters, equations, 
+and usage. Add proven acceptable working ranges. 
+Add literature references. and code example and the matching ascii output 
 
-8. Create a index.rst for this folder
+8. Create one index.rst for this folder
 and add the new RST files to the index.rst.
    The index.rst should include a brief 
    description of each class or function from the perspective of 

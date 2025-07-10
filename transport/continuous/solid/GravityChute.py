@@ -113,3 +113,48 @@ class GravityChute(ProcessModel):
         dflow_dt = (flow_ss - flow_rate) / tau_flow
         
         return np.array([dvelocity_dt, dflow_dt])
+
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the GravityChute model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'class_name': 'GravityChute',
+            'algorithm': 'Gravity-driven particle flow with friction and air resistance',
+            'parameters': {
+                'chute_length': {'value': self.chute_length, 'unit': 'm', 'description': 'Chute length'},
+                'chute_width': {'value': self.chute_width, 'unit': 'm', 'description': 'Chute width'},
+                'chute_angle': {'value': self.chute_angle, 'unit': 'rad', 'description': 'Chute angle'},
+                'surface_roughness': {'value': self.surface_roughness, 'unit': '-', 'description': 'Surface friction coefficient'},
+                'particle_density': {'value': self.particle_density, 'unit': 'kg/m³', 'description': 'Particle density'},
+                'particle_diameter': {'value': self.particle_diameter, 'unit': 'm', 'description': 'Average particle diameter'},
+                'air_resistance': {'value': self.air_resistance, 'unit': '-', 'description': 'Air resistance coefficient'}
+            },
+            'inputs': {
+                'feed_rate': {'unit': 'kg/s', 'description': 'Particle feed rate'},
+                'particle_size_factor': {'unit': '-', 'description': 'Particle size factor'},
+                'chute_loading': {'unit': '-', 'description': 'Chute loading factor'}
+            },
+            'outputs': {
+                'outlet_velocity': {'unit': 'm/s', 'description': 'Particle outlet velocity'},
+                'mass_flow_rate': {'unit': 'kg/s', 'description': 'Mass flow rate'}
+            },
+            'equations': [
+                'F_gravity = g * sin(chute_angle)',
+                'F_friction = surface_roughness * g * cos(chute_angle)',
+                'net_acceleration = F_gravity - F_friction',
+                'terminal_velocity = sqrt(net_acceleration / drag_factor)'
+            ],
+            'working_ranges': {
+                'chute_angle': '0.17-0.79 rad (10-45°)',
+                'particle_density': '1000-5000 kg/m³',
+                'particle_diameter': '1e-3-20e-3 m',
+                'surface_roughness': '0.1-0.8'
+            },
+            'applications': ['Particle discharge systems', 'Gravity conveyors', 'Granular material handling'],
+            'limitations': ['Assumes uniform particle size', 'No particle breakage', 'Steady flow conditions']
+        }

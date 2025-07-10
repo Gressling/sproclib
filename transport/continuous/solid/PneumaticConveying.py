@@ -108,3 +108,49 @@ class PneumaticConveying(ProcessModel):
         dv_particle_dt = (v_particle_ss - v_particle) / tau_velocity
         
         return np.array([dP_out_dt, dv_particle_dt])
+
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the PneumaticConveying model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'class_name': 'PneumaticConveying',
+            'algorithm': 'Pneumatic particle transport with pressure drop and slip velocity calculations',
+            'parameters': {
+                'pipe_length': {'value': self.pipe_length, 'unit': 'm', 'description': 'Conveying line length'},
+                'pipe_diameter': {'value': self.pipe_diameter, 'unit': 'm', 'description': 'Pipe diameter'},
+                'particle_density': {'value': self.particle_density, 'unit': 'kg/m³', 'description': 'Particle density'},
+                'particle_diameter': {'value': self.particle_diameter, 'unit': 'm', 'description': 'Average particle diameter'},
+                'air_density': {'value': self.air_density, 'unit': 'kg/m³', 'description': 'Air density'},
+                'air_viscosity': {'value': self.air_viscosity, 'unit': 'Pa·s', 'description': 'Air viscosity'},
+                'conveying_velocity': {'value': self.conveying_velocity, 'unit': 'm/s', 'description': 'Conveying air velocity'},
+                'solid_loading_ratio': {'value': self.solid_loading_ratio, 'unit': '-', 'description': 'Solid to air mass ratio'}
+            },
+            'inputs': {
+                'P_inlet': {'unit': 'Pa', 'description': 'Inlet pressure'},
+                'air_flow_rate': {'unit': 'kg/s', 'description': 'Air flow rate'},
+                'solid_mass_flow': {'unit': 'kg/s', 'description': 'Solid mass flow rate'}
+            },
+            'outputs': {
+                'P_outlet': {'unit': 'Pa', 'description': 'Outlet pressure'},
+                'particle_velocity': {'unit': 'm/s', 'description': 'Particle velocity'}
+            },
+            'equations': [
+                'Re_particle = air_density * air_velocity * particle_diameter / air_viscosity',
+                'v_terminal = sqrt(4 * g * particle_diameter * (particle_density - air_density) / (3 * Cd * air_density))',
+                'dp_air = f_air * (pipe_length/pipe_diameter) * (air_density * air_velocity^2 / 2)',
+                'total_pressure_drop = dp_air + acceleration_dp + friction_dp'
+            ],
+            'working_ranges': {
+                'conveying_velocity': '10-40 m/s',
+                'solid_loading_ratio': '1-50',
+                'particle_diameter': '10e-6-5e-3 m',
+                'pipe_diameter': '0.025-0.5 m'
+            },
+            'applications': ['Powder conveying', 'Pneumatic transport systems', 'Bulk material handling'],
+            'limitations': ['Dilute phase transport only', 'Spherical particle assumption', 'No particle agglomeration']
+        }

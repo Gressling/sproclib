@@ -1,0 +1,78 @@
+============================================================
+ConveyorBelt Transport Model Example
+============================================================
+
+Conveyor Belt Parameters:
+Length: 100.0 m
+Width: 1.5 m
+Speed: 2.0 m/s
+Angle: 0.100 rad (5.7°)
+Material density: 1800.0 kg/m³
+Motor power: 25.0 kW
+
+Model: ConveyorBelt
+Algorithm: Conveyor belt transport model using material flow rate and power calculations
+
+==================================================
+Steady-State Performance Analysis
+==================================================
+
+Normal operation:
+  Input: Feed=10.0 kg/s, Speed=2.0 m/s, Height=0.050 m
+  Output: Flow=10.00 kg/s, Power=8.5 kW
+  Efficiency: 100.0%
+
+High load:
+  Input: Feed=25.0 kg/s, Speed=2.0 m/s, Height=0.080 m
+  Output: Flow=19.20 kg/s, Power=16.8 kW
+  Efficiency: 76.8%
+
+Low speed operation:
+  Input: Feed=5.0 kg/s, Speed=1.0 m/s, Height=0.030 m
+  Output: Flow=5.00 kg/s, Power=5.2 kW
+  Efficiency: 100.0%
+
+Maximum throughput:
+  Input: Feed=30.0 kg/s, Speed=3.0 m/s, Height=0.100 m
+  Output: Flow=24.30 kg/s, Power=25.0 kW
+  Efficiency: 81.0%
+
+Empty belt:
+  Input: Feed=15.0 kg/s, Speed=2.5 m/s, Height=0.000 m
+  Output: Flow=0.00 kg/s, Power=2.5 kW
+  Efficiency: 0.0%
+
+==================================================
+Belt Speed Sensitivity Analysis
+==================================================
+Optimal belt speed: 2.50 m/s
+Maximum efficiency: 95.8%
+Power at optimal speed: 18.2 kW
+
+==================================================
+Dynamic Response Analysis
+==================================================
+Initial flow rate: 5.00 kg/s
+Final flow rate: 19.85 kg/s
+Settling time: ~80 s
+
+==================================================
+Material Properties Effect
+==================================================
+Grain     : Density= 500 kg/m³, Flow= 15.0 kg/s, Power= 12.5 kW
+Sand      : Density=1200 kg/m³, Flow= 15.0 kg/s, Power= 14.8 kW
+Coal      : Density=1800 kg/m³, Flow= 15.0 kg/s, Power= 16.2 kW
+Ore       : Density=2500 kg/m³, Flow= 15.0 kg/s, Power= 18.5 kW
+Iron ore  : Density=3200 kg/m³, Flow= 15.0 kg/s, Power= 21.2 kW
+
+==================================================
+Power Limitation Analysis
+==================================================
+Motor:  10 kW, Flow:  12.5 kg/s, Power used:  10.0 kW (100.0%)
+Motor:  25 kW, Flow:  24.8 kg/s, Power used:  22.5 kW ( 90.0%)
+Motor:  50 kW, Flow:  30.0 kg/s, Power used:  32.5 kW ( 65.0%)
+Motor: 100 kW, Flow:  30.0 kg/s, Power used:  32.5 kW ( 32.5%)
+
+============================================================
+Analysis Complete - Check generated plots
+============================================================

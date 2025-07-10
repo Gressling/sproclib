@@ -111,3 +111,49 @@ class ScrewFeeder(ProcessModel):
         dtorque_dt = (torque_ss - torque) / tau_torque
         
         return np.array([dflow_dt, dtorque_dt])
+
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the ScrewFeeder model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'class_name': 'ScrewFeeder',
+            'algorithm': 'Volumetric screw feeding with torque calculation and fill factor corrections',
+            'parameters': {
+                'screw_diameter': {'value': self.screw_diameter, 'unit': 'm', 'description': 'Screw diameter'},
+                'screw_length': {'value': self.screw_length, 'unit': 'm', 'description': 'Screw length'},
+                'screw_pitch': {'value': self.screw_pitch, 'unit': 'm', 'description': 'Screw pitch'},
+                'screw_speed': {'value': self.screw_speed, 'unit': 'rpm', 'description': 'Screw speed'},
+                'fill_factor': {'value': self.fill_factor, 'unit': '-', 'description': 'Screw fill factor'},
+                'powder_density': {'value': self.powder_density, 'unit': 'kg/m³', 'description': 'Powder bulk density'},
+                'powder_flowability': {'value': self.powder_flowability, 'unit': '-', 'description': 'Powder flowability index'},
+                'motor_torque_max': {'value': self.motor_torque_max, 'unit': 'N⋅m', 'description': 'Maximum motor torque'}
+            },
+            'inputs': {
+                'screw_speed_setpoint': {'unit': 'rpm', 'description': 'Screw speed setpoint'},
+                'hopper_level': {'unit': 'm', 'description': 'Hopper level'},
+                'powder_moisture': {'unit': '-', 'description': 'Powder moisture content'}
+            },
+            'outputs': {
+                'mass_flow_rate': {'unit': 'kg/s', 'description': 'Mass flow rate'},
+                'motor_torque': {'unit': 'N⋅m', 'description': 'Motor torque'}
+            },
+            'equations': [
+                'volume_per_revolution = π * (screw_diameter/2)² * screw_pitch',
+                'theoretical_volume_flow = (screw_speed / 60) * volume_per_revolution',
+                'effective_fill = fill_factor * level_factor * moisture_factor * flowability_factor',
+                'mass_flow_rate = actual_volume_flow * powder_density'
+            ],
+            'working_ranges': {
+                'screw_speed': '10-500 rpm',
+                'fill_factor': '0.1-0.8',
+                'powder_density': '200-2000 kg/m³',
+                'powder_flowability': '0.3-1.0'
+            },
+            'applications': ['Powder feeding', 'Dosing systems', 'Batch weighing', 'Process control'],
+            'limitations': ['Uniform powder properties', 'No segregation effects', 'Continuous operation assumption']
+        }
