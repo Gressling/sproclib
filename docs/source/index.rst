@@ -62,15 +62,25 @@ Contents
    :maxdepth: 2
    :caption: Semantic Plant Design
 
-   semantic_plant_design
-   semantic_examples
-   tensorflow_comparison
+   plant/semantic_plant_design
+   plant/semantic_examples
+   plant/tensorflow_comparison
    examples
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Tutorials and Examples
+
+   tutorials
+   examples
+   case_studies
+   best_practices
 
 .. toctree::
    :maxdepth: 3
    :caption: Process Control and Modeling
 
+   api/index
    api/units_package
    api/transport_package
    api/controllers_package
@@ -82,13 +92,31 @@ Contents
    api/legacy
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Additional Information
+   :maxdepth: 2
+   :caption: Theory and Background
 
    theory
-   references
-   changelog
+   mathematical_foundations
+   control_theory
+   process_modeling
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Developer Resources
+
    contributing
+   development_guide
+   testing
+   documentation_guide
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Project Information
+
+   changelog
+   references
+   license
+   acknowledgments
 
 API Documentation
 -----------------

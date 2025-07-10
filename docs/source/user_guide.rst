@@ -38,7 +38,17 @@ both beginners and advanced users.
    user_guide/advanced_control
    user_guide/system_integration
    user_guide/custom_models
+   user_guide/industrial_applications
    user_guide/troubleshooting
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Specialized Applications
+
+   user_guide/batch_processes
+   user_guide/continuous_processes
+   user_guide/safety_systems
+   user_guide/economic_optimization
 
 .. toctree::
    :maxdepth: 2
@@ -48,6 +58,16 @@ both beginners and advanced users.
    user_guide/examples/transport_examples
    user_guide/examples/control_examples
    user_guide/examples/optimization_examples
+   user_guide/examples/industrial_case_studies
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Reference Materials
+
+   user_guide/reference/unit_specifications
+   user_guide/reference/parameter_tables
+   user_guide/reference/troubleshooting_guide
+   user_guide/reference/faq
 
 Overview
 --------

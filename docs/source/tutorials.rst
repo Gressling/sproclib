@@ -1,304 +1,304 @@
 Tutorials
 =========
 
-This section provides step-by-step tutorials for common process control tasks.
+Step-by-step tutorials for learning process control with SPROCLIB. These tutorials are designed
+to build your knowledge progressively from basic concepts to advanced applications.
 
-Tutorial 1: Basic Tank Level Control
--------------------------------------
+.. toctree::
+   :maxdepth: 2
+   :caption: Getting Started
 
-Learn the fundamentals of level control using a gravity-drained tank.
+   tutorials/installation_tutorial
+   tutorials/first_steps
+   tutorials/basic_concepts
+   tutorials/semantic_introduction
 
-**Objective:** Design a PID controller for tank level control
+.. toctree::
+   :maxdepth: 2
+   :caption: Control Fundamentals
 
-**Step 1: Model the Process**
+   tutorials/pid_control_basics
+   tutorials/system_identification
+   tutorials/frequency_domain
+   tutorials/stability_analysis
 
-Start by creating a tank model::
+.. toctree::
+   :maxdepth: 2
+   :caption: Process Modeling
 
-    from process_control import Tank, PIDController, simulate_process
-    import numpy as np
-    import matplotlib.pyplot as plt
+   tutorials/tank_modeling
+   tutorials/reactor_modeling
+   tutorials/heat_exchanger_modeling
+   tutorials/transport_systems
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Advanced Control
+
+   tutorials/cascade_control
+   tutorials/feedforward_control
+   tutorials/model_predictive_control
+   tutorials/robust_control
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Optimization
+
+   tutorials/parameter_estimation
+   tutorials/economic_optimization
+   tutorials/batch_scheduling
+   tutorials/real_time_optimization
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Industrial Applications
+
+   tutorials/plant_wide_control
+   tutorials/safety_systems
+   tutorials/alarm_management
+   tutorials/performance_monitoring
+
+Overview
+--------
+
+Learning Path
+~~~~~~~~~~~~~
+
+**Beginner Path (0-3 months experience):**
+
+1. :doc:`tutorials/installation_tutorial` - Get SPROCLIB running
+2. :doc:`tutorials/first_steps` - Your first control system
+3. :doc:`tutorials/basic_concepts` - Fundamental control theory
+4. :doc:`tutorials/pid_control_basics` - Master PID control
+5. :doc:`tutorials/tank_modeling` - Simple process modeling
+
+**Intermediate Path (3-12 months experience):**
+
+1. :doc:`tutorials/system_identification` - Model real processes
+2. :doc:`tutorials/frequency_domain` - Frequency analysis
+3. :doc:`tutorials/reactor_modeling` - Complex process dynamics
+4. :doc:`tutorials/cascade_control` - Advanced control structures
+5. :doc:`tutorials/parameter_estimation` - Optimize model parameters
+
+**Advanced Path (1+ years experience):**
+
+1. :doc:`tutorials/model_predictive_control` - Modern control methods
+2. :doc:`tutorials/economic_optimization` - Profit maximization
+3. :doc:`tutorials/plant_wide_control` - System integration
+4. :doc:`tutorials/real_time_optimization` - Online optimization
+5. :doc:`tutorials/safety_systems` - Critical safety applications
+
+Tutorial Features
+~~~~~~~~~~~~~~~~~
+
+Each tutorial includes:
+
+* **Clear Learning Objectives** - What you'll accomplish
+* **Prerequisites** - Required background knowledge
+* **Step-by-Step Instructions** - Detailed implementation guide
+* **Working Code Examples** - Complete, runnable code
+* **Exercises** - Practice problems with solutions
+* **Further Reading** - Additional resources and references
+
+**Interactive Elements:**
+
+* Jupyter notebook versions available
+* Code snippets you can copy and run
+* Visualization and plotting examples
+* Real-world data and scenarios
+* Troubleshooting guides
+
+Getting Started
+---------------
+
+**Prerequisites:**
+
+* Basic Python programming knowledge
+* Elementary understanding of differential equations
+* Familiarity with chemical engineering concepts (helpful but not required)
+
+**Installation:**
+
+Before starting the tutorials, ensure SPROCLIB is properly installed::
+
+    pip install sproclib
+
+**Verify Installation:**
+
+Run this quick test::
+
+    import sproclib
+    from sproclib.analysis import TransferFunction
     
-    # Create tank model (1 m² area, valve coefficient 2.0)
-    tank = Tank(A=1.0, C=2.0, name="Level Control Tank")
+    # Create a simple process
+    process = TransferFunction.first_order_plus_dead_time(K=1.0, tau=5.0, theta=1.0)
+    print(f"Process: {process}")
+    print("Installation successful!")
+
+Tutorial Structure
+------------------
+
+Beginner Tutorials
+~~~~~~~~~~~~~~~~~~
+
+**Installation and Setup**
+  Complete guide to installing SPROCLIB and setting up your development environment.
+
+**First Steps with Process Control**
+  Build your first control system in 15 minutes using the semantic plant design API.
+
+**Basic Control Concepts**
+  Learn fundamental concepts: process variables, controllers, setpoints, and disturbances.
+
+**PID Control Fundamentals**
+  Master proportional, integral, and derivative control with hands-on examples.
+
+Intermediate Tutorials
+~~~~~~~~~~~~~~~~~~~~~
+
+**System Identification**
+  Learn to identify process models from experimental data using various methods.
+
+**Frequency Domain Analysis**
+  Understand Bode plots, Nyquist diagrams, and stability analysis.
+
+**Advanced Process Modeling**
+  Model complex processes including reactors, heat exchangers, and separation units.
+
+**Control System Design**
+  Design robust control systems with proper tuning and performance analysis.
+
+Advanced Tutorials
+~~~~~~~~~~~~~~~~~~
+
+**Model Predictive Control**
+  Implement MPC for multivariable processes with constraints and optimization.
+
+**Economic Optimization**
+  Optimize process economics while maintaining product quality and safety.
+
+**Plant-Wide Control**
+  Design control systems for complete chemical plants with multiple units.
+
+**Safety and Reliability**
+  Implement safety instrumented systems and fault-tolerant control.
+
+Tutorial Examples
+-----------------
+
+**Example: Tank Level Control Tutorial Structure**
+
+.. code-block:: none
+
+    tutorials/tank_modeling.rst
+    ├── Learning Objectives
+    ├── Prerequisites  
+    ├── Theory Background
+    │   ├── Mass Balance Equations
+    │   ├── Linearization Concepts
+    │   └── Control Challenges
+    ├── Implementation Steps
+    │   ├── Step 1: Model Creation
+    │   ├── Step 2: Linearization
+    │   ├── Step 3: Controller Design
+    │   ├── Step 4: Simulation
+    │   └── Step 5: Performance Analysis
+    ├── Exercises
+    │   ├── Basic Problems
+    │   ├── Advanced Challenges
+    │   └── Solutions
+    └── Further Reading
+
+**Code Example from Tutorial:**
+
+.. code-block:: python
+
+    # From tutorials/tank_modeling.rst
+    from sproclib.units import Tank
+    from sproclib.utilities import tune_pid, step_response
     
-    # Check steady-state behavior
-    steady_state = tank.steady_state({'q_in': 4.0})
-    print(f"For q_in = 4.0 L/min, steady-state height = {steady_state['h']:.2f} m")
-
-**Step 2: Linearize Around Operating Point**
-
-For controller design, we need a linear model::
-
-    from process_control import LinearApproximation
+    # Step 1: Create tank model
+    tank = Tank(A=10.0, h_max=5.0, name="Level Tank")
     
-    # Create linearization tool
-    linear_approx = LinearApproximation(tank)
+    # Step 2: Linearize around operating point
+    operating_point = {'h': 2.5, 'q_in': 5.0}
+    linear_model = tank.linearize(operating_point)
     
-    # Linearize around q_in = 4.0 L/min (h_ss = 4.0 m)
-    u_nominal = [4.0]
-    A, B = linear_approx.linearize(u_nominal)
+    # Step 3: Design controller
+    pid_params = tune_pid(linear_model, method='amigo')
     
-    print(f"Linear model: A = {A[0,0]:.3f}, B = {B[0,0]:.3f}")
+    # Step 4: Analyze performance
+    response = step_response(linear_model, amplitude=0.5)
 
-**Step 3: Design PID Controller**
+Supporting Materials
+-------------------
 
-Use automated tuning to design the controller::
+**Downloadable Resources:**
 
-    from process_control import tune_pid, fit_fopdt
-    
-    # First, identify FOPDT parameters from step response
-    time = np.linspace(0, 20, 100)
-    step_response = 1.0 * (1 - np.exp(-time/4))  # Approximate step response
-    
-    fopdt_params = fit_fopdt(time, step_response, step_size=1.0)
-    print(f"FOPDT parameters: K={fopdt_params['K']:.3f}, tau={fopdt_params['tau']:.3f}")
-    
-    # Tune PID using Ziegler-Nichols
-    pid_params = tune_pid(fopdt_params, method='ziegler_nichols', controller_type='PID')
-    
-    # Create PID controller
-    controller = PIDController(**pid_params)
-    print(f"PID parameters: Kp={pid_params['Kp']:.3f}, Ki={pid_params['Ki']:.3f}, Kd={pid_params['Kd']:.3f}")
+* Jupyter notebooks for interactive learning
+* Python scripts for all examples
+* Data files for real-world examples
+* Solution keys for exercises
 
-**Step 4: Closed-Loop Simulation**
+**Video Content:**
 
-Test the controller performance::
+* Tutorial walkthroughs (when available)
+* Concept explanations with animations
+* Live coding sessions
+* Q&A recordings
 
-    # Simulation parameters
-    time = np.linspace(0, 50, 500)
-    setpoint = 3.0  # Desired height (m)
-    initial_height = 1.0  # Starting height (m)
-    
-    # Storage for results
-    heights = np.zeros_like(time)
-    control_outputs = np.zeros_like(time)
-    heights[0] = initial_height
-    
-    # Closed-loop simulation
-    for i in range(1, len(time)):
-        dt = time[i] - time[i-1]
-        
-        # PID control
-        q_in = controller.update(setpoint, heights[i-1], dt)
-        q_in = max(0, min(q_in, 10))  # Limit flow rate 0-10 L/min
-        control_outputs[i] = q_in
-        
-        # Process dynamics
-        dhdt = tank.dynamics(time[i-1], [heights[i-1]], [q_in])[0]
-        heights[i] = heights[i-1] + dhdt * dt
-    
-    # Plot results
-    plt.figure(figsize=(12, 8))
-    
-    plt.subplot(2, 1, 1)
-    plt.plot(time, heights, 'b-', label='Tank Height')
-    plt.axhline(y=setpoint, color='r', linestyle='--', label='Setpoint')
-    plt.ylabel('Height (m)')
-    plt.legend()
-    plt.grid(True)
-    plt.title('Tank Level Control')
-    
-    plt.subplot(2, 1, 2)
-    plt.plot(time, control_outputs, 'g-', label='Flow Rate')
-    plt.ylabel('Flow Rate (L/min)')
-    plt.xlabel('Time (min)')
-    plt.legend()
-    plt.grid(True)
-    
-    plt.tight_layout()
-    plt.show()
+**Additional Support:**
 
-**Step 5: Performance Analysis**
+* Community forum for questions
+* GitHub issues for technical problems
+* Office hours (when available)
+* Peer learning groups
 
-Evaluate controller performance::
+Contributing to Tutorials
+-------------------------
 
-    # Calculate performance metrics
-    settling_time_idx = np.where(np.abs(heights - setpoint) < 0.02 * setpoint)[0]
-    settling_time = time[settling_time_idx[0]] if len(settling_time_idx) > 0 else np.inf
-    
-    overshoot = (np.max(heights) - setpoint) / setpoint * 100
-    steady_state_error = abs(heights[-1] - setpoint)
-    
-    print(f"Performance Metrics:")
-    print(f"  Settling time (2%): {settling_time:.1f} min")
-    print(f"  Overshoot: {overshoot:.1f}%")
-    print(f"  Steady-state error: {steady_state_error:.3f} m")
+We welcome contributions to improve and expand the tutorial collection:
 
-Tutorial 2: CSTR Temperature Control
--------------------------------------
+**Ways to Contribute:**
 
-Design a cascade control system for a CSTR with temperature control.
+* **Fix errors** or improve clarity in existing tutorials
+* **Add new tutorials** for specialized topics
+* **Create exercises** and practice problems
+* **Develop interactive content** with Jupyter notebooks
+* **Record video walkthroughs** for complex topics
 
-**Objective:** Control reactor temperature with cascade control structure
+**Tutorial Guidelines:**
 
-**Step 1: Model the CSTR**
+* Start with clear learning objectives
+* Use practical, realistic examples
+* Include complete, tested code
+* Provide exercises for practice
+* Reference relevant theory and literature
 
-Create a detailed CSTR model::
+See :doc:`contributing` for detailed guidelines on contributing tutorials.
 
-    from process_control import CSTR
-    
-    # Create CSTR with realistic parameters
-    cstr = CSTR(
-        V=100,        # Volume (L)
-        k0=1e10,      # Pre-exponential factor (1/min)
-        E=8000,       # Activation energy (K)
-        dHr=-50000,   # Heat of reaction (J/mol)
-        rho=1000,     # Density (g/L)
-        Cp=4.18,      # Heat capacity (J/g/K)
-        UA=50000,     # Heat transfer coefficient (J/min/K)
-        name="Main Reactor"
-    )
-    
-    # Find steady-state operating point
-    operating_conditions = {
-        'q_in': 10.0,    # Flow rate (L/min)
-        'CA_in': 1.0,    # Inlet concentration (mol/L)
-        'T_in': 300.0,   # Inlet temperature (K)
-        'T_cool': 285.0  # Coolant temperature (K)
-    }
-    
-    ss = cstr.steady_state(operating_conditions)
-    print(f"Steady-state: CA = {ss['CA']:.3f} mol/L, T = {ss['T']:.1f} K")
+Feedback and Improvements
+-------------------------
 
-**Step 2: Design Primary (Temperature) Controller**
+Help us improve the tutorials:
 
-::
+* **Report Issues** - Found errors or unclear explanations?
+* **Suggest Topics** - What tutorials would help you most?
+* **Share Success Stories** - How did the tutorials help your learning?
+* **Rate Tutorials** - Let us know which tutorials work best
 
-    # Linearize CSTR around operating point
-    from process_control import LinearApproximation
-    
-    linear_cstr = LinearApproximation(cstr)
-    u_nominal = [10.0, 1.0, 300.0, 285.0]  # [q, CA_in, T_in, T_cool]
-    
-    A, B = linear_cstr.linearize(u_nominal)
-    
-    # Extract temperature dynamics (T_cool -> T)
-    # For FOPDT approximation from step test
-    temp_params = {'K': -2.5, 'tau': 8.0, 'theta': 0.5}
-    
-    # Tune PI controller for temperature
-    temp_pid = tune_pid(temp_params, method='amigo', controller_type='PI')
-    temp_controller = PIDController(**temp_pid, output_limits=(270, 300))
+Your feedback helps us create better learning resources for the entire community.
 
-**Step 3: Add Disturbance Rejection**
+Next Steps
+----------
 
-Test response to inlet temperature disturbances::
+Ready to start learning? Begin with:
 
-    # Simulation with inlet temperature disturbance
-    time = np.linspace(0, 100, 1000)
-    
-    # Step disturbance in T_in at t=50
-    T_in_profile = np.where(time < 50, 300.0, 305.0)
-    
-    # Simulate with temperature control
-    temperatures = np.zeros_like(time)
-    coolant_temps = np.zeros_like(time)
-    temperatures[0] = ss['T']
-    coolant_temps[0] = 285.0
-    
-    for i in range(1, len(time)):
-        dt = time[i] - time[i-1]
-        
-        # Temperature controller
-        T_setpoint = 350.0
-        T_cool_cmd = temp_controller.update(T_setpoint, temperatures[i-1], dt)
-        T_cool_cmd = max(270, min(T_cool_cmd, 300))  # Limit coolant temperature
-        coolant_temps[i] = T_cool_cmd
-        
-        # Process dynamics
-        inputs = [10.0, 1.0, T_in_profile[i-1], T_cool_cmd]
-        states = [ss['CA'], temperatures[i-1]]  # Assume CA constant for simplicity
-        
-        derivatives = cstr.dynamics(time[i-1], states, inputs)
-        temperatures[i] = temperatures[i-1] + derivatives[1] * dt
-    
-    # Plot results
-    plt.figure(figsize=(12, 10))
-    
-    plt.subplot(3, 1, 1)
-    plt.plot(time, T_in_profile, 'r:', label='T_in (Disturbance)')
-    plt.ylabel('T_in (K)')
-    plt.legend()
-    plt.grid(True)
-    
-    plt.subplot(3, 1, 2)
-    plt.plot(time, temperatures, 'b-', label='Reactor Temperature')
-    plt.axhline(y=350, color='r', linestyle='--', label='Setpoint')
-    plt.ylabel('Temperature (K)')
-    plt.legend()
-    plt.grid(True)
-    
-    plt.subplot(3, 1, 3)
-    plt.plot(time, coolant_temps, 'g-', label='Coolant Temperature')
-    plt.ylabel('T_cool (K)')
-    plt.xlabel('Time (min)')
-    plt.legend()
-    plt.grid(True)
-    
-    plt.tight_layout()
-    plt.show()
+1. :doc:`tutorials/installation_tutorial` - Set up your environment
+2. :doc:`tutorials/first_steps` - Build your first control system
+3. Choose your learning path based on your experience level
 
-Tutorial 3: Optimization of Batch Process
-------------------------------------------
-
-Optimize a batch reactor operation for maximum profit.
-
-**Objective:** Find optimal temperature profile for batch reactor
-
-**Step 1: Define Batch Reactor Model**
-
-::
-
-    def batch_reactor_dynamics(t, state, temperature_profile):
-        \"\"\"Batch reactor with temperature-dependent kinetics\"\"\"
-        CA, CB = state
-        
-        # Get temperature at current time
-        T = np.interp(t, temperature_profile['time'], temperature_profile['temp'])
-        
-        # Arrhenius kinetics: A -> B
-        k = 1e8 * np.exp(-8000/T)  # Rate constant
-        
-        # Reaction rates
-        rA = -k * CA
-        rB = k * CA
-        
-        return [rA, rB]
-
-**Step 2: Set up Optimization Problem**
-
-::
-
-    from process_control import Optimization
-    from scipy.integrate import solve_ivp
-    
-    def objective_function(T_profile):
-        \"\"\"Negative profit (for minimization)\"\"\"
-        
-        # Create temperature profile
-        time_points = np.linspace(0, 120, 13)  # 0 to 120 min, 13 points
-        temp_profile = {
-            'time': time_points,
-            'temp': T_profile
-        }
-        
-        # Simulate batch reactor
-        initial_state = [1.0, 0.0]  # CA0 = 1.0, CB0 = 0.0
-        
-        sol = solve_ivp(
-            lambda t, y: batch_reactor_dynamics(t, y, temp_profile),
-            [0, 120],
-            initial_state,
-            dense_output=True
-        )
-        
-        # Final concentrations
-        final_state = sol.y[:, -1]
-        CB_final = final_state[1]
-        
-        # Profit calculation
-        product_value = CB_final * 1000 * 100  # $/mol * mol/L * L
-        
+Happy learning with SPROCLIB!
         # Energy cost (higher temperature = higher cost)
         avg_temp = np.mean(T_profile)
         energy_cost = (avg_temp - 300) * 0.1 * 120  # $/K/min * K * min
