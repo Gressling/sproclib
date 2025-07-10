@@ -5,7 +5,12 @@ This module contains the batch liquid transfer pumping model (steady-state and d
 """
 
 import numpy as np
-from ....unit.base import ProcessModel
+import sys
+import os
+
+# Add the base directory to path to import ProcessModel
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+from unit.base.ProcessModel import ProcessModel
 
 
 class BatchTransferPumping(ProcessModel):
@@ -112,3 +117,62 @@ class BatchTransferPumping(ProcessModel):
             flow_rate = 0.0  # Stop flow when empty
         
         return np.array([dflow_dt, dlevel_dt])
+    
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the BatchTransferPumping model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            "name": "BatchTransferPumping",
+            "type": "Batch Transfer Process Model",
+            "category": "Transport/Batch/Liquid",
+            "description": "Models batch liquid transfer pumping operations with pump characteristics and system hydraulics",
+            "algorithms": {
+                "steady_state": "Calculates flow rate and transfer time based on pump curve and system resistance",
+                "dynamics": "Models pump response dynamics and tank level changes during batch transfer"
+            },
+            "parameters": {
+                "pump_capacity": {"value": self.pump_capacity, "unit": "m³/s", "description": "Maximum pump flow capacity"},
+                "pump_head_max": {"value": self.pump_head_max, "unit": "m", "description": "Maximum pump head"},
+                "tank_volume": {"value": self.tank_volume, "unit": "m³", "description": "Source tank volume"},
+                "pipe_length": {"value": self.pipe_length, "unit": "m", "description": "Transfer line length"},
+                "pipe_diameter": {"value": self.pipe_diameter, "unit": "m", "description": "Transfer line diameter"},
+                "fluid_density": {"value": self.fluid_density, "unit": "kg/m³", "description": "Fluid density"},
+                "fluid_viscosity": {"value": self.fluid_viscosity, "unit": "Pa·s", "description": "Fluid dynamic viscosity"},
+                "transfer_efficiency": {"value": self.transfer_efficiency, "unit": "-", "description": "Pump transfer efficiency"}
+            },
+            "inputs": {
+                "steady_state": "[source_level, destination_level, pump_speed_fraction]",
+                "dynamics": "[source_level_setpoint, destination_level, pump_speed_fraction]"
+            },
+            "outputs": {
+                "steady_state": "[flow_rate, transfer_time_remaining]",
+                "dynamics": "[dflow_dt, dlevel_dt]"
+            },
+            "equations": {
+                "reynolds_number": "Re = ρ * v * D / μ",
+                "friction_factor_laminar": "f = 64 / Re (Re < 2300)",
+                "friction_factor_turbulent": "f = 0.316 / Re^0.25 (Re ≥ 2300)",
+                "friction_head_loss": "h_f = f * (L/D) * (v²/2g)",
+                "total_head": "H_total = H_static + H_friction",
+                "mass_balance": "dV/dt = Q_in - Q_out",
+                "pump_curve": "Q = Q_max * speed * efficiency"
+            },
+            "working_ranges": {
+                "pump_capacity": "0.001 - 0.1 m³/s",
+                "pump_head_max": "10 - 100 m",
+                "tank_volume": "0.1 - 10 m³",
+                "pipe_diameter": "0.01 - 0.2 m",
+                "reynolds_number": "10 - 100000"
+            },
+            "applications": [
+                "Chemical batch processing",
+                "Pharmaceutical liquid transfer",
+                "Food processing operations",
+                "Tank-to-tank transfers"
+            ]
+        }
