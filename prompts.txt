@@ -35,3 +35,11 @@ Created for visualizations. Do not group, figures should be standalone.
 
 7. Based on documentation, code example, output.out and the images create a
 RST file (*.rst) for Sphinx documentation
+
+8. Finally copy the *.rst and all files that are referenced in rst 
+(images, out) to the 
+documentation folder, if not preset the folder will be created.
+Only copy the files that are needed for the documentation.
+The folder should be named after the class or function,
+and should follow the structure of the documentation
+   (e.g. /docs/source/transport/continuous/liquid/).   

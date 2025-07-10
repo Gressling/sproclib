@@ -1,0 +1,78 @@
+============================================================
+BATCH TRANSFER PUMPING ANALYSIS
+============================================================
+
+1. PUMP SPECIFICATIONS
+----------------------------------------
+Water Pump: Models batch liquid transfer pumping operations with pump characteristics and system hydraulics
+Capacity: 0.01 m³/s
+Max Head: 50.0 m
+
+Oil Pump: Models batch liquid transfer pumping operations with pump characteristics and system hydraulics
+Capacity: 0.005 m³/s
+Max Head: 30.0 m
+
+2. STEADY-STATE ANALYSIS
+----------------------------------------
+Condition       Fluid    Flow Rate    Transfer Time  
+=============== ======== ============ ===============
+Normal Transfer Water    8.5      L/s 3.1         min
+                Oil      4.0      L/s 3.3         min
+
+Uphill Transfer Water    8.5      L/s 1.2         min
+                Oil      4.0      L/s 1.2         min
+
+Reduced Speed   Water    5.1      L/s 5.2         min
+                Oil      2.4      L/s 5.6         min
+
+Low Source      Water    8.5      L/s 0.4         min
+                Oil      4.0      L/s 0.4         min
+
+
+3. DYNAMIC SIMULATION
+----------------------------------------
+Simulating water transfer...
+Simulating oil transfer...
+
+4. PERFORMANCE ANALYSIS
+----------------------------------------
+Water Transfer:
+  - Transfer time (95%): 3.0 minutes
+  - Average flow rate: 17.0 L/s
+  - Peak flow rate: 17.0 L/s
+
+Oil Transfer:
+  - Transfer time (95%): 3.3 minutes
+  - Average flow rate: 8.0 L/s
+  - Peak flow rate: 8.0 L/s
+
+5. HYDRAULIC ANALYSIS
+----------------------------------------
+Water at peak flow:
+  - Reynolds number: 432901
+  - Flow regime: Turbulent
+  - Velocity: 8.66 m/s
+
+Oil at peak flow:
+  - Reynolds number: 21645
+  - Flow regime: Turbulent
+  - Velocity: 6.37 m/s
+
+6. GENERATING VISUALIZATIONS
+----------------------------------------
+Saved: BatchTransferPumping_example_plots.png
+Saved: BatchTransferPumping_detailed_analysis.png
+
+7. SUMMARY
+----------------------------------------
+Batch transfer pumping analysis completed successfully.
+Key findings:
+- Water transfer is faster due to lower viscosity and higher pump capacity
+- Oil transfer requires more time due to higher viscosity and smaller pump
+- Both systems operate in different Reynolds number regimes
+- Pump sizing affects transfer efficiency and time
+
+Files generated:
+- BatchTransferPumping_example_plots.png
+- BatchTransferPumping_detailed_analysis.png
+- BatchTransferPumping_example.out
