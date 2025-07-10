@@ -5,7 +5,10 @@ This module contains the drum/bin solid transfer model (steady-state and dynamic
 """
 
 import numpy as np
-from ....unit.base import ProcessModel
+try:
+    from ....unit.base.ProcessModel import ProcessModel
+except ImportError:
+    from unit.base.ProcessModel import ProcessModel
 
 
 class DrumBinTransfer(ProcessModel):
@@ -100,3 +103,53 @@ class DrumBinTransfer(ProcessModel):
                 transfer_rate = 0.0  # Stop transfer when empty
         
         return np.array([dtransfer_rate_dt, dfill_level_dt])
+
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the DrumBinTransfer model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'model_type': 'Drum/Bin Solid Transfer',
+            'description': 'Batch solid material transfer using drums or bins with conveyor discharge',
+            'algorithms': {
+                'steady_state': 'Material flow rate calculation with discharge efficiency and flowability factors',
+                'dynamics': 'First-order response of transfer rate and container level mass balance'
+            },
+            'parameters': {
+                'container_capacity': {'value': self.container_capacity, 'unit': 'm³', 'description': 'Container volume capacity'},
+                'transfer_rate_max': {'value': self.transfer_rate_max, 'unit': 'kg/min', 'description': 'Maximum discharge rate'},
+                'material_density': {'value': self.material_density, 'unit': 'kg/m³', 'description': 'Bulk density of material'},
+                'discharge_efficiency': {'value': self.discharge_efficiency, 'unit': '-', 'description': 'Discharge mechanism efficiency'},
+                'handling_time': {'value': self.handling_time, 'unit': 's', 'description': 'Setup and handling time per batch'},
+                'conveyor_speed': {'value': self.conveyor_speed, 'unit': 'm/s', 'description': 'Conveyor belt speed'},
+                'transfer_distance': {'value': self.transfer_distance, 'unit': 'm', 'description': 'Transfer distance'}
+            },
+            'inputs': {
+                'steady_state': ['container_fill_level [-]', 'discharge_rate_setpoint [kg/min]', 'material_flowability [-]'],
+                'dynamics': ['target_fill_level [-]', 'discharge_rate_setpoint [kg/min]', 'material_flowability [-]']
+            },
+            'outputs': {
+                'steady_state': ['actual_transfer_rate [kg/min]', 'batch_time_remaining [s]'],
+                'dynamics': ['dtransfer_rate_dt [kg/min/s]', 'dfill_level_dt [1/s]']
+            },
+            'states': ['transfer_rate [kg/min]', 'container_fill_level [-]'],
+            'equations': {
+                'mass_balance': 'dmass/dt = -transfer_rate',
+                'discharge_rate': 'rate = min(setpoint, max_rate * flowability * efficiency)',
+                'batch_time': 'time = mass/rate + transport_time + handling_time'
+            },
+            'operating_ranges': {
+                'container_capacity': [0.1, 2.0],
+                'transfer_rate_max': [10.0, 500.0],
+                'material_density': [200.0, 2000.0],
+                'discharge_efficiency': [0.5, 1.0],
+                'fill_level': [0.0, 1.0],
+                'flowability': [0.0, 1.0]
+            },
+            'applications': ['Pharmaceutical powder transfer', 'Food ingredient handling', 'Chemical batch processing'],
+            'assumptions': ['Constant bulk density', 'No particle segregation', 'Uniform discharge']
+        }

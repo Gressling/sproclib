@@ -1,0 +1,100 @@
+=== VacuumTransfer Example ===
+
+1. Creating VacuumTransfer instances:
+--------------------------------------
+Pharmaceutical vacuum: PharmaVacuumTransfer
+  Pump capacity: 80.0 m³/h
+  Particle size: 50 μm
+
+Food vacuum: FoodVacuumTransfer
+  Pump capacity: 200.0 m³/h
+  Particle size: 150 μm
+
+Chemical vacuum: ChemicalVacuumTransfer
+  Pump capacity: 150.0 m³/h
+  Particle size: 100 μm
+
+2. Steady-state analysis:
+-------------------------
+Pharmaceutical vacuum results:
+  High source, low vacuum:
+    Powder rate: 0.05 kg/s
+    Vacuum level: -30.0 kPa
+
+  Medium source, medium vacuum:
+    Powder rate: 0.05 kg/s
+    Vacuum level: -50.0 kPa
+
+  Low source, high vacuum:
+    Powder rate: 0.05 kg/s
+    Vacuum level: -70.0 kPa
+
+  Full source, max vacuum:
+    Powder rate: 0.05 kg/s
+    Vacuum level: -75.0 kPa
+
+3. Dynamic simulation:
+--------------------
+Simulating vacuum system startup with food_vacuum:
+Initial conditions: rate=0 kg/s, vacuum=0 Pa
+Setpoint: -60 kPa, powder level: 70%
+
+Dynamic simulation results:
+  Final powder rate: 0.13 kg/s
+  Final vacuum level: -60.0 kPa
+  Steady-state time: ~8 s
+
+4. Particle size sensitivity analysis:
+--------------------------------------
+Chemical vacuum particle size sensitivity (60% powder, -70 kPa):
+  20 μm: 0.09 kg/s
+  50 μm: 0.09 kg/s
+  100 μm: 0.09 kg/s
+  200 μm: 0.09 kg/s
+  300 μm: 0.09 kg/s
+  400 μm: 0.09 kg/s
+
+5. Filter loading effects:
+------------------------
+Pharma vacuum filter loading effects (80% powder, -80 kPa setpoint):
+  0.0 loading: 75.0 kPa actual
+  0.1 loading: 75.0 kPa actual
+  0.2 loading: 75.0 kPa actual
+  0.3 loading: 75.0 kPa actual
+  0.4 loading: 75.0 kPa actual
+  0.5 loading: 75.0 kPa actual
+  0.6 loading: 75.0 kPa actual
+  0.7 loading: 75.0 kPa actual
+  0.8 loading: 75.0 kPa actual
+  0.9 loading: 75.0 kPa actual
+  1.0 loading: 75.0 kPa actual
+
+6. Model introspection:
+--------------------
+Model type: Vacuum Powder Transfer
+Description: Pneumatic powder transfer using vacuum pump and cyclone separator
+
+Key parameters:
+  vacuum_pump_capacity: 80.0 m³/h - Vacuum pump volumetric capacity
+  transfer_line_diameter: 0.04 m - Transfer line internal diameter
+  transfer_line_length: 12.0 m - Transfer line length
+  powder_density: 500.0 kg/m³ - Powder bulk density
+  particle_size: 5e-05 m - Average particle diameter
+
+Key equations:
+  air_velocity: v = sqrt(2*ΔP/ρ_air)
+  pickup_velocity: v_pickup = 2*sqrt(4*g*d_p*ρ_p/(3*C_d*ρ_air))
+  powder_rate: rate = Q_air * ρ_air * loading_ratio * η_cyclone
+  pressure_drop: ΔP = Q * (R_line + R_filter)
+
+7. Comparative analysis:
+-----------------------
+System comparison (70% powder, -60 kPa, 30% filter loading):
+  Pharmaceutical : 0.051 kg/s, -60.0 kPa
+  Food           : 0.131 kg/s, -60.0 kPa
+  Chemical       : 0.092 kg/s, -60.0 kPa
+
+8. Creating visualization plots...
+Plots saved as VacuumTransfer_example_plots.png and VacuumTransfer_detailed_analysis.png
+
+=== Example completed successfully ===
