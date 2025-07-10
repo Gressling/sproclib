@@ -3,28 +3,31 @@ Setup configuration for SPROCLIB - Standard Process Control Library
 """
 
 from setuptools import setup, find_packages
+import os
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+# Read README file
+readme_path = os.path.join(os.path.dirname(__file__), "README.md")
+if os.path.exists(readme_path):
+    with open(readme_path, "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+else:
+    long_description = "Standard Process Control Library for chemical process control"
 
 setup(
     name="sproclib",
-    version="1.0.0",
+    version="2.0.0",
     author="Thorsten Gressling",
     author_email="gressling@paramus.ai",
-    description="SPROCLIB - Standard Process Control Library for chemical processes",
+    description="Standard Process Control Library for chemical process control",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/gressling/sproclib",
     packages=find_packages(),
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Intended Audience :: Education",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Science/Research",
-        "Intended Audience :: Manufacturing",
-        "Topic :: Scientific/Engineering :: Chemistry",
-        "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -34,24 +37,20 @@ setup(
     ],
     python_requires=">=3.8",
     install_requires=[
-        "numpy>=1.20.0",
-        "scipy>=1.7.0",
-        "matplotlib>=3.4.0",
-        "control>=0.9.0",
+        "numpy",
+        "scipy",
+        "matplotlib",
     ],
     extras_require={
         "dev": [
             "pytest>=6.0",
-            "pytest-cov",
-            "sphinx>=4.0",
-            "sphinx-rtd-theme",
             "black",
             "flake8",
+            "mypy",
         ],
-        "docs": [
-            "sphinx>=4.0",
-            "sphinx-rtd-theme",
-            "myst-parser",
+        "optimization": [
+            "cvxpy>=1.1.0",
+            "gekko>=1.0.0",
         ],
     },
     keywords="process control, chemical engineering, PID, control systems, process modeling, simulation",

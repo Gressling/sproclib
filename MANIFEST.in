@@ -1,5 +1,6 @@
 include README.md
 include LICENSE
+recursive-include sproclib *.py
 include COMPRESSOR_PUMP_GUIDE.md
 include REFERENCES_CLEANUP_SUMMARY.md
 recursive-include documentation *.md
@@ -9,3 +10,4 @@ include examples.py
 include test_*.py
 global-exclude *.pyc
 global-exclude __pycache__
+recursive-include sproclib *.py
