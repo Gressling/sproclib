@@ -1,4 +1,4 @@
-"""
+﻿"""
 Setup configuration for SPROCLIB - Standard Process Control Library
 """
 
