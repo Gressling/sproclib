@@ -61,7 +61,7 @@ if errorlevel 1 (
 )
 
 echo Step 1: Updating pyproject.toml...
-powershell -Command "(Get-Content 'pyproject.toml') -replace 'version = \"[^\"]*\"', 'version = \"%NEW_VERSION%\"' | Set-Content 'pyproject.toml'"
+powershell -Command "$content = Get-Content 'pyproject.toml' -Raw; $content = $content -replace 'version = \"[^\"]*\"', 'version = \"%NEW_VERSION%\"'; $content | Out-File 'pyproject.toml' -Encoding UTF8 -NoNewline"
 if errorlevel 1 (
     echo ERROR: Failed to update pyproject.toml
     exit /b 1
@@ -69,7 +69,7 @@ if errorlevel 1 (
 echo   ✓ pyproject.toml updated
 
 echo Step 2: Updating setup.py...
-powershell -Command "(Get-Content 'setup.py') -replace 'version=\"[^\"]*\"', 'version=\"%NEW_VERSION%\"' | Set-Content 'setup.py'"
+powershell -Command "$content = Get-Content 'setup.py' -Raw; $content = $content -replace 'version=\"[^\"]*\"', 'version=\"%NEW_VERSION%\"'; $content | Out-File 'setup.py' -Encoding UTF8 -NoNewline"
 if errorlevel 1 (
     echo ERROR: Failed to update setup.py
     exit /b 1
@@ -77,16 +77,15 @@ if errorlevel 1 (
 echo   ✓ setup.py updated
 
 echo Step 3: Updating main package __init__.py...
-powershell -Command "(Get-Content 'sproclib\\__init__.py') -replace '__version__ = \"[^\"]*\"', '__version__ = \"%NEW_VERSION%\"' | Set-Content 'sproclib\\__init__.py'"
+powershell -Command "$content = Get-Content 'sproclib\\__init__.py' -Raw; $content = $content -replace '__version__ = \"[^\"]*\"', '__version__ = \"%NEW_VERSION%\"'; $content = $content -replace 'Version: [^\\r\\n]*', 'Version: %NEW_VERSION%'; $content | Out-File 'sproclib\\__init__.py' -Encoding UTF8 -NoNewline"
 if errorlevel 1 (
     echo ERROR: Failed to update sproclib/__init__.py
     exit /b 1
 )
-powershell -Command "(Get-Content 'sproclib\\__init__.py') -replace 'Version: [^\"]*', 'Version: %NEW_VERSION%' | Set-Content 'sproclib\\__init__.py'"
 echo   ✓ sproclib/__init__.py updated
 
 echo Step 4: Updating plant module __init__.py...
-powershell -Command "(Get-Content 'sproclib\\unit\\plant\\__init__.py') -replace '__version__ = ''[^'']*''', '__version__ = ''%NEW_VERSION%''' | Set-Content 'sproclib\\unit\\plant\\__init__.py'"
+powershell -Command "$content = Get-Content 'sproclib\\unit\\plant\\__init__.py' -Raw; $content = $content -replace '__version__ = ''[^'']*''', '__version__ = ''%NEW_VERSION%'''; $content | Out-File 'sproclib\\unit\\plant\\__init__.py' -Encoding UTF8 -NoNewline"
 if errorlevel 1 (
     echo ERROR: Failed to update sproclib/unit/plant/__init__.py
     exit /b 1
@@ -94,14 +93,9 @@ if errorlevel 1 (
 echo   ✓ sproclib/unit/plant/__init__.py updated
 
 echo Step 5: Updating Sphinx documentation...
-powershell -Command "(Get-Content 'docs\\source\\conf.py') -replace 'release = ''[^'']*''', 'release = ''%NEW_VERSION%''' | Set-Content 'docs\\source\\conf.py'"
+powershell -Command "$content = Get-Content 'docs\\source\\conf.py' -Raw; $content = $content -replace 'release = ''[^'']*''', 'release = ''%NEW_VERSION%'''; $content = $content -replace 'version = ''[^'']*''', 'version = ''%NEW_VERSION%'''; $content | Out-File 'docs\\source\\conf.py' -Encoding UTF8 -NoNewline"
 if errorlevel 1 (
-    echo ERROR: Failed to update docs/source/conf.py release
-    exit /b 1
-)
-powershell -Command "(Get-Content 'docs\\source\\conf.py') -replace 'version = ''[^'']*''', 'version = ''%NEW_VERSION%''' | Set-Content 'docs\\source\\conf.py'"
-if errorlevel 1 (
-    echo ERROR: Failed to update docs/source/conf.py version
+    echo ERROR: Failed to update docs/source/conf.py
     exit /b 1
 )
 echo   ✓ Sphinx documentation updated
