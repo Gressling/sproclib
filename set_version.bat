@@ -61,7 +61,7 @@ if errorlevel 1 (
 )
 
 echo Step 1: Updating pyproject.toml...
-powershell -Command "[System.IO.File]::WriteAllText('pyproject.toml', ([System.IO.File]::ReadAllText('pyproject.toml') -replace 'version = \"[^\"]*\"', 'version = \"%NEW_VERSION%\"'), [System.Text.Encoding]::UTF8)"
+powershell -Command "$utf8NoBom = New-Object System.Text.UTF8Encoding $false; [System.IO.File]::WriteAllText('pyproject.toml', ([System.IO.File]::ReadAllText('pyproject.toml') -replace 'version = \"[^\"]*\"', 'version = \"%NEW_VERSION%\"'), $utf8NoBom)"
 if errorlevel 1 (
     echo ERROR: Failed to update pyproject.toml
     exit /b 1
@@ -69,7 +69,7 @@ if errorlevel 1 (
 echo   ✓ pyproject.toml updated
 
 echo Step 2: Updating setup.py...
-powershell -Command "[System.IO.File]::WriteAllText('setup.py', ([System.IO.File]::ReadAllText('setup.py') -replace 'version=\"[^\"]*\"', 'version=\"%NEW_VERSION%\"'), [System.Text.Encoding]::UTF8)"
+powershell -Command "$utf8NoBom = New-Object System.Text.UTF8Encoding $false; [System.IO.File]::WriteAllText('setup.py', ([System.IO.File]::ReadAllText('setup.py') -replace 'version=\"[^\"]*\"', 'version=\"%NEW_VERSION%\"'), $utf8NoBom)"
 if errorlevel 1 (
     echo ERROR: Failed to update setup.py
     exit /b 1
@@ -77,7 +77,7 @@ if errorlevel 1 (
 echo   ✓ setup.py updated
 
 echo Step 3: Updating main package __init__.py...
-powershell -Command "$file = 'sproclib\\__init__.py'; $content = [System.IO.File]::ReadAllText($file); $content = $content -replace '__version__ = \"[^\"]*\"', '__version__ = \"%NEW_VERSION%\"'; $content = $content -replace 'Version: [^\\r\\n]*', 'Version: %NEW_VERSION%'; [System.IO.File]::WriteAllText($file, $content, [System.Text.Encoding]::UTF8)"
+powershell -Command "$utf8NoBom = New-Object System.Text.UTF8Encoding $false; $file = 'sproclib\\__init__.py'; $content = [System.IO.File]::ReadAllText($file); $content = $content -replace '__version__ = \"[^\"]*\"', '__version__ = \"%NEW_VERSION%\"'; $content = $content -replace 'Version: [^\\r\\n]*', 'Version: %NEW_VERSION%'; [System.IO.File]::WriteAllText($file, $content, $utf8NoBom)"
 if errorlevel 1 (
     echo ERROR: Failed to update sproclib/__init__.py
     exit /b 1
@@ -85,7 +85,7 @@ if errorlevel 1 (
 echo   ✓ sproclib/__init__.py updated
 
 echo Step 4: Updating plant module __init__.py...
-powershell -Command "[System.IO.File]::WriteAllText('sproclib\\unit\\plant\\__init__.py', ([System.IO.File]::ReadAllText('sproclib\\unit\\plant\\__init__.py') -replace '__version__ = ''[^'']*''', '__version__ = ''%NEW_VERSION%'''), [System.Text.Encoding]::UTF8)"
+powershell -Command "$utf8NoBom = New-Object System.Text.UTF8Encoding $false; [System.IO.File]::WriteAllText('sproclib\\unit\\plant\\__init__.py', ([System.IO.File]::ReadAllText('sproclib\\unit\\plant\\__init__.py') -replace '__version__ = ''[^'']*''', '__version__ = ''%NEW_VERSION%'''), $utf8NoBom)"
 if errorlevel 1 (
     echo ERROR: Failed to update sproclib/unit/plant/__init__.py
     exit /b 1
@@ -93,7 +93,7 @@ if errorlevel 1 (
 echo   ✓ sproclib/unit/plant/__init__.py updated
 
 echo Step 5: Updating Sphinx documentation...
-powershell -Command "$file = 'docs\\source\\conf.py'; $content = [System.IO.File]::ReadAllText($file); $content = $content -replace 'release = ''[^'']*''', 'release = ''%NEW_VERSION%'''; $content = $content -replace 'version = ''[^'']*''', 'version = ''%NEW_VERSION%'''; [System.IO.File]::WriteAllText($file, $content, [System.Text.Encoding]::UTF8)"
+powershell -Command "$utf8NoBom = New-Object System.Text.UTF8Encoding $false; $file = 'docs\\source\\conf.py'; $content = [System.IO.File]::ReadAllText($file); $content = $content -replace 'release = ''[^'']*''', 'release = ''%NEW_VERSION%'''; $content = $content -replace 'version = ''[^'']*''', 'version = ''%NEW_VERSION%'''; [System.IO.File]::WriteAllText($file, $content, $utf8NoBom)"
 if errorlevel 1 (
     echo ERROR: Failed to update docs/source/conf.py
     exit /b 1
@@ -136,22 +136,22 @@ echo SUCCESS: Version updated to %NEW_VERSION%
 echo ========================================================================
 echo.
 echo Updated files:
-echo   • pyproject.toml
-echo   • setup.py  
-echo   • sproclib/__init__.py
-echo   • sproclib/unit/plant/__init__.py
-echo   • docs/source/conf.py
+echo   - pyproject.toml
+echo   - setup.py  
+echo   - sproclib/__init__.py
+echo   - sproclib/unit/plant/__init__.py
+echo   - docs/source/conf.py
 echo.
 echo Git operations completed:
-echo   • Committed changes
-echo   • Created tag: v%NEW_VERSION%
+echo   - Committed changes
+echo   - Created tag: v%NEW_VERSION%
 echo.
 echo Next steps:
-echo   • Review changes: git show
-echo   • Push changes: git push origin main
-echo   • Push tags: git push origin v%NEW_VERSION%
-echo   • Build documentation: python docs\build_docs.py
-echo   • Upload to PyPI: python build_and_upload.py
+echo   - Review changes: git show
+echo   - Push changes: git push origin main
+echo   - Push tags: git push origin v%NEW_VERSION%
+echo   - Build documentation: python docs\build_docs.py
+echo   - Upload to PyPI: python build_and_upload.py
 echo.
 echo ========================================================================
 
