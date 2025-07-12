@@ -1,0 +1,69 @@
+============================================================
+PlugFlowReactor (PFR) Example
+============================================================
+Reactor: Example_PFR
+Length: 10.0 m
+Cross-sectional area: 0.1 m²
+Number of segments: 20
+Segment length: 0.500 m
+
+Operating Conditions:
+  q: 50.0 L/min
+  CAi: 2.0 mol/L
+  Ti: 400.0 K
+  Tw: 380.0 K
+
+Steady-State Analysis:
+------------------------------
+Overall conversion: 2.7%
+Inlet concentration: 1.997 mol/L
+Outlet concentration: 1.942 mol/L
+Inlet temperature: 400.0 K
+Outlet temperature: 400.0 K
+Maximum temperature: 400.0 K
+Residence time: 0.02 min
+Superficial velocity: 0.0083 m/s
+
+Parametric Study - Flow Rate Effect:
+----------------------------------------
+Flow rate:   10.0 L/min → Conversion: 13.0%, T_out: 400.0 K
+Flow rate:   25.0 L/min → Conversion: 5.4%, T_out: 400.0 K
+Flow rate:   50.0 L/min → Conversion: 2.7%, T_out: 400.0 K
+Flow rate:  100.0 L/min → Conversion: 1.4%, T_out: 400.0 K
+Flow rate:  200.0 L/min → Conversion: 0.7%, T_out: 400.0 K
+
+Parametric Study - Wall Temperature Effect:
+---------------------------------------------
+Wall temp: 350.0 K → Conversion: 2.7%, T_max: 400.0 K
+Wall temp: 370.0 K → Conversion: 2.7%, T_max: 400.0 K
+Wall temp: 390.0 K → Conversion: 2.7%, T_max: 400.0 K
+Wall temp: 410.0 K → Conversion: 2.7%, T_max: 400.0 K
+Wall temp: 430.0 K → Conversion: 2.7%, T_max: 400.0 K
+
+Dynamic Simulation (Startup):
+------------------------------
+Dynamic simulation completed successfully
+Final outlet concentration: 1.942 mol/L
+Final outlet temperature: 400.0 K
+Final conversion: 2.9%
+Time to 95% of steady state: 20.0 min
+
+Reactor Model Information:
+------------------------------
+Type: PlugFlowReactor
+Description: Plug flow reactor with axial discretization and thermal effects
+
+Key Equations:
+  reaction_kinetics: Arrhenius equation: k = k0 * exp(-Ea/RT)
+  material_balance: dCA/dt = -u*dCA/dz - k(T)*CA (per segment)
+  energy_balance: dT/dt = -u*dT/dz + (-ΔH*r)/(ρ*cp) + UA(Tw-T)/(ρ*cp*V_seg)
+  discretization: Axial discretization with finite differences
+
+Valid Operating Ranges:
+  L: 0.1-100.0 m
+  T: 250.0-800.0 K
+  CA: 0.0-100.0 mol/L
+  n_segments: 5-200 -
+
+Example completed successfully!
+Plots saved as plug_flow_reactor_example_plots.png and plug_flow_reactor_detailed_analysis.png

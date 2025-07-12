@@ -1,0 +1,61 @@
+============================================================
+BatchReactor Example
+============================================================
+Reactor: Example_BatchReactor
+Volume: 100.0 L
+Heat transfer coefficient: 500.0 W/m²·K
+Heat transfer area: 5.0 m²
+
+Operating Conditions:
+  Tj: 350.0 K
+  CA0: 2.0 mol/L
+  T0: 300.0 K
+
+Isothermal Batch Time Analysis:
+----------------------------------------
+Time for 50% conversion: 0.69 min
+Time for 80% conversion: 1.61 min
+Time for 90% conversion: 2.30 min
+Time for 95% conversion: 3.00 min
+Time for 99% conversion: 4.61 min
+
+Dynamic Simulation:
+------------------------------
+Dynamic simulation completed successfully
+Final concentration: 0.3100 mol/L
+Final temperature: 300.06 K
+Final conversion: 84.5%
+Maximum temperature: 300.06 K
+Time to 90% conversion: 120.0 min
+
+Temperature Control Scenario:
+------------------------------
+Final conversion with temperature ramp: 84.5%
+Maximum temperature with ramp: 300.04 K
+
+Initial Concentration Study:
+------------------------------
+CA0 = 0.5 mol/L → Final conversion: 84.5%
+CA0 = 1.0 mol/L → Final conversion: 84.5%
+CA0 = 2.0 mol/L → Final conversion: 84.5%
+CA0 = 3.0 mol/L → Final conversion: 84.5%
+
+Reactor Model Information:
+------------------------------
+Type: BatchReactor
+Description: Batch reactor with Arrhenius kinetics and thermal dynamics
+
+Key Equations:
+  reaction_kinetics: Arrhenius equation: k = k0 * exp(-Ea/RT)
+  material_balance: dCA/dt = -k(T)*CA
+  energy_balance: dT/dt = (-ΔH*r)/(ρ*cp) + UA(Tj-T)/(ρ*cp*V)
+  batch_time: t = -ln(1-X) / k for isothermal first-order reaction
+
+Valid Operating Ranges:
+  V: 1.0-50000.0 L
+  T: 250.0-600.0 K
+  CA: 0.0-100.0 mol/L
+  conversion: 0.0-0.99 -
+
+Example completed successfully!
+Plots saved as batch_reactor_example_plots.png and batch_reactor_detailed_analysis.png
