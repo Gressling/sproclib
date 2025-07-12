@@ -1,9 +1,12 @@
 """
-SemiBatchReactor module for SPROCLIB - Standard Process Control Library
+SemiBatch Package
 
-This module imports the SemiBatchReactor class from SemiBatchReactor.py.
+This package provides SemiBatchReactor models.
+
+Author: Thorsten Gressling <gressling@paramus.ai>
+License: MIT License
 """
 
-from ..SemiBatchReactor import SemiBatchReactor
+from .semi_batch_reactor import SemiBatchReactor
 
 __all__ = ['SemiBatchReactor']

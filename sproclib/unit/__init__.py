@@ -54,7 +54,7 @@ try:
     
     # Additional reactor models
     from .reactor.batch import BatchReactor
-    from .reactor.pfr import PlugFlowReactor
+    from .reactor.plug_flow import PlugFlowReactor
     from .reactor.fixed_bed import FixedBedReactor
     from .reactor.semi_batch import SemiBatchReactor
     from .reactor.fluidized_bed import FluidizedBedReactor

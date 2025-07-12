@@ -1,0 +1,185 @@
+REACTOR PACKAGE RESTRUCTURING PROMPT
+=====================================
+
+TASK: Restructure a Python package directory for better organization by moving each class and its related files into its own subpackage with separate class files following Python naming conventions.
+
+OBJECTIVE:
+Transform a flat or partially-nested package structure into a well-organized modular structure where:
+1. Each class gets its own subpackage directory
+2. Each class is defined in a separate .py file (not in __init__.py)
+3. All related files (docs, tests, examples, plots) are grouped with their respective class
+4. Python naming conventions are followed (snake_case filenames, CamelCase class names)
+
+TARGET STRUCTURE:
+```
+package_name/
+├── __init__.py                    # Main package exports
+├── base/                          # Base classes and utilities
+│   ├── __init__.py
+│   └── base_class.py
+├── class_type_1/                  # First class subpackage
+│   ├── __init__.py               # Imports from separate file
+│   ├── class_file.py             # Class definition (snake_case filename)
+│   ├── documentation.md          # Theory and usage docs
+│   ├── test_class.py            # Unit tests
+│   ├── example.py               # Usage examples
+│   └── plots/                   # Generated visualizations
+├── class_type_2/                  # Second class subpackage
+│   ├── __init__.py
+│   ├── class_file.py
+│   ├── documentation.md
+│   ├── test_class.py
+│   ├── example.py
+│   └── plots/
+└── ...                           # Additional class subpackages
+```
+
+IMPLEMENTATION STEPS:
+
+1. ANALYZE CURRENT STRUCTURE
+   - List all Python files in the target directory
+   - Identify class definitions and their locations
+   - Map related files (tests, examples, docs) to each class
+   - Note any existing subdirectory organization
+
+2. CREATE SUBPACKAGE DIRECTORIES
+   - Create one directory per class using snake_case naming
+   - Ensure each directory represents a single responsibility/class type
+
+3. ORGANIZE FILES BY CLASS
+   - Move or copy all files related to each class into its subpackage
+   - Group: class definition, tests, examples, documentation, plots
+   - Maintain file naming conventions
+
+4. EXTRACT CLASSES TO SEPARATE FILES
+   - If classes are defined in __init__.py files, extract them to separate .py files
+   - Use snake_case for filenames (e.g., batch_reactor.py, cstr.py)
+   - Keep CamelCase for class names (e.g., BatchReactor, CSTR)
+
+5. UPDATE __init__.py FILES
+   - Main package __init__.py: Import all classes from subpackages
+   - Subpackage __init__.py: Import class from its separate file
+   
+   Example subpackage __init__.py:
+   ```python
+   """
+   ClassName Package
+   
+   This package provides ClassName models.
+   """
+   
+   from .class_file import ClassName
+   
+   __all__ = ['ClassName']
+   ```
+
+6. CLEAN UP LEGACY FILES
+   - Remove duplicate/redundant files from root directory
+   - Remove old single-file class definitions if moved to subpackages
+   - Remove empty or obsolete directories
+
+7. UPDATE IMPORTS THROUGHOUT CODEBASE
+   - Update any import statements in other parts of the codebase
+   - Fix references to old module paths
+   - Update documentation that references old structure
+
+8. VERIFY FUNCTIONALITY
+   - Test that all classes can be imported from main package
+   - Test instantiation of all classes
+   - Run existing tests to ensure they still work
+   - Verify examples and documentation are accessible
+
+NAMING CONVENTIONS:
+
+FILENAMES (snake_case):
+- cstr.py (for simple names)
+- batch_reactor.py (for compound names)
+- plug_flow_reactor.py (for multi-word names)
+- fixed_bed_reactor.py
+
+CLASS NAMES (CamelCase/Acronyms):
+- CSTR (uppercase for acronyms)
+- BatchReactor (CamelCase for compound names)
+- PlugFlowReactor
+- FixedBedReactor
+
+DIRECTORY NAMES (snake_case):
+- cstr/
+- batch/
+- plug_flow/
+- fixed_bed/
+- semi_batch/
+
+TESTING VALIDATION:
+
+After restructuring, verify with:
+```python
+# Test imports
+from package_name import Class1, Class2, Class3
+
+# Test instantiation
+obj1 = Class1()
+obj2 = Class2()
+obj3 = Class3()
+
+print("✓ All classes successfully imported and instantiated!")
+```
+
+BENEFITS OF THIS STRUCTURE:
+
+1. **Modularity**: Each class is self-contained with its related files
+2. **Maintainability**: Easy to find and modify class-specific code
+3. **Scalability**: Easy to add new classes without cluttering
+4. **Testing**: Tests are co-located with their respective classes
+5. **Documentation**: Docs are grouped with relevant code
+6. **Python Standards**: Follows Python packaging best practices
+7. **IDE Support**: Better code navigation and organization
+
+COMMON PITFALLS TO AVOID:
+
+1. Don't put class definitions directly in __init__.py files
+2. Don't use CamelCase for filenames (use snake_case)
+3. Don't forget to update import statements elsewhere
+4. Don't leave duplicate files in multiple locations
+5. Don't break existing API - maintain same import paths for users
+6. Don't forget to test all functionality after restructuring
+
+EXAMPLE REFACTORING SCRIPT TEMPLATE:
+
+```python
+#!/usr/bin/env python3
+"""
+Package restructuring script
+"""
+
+import os
+import shutil
+
+def restructure_package():
+    # Define package directory
+    package_dir = "/path/to/package"
+    
+    # Define class mappings
+    classes = {
+        'subpackage_name': {
+            'class': 'ClassName', 
+            'file': 'class_file.py',
+            'related_files': ['test_*.py', 'example.py', '*.md']
+        }
+    }
+    
+    for subdir, info in classes.items():
+        # Create subpackage directory
+        subdir_path = os.path.join(package_dir, subdir)
+        os.makedirs(subdir_path, exist_ok=True)
+        
+        # Move related files
+        # Extract class to separate file
+        # Update __init__.py
+        # Update imports
+        
+if __name__ == "__main__":
+    restructure_package()
+```
+
+This prompt provides a complete framework for restructuring any Python package directory into a well-organized, modular structure following Python best practices.

@@ -10,10 +10,7 @@ License: MIT License
 
 import numpy as np
 import logging
-from ..base import ProcessModel
-
-logger = logging.getLogger(__name__)
-
+from ...base import ProcessModel
 
 class PlugFlowReactor(ProcessModel):
     """Plug Flow Reactor (PFR) model with axial discretization."""
@@ -290,5 +287,3 @@ class PlugFlowReactor(ProcessModel):
             ]
         }
 
-
-__all__ = ['PlugFlowReactor']

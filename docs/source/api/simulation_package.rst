@@ -5,8 +5,7 @@ The simulation package provides dynamic simulation capabilities for process cont
 with integrated control loops, disturbances, and performance monitoring.
 
 .. note::
-   This is part of the modern modular structure of SPROCLIB. For legacy compatibility,
-   see :doc:`legacy`.
+   This is part of the modern modular structure of SPROCLIB.
 
 Submodules
 ----------

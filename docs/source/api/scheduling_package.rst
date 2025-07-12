@@ -5,8 +5,7 @@ The scheduling package provides batch process scheduling tools including
 State-Task Networks for production scheduling optimization.
 
 .. note::
-   This is part of the modern modular structure of SPROCLIB. For legacy compatibility,
-   see :doc:`legacy`.
+   This is part of the modern modular structure of SPROCLIB.
 
 Submodules
 ----------

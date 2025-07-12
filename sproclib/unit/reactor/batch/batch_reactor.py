@@ -10,10 +10,7 @@ License: MIT License
 
 import numpy as np
 import logging
-from ..base import ProcessModel
-
-logger = logging.getLogger(__name__)
-
+from ...base import ProcessModel
 
 class BatchReactor(ProcessModel):
     """Batch reactor model with heating/cooling."""
@@ -239,5 +236,3 @@ class BatchReactor(ProcessModel):
             ]
         }
 
-
-__all__ = ['BatchReactor']

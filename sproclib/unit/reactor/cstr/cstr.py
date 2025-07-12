@@ -11,7 +11,7 @@ License: MIT License
 import numpy as np
 import logging
 from typing import Optional, Tuple, Dict, Any
-from ..base import ProcessModel
+from ...base import ProcessModel
 
 logger = logging.getLogger(__name__)
 
@@ -213,10 +213,6 @@ class CSTR(ProcessModel):
             'space_time_yield': CA / residence_time if residence_time > 0 else 0.0
         }
 
-    def test_method(self):
-        """Test method to check if methods are being added correctly."""
-        return "test_works"
-
     def describe(self) -> dict:
         """
         Introspect metadata for documentation and algorithm querying.
@@ -267,6 +263,3 @@ class CSTR(ProcessModel):
                 'No mass transfer limitations'
             ]
         }
-
-
-__all__ = ['CSTR']

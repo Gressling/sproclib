@@ -1,0 +1,295 @@
+
+
+
+AUTOMATED DOCUMENTATION GENERATION TASK
+=====================================
+
+INSTRUCTIONS FOR CODING AGENT:
+- No summary or change lists needed
+- No emojis or marketing language
+- Focus on technical accuracy and completeness
+- TARGET AUDIENCE: Chemical engineers and chemists (NOT programmers)
+- Keep documentation COMPACT and PRACTICAL
+- Emphasize chemical/physical principles over coding details
+
+TARGET DIRECTORY: /transport/continuous/liquid/
+(Replace with actual path as needed)
+
+FOR EACH CLASS AND FUNCTION, EXECUTE THESE STEPS IN ORDER:
+
+STEP 1: ADD DESCRIBE METHOD
+---------------------------
+Add or modify the describe(self) method in each class:
+
+```python
+def describe(self) -> dict:
+    """
+    Introspect metadata for documentation and algorithm querying.
+    
+    Returns:
+        dict: Metadata about the model including algorithms, 
+              parameters, equations, and usage information.
+    """
+    return {
+        'type': 'ClassName',
+        'description': 'Brief technical description',
+        'category': 'transport/reactor/controller/etc',
+        'algorithms': {
+            'method_name': 'Mathematical description or equation'
+        },
+        'parameters': {
+            'param_name': {
+                'value': self.param_name,
+                'units': 'SI units',
+                'description': 'Parameter purpose'
+            }
+        },
+        'state_variables': self.state_variables,
+        'inputs': self.inputs,
+        'outputs': self.outputs,
+        'valid_ranges': {
+            'param': {'min': float, 'max': float, 'units': 'string'}
+        },
+        'applications': ['List', 'of', 'applications'],
+        'limitations': ['List', 'of', 'limitations']
+    }
+```
+
+STEP 2: CREATE DOCUMENTATION FILE
+---------------------------------
+Filename: {class_name}_documentation.md
+
+KEEP COMPACT - Focus on chemical engineering principles, not programming:
+
+Required sections:
+- ## Overview and Use Case (2-3 sentences max)
+- ## Physical/Chemical Principles (Key equations and theory)
+- ## Process Parameters (Engineering units, typical ranges)
+- ## Operating Conditions (Pressure, temperature, flow rates)
+- ## Industrial Applications (Where this is used in practice)
+- ## Limitations and Assumptions (Physical constraints)
+- ## Key References (1-3 essential papers/books)
+
+Writing guidelines:
+- Use chemical engineering terminology
+- Include dimensional analysis
+- Mention typical industrial scales
+- Focus on physical meaning, not code implementation
+
+STEP 3: CREATE TEST FILE
+-----------------------
+Filename: {class_name}_test.py
+
+Requirements:
+- Use pytest framework
+- Test all public methods
+- Test edge cases and boundary conditions  
+- Include parameter validation tests
+- Use pytest fixtures for setup/teardown
+- No mock tests - use real calculations
+- Include assertions with meaningful error messages
+
+Example structure:
+```python
+import pytest
+import numpy as np
+from class_module import ClassName
+
+class TestClassName:
+    @pytest.fixture
+    def default_instance(self):
+        return ClassName()
+    
+    def test_initialization(self, default_instance):
+        # Test default parameters
+        
+    def test_method_name(self, default_instance):
+        # Test specific method behavior
+        
+    def test_edge_cases(self, default_instance):
+        # Test boundary conditions
+```
+
+STEP 4: CREATE EXAMPLE FILE
+---------------------------
+Filename: {class_name}_example.py
+
+Requirements for chemical engineers:
+- Use realistic industrial parameters
+- Include dimensional analysis comments
+- Show typical process conditions (P, T, flow rates)
+- Demonstrate scale-up considerations
+- Compare to handbook correlations where applicable
+- Include units in all calculations
+- Show sensitivity to key process variables
+
+Example structure:
+```python
+"""
+Industrial Example: [Process Name]
+Typical plant conditions and scale
+"""
+# Process conditions (typical industrial scale)
+pressure = 2.5e5  # Pa (2.5 bar)
+temperature = 298  # K (25°C)
+flow_rate = 0.1   # m³/s (360 m³/h)
+
+# Compare results with Perry's handbook or similar
+```
+
+STEP 5: GENERATE OUTPUT FILE
+---------------------------
+Filename: {class_name}_example.out
+
+Action required:
+- Run the example file: `python {class_name}_example.py > {class_name}_example.out`
+- Capture all printed output in ASCII format
+
+STEP 6: CREATE VISUALIZATION FILES
+----------------------------------
+Generate separate PNG files focusing on chemical engineering insights:
+- {class_name}_example_plots.png: Process behavior (performance curves, etc.)
+- {class_name}_detailed_analysis.png: Parameter sensitivity or phase diagrams
+
+Requirements for chemical engineers:
+- Use engineering units on all axes
+- Include operating windows/safe zones
+- Show typical industrial ranges
+- Compare with experimental data when possible
+- Include dimensionless groups where applicable (Re, Pr, etc.)
+- Label critical points (phase transitions, limits)
+- Professional engineering plot style
+
+STEP 7: CREATE RST DOCUMENTATION
+--------------------------------
+Filename: {class_name}.rst
+
+COMPACT format for chemical engineers:
+
+```rst
+Class Name
+==========
+
+Process Description
+------------------
+Brief overview of the chemical/physical process (2-3 lines)
+
+Key Equations
+-------------
+Mathematical model with physical meaning
+
+Process Parameters
+------------------
+Table of parameters with engineering units and typical ranges
+
+Industrial Example
+------------------
+.. literalinclude:: {class_name}_example.py
+   :language: python
+
+Results
+-------
+.. literalinclude:: {class_name}_example.out
+   :language: text
+
+Process Behavior
+----------------
+.. image:: {class_name}_example_plots.png
+   :width: 500px
+
+Sensitivity Analysis
+-------------------
+.. image:: {class_name}_detailed_analysis.png
+   :width: 500px
+
+References
+----------
+Essential chemical engineering references only
+```
+
+STEP 8: CREATE/UPDATE INDEX.RST
+-------------------------------
+Filename: index.rst
+
+CHEMICAL ENGINEERING FOCUS:
+
+```rst
+Transport Phenomena - Continuous Liquid Flow
+============================================
+
+.. toctree::
+   :maxdepth: 2
+   
+   class_name_1
+   class_name_2
+
+Process Models Overview
+----------------------
+
+**ClassName1**: Brief description emphasizing the chemical process, 
+typical applications (reactor types, separation units, etc.)
+
+**ClassName2**: Focus on where this fits in a plant flowsheet
+
+Unit Operations Context
+----------------------
+Brief explanation of how these models fit into:
+- Mass transfer operations
+- Fluid mechanics
+- Heat transfer
+- Reaction engineering
+```
+
+STEP 9: COPY TO DOCUMENTATION FOLDER
+------------------------------------
+Target location: /docs/source/transport/continuous/liquid/
+(Adjust path structure as needed)
+
+Files to copy:
+- All *.rst files
+- All *.png image files  
+- All *.out output files
+- Any other files referenced in RST
+
+Actions:
+1. Create directory structure if it doesn't exist
+2. Copy only files that are referenced in the RST documentation
+3. Maintain relative paths for images and includes
+
+VALIDATION CHECKLIST FOR CHEMICAL ENGINEERS:
+------------------------------------------
+□ describe() method added to all classes
+□ Documentation focuses on chemical/physical principles
+□ Examples use realistic industrial parameters with units
+□ Test files verify engineering calculations (not just code)
+□ Output shows meaningful process results
+□ Plots use engineering units and show process behavior
+□ RST documentation is compact and process-focused
+□ Index emphasizes unit operations context
+□ All files copied to documentation folder
+□ Documentation builds without errors
+
+WRITING GUIDELINES FOR CHEMICAL ENGINEERS:
+-----------------------------------------
+DO:
+- Use SI units consistently
+- Include typical industrial ranges
+- Reference Perry's, Unit Operations textbooks
+- Mention where this fits in a process plant
+- Include dimensionless numbers when relevant
+- Show scale-up considerations
+- Compare with experimental correlations
+
+DON'T:
+- Focus on programming implementation details
+- Include extensive code explanations
+- Use computer science jargon
+- Over-explain software features
+- Create academic examples with unrealistic parameters
+
+ERROR HANDLING:
+--------------
+- If a class lacks physical meaning, document what process it represents
+- If parameters are missing units, add engineering units
+- If literature references are unavailable, cite standard ChE handbooks
+- If tests fail on engineering grounds, fix the underlying physical model   

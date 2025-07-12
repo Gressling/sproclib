@@ -5,8 +5,7 @@ The utilities package provides essential control design utilities, mathematical 
 and data processing functions for process control applications.
 
 .. note::
-   This is part of the modern modular structure of SPROCLIB. For legacy compatibility,
-   see :doc:`legacy`.
+   This is part of the modern modular structure of SPROCLIB.
 
 Submodules
 ----------

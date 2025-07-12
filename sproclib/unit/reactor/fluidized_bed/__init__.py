@@ -1,9 +1,12 @@
 """
-FluidizedBedReactor module for SPROCLIB - Standard Process Control Library
+FluidizedBed Package
 
-This module imports the FluidizedBedReactor class from FluidizedBedReactor.py.
+This package provides FluidizedBedReactor models.
+
+Author: Thorsten Gressling <gressling@paramus.ai>
+License: MIT License
 """
 
-from ..FluidizedBedReactor import FluidizedBedReactor
+from .fluidized_bed_reactor import FluidizedBedReactor
 
 __all__ = ['FluidizedBedReactor']

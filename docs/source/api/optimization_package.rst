@@ -5,8 +5,7 @@ The optimization package provides economic optimization tools, process optimizat
 and parameter estimation capabilities for process control systems.
 
 .. note::
-   This is part of the modern modular structure of SPROCLIB. For legacy compatibility,
-   see :doc:`legacy`.
+   This is part of the modern modular structure of SPROCLIB.
 
 Submodules
 ----------

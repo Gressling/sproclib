@@ -54,14 +54,6 @@ Quick Start
    # Or use advanced model-based control
    imc = IMCController(process_model={'K': 2.0, 'tau': 5.0, 'theta': 1.0})
 
-**Legacy Imports (Backward Compatibility):**
-
-.. code-block:: python
-
-   from controllers import PIDController, ZieglerNicholsTuning
-   
-   # Same usage as above
-
 Base Classes
 ------------
 
@@ -270,31 +262,6 @@ Examples
    params = tuner.calculate_parameters(test_results)
    
    pid = PIDController(Kp=params['Kp'], Ki=params['Ki'], Kd=params['Kd'])
-
-Migration from Legacy Interface
--------------------------------
-
-The modular controller structure provides several benefits over the legacy monolithic controllers.py:
-
-**Benefits of New Structure:**
-
-* **Better Organization**: Controllers grouped by type and functionality
-* **Easier Maintenance**: Each controller class in its own file  
-* **Enhanced Discoverability**: Clear import paths for specific controllers
-* **Future-Proof**: Modular design supports easy extension with new controller types
-
-**Migration Example:**
-
-.. code-block:: python
-
-   # Old (Legacy - still supported)
-   from controllers import PIDController, ZieglerNicholsTuning
-   
-   # New (Recommended)
-   from controller.pid.PIDController import PIDController
-   from controller.tuning.ZieglerNicholsTuning import ZieglerNicholsTuning
-
-The legacy interface remains fully functional for backward compatibility.
 
 See Also
 --------

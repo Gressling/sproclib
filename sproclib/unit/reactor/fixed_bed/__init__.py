@@ -1,9 +1,12 @@
 """
-FixedBedReactor module for SPROCLIB - Standard Process Control Library
+FixedBed Package
 
-This module imports the FixedBedReactor class from FixedBedReactor.py.
+This package provides FixedBedReactor models.
+
+Author: Thorsten Gressling <gressling@paramus.ai>
+License: MIT License
 """
 
-from ..FixedBedReactor import FixedBedReactor
+from .fixed_bed_reactor import FixedBedReactor
 
 __all__ = ['FixedBedReactor']

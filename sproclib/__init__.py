@@ -20,14 +20,43 @@ try:
 except ImportError:
     pass
 
+# Import reactor models from new organized structure
 try:
-    from .models import (
-        ProcessModel, CSTR, Tank, HeatExchanger, DistillationTray, BinaryDistillationColumn, 
-        LinearApproximation, PlugFlowReactor, BatchReactor, FixedBedReactor, SemiBatchReactor,
-        InteractingTanks, ControlValve, ThreeWayValve
+    from .unit.reactor import (
+        CSTR, BatchReactor, PlugFlowReactor, FixedBedReactor, 
+        SemiBatchReactor, FluidizedBedReactor
     )
 except ImportError:
-    pass
+    # Fallback to old structure if new one not available
+    CSTR = BatchReactor = PlugFlowReactor = FixedBedReactor = None
+    SemiBatchReactor = FluidizedBedReactor = None
+
+# Import other unit operations
+try:
+    from .unit.tank.Tank import Tank
+    from .unit.heat_exchanger.HeatExchanger import HeatExchanger
+    from .unit.distillation.DistillationTray import DistillationTray
+    from .unit.distillation.BinaryDistillationColumn import BinaryDistillationColumn
+    from .unit.valve.ControlValve import ControlValve
+    from .unit.valve.ThreeWayValve import ThreeWayValve
+except ImportError:
+    # Create placeholder classes for backward compatibility
+    Tank = HeatExchanger = DistillationTray = BinaryDistillationColumn = None
+    ControlValve = ThreeWayValve = None
+
+# Legacy models import (deprecated but maintained for compatibility)
+try:
+    from .models import (
+        ProcessModel, LinearApproximation, InteractingTanks
+    )
+except ImportError:
+    # Create basic ProcessModel if not available
+    try:
+        from .base import ProcessModel
+    except ImportError:
+        class ProcessModel:
+            pass
+    LinearApproximation = InteractingTanks = None
 
 try:
     from .analysis import TransferFunction, Simulation, Optimization, StateTaskNetwork

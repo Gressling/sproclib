@@ -10,10 +10,7 @@ License: MIT License
 
 import numpy as np
 import logging
-from ..base import ProcessModel
-
-logger = logging.getLogger(__name__)
-
+from ...base import ProcessModel
 
 class SemiBatchReactor(ProcessModel):
     """Semi-batch reactor model with fed-batch operation."""
@@ -214,5 +211,3 @@ class SemiBatchReactor(ProcessModel):
             ]
         }
 
-
-__all__ = ['SemiBatchReactor']

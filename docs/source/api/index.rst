@@ -5,8 +5,6 @@ Complete API documentation for the Standard Process Control Library (SPROCLIB).
 
 .. note::
    **Recommended for New Development**: Use the modern modular packages listed below.
-   Legacy modules are maintained for backward compatibility but should be avoided
-   for new projects.
 
 Quick Navigation
 ----------------
@@ -41,18 +39,8 @@ The SPROCLIB API is organized into focused packages, each serving specific purpo
    scheduling_package
    transport_package
    utilities_package
-
-Legacy Compatibility
-~~~~~~~~~~~~~~~~~~~~
-
-For backward compatibility with existing code:
-
-.. toctree::
-   :maxdepth: 2
-
    units_package
    controllers_package
-   legacy
 
 API Organization
 ----------------
@@ -70,32 +58,6 @@ API Organization
 **Optimization and Planning**
   * ``optimization/`` - Economic optimization, parameter estimation
   * ``scheduling/`` - Batch process scheduling, State-Task Networks
-
-**Legacy Support**
-  * ``legacy/`` - Deprecated interfaces with migration guidance
-
-Migration Guide
----------------
-
-**From Legacy to Modern API:**
-
-Old (still works with warnings)::
-
-    from process_control import TransferFunction, tune_pid
-    from analysis import step_response
-
-New (recommended)::
-
-    from sproclib.analysis.transfer_function import TransferFunction
-    from sproclib.utilities.control_utils import tune_pid
-    from sproclib.analysis.system_analysis import step_response
-
-**Benefits of Modern API:**
-- Faster import times (import only what you need)
-- Better organization and discoverability
-- Enhanced type hints and documentation
-- Improved testing and reliability
-- Future-proof design for new features
 
 Common Usage Patterns
 ---------------------
@@ -150,9 +112,8 @@ Getting Started
 3. Practice with :doc:`../examples` for hands-on learning
 
 **For Experienced Users:**
-1. Review :doc:`../migration` for upgrading from legacy code
-2. Explore :doc:`optimization_package` for advanced features
-3. Consult :doc:`utilities_package` for specialized tools
+1. Explore :doc:`optimization_package` for advanced features
+2. Consult :doc:`utilities_package` for specialized tools
 
 **For Developers:**
 1. See :doc:`../contributing` for development guidelines

@@ -16,7 +16,7 @@ Created by: **Thorsten Gressling** (gressling@paramus.ai)
 Overview
 --------
 
-SPROCLIB provides essential tools for process modeling, control design, optimization, and advanced control techniques used in chemical engineering. The library features a modern modular architecture with clean separation of concerns and excellent backward compatibility.
+SPROCLIB provides essential tools for process modeling, control design, optimization, and advanced control techniques used in chemical engineering. The library features a modern modular architecture with clean separation of concerns.
 
 Quick Start
 -----------
@@ -60,25 +60,39 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Semantic Plant Design
-
-   plant/semantic_plant_design
-   plant/tensorflow_comparison
-   plant/simple_example/index
-   .. plant/semantic_examples
-
-.. toctree::
-   :maxdepth: 2
    :caption: Tutorials and Examples
 
    tutorials
-   examples
    case_studies
    best_practices
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Unit Operations
+
+   unit/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Transport Systems
+
+   transport/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Control Systems
+
+   controller/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Semantic Plant Design
+
+   plant/index
+
+.. toctree::
    :maxdepth: 3
-   :caption: Process Control and Modeling
+   :caption: Programming Interfaces (API)
 
    api/index
    api/units_package
@@ -89,7 +103,6 @@ Contents
    api/optimization_package
    api/scheduling_package
    api/utilities_package
-   api/legacy
 
 .. toctree::
    :maxdepth: 2
@@ -131,17 +144,8 @@ The SPROCLIB Process Control API is organized into focused packages:
 * **Scheduling Package** - Batch process scheduling using State-Task Networks
 * **Transport Package** - Fluid transport systems, pipeline modeling, and multiphase flow
 * **Utilities Package** - Control design utilities, mathematical tools, and data processing
-
-**Legacy Modules (Backward Compatibility):**
-
-* **Legacy Package** - Deprecated wrappers for existing code (use modern packages instead)
-* **Units** - Physical process equipment (tanks, pumps, reactors, etc.)
-* **Controllers** - Legacy controller modules
-
-.. note::
-   **Migration Recommended**: While legacy modules remain available for backward compatibility,
-   new development should use the modern modular packages. See the :doc:`api/legacy` documentation
-   for migration guidance.
+* **Units Package** - Physical process equipment (tanks, pumps, reactors, etc.)
+* **Controllers Package** - Control algorithms and implementations
 
 Indices and tables
 ==================

@@ -1,12 +1,12 @@
 """
-Batch Reactor Module for SPROCLIB
+Batch Package
 
-This module imports batch reactor classes.
+This package provides BatchReactor models.
 
 Author: Thorsten Gressling <gressling@paramus.ai>
 License: MIT License
 """
 
-from ..BatchReactor import BatchReactor
+from .batch_reactor import BatchReactor
 
 __all__ = ['BatchReactor']

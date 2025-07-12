@@ -10,10 +10,7 @@ License: MIT License
 
 import numpy as np
 import logging
-from ..base import ProcessModel
-
-logger = logging.getLogger(__name__)
-
+from ...base import ProcessModel
 
 class FixedBedReactor(ProcessModel):
     """Fixed bed catalytic reactor model."""
@@ -298,5 +295,3 @@ class FixedBedReactor(ProcessModel):
             ]
         }
 
-
-__all__ = ['FixedBedReactor']

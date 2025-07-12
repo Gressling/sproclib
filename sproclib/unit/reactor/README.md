@@ -5,7 +5,7 @@ This directory contains various reactor process unit models for chemical reactio
 ## Contents
 
 - `cstr/`: Continuous Stirred Tank Reactor models
-- `pfr/`: Plug Flow Reactor models  
+- `plug_flow/`: Plug Flow Reactor models  
 - `batch/`: Batch Reactor models
 - `semi_batch/`: Semi-Batch Reactor models
 - `fixed_bed/`: Fixed Bed Reactor models
@@ -19,7 +19,7 @@ This directory contains various reactor process unit models for chemical reactio
 - Multiple reaction support
 - Heat generation/removal modeling
 
-### Plug Flow Reactor (`pfr/`)
+### Plug Flow Reactor (`plug_flow/`)
 - Distributed parameter reactor model
 - Axial concentration and temperature profiles
 - Reaction kinetics integration
@@ -63,7 +63,7 @@ cstr = CSTR(
 )
 
 # PFR example
-from paramus.chemistry.process_control.unit.reactor.pfr import PlugFlowReactor
+from sproclib.unit.reactor.plug_flow import PlugFlowReactor
 
 pfr = PlugFlowReactor(
     length=10.0,          # m

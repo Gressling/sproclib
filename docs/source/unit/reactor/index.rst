@@ -20,6 +20,7 @@ Available Reactor Types
    :maxdepth: 2
 
    cstr
+   cstr_describe_method
    batch_reactor
    plug_flow_reactor
    fixed_bed_reactor

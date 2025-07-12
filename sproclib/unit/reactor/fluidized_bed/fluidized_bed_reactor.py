@@ -12,10 +12,7 @@ from typing import Dict, Tuple, List, Optional
 from scipy.optimize import fsolve
 import logging
 
-from ..base import ProcessModel
-
-logger = logging.getLogger(__name__)
-
+from ...base import ProcessModel
 
 class FluidizedBedReactor(ProcessModel):
     """Fluidized bed catalytic reactor model with bubble and emulsion phases."""
@@ -233,5 +230,3 @@ class FluidizedBedReactor(ProcessModel):
             ]
         }
 
-
-__all__ = ['FluidizedBedReactor']

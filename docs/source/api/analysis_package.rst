@@ -5,8 +5,7 @@ The analysis package provides comprehensive tools for process control system ana
 including transfer functions, system analysis, and model identification.
 
 .. note::
-   This is part of the modern modular structure of SPROCLIB. For legacy compatibility,
-   see :doc:`legacy`.
+   This is part of the modern modular structure of SPROCLIB.
 
 Submodules
 ----------
