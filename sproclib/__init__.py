@@ -1,4 +1,4 @@
-﻿"""
+"""
 SPROCLIB - Standard Process Control Library
 
 A library for chemical process control. Provides essential classes 
@@ -7,7 +7,7 @@ and advanced control techniques.
 
 Author: Thorsten Gressling <gressling@paramus.ai>
 License: MIT License
-Version: 2.0.42.0.4
+Version: 2.1.02.0.42.0.4
 """
 
 __version__ = "2.0.4"

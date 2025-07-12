@@ -1,4 +1,4 @@
-﻿"""
+"""
 SPROCLIB Plant Package - Semantic Plant Design API
 =================================================
 
@@ -22,5 +22,5 @@ __all__ = [
     'PlantOptimizer'
 ]
 
-__version__ = '2.0.4'
+__version__ = '2.1.0'
 __author__ = 'SPROCLIB Development Team'

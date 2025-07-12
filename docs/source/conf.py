@@ -1,4 +1,4 @@
-﻿# Configuration file for the Sphinx documentation builder.
+# Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
@@ -51,10 +51,10 @@ autodoc_typehints = 'description'
 project = 'SPROCLIB - Standard Process Control Library'
 copyright = '2025, Thorsten Gressling - MIT License'
 author = 'Thorsten Gressling'
-release = '2.0.4'
+release = '2.1.0'
 
 # The full version, including alpha/beta/rc tags
-version = '2.0.4'
+version = '2.1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
