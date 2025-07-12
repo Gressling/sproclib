@@ -1,0 +1,51 @@
+Reactor Metadata:
+Type: SemiBatchReactor
+Description: Semi-batch reactor with fed-batch operation and variable volume
+Category: reactor
+
+Algorithms:
+  reaction_kinetics: Arrhenius equation: k = k0 * exp(-Ea/RT)
+  material_balance: dnA/dt = F_in*CA_in - k(T)*CA*V
+  volume_balance: dV/dt = F_in
+  energy_balance: dT/dt = heat terms with variable volume
+
+Applications:
+  - Fed-batch processes
+  - Controlled polymerization
+  - Fine chemical production
+  - Crystallization
+  - Biochemical fermentation
+
+Semi-Batch Reactor Example
+==================================================
+Reactor: Fed-Batch Reactor
+Maximum Volume: 200.0 L
+Activation Energy: 72.8 kJ/mol
+Heat of Reaction: -52.0 kJ/mol
+
+Initial Conditions:
+Initial moles: 20.0 mol
+Initial temperature: 300.0 K
+Initial volume: 50.0 L
+Initial concentration: 0.40 mol/L
+
+Solving reactor dynamics...
+Simulation completed successfully!
+
+Final Results:
+Time: 120.0 min
+Moles: 22.62 mol
+Temperature: 306.0 K
+Volume: 125.0 L
+Concentration: 0.181 mol/L
+Conversion: -13.1%
+
+
+Comparing Different Feed Strategies
+==================================================
+Final Conversions:
+Constant Feed: -103.9%
+Linear Decrease: -39.3%
+Exponential Decay: -9.3%
+
+Semi-batch reactor example completed successfully!

@@ -213,5 +213,60 @@ class CSTR(ProcessModel):
             'space_time_yield': CA / residence_time if residence_time > 0 else 0.0
         }
 
+    def test_method(self):
+        """Test method to check if methods are being added correctly."""
+        return "test_works"
+
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the CSTR model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'type': 'CSTR',
+            'description': 'Continuous Stirred Tank Reactor with Arrhenius kinetics and energy balance',
+            'category': 'reactor',
+            'algorithms': {
+                'reaction_kinetics': 'Arrhenius equation: k = k0 * exp(-Ea/RT)',
+                'material_balance': 'dCA/dt = q/V*(CAi - CA) - k(T)*CA',
+                'energy_balance': 'dT/dt = q/V*(Ti - T) + (-dHr)*k(T)*CA/(rho*Cp) + UA*(Tc - T)/(V*rho*Cp)',
+                'steady_state': 'Numerical solution using scipy.optimize.fsolve'
+            },
+            'parameters': {
+                'V': {'value': self.V, 'units': 'L', 'description': 'Reactor volume'},
+                'k0': {'value': self.k0, 'units': '1/min', 'description': 'Arrhenius pre-exponential factor'},
+                'Ea': {'value': self.Ea, 'units': 'J/gmol', 'description': 'Activation energy'},
+                'R': {'value': self.R, 'units': 'J/gmol/K', 'description': 'Gas constant'},
+                'rho': {'value': self.rho, 'units': 'g/L', 'description': 'Density'},
+                'Cp': {'value': self.Cp, 'units': 'J/g/K', 'description': 'Heat capacity'},
+                'dHr': {'value': self.dHr, 'units': 'J/gmol', 'description': 'Heat of reaction'},
+                'UA': {'value': self.UA, 'units': 'J/min/K', 'description': 'Heat transfer coefficient'}
+            },
+            'state_variables': self.state_variables,
+            'inputs': self.inputs,
+            'outputs': self.outputs,
+            'valid_ranges': {
+                'V': {'min': 1.0, 'max': 10000.0, 'units': 'L'},
+                'T': {'min': 250.0, 'max': 600.0, 'units': 'K'},
+                'CA': {'min': 0.0, 'max': 100.0, 'units': 'mol/L'},
+                'q': {'min': 0.1, 'max': 1000.0, 'units': 'L/min'}
+            },
+            'applications': [
+                'Chemical reaction engineering',
+                'Process control design',
+                'Reactor optimization',
+                'Safety analysis'
+            ],
+            'limitations': [
+                'Perfect mixing assumption',
+                'Single reaction assumed',
+                'Constant physical properties',
+                'No mass transfer limitations'
+            ]
+        }
+
 
 __all__ = ['CSTR']

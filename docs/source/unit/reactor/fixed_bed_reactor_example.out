@@ -1,0 +1,46 @@
+============================================================
+FixedBedReactor Example
+============================================================
+Reactor: Example_FixedBed
+Bed length: 5.0 m
+Bed diameter: 1.0 m
+Bed porosity: 0.4
+Catalyst density: 1500.0 kg/m³
+Particle diameter: 5.0 mm
+Total bed volume: 3.927 m³
+Void volume: 1.571 m³
+
+Operating Conditions:
+  u: 0.1 m/s
+  CAi: 1000.0 mol/m³
+  Ti: 450.0 K
+  Tw: 430.0 K
+
+Steady-State Analysis:
+------------------------------
+Overall conversion: 0.0%
+Inlet concentration: 0.0 mol/m³
+Outlet concentration: 0.0 mol/m³
+Inlet temperature: 33640.0 K
+Outlet temperature: 33521.7 K
+Maximum temperature: 33640.0 K
+Residence time: 0.33 min
+Space velocity: 72.0 h⁻¹
+
+Reactor Model Information:
+------------------------------
+Type: FixedBedReactor
+Description: Fixed bed catalytic reactor with axial discretization
+
+Key Applications:
+  - Catalytic processes
+  - Petrochemical reactors
+  - Environmental catalysis
+  - Hydrogenation reactions
+  - Oxidation processes
+Generating plots...
+------------------------------
+Plot saved as: fixed_bed_reactor_example_plots.png
+Detailed analysis plot saved as: fixed_bed_reactor_detailed_analysis.png
+
+Example completed successfully!

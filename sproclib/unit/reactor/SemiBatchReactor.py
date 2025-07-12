@@ -186,3 +186,33 @@ class SemiBatchReactor(ProcessModel):
             conversion = 0.0
         
         return max(0.0, min(1.0, conversion))
+    
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the SemiBatchReactor model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'type': 'SemiBatchReactor',
+            'description': 'Semi-batch reactor with fed-batch operation and variable volume',
+            'category': 'reactor',
+            'algorithms': {
+                'reaction_kinetics': 'Arrhenius equation: k = k0 * exp(-Ea/RT)',
+                'material_balance': 'dnA/dt = F_in*CA_in - k(T)*CA*V',
+                'volume_balance': 'dV/dt = F_in',
+                'energy_balance': 'dT/dt = heat terms with variable volume'
+            },
+            'applications': [
+                'Fed-batch processes',
+                'Controlled polymerization', 
+                'Fine chemical production',
+                'Crystallization',
+                'Biochemical fermentation'
+            ]
+        }
+
+
+__all__ = ['SemiBatchReactor']

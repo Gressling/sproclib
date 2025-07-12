@@ -205,3 +205,33 @@ class FluidizedBedReactor(ProcessModel):
         if CA_in > 0:
             return (CA_in - CA_out) / CA_in
         return 0.0
+    
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the FluidizedBedReactor model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'type': 'FluidizedBedReactor',
+            'description': 'Fluidized bed catalytic reactor with two-phase modeling',
+            'category': 'reactor',
+            'algorithms': {
+                'two_phase_model': 'Bubble and emulsion phase mass balances',
+                'fluidization': 'Minimum fluidization velocity and regime maps',
+                'mass_transfer': 'Inter-phase mass transfer coefficients',
+                'reaction_kinetics': 'Heterogeneous catalysis in emulsion phase'
+            },
+            'applications': [
+                'Fluid catalytic cracking',
+                'Coal combustion and gasification',
+                'Polymerization processes',
+                'Roasting and calcination',
+                'Waste treatment'
+            ]
+        }
+
+
+__all__ = ['FluidizedBedReactor']

@@ -1,0 +1,83 @@
+Reactor Metadata:
+Type: FluidizedBedReactor
+Description: Fluidized bed catalytic reactor with two-phase modeling
+Category: reactor
+
+Algorithms:
+  two_phase_model: Bubble and emulsion phase mass balances
+  fluidization: Minimum fluidization velocity and regime maps
+  mass_transfer: Inter-phase mass transfer coefficients
+  reaction_kinetics: Heterogeneous catalysis in emulsion phase
+
+Applications:
+  - Fluid catalytic cracking
+  - Coal combustion and gasification
+  - Polymerization processes
+  - Roasting and calcination
+  - Waste treatment
+
+Fluidized Bed Reactor Example
+==================================================
+Reactor: Fluidized Bed Reactor
+Bed Height: 3.0 m
+Bed Diameter: 2.0 m
+Minimum Fluidization Velocity: 0.1 m/s
+Catalyst Density: 1500.0 kg/m³
+Particle Diameter: 0.50 mm
+Activation Energy: 60.0 kJ/mol
+
+Operating Conditions:
+Inlet concentration: 100.0 mol/m³
+Inlet temperature: 700.0 K (426.9 °C)
+Superficial gas velocity: 0.3 m/s
+Coolant temperature: 650.0 K (376.9 °C)
+
+Reactor is fluidized (U_g > U_mf)
+Excess velocity: 0.200 m/s
+
+Fluidization Properties:
+Bubble velocity: 0.250 m/s
+Bubble fraction: 0.801
+Emulsion fraction: 0.199
+
+Initial Conditions:
+Bubble phase concentration: 100.0 mol/m³
+Emulsion phase concentration: 100.0 mol/m³
+Temperature: 700.0 K (426.9 °C)
+
+Solving reactor dynamics...
+Simulation completed successfully!
+
+Final Results:
+Time: 300.0 s
+Bubble phase concentration: 1.64 mol/m³
+Emulsion phase concentration: 0.01 mol/m³
+Average concentration: 1.32 mol/m³
+Temperature: 735.2 K (462.1 °C)
+Conversion: 98.7%
+Reaction rate: 3.32e-02 mol/kg·s
+
+
+Effect of Superficial Gas Velocity
+==================================================
+Testing U_g = 0.05 m/s
+  Not fluidized (U_mf = 0.1 m/s)
+Testing U_g = 0.10 m/s
+  Not fluidized (U_mf = 0.1 m/s)
+Testing U_g = 0.20 m/s
+Testing U_g = 0.30 m/s
+Testing U_g = 0.50 m/s
+Testing U_g = 0.80 m/s
+
+Velocity Effect Summary:
+U_g (m/s) | Final Conv (%) | Final Temp (°C) | Bubble Frac
+------------------------------------------------------------
+    0.20 |          99.3 |          469.8 |      0.668
+    0.30 |          98.7 |          459.5 |      0.801
+    0.50 |          97.4 |          448.2 |      0.889
+    0.80 |          95.5 |          440.5 |      0.934
+
+Fluidization Regime Analysis
+==================================================
+
+Fluidized bed reactor example completed successfully!

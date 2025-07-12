@@ -175,3 +175,69 @@ class BatchReactor(ProcessModel):
             time_required = float('inf')
         
         return time_required
+    
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the BatchReactor model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'type': 'BatchReactor',
+            'description': 'Batch reactor with Arrhenius kinetics and thermal dynamics',
+            'category': 'reactor',
+            'algorithms': {
+                'reaction_kinetics': 'Arrhenius equation: k = k0 * exp(-Ea/RT)',
+                'material_balance': 'dCA/dt = -k(T)*CA',
+                'energy_balance': 'dT/dt = (-ΔH*r)/(ρ*cp) + UA(Tj-T)/(ρ*cp*V)',
+                'batch_time': 't = -ln(1-X) / k for isothermal first-order reaction'
+            },
+            'parameters': {
+                'V': {'value': self.V, 'units': 'L', 'description': 'Reactor volume'},
+                'k0': {'value': self.k0, 'units': '1/min', 'description': 'Arrhenius pre-exponential factor'},
+                'Ea': {'value': self.Ea, 'units': 'J/mol', 'description': 'Activation energy'},
+                'delta_H': {'value': self.delta_H, 'units': 'J/mol', 'description': 'Heat of reaction'},
+                'rho': {'value': self.rho, 'units': 'kg/m³', 'description': 'Density'},
+                'cp': {'value': self.cp, 'units': 'J/kg·K', 'description': 'Heat capacity'},
+                'U': {'value': self.U, 'units': 'W/m²·K', 'description': 'Heat transfer coefficient'},
+                'A': {'value': self.A, 'units': 'm²', 'description': 'Heat transfer area'}
+            },
+            'state_variables': {
+                'CA': 'Concentration [mol/L]',
+                'T': 'Temperature [K]'
+            },
+            'inputs': {
+                'Tj': 'Jacket temperature [K]'
+            },
+            'outputs': {
+                'CA': 'Concentration [mol/L]',
+                'T': 'Temperature [K]',
+                'conversion': 'Conversion fraction',
+                'reaction_rate': 'Reaction rate [mol/L/min]'
+            },
+            'valid_ranges': {
+                'V': {'min': 1.0, 'max': 50000.0, 'units': 'L'},
+                'T': {'min': 250.0, 'max': 600.0, 'units': 'K'},
+                'CA': {'min': 0.0, 'max': 100.0, 'units': 'mol/L'},
+                'conversion': {'min': 0.0, 'max': 0.99, 'units': '-'}
+            },
+            'applications': [
+                'Batch chemical production',
+                'Pharmaceutical manufacturing',
+                'Specialty chemicals',
+                'Process development',
+                'Reaction kinetics studies'
+            ],
+            'limitations': [
+                'Perfect mixing assumption',
+                'Single reaction assumed',
+                'Constant physical properties',
+                'No mass transfer limitations',
+                'Isothermal jacket assumption'
+            ]
+        }
+
+
+__all__ = ['BatchReactor']

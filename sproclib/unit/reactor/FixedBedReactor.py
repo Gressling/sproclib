@@ -230,3 +230,73 @@ class FixedBedReactor(ProcessModel):
             conversion = 0.0
         
         return max(0.0, min(1.0, conversion))
+    
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the FixedBedReactor model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'type': 'FixedBedReactor',
+            'description': 'Fixed bed catalytic reactor with axial discretization',
+            'category': 'reactor',
+            'algorithms': {
+                'reaction_kinetics': 'Arrhenius equation: k = k0 * exp(-Ea/RT)',
+                'material_balance': 'dCA/dt = -u*dCA/dz - k(T)*CA*W_cat/V_void',
+                'energy_balance': 'dT/dt = -u*dT/dz + (-ΔH*r*W_cat)/(ρ*cp*V_void) + UA(Tw-T)/(ρ*cp*V_void)',
+                'bed_properties': 'Void fraction, catalyst loading, pressure drop calculations'
+            },
+            'parameters': {
+                'L': {'value': self.L, 'units': 'm', 'description': 'Bed length'},
+                'D': {'value': self.D, 'units': 'm', 'description': 'Bed diameter'},
+                'epsilon': {'value': self.epsilon, 'units': '-', 'description': 'Bed porosity'},
+                'rho_cat': {'value': self.rho_cat, 'units': 'kg/m³', 'description': 'Catalyst density'},
+                'dp': {'value': self.dp, 'units': 'm', 'description': 'Particle diameter'},
+                'k0': {'value': self.k0, 'units': 'm³/kg·s', 'description': 'Pre-exponential factor'},
+                'Ea': {'value': self.Ea, 'units': 'J/mol', 'description': 'Activation energy'},
+                'delta_H': {'value': self.delta_H, 'units': 'J/mol', 'description': 'Heat of reaction'},
+                'U': {'value': self.U, 'units': 'W/m²·K', 'description': 'Heat transfer coefficient'}
+            },
+            'state_variables': {
+                'CA_segments': 'Concentration in each segment [mol/m³]',
+                'T_segments': 'Temperature in each segment [K]'
+            },
+            'inputs': {
+                'u': 'Superficial velocity [m/s]',
+                'CAi': 'Inlet concentration [mol/m³]',
+                'Ti': 'Inlet temperature [K]',
+                'Tw': 'Wall temperature [K]'
+            },
+            'outputs': {
+                'CA_profile': 'Concentration profile [mol/m³]',
+                'T_profile': 'Temperature profile [K]',
+                'conversion': 'Conversion at exit',
+                'pressure_drop': 'Pressure drop [Pa]'
+            },
+            'valid_ranges': {
+                'L': {'min': 0.1, 'max': 20.0, 'units': 'm'},
+                'T': {'min': 250.0, 'max': 1000.0, 'units': 'K'},
+                'epsilon': {'min': 0.2, 'max': 0.8, 'units': '-'},
+                'dp': {'min': 0.001, 'max': 0.01, 'units': 'm'}
+            },
+            'applications': [
+                'Catalytic processes',
+                'Petrochemical reactors',
+                'Environmental catalysis',
+                'Hydrogenation reactions',
+                'Oxidation processes'
+            ],
+            'limitations': [
+                'No radial gradients',
+                'Isothermal catalyst particles',
+                'No catalyst deactivation',
+                'Constant porosity',
+                'Single reaction pathway'
+            ]
+        }
+
+
+__all__ = ['FixedBedReactor']

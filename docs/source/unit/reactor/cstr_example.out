@@ -1,0 +1,45 @@
+============================================================
+CSTR (Continuous Stirred Tank Reactor) Example
+============================================================
+Reactor: Example_CSTR
+Volume: 100.0 L
+Heat transfer coefficient: 50000.0 J/min/K
+
+Operating Conditions:
+  q: 10.0 L/min
+  CAi: 1.0 mol/L
+  Ti: 350.0 K
+  Tc: 300.0 K
+
+Steady State Analysis:
+------------------------------
+Steady-state concentration: 0.8140 mol/L
+Steady-state temperature: 304.06 K
+Conversion: 18.6%
+Residence time: 10.00 min
+Reaction rate constant: 2.29e-02 1/min
+Heat generation: 93014 J/min
+Productivity: 8.140 mol/min
+
+Dynamic Simulation:
+------------------------------
+Dynamic simulation completed successfully
+Final concentration: 0.8135 mol/L
+Final temperature: 304.06 K
+Final conversion: 18.6%
+Time to 95% of steady state: 24.7 min
+
+Step Response Analysis:
+------------------------------
+Temperature change after step: -66.54 K
+Concentration change after step: -0.0276 mol/L
+
+Reactor Model Information:
+------------------------------
+describe() method not available - using basic information
+Type: CSTR
+Description: Continuous Stirred Tank Reactor model
+Parameters: V=100.0, k0=7.20e+10, Ea=72750.0
+
+Example completed successfully!
+Plots saved as cstr_example_plots.png and cstr_detailed_analysis.png

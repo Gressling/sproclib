@@ -221,3 +221,74 @@ class PlugFlowReactor(ProcessModel):
             conversion = 0.0
         
         return max(0.0, min(1.0, conversion))
+    
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the PlugFlowReactor model including
+                  algorithms, parameters, equations, and usage information.
+        """
+        return {
+            'type': 'PlugFlowReactor',
+            'description': 'Plug flow reactor with axial discretization and thermal effects',
+            'category': 'reactor',
+            'algorithms': {
+                'reaction_kinetics': 'Arrhenius equation: k = k0 * exp(-Ea/RT)',
+                'material_balance': 'dCA/dt = -u*dCA/dz - k(T)*CA (per segment)',
+                'energy_balance': 'dT/dt = -u*dT/dz + (-ΔH*r)/(ρ*cp) + UA(Tw-T)/(ρ*cp*V_seg)',
+                'discretization': 'Axial discretization with finite differences'
+            },
+            'parameters': {
+                'L': {'value': self.L, 'units': 'm', 'description': 'Reactor length'},
+                'A_cross': {'value': self.A_cross, 'units': 'm²', 'description': 'Cross-sectional area'},
+                'n_segments': {'value': self.n_segments, 'units': '-', 'description': 'Number of segments'},
+                'k0': {'value': self.k0, 'units': '1/min', 'description': 'Pre-exponential factor'},
+                'Ea': {'value': self.Ea, 'units': 'J/mol', 'description': 'Activation energy'},
+                'delta_H': {'value': self.delta_H, 'units': 'J/mol', 'description': 'Heat of reaction'},
+                'rho': {'value': self.rho, 'units': 'kg/m³', 'description': 'Density'},
+                'cp': {'value': self.cp, 'units': 'J/kg·K', 'description': 'Heat capacity'},
+                'U': {'value': self.U, 'units': 'W/m²·K', 'description': 'Heat transfer coefficient'},
+                'D_tube': {'value': self.D_tube, 'units': 'm', 'description': 'Tube diameter'}
+            },
+            'state_variables': {
+                'CA_segments': 'Concentration in each segment [mol/L]',
+                'T_segments': 'Temperature in each segment [K]'
+            },
+            'inputs': {
+                'q': 'Inlet flow rate [L/min]',
+                'CAi': 'Inlet concentration [mol/L]',
+                'Ti': 'Inlet temperature [K]',
+                'Tw': 'Wall temperature [K]'
+            },
+            'outputs': {
+                'CA_profile': 'Concentration profile [mol/L]',
+                'T_profile': 'Temperature profile [K]',
+                'conversion': 'Conversion at exit',
+                'pressure_drop': 'Pressure drop [Pa]'
+            },
+            'valid_ranges': {
+                'L': {'min': 0.1, 'max': 100.0, 'units': 'm'},
+                'T': {'min': 250.0, 'max': 800.0, 'units': 'K'},
+                'CA': {'min': 0.0, 'max': 100.0, 'units': 'mol/L'},
+                'n_segments': {'min': 5, 'max': 200, 'units': '-'}
+            },
+            'applications': [
+                'Tubular reactors',
+                'Catalytic processes',
+                'High-temperature reactions',
+                'Continuous production',
+                'Heat exchanger reactors'
+            ],
+            'limitations': [
+                'No radial mixing assumed',
+                'Single reaction kinetics',
+                'Constant physical properties',
+                'No catalyst deactivation',
+                'Steady axial flow assumption'
+            ]
+        }
+
+
+__all__ = ['PlugFlowReactor']
