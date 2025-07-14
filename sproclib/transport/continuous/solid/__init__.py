@@ -2,14 +2,14 @@
 Continuous Solid Transport Modules for SPROCLIB
 """
 
-from .PneumaticConveying import PneumaticConveying
-from .ConveyorBelt import ConveyorBelt
-from .GravityChute import GravityChute
-from .ScrewFeeder import ScrewFeeder
+from .conveyor_belt import ConveyorBelt
+from .gravity_chute import GravityChute
+from .pneumatic_conveying import PneumaticConveying
+from .screw_feeder import ScrewFeeder
 
 __all__ = [
-    'PneumaticConveying',
     'ConveyorBelt',
     'GravityChute',
+    'PneumaticConveying',
     'ScrewFeeder'
 ]

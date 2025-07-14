@@ -5,7 +5,7 @@ This module contains the screw feeder transport model (steady-state and dynamic)
 """
 
 import numpy as np
-from ....unit.base import ProcessModel
+from .....unit.base import ProcessModel
 
 
 class ScrewFeeder(ProcessModel):

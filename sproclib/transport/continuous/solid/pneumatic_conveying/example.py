@@ -7,7 +7,7 @@ operating conditions, particle properties, and system configurations.
 
 import numpy as np
 import matplotlib.pyplot as plt
-from PneumaticConveying import PneumaticConveying
+from .pneumatic_conveying import PneumaticConveying
 
 def main():
     print("=" * 60)

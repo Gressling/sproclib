@@ -7,7 +7,7 @@ covering steady-state calculations, dynamic behavior, and edge cases.
 
 import pytest
 import numpy as np
-from ConveyorBelt import ConveyorBelt
+from .conveyor_belt import ConveyorBelt
 
 
 class TestConveyorBelt:

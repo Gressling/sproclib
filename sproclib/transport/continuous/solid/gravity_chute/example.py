@@ -7,7 +7,7 @@ particle properties and chute configurations.
 
 import numpy as np
 import matplotlib.pyplot as plt
-from GravityChute import GravityChute
+from .gravity_chute import GravityChute
 
 def main():
     print("=" * 60)

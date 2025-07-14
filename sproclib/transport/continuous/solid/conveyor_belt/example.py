@@ -7,7 +7,7 @@ operating conditions and visualizations.
 
 import numpy as np
 import matplotlib.pyplot as plt
-from ConveyorBelt import ConveyorBelt
+from .conveyor_belt import ConveyorBelt
 
 def main():
     print("=" * 60)

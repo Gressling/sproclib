@@ -7,7 +7,7 @@ covering particle flow dynamics, force balance calculations, and edge cases.
 
 import pytest
 import numpy as np
-from GravityChute import GravityChute
+from .gravity_chute import GravityChute
 
 
 class TestGravityChute:

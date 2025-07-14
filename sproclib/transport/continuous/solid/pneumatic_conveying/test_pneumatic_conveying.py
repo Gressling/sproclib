@@ -7,7 +7,7 @@ covering particle-air flow interactions, pressure drop calculations, and edge ca
 
 import pytest
 import numpy as np
-from PneumaticConveying import PneumaticConveying
+from .pneumatic_conveying import PneumaticConveying
 
 
 class TestPneumaticConveying:

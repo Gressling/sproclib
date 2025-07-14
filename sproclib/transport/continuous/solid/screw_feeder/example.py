@@ -7,7 +7,7 @@ powder properties, operating conditions, and control scenarios.
 
 import numpy as np
 import matplotlib.pyplot as plt
-from ScrewFeeder import ScrewFeeder
+from .screw_feeder import ScrewFeeder
 
 def main():
     print("=" * 60)

@@ -5,7 +5,7 @@ This module contains the pneumatic conveying transport model (steady-state and d
 """
 
 import numpy as np
-from ....unit.base import ProcessModel
+from .....unit.base import ProcessModel
 
 
 class PneumaticConveying(ProcessModel):

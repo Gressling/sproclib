@@ -7,7 +7,7 @@ covering volumetric feeding calculations, torque requirements, and edge cases.
 
 import pytest
 import numpy as np
-from ScrewFeeder import ScrewFeeder
+from .screw_feeder import ScrewFeeder
 
 
 class TestScrewFeeder:
