@@ -1,97 +1,65 @@
-Distillation Operations
-=======================
-
-Overview
---------
-
-The distillation operations module provides comprehensive models for separation processes based on vapor-liquid equilibrium. These models include binary and multi-component distillation analysis, column design, and optimization calculations.
-
-Available Distillation Types
-----------------------------
+Distillation Unit Operations
+============================
 
 .. toctree::
    :maxdepth: 2
+   
+   tray/DistillationTray
+   column/BinaryDistillationColumn
 
-   binary_distillation
-   multicomponent_distillation
-   reactive_distillation
+Process Models Overview
+-----------------------
 
-Binary Distillation
-~~~~~~~~~~~~~~~~~~~
+**DistillationTray**: Individual theoretical tray model for binary vapor-liquid equilibrium with material balance dynamics. Essential for multi-component separation analysis and control design in distillation columns, absorption towers, and stripping operations.
 
-The binary distillation model provides:
+**BinaryDistillationColumn**: Complete multi-tray column model integrating individual tray dynamics with reflux drum and reboiler for binary separations. Suitable for control design, optimization, and dynamic simulation of industrial distillation processes.
 
-- McCabe-Thiele graphical analysis
-- Minimum reflux ratio calculations
-- Tray efficiency analysis
-- Feed location optimization
-- Column performance evaluation
+Unit Operations Context
+-----------------------
 
-**Key Features:**
+These models represent fundamental separation processes in chemical engineering:
 
-- VLE correlation integration
-- Heat and material balances
-- Optimal reflux ratio determination
-- Condenser and reboiler design
-- Economic optimization
+**Mass Transfer Operations**
+- Vapor-liquid equilibrium modeling
+- Component material balances
+- Multi-stage separation analysis
+- Equilibrium stage efficiency
 
-Multi-Component Distillation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Fluid Mechanics**
+- Vapor and liquid flow patterns
+- Pressure drop calculations
+- Flooding and weeping limits
+- Tray hydraulics
 
-The multi-component distillation model includes:
+**Heat Transfer**
+- Reboiler heat duty requirements
+- Condenser cooling duty
+- Energy integration opportunities
+- Thermal efficiency optimization
 
-- Rigorous tray-by-tray calculations
-- Multiple component separations
-- Complex column configurations
-- Side stream analysis
-
-**Key Features:**
-
-- MESH equation solving
-- Multiple feeds and products
-- Heat integration
-- Column sequencing optimization
-- Advanced control strategies
-
-Reactive Distillation
-~~~~~~~~~~~~~~~~~~~~~
-
-The reactive distillation model provides:
-
+**Reaction Engineering**
+- Reactive distillation applications
 - Simultaneous reaction and separation
-- Catalyst distribution effects
-- Reaction kinetics integration
-- Enhanced separation efficiency
+- Catalyst deactivation effects
+- Product purity specifications
 
-**Key Features:**
+Industrial Applications
+-----------------------
 
-- Chemical equilibrium considerations
-- Heat of reaction integration
-- Catalyst design
-- Process intensification
+**Petrochemical Industry**
+- Crude oil fractionation
+- Aromatics separation (benzene, toluene, xylene)
+- Olefin purification
+- Solvent recovery systems
 
-Applications
-------------
+**Chemical Manufacturing**
+- Alcohol purification (ethanol, methanol)
+- Solvent separation and recycling
+- Pharmaceutical intermediate purification
+- Specialty chemical production
 
-Distillation models are used for:
-
-- **Column Design**: Tray and packing design calculations
-- **Process Optimization**: Operating condition optimization
-- **Control Design**: Advanced control system development
-- **Economic Analysis**: Cost optimization and profitability
-- **Retrofit Analysis**: Column modification and debottlenecking
-
-Examples and Tutorials
-----------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   distillation_examples
-
-See Also
---------
-
-* :doc:`../heat_exchanger/index` - Heat exchanger operations
-* :doc:`../reactor/index` - Reactor operations
-* :doc:`../utilities/index` - Utility operations
+**Process Control**
+- Dynamic modeling for controller design
+- Multivariable control strategies
+- Disturbance rejection analysis
+- Optimization under constraints

@@ -86,6 +86,12 @@ Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: Process Optimization
+
+   optimization/index
+
+.. toctree::
+   :maxdepth: 2
    :caption: Semantic Plant Design
 
    plant/index

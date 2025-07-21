@@ -1,0 +1,94 @@
+CSTR Network State-Space Control
+========================================
+System: Two CSTRs in series with recycle
+States: [CA1, T1, CA2, T2] - concentrations and temperatures
+Inputs: [q1, Tc1, Tc2] - feed rate, coolant temperatures
+Outputs: [CA2, T2] - product concentration and temperature
+
+Process Conditions
+------------------
+Reactor 1 Volume: 5.0 m³
+Reactor 2 Volume: 8.0 m³
+Feed Concentration: 2.0 kmol/m³
+Target Product Concentration: 0.5 kmol/m³
+Target Temperature: 350.0 K
+
+State-Space Model
+-----------------
+A matrix (state dynamics):
+[[-0.5  -0.02  0.    0.  ]
+ [ 0.   -0.3   0.    0.  ]
+ [ 0.25  0.   -0.4  -0.01]
+ [ 0.    0.15  0.   -0.25]]
+
+B matrix (input coupling):
+[[0.5  0.   0.  ]
+ [0.   0.2  0.  ]
+ [0.   0.   0.  ]
+ [0.   0.   0.15]]
+
+C matrix (output coupling):
+[[0 0 1 0]
+ [0 0 0 1]]
+
+System Properties
+-----------------
+Number of states: 4
+Number of inputs: 3
+Number of outputs: 2
+Controllable: True
+Observable: True
+Stable: True
+System poles: [-0.4 +0.j -0.25+0.j -0.5 +0.j -0.3 +0.j]
+
+LQR Design
+----------
+Q matrix (state weights):
+[[ 10.   0.   0.   0.]
+ [  0.   1.   0.   0.]
+ [  0.   0. 100.   0.]
+ [  0.   0.   0.   1.]]
+
+R matrix (input weights):
+[[1.  0.  0. ]
+ [0.  0.1 0. ]
+ [0.  0.  0.1]]
+
+LQR gain matrix K:
+[ 2.99041028 -0.02989232  4.92743865 -0.05410668]
+Closed-loop poles: [-0.16232003  0.23160792 -1.07470061  1.91054341]
+
+Performance Characteristics
+---------------------------
+Advantages of State-Space Control:
+- Systematic design procedures (LQR, pole placement)
+- Optimal performance with explicit objectives
+- Natural MIMO capability
+- Guaranteed stability margins
+- Internal state insight
+
+Typical Applications:
+- Multi-component distillation columns
+- Reactor networks with recycle
+- Heat exchanger networks
+- Batch crystallization processes
+- Multi-stage separation systems
+
+Design Guidelines:
+- Q matrix: Weight important states heavily
+- R matrix: Balance control effort costs
+- Observer: Design 3-5x faster than controller
+- Validation: Check controllability/observability
+
+Economic Impact:
+- 10-20% improvement in product quality
+- 5-15% reduction in energy consumption
+- 20-40% reduction in process variability
+- Decreased operator workload
+
+Implementation Considerations:
+- Requires accurate process model
+- Higher computational requirements
+- More complex commissioning
+- Operator training requirements
+- Suitable for well-instrumented processes

@@ -1,0 +1,81 @@
+============================================================
+CONTROL VALVE - INDUSTRIAL EXAMPLE
+Chemical Reactor Cooling Water Control System
+============================================================
+
+VALVE SPECIFICATIONS:
+------------------------------
+Maximum Cv: 250.0 gpm/psi^0.5
+Minimum Cv: 5.0 gpm/psi^0.5
+Rangeability: 50.0
+Characteristic: equal_percentage
+Dead Time: 2.0 s
+Time Constant: 5.0 s
+
+PROCESS CONDITIONS:
+------------------------------
+Supply Pressure: 6.0 bar
+Return Pressure: 1.5 bar
+Pressure Drop: 4.5 bar
+Water Density: 995.0 kg/m³
+Water Temperature: 30.0 °C
+
+VALVE CHARACTERISTIC ANALYSIS:
+----------------------------------------
+Position | Cv Value | Flow Rate | Flow (m³/h) | Flow (gpm)
+-------------------------------------------------------
+     0.0 |      5.0 |    0.0067 |        24.2 |     106.3
+     0.1 |      7.4 |    0.0099 |        35.7 |     157.2
+     0.2 |     10.9 |    0.0147 |        52.8 |     232.5
+     0.3 |     16.2 |    0.0217 |        78.1 |     343.8
+     0.4 |     23.9 |    0.0321 |       115.5 |     508.5
+     0.5 |     35.4 |    0.0474 |       170.8 |     751.9
+     0.6 |     52.3 |    0.0701 |       252.5 |    1111.8
+     0.7 |     77.3 |    0.1037 |       373.4 |    1644.2
+     0.8 |    114.3 |    0.1534 |       552.2 |    2431.3
+     0.9 |    169.1 |    0.2268 |       816.6 |    3595.3
+     1.0 |    250.0 |    0.3354 |      1207.5 |    5316.6
+
+ENGINEEring VALIDATION:
+------------------------------
+Test Position: 0.5 (50% open)
+Flow Coefficient: 35.4 gpm/psi^0.5
+Pressure Drop: 65.3 psi
+Specific Gravity: 0.995
+Handbook Flow: 286.3 gpm
+Calculated Flow: 751.9 gpm
+Error: 162.58%
+
+STEADY-STATE OPERATING POINTS:
+----------------------------------------
+Position | Description                    | Flow (m³/h) | Heat Duty (MW)
+----------------------------------------------------------------------
+     0.2 | Minimum cooling (reactor startup) |        52.8 |        0.92
+     0.5 | Normal operation               |       170.8 |        2.96
+     0.8 | High cooling (exothermic reaction) |       552.2 |        9.57
+     1.0 | Maximum cooling (emergency)    |      1207.5 |       20.93
+
+PROCESS CONTROL SCENARIO:
+-----------------------------------
+Reactor temperature control during batch operation
+Target: Maintain 85°C reactor temperature
+Initial Temperature: 85.6 °C
+Final Temperature: -85.3 °C
+Temperature Deviation: ±6.8 °C
+Average Valve Position: 10.0%
+Average Cooling Flow: 35.7 m³/h
+
+VALVE DESCRIPTION:
+-------------------------
+Type: ControlValve
+Category: unit/valve
+Applications: Flow control loops, Pressure regulation, Level control systems
+Key Algorithm: valve_characteristic
+
+============================================================
+EXAMPLE COMPLETED - Check plots for visual analysis
+============================================================
+
+Plots saved:
+- ControlValve_example_plots.png
+- ControlValve_detailed_analysis.png

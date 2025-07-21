@@ -57,6 +57,51 @@ class DistillationTray(ProcessModel):
         """
         return self.alpha * x / (1 + (self.alpha - 1) * x)
     
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the model including algorithms, 
+                  parameters, equations, and usage information.
+        """
+        return {
+            'type': 'DistillationTray',
+            'description': 'Individual distillation tray model with vapor-liquid equilibrium for binary component separation',
+            'category': 'unit/separation/distillation',
+            'algorithms': {
+                'vapor_liquid_equilibrium': 'y = α*x / (1 + (α-1)*x) - Relative volatility VLE model',
+                'material_balance': 'dN*x/dt = F_in*x_in - F_out*x_out - Accumulation-based component balance'
+            },
+            'parameters': {
+                'tray_number': {
+                    'value': self.tray_number,
+                    'units': 'dimensionless',
+                    'description': 'Tray position in column (1 = top)'
+                },
+                'holdup': {
+                    'value': self.holdup,
+                    'units': 'kmol',
+                    'description': 'Liquid molar holdup on tray'
+                },
+                'alpha': {
+                    'value': self.alpha,
+                    'units': 'dimensionless',
+                    'description': 'Relative volatility (light/heavy component)'
+                }
+            },
+            'state_variables': ['x_tray'],
+            'inputs': ['L_in', 'x_in', 'V_in', 'y_in', 'L_out', 'V_out'],
+            'outputs': ['x_tray', 'y_tray'],
+            'valid_ranges': {
+                'holdup': {'min': 0.1, 'max': 100.0, 'units': 'kmol'},
+                'alpha': {'min': 1.01, 'max': 20.0, 'units': 'dimensionless'},
+                'composition': {'min': 0.0, 'max': 1.0, 'units': 'mole_fraction'}
+            },
+            'applications': ['Binary distillation columns', 'Absorption towers', 'Stripping columns', 'Rectification processes'],
+            'limitations': ['Binary systems only', 'Constant relative volatility', 'Equilibrium stages assumed', 'No tray efficiency factors']
+        }
+    
     def dynamics(self, t: float, x: np.ndarray, u: np.ndarray) -> np.ndarray:
         """
         Tray dynamics: component material balance.

@@ -1,12 +1,9 @@
 """
-Single Tank Module for SPROCLIB
+Single Tank Package
 
-This module imports tank classes.
-
-Author: Thorsten Gressling <gressling@paramus.ai>
-License: MIT License
+This package provides the Tank model for single gravity-drained tank applications.
 """
 
-from ..Tank import Tank
+from .tank import Tank
 
 __all__ = ['Tank']

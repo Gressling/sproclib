@@ -78,6 +78,79 @@ class BinaryDistillationColumn(ProcessModel):
             'feed_composition': feed_composition
         }
     
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the model including algorithms, 
+                  parameters, equations, and usage information.
+        """
+        return {
+            'type': 'BinaryDistillationColumn',
+            'description': 'Multi-tray binary distillation column with material balance dynamics for separation control design',
+            'category': 'unit/separation/distillation',
+            'algorithms': {
+                'vapor_liquid_equilibrium': 'y = α*x / (1 + (α-1)*x) - Relative volatility VLE model',
+                'material_balance': 'dN*x/dt = L_in*x_in + V_in*y_in - L_out*x_out - V_out*y_out - Component balance per tray',
+                'fenske_underwood_gilliland': 'Shortcut method for steady-state design and minimum reflux estimation',
+                'separation_metrics': 'Recovery, purity, and separation factor calculations'
+            },
+            'parameters': {
+                'N_trays': {
+                    'value': self.N_trays,
+                    'units': 'dimensionless',
+                    'description': 'Total number of theoretical trays'
+                },
+                'feed_tray': {
+                    'value': self.feed_tray,
+                    'units': 'dimensionless',
+                    'description': 'Feed tray location (1 = top)'
+                },
+                'alpha': {
+                    'value': self.alpha,
+                    'units': 'dimensionless',
+                    'description': 'Relative volatility (light/heavy component)'
+                },
+                'tray_holdup': {
+                    'value': self.tray_holdup,
+                    'units': 'kmol',
+                    'description': 'Liquid molar holdup per tray'
+                },
+                'reflux_drum_holdup': {
+                    'value': self.reflux_drum_holdup,
+                    'units': 'kmol',
+                    'description': 'Reflux drum liquid holdup'
+                },
+                'reboiler_holdup': {
+                    'value': self.reboiler_holdup,
+                    'units': 'kmol',
+                    'description': 'Reboiler liquid holdup'
+                },
+                'feed_flow': {
+                    'value': self.feed_flow,
+                    'units': 'kmol/min',
+                    'description': 'Feed flow rate'
+                },
+                'feed_composition': {
+                    'value': self.feed_composition,
+                    'units': 'mole_fraction',
+                    'description': 'Feed composition (light component)'
+                }
+            },
+            'state_variables': ['x_trays', 'x_reflux_drum', 'x_reboiler'],
+            'inputs': ['R', 'Q_reboiler', 'D', 'B'],
+            'outputs': ['x_distillate', 'x_bottoms', 'tray_compositions'],
+            'valid_ranges': {
+                'N_trays': {'min': 5, 'max': 100, 'units': 'dimensionless'},
+                'alpha': {'min': 1.01, 'max': 20.0, 'units': 'dimensionless'},
+                'reflux_ratio': {'min': 0.1, 'max': 50.0, 'units': 'dimensionless'},
+                'composition': {'min': 0.0, 'max': 1.0, 'units': 'mole_fraction'}
+            },
+            'applications': ['Petrochemical separations', 'Alcohol purification', 'Solvent recovery', 'Chemical plant distillation units'],
+            'limitations': ['Binary systems only', 'Constant relative volatility', 'Equilibrium stages assumed', 'Saturated liquid feed assumed']
+        }
+
     def vapor_liquid_equilibrium(self, x: float) -> float:
         """
         Calculate vapor composition using relative volatility.

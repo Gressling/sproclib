@@ -1,0 +1,105 @@
+=== Parameter Estimation Example: Catalytic Reaction Kinetics ===
+
+1. Experimental Data from Batch Reactor
+--------------------------------------------------
+Reaction: A → B (catalytic)
+Reactor Type: Batch
+Temperature Range: 40-80°C
+Time Range: 0-60 minutes
+Initial Concentration: 2.0 mol/L
+
+Experimental Data Summary:
+  T = 40°C: Final conversion = 9.7%
+  T = 50°C: Final conversion = 23.2%
+  T = 60°C: Final conversion = 48.3%
+  T = 70°C: Final conversion = 74.7%
+  T = 80°C: Final conversion = 94.2%
+
+2. Kinetic Model Definition
+--------------------------------------------------
+Kinetic Model:
+  Rate equation: r = k·C_A
+  Mass balance: dC_A/dt = -k·C_A
+  Solution: C_A(t) = C_A0·exp(-k·t)
+  Temperature dependence: k = k0·exp(-Ea/RT)
+
+Parameters to estimate:
+  k0 = Pre-exponential factor (1/s)
+  Ea = Activation energy (J/mol)
+
+3. Parameter Estimation
+--------------------------------------------------
+Initial Parameter Guess:
+  k0_guess = 1.00e+06 1/s
+  Ea_guess = 60 kJ/mol
+
+Optimization Results:
+  Convergence: ✓
+  Function evaluations: 437
+  Final SSE: 0.105249
+
+Estimated Parameters:
+  k0 = 6.28e+07 1/s
+  Ea = 73.6 kJ/mol
+
+4. Parameter Uncertainty Analysis
+--------------------------------------------------
+95% Confidence Intervals:
+  k0 = 6.28e+07 ± 4.90e+07 1/s
+  Ea = 73.6 ± 2.2 kJ/mol
+
+Parameter Correlation:
+  Corr(k0, Ea) = 1.000
+
+5. Model Validation
+--------------------------------------------------
+Model Fit Statistics:
+  RMSE = 0.0402 mol/L
+  MAE = 0.0299 mol/L
+  R² = 0.9950
+
+Rate Constants at Different Temperatures:
+  T = 40°C: k = 3.21e-05 1/s
+  T = 50°C: k = 7.72e-05 1/s
+  T = 60°C: k = 1.76e-04 1/s
+  T = 70°C: k = 3.82e-04 1/s
+  T = 80°C: k = 7.94e-04 1/s
+
+6. Physical Interpretation
+--------------------------------------------------
+Parameter Comparison with True Values:
+  Pre-exponential factor:
+    True: 1.00e+08 1/s
+    Estimated: 6.28e+07 1/s
+    Error: 37.2%
+
+  Activation energy:
+    True: 75.0 kJ/mol
+    Estimated: 73.6 kJ/mol
+    Error: 1.8%
+
+Rate Constant Temperature Sensitivity:
+  10K temperature increase (60→70°C):
+    True rate increase factor: 2.20
+    Estimated rate increase factor: 2.17
+
+7. Economic Implications
+--------------------------------------------------
+Process Design Implications:
+  Operating Temperature: 70°C
+  Rate Constant: 3.86e-04 1/s
+  Required Residence Time: 2.15 hours
+  Reactor Volume: 1077 L
+
+Alternative High-Temperature Operation:
+  Temperature: 90°C
+  Residence Time: 0.52 hours
+  Reactor Volume: 260 L
+  Capital Savings: $408,468
+  Additional Heating Cost: $10,000/year
+
+  Payback Period: 40.8 years
+✓ Parameter estimation example completed successfully!
+✓ Estimated activation energy: 73.6 kJ/mol
+✓ Model R²: 0.9950
+✓ Reactor volume: 1077 L

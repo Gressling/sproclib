@@ -1,12 +1,12 @@
 """
-Control Valve Module for SPROCLIB
+Control Valve Package for SPROCLIB
 
-This module imports control valve classes.
+This package provides ControlValve models for flow regulation.
 
 Author: Thorsten Gressling <gressling@paramus.ai>
 License: MIT License
 """
 
-from ..ControlValve import ControlValve
+from .control_valve import ControlValve
 
 __all__ = ['ControlValve']

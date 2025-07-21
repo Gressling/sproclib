@@ -312,3 +312,93 @@ class HeatExchanger(ProcessModel):
             'cold_outlet_temp': T_cold_out,
             'temperature_approach': min(T_hot_out - T_cold_in, T_hot_in - T_cold_out)
         }
+    
+    def describe(self) -> dict:
+        """
+        Introspect metadata for documentation and algorithm querying.
+        
+        Returns:
+            dict: Metadata about the model including algorithms, 
+                  parameters, equations, and usage information.
+        """
+        return {
+            'type': 'HeatExchanger',
+            'description': 'Counter-current shell-and-tube heat exchanger with effectiveness-NTU method',
+            'category': 'unit/heat_transfer',
+            'algorithms': {
+                'effectiveness_ntu': 'ε = (1-exp(-NTU(1-Cr)))/(1-Cr*exp(-NTU(1-Cr))) for counter-current flow',
+                'heat_transfer': 'Q = ε * Cmin * (Th,in - Tc,in)',
+                'thermal_dynamics': 'τ * dT/dt = Tss - T where τ = ρVcp/C',
+                'lmtd': 'LMTD = (ΔT1 - ΔT2)/ln(ΔT1/ΔT2)'
+            },
+            'parameters': {
+                'U': {
+                    'value': self.U,
+                    'units': 'W/m²·K',
+                    'description': 'Overall heat transfer coefficient'
+                },
+                'A': {
+                    'value': self.A,
+                    'units': 'm²',
+                    'description': 'Heat transfer area'
+                },
+                'm_hot': {
+                    'value': self.m_hot,
+                    'units': 'kg/s',
+                    'description': 'Hot fluid mass flow rate'
+                },
+                'm_cold': {
+                    'value': self.m_cold,
+                    'units': 'kg/s',
+                    'description': 'Cold fluid mass flow rate'
+                },
+                'cp_hot': {
+                    'value': self.cp_hot,
+                    'units': 'J/kg·K',
+                    'description': 'Hot fluid specific heat capacity'
+                },
+                'cp_cold': {
+                    'value': self.cp_cold,
+                    'units': 'J/kg·K',
+                    'description': 'Cold fluid specific heat capacity'
+                },
+                'effectiveness': {
+                    'value': self.effectiveness,
+                    'units': '-',
+                    'description': 'Heat exchanger thermal effectiveness'
+                },
+                'NTU': {
+                    'value': self.NTU,
+                    'units': '-',
+                    'description': 'Number of Transfer Units'
+                }
+            },
+            'state_variables': self.state_variables,
+            'inputs': self.inputs,
+            'outputs': self.outputs,
+            'valid_ranges': {
+                'U': {'min': 50.0, 'max': 5000.0, 'units': 'W/m²·K'},
+                'A': {'min': 0.1, 'max': 1000.0, 'units': 'm²'},
+                'm_hot': {'min': 0.001, 'max': 100.0, 'units': 'kg/s'},
+                'm_cold': {'min': 0.001, 'max': 100.0, 'units': 'kg/s'},
+                'T_hot_in': {'min': 273.15, 'max': 773.15, 'units': 'K'},
+                'T_cold_in': {'min': 273.15, 'max': 373.15, 'units': 'K'}
+            },
+            'applications': [
+                'Process heating and cooling',
+                'Heat recovery systems',
+                'Condensers and reboilers',
+                'Oil and gas processing',
+                'Chemical reactor cooling',
+                'Power plant heat exchangers',
+                'HVAC systems'
+            ],
+            'limitations': [
+                'Assumes constant fluid properties',
+                'No phase change modeling',
+                'Counter-current flow configuration only',
+                'Lumped thermal capacitance model',
+                'Negligible pressure drop effects',
+                'No fouling resistance included'
+            ]
+        }

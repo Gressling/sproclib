@@ -273,6 +273,157 @@ class StateSpaceModel:
             return np.array(zeros)
         except:
             return np.array([])
+    
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the State-Space Model.
+        
+        Returns:
+            Dictionary containing detailed information about state-space
+            representation, system properties, and analysis results.
+        """
+        return {
+            'class_name': 'StateSpaceModel',
+            'model_name': self.name,
+            'description': 'Linear time-invariant state-space model representation',
+            'purpose': 'Mathematical representation of dynamic systems for control design',
+            
+            'system_dimensions': {
+                'states': self.n_states,
+                'inputs': self.n_inputs, 
+                'outputs': self.n_outputs,
+                'disturbances': self.n_disturbances
+            },
+            
+            'variable_names': {
+                'states': self.state_names,
+                'inputs': self.input_names,
+                'outputs': self.output_names
+            },
+            
+            'mathematical_representation': {
+                'state_equation': 'dx/dt = A*x + B*u + E*d',
+                'output_equation': 'y = C*x + D*u + F*d',
+                'matrix_meanings': {
+                    'A': f'State matrix [{self.n_states}x{self.n_states}] - internal dynamics',
+                    'B': f'Input matrix [{self.n_states}x{self.n_inputs}] - input coupling',
+                    'C': f'Output matrix [{self.n_outputs}x{self.n_states}] - measurement equation',
+                    'D': f'Feedthrough matrix [{self.n_outputs}x{self.n_inputs}] - direct coupling',
+                    'E': f'Disturbance state matrix [{self.n_states}x{self.n_disturbances}] - disturbance effects on states' if self.E is not None else 'Not specified',
+                    'F': f'Disturbance output matrix [{self.n_outputs}x{self.n_disturbances}] - disturbance effects on outputs' if self.F is not None else 'Not specified'
+                }
+            },
+            
+            'system_properties': {
+                'controllability': self.is_controllable(),
+                'observability': self.is_observable(),
+                'stability': self.is_stable(),
+                'poles': self.poles().tolist(),
+                'has_disturbances': self.E is not None,
+                'has_feedthrough': not np.allclose(self.D, 0),
+                'system_type': self._classify_system_type()
+            },
+            
+            'control_system_theory': {
+                'controllability_definition': 'All states can be controlled by the inputs',
+                'observability_definition': 'All states can be determined from the outputs',
+                'stability_definition': 'All eigenvalues have negative real parts',
+                'pole_significance': 'Eigenvalues determine natural response characteristics',
+                'design_implications': {
+                    'controllable_not_observable': 'Can control but cannot fully estimate states',
+                    'observable_not_controllable': 'Can estimate but cannot fully control states',
+                    'both_controllable_observable': 'Ideal for state-space control design',
+                    'neither': 'System may need decomposition or redesign'
+                }
+            },
+            
+            'chemical_engineering_context': {
+                'typical_states': [
+                    'Concentrations of chemical species',
+                    'Temperature profiles in reactors/columns',
+                    'Pressure levels in vessels',
+                    'Liquid levels in tanks',
+                    'Flow rates in recycle streams'
+                ],
+                'typical_inputs': [
+                    'Feed flow rates',
+                    'Coolant/heating medium flows',
+                    'Valve positions',
+                    'Catalyst addition rates',
+                    'Utility consumption rates'
+                ],
+                'typical_outputs': [
+                    'Product concentrations',
+                    'Temperature measurements',
+                    'Pressure readings',
+                    'Level indicators',
+                    'Quality measurements'
+                ],
+                'common_applications': [
+                    'Continuous stirred tank reactors (CSTR)',
+                    'Distillation column dynamics',
+                    'Heat exchanger networks',
+                    'Reactor-separator systems',
+                    'Crystallization processes'
+                ]
+            },
+            
+            'model_validation': {
+                'matrix_conditioning': {
+                    'A_condition_number': float(np.linalg.cond(self.A)),
+                    'controllability_matrix_rank': np.linalg.matrix_rank(self.controllability_matrix()),
+                    'observability_matrix_rank': np.linalg.matrix_rank(self.observability_matrix())
+                },
+                'physical_constraints': {
+                    'check_units': 'Verify consistent units across all matrices',
+                    'check_signs': 'Validate sign conventions for physical processes',
+                    'check_magnitudes': 'Ensure realistic parameter values'
+                }
+            },
+            
+            'simulation_capabilities': {
+                'available_methods': [
+                    'Time domain simulation with initial conditions',
+                    'Step response analysis',
+                    'Impulse response calculation',
+                    'Frequency response evaluation'
+                ],
+                'input_requirements': {
+                    'initial_states': f'Vector of length {self.n_states}',
+                    'input_signals': f'Array of shape [time_points, {self.n_inputs}]',
+                    'disturbances': f'Array of shape [time_points, {self.n_disturbances}]' if self.E is not None else 'Not applicable'
+                }
+            },
+            
+            'analysis_tools': {
+                'available_methods': [
+                    'poles() - System eigenvalues',
+                    'zeros() - Transmission zeros', 
+                    'is_stable() - Stability check',
+                    'is_controllable() - Controllability test',
+                    'is_observable() - Observability test',
+                    'simulate() - Time domain simulation'
+                ]
+            }
+        }
+    
+    def _classify_system_type(self) -> str:
+        """Classify the type of system based on properties."""
+        if self.n_inputs == 1 and self.n_outputs == 1:
+            system_type = "SISO (Single Input Single Output)"
+        elif self.n_inputs > 1 and self.n_outputs > 1:
+            system_type = "MIMO (Multiple Input Multiple Output)"
+        elif self.n_inputs == 1 and self.n_outputs > 1:
+            system_type = "SIMO (Single Input Multiple Output)"
+        else:
+            system_type = "MISO (Multiple Input Single Output)"
+        
+        if not self.is_stable():
+            system_type += " - Unstable"
+        else:
+            system_type += " - Stable"
+            
+        return system_type
 
 
 class StateSpaceController:
@@ -658,6 +809,275 @@ class StateSpaceController:
                 states[i+1, :] = x_current + dxdt * dt
         
         return states, outputs, controls
+
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the State-Space Controller.
+        
+        Returns:
+            Dictionary containing detailed information about state-space control
+            theory, design methods, applications, and current controller status.
+        """
+        # Analyze current controller matrices
+        controller_status = {}
+        if self.K is not None:
+            # Analyze closed-loop poles
+            A_cl = self.model.A - self.model.B @ self.K
+            closed_loop_poles = eigvals(A_cl)
+            controller_status['closed_loop_poles'] = closed_loop_poles.tolist()
+            controller_status['closed_loop_stable'] = np.all(np.real(closed_loop_poles) < 0)
+            controller_status['dominant_time_constant'] = -1.0 / np.max(np.real(closed_loop_poles[np.real(closed_loop_poles) < 0]))
+        else:
+            controller_status['status'] = 'Controller gains not designed yet'
+        
+        if self.L is not None:
+            # Analyze observer poles  
+            A_obs = self.model.A - self.L @ self.model.C
+            observer_poles = eigvals(A_obs)
+            controller_status['observer_poles'] = observer_poles.tolist()
+            controller_status['observer_stable'] = np.all(np.real(observer_poles) < 0)
+        
+        # System analysis
+        system_properties = {
+            'dimensions': {
+                'states': self.model.n_states,
+                'inputs': self.model.n_inputs,
+                'outputs': self.model.n_outputs,
+                'disturbances': getattr(self.model, 'n_disturbances', 0)
+            },
+            'controllability': self.model.is_controllable(),
+            'observability': self.model.is_observable(),
+            'stability': self.model.is_stable()
+        }
+        
+        if hasattr(self.model, 'state_names') and self.model.state_names:
+            system_properties['state_variables'] = self.model.state_names
+        if hasattr(self.model, 'input_names') and self.model.input_names:
+            system_properties['input_variables'] = self.model.input_names
+        if hasattr(self.model, 'output_names') and self.model.output_names:
+            system_properties['output_variables'] = self.model.output_names
+        
+        return {
+            'class_name': 'StateSpaceController',
+            'description': 'Advanced multivariable controller using state-space representation',
+            'purpose': 'Provides optimal control for MIMO systems with systematic design procedures',
+            
+            'state_space_theory': {
+                'system_representation': {
+                    'state_equation': 'dx/dt = Ax + Bu + Ed',
+                    'output_equation': 'y = Cx + Du + Fd',
+                    'variables': {
+                        'x': 'State vector (internal system variables)',
+                        'u': 'Input vector (manipulated variables)',
+                        'd': 'Disturbance vector',
+                        'y': 'Output vector (measured variables)'
+                    }
+                },
+                'matrix_meanings': {
+                    'A': 'State matrix - describes internal system dynamics',
+                    'B': 'Input matrix - how inputs affect states',
+                    'C': 'Output matrix - how states affect outputs',
+                    'D': 'Feedthrough matrix - direct input-output coupling',
+                    'E': 'Disturbance state matrix - how disturbances affect states',
+                    'F': 'Disturbance output matrix - how disturbances affect outputs'
+                },
+                'advantages': [
+                    'Handles MIMO (Multiple Input Multiple Output) systems naturally',
+                    'Systematic design procedures (LQR, pole placement)',
+                    'Optimal control with explicit performance objectives',
+                    'Can handle state constraints and input constraints',
+                    'Provides insight into internal system behavior'
+                ]
+            },
+            
+            'control_methods': {
+                'lqr_control': {
+                    'name': 'Linear Quadratic Regulator',
+                    'objective': 'Minimize quadratic cost function J = ∫(x\'Qx + u\'Ru) dt',
+                    'design_parameters': {
+                        'Q': 'State weighting matrix - penalizes state deviations',
+                        'R': 'Input weighting matrix - penalizes control effort',
+                        'N': 'Cross-weighting matrix (optional)'
+                    },
+                    'characteristics': [
+                        'Guaranteed stability margins (gain margin ≥ 6 dB, phase margin ≥ 60°)',
+                        'Optimal in sense of quadratic cost function',
+                        'Requires all states to be measured or estimated'
+                    ]
+                },
+                'pole_placement': {
+                    'name': 'Pole Placement Control',
+                    'objective': 'Place closed-loop poles at desired locations',
+                    'design_parameters': {
+                        'desired_poles': 'Target locations for closed-loop poles'
+                    },
+                    'characteristics': [
+                        'Direct specification of closed-loop dynamics',
+                        'Flexible design for specific performance requirements',
+                        'May not guarantee optimality'
+                    ]
+                },
+                'observer_design': {
+                    'name': 'State Observer (Kalman Filter)',
+                    'objective': 'Estimate unmeasured states from measurements',
+                    'design_parameters': {
+                        'L': 'Observer gain matrix',
+                        'desired_observer_poles': 'Target observer dynamics'
+                    },
+                    'principle': 'dx̂/dt = Ax̂ + Bu + L(y - Cx̂)'
+                }
+            },
+            
+            'system_properties': system_properties,
+            
+            'design_guidelines': {
+                'lqr_tuning': {
+                    'Q_matrix_selection': {
+                        'diagonal_elements': 'Weight important states more heavily',
+                        'relative_magnitudes': 'Balance between different state variables',
+                        'units': 'Consider state variable units and typical ranges'
+                    },
+                    'R_matrix_selection': {
+                        'control_effort': 'Larger R values reduce control effort',
+                        'actuator_limits': 'Consider actuator constraints',
+                        'energy_costs': 'Weight expensive control actions more'
+                    },
+                    'iteration_process': 'Start with identity matrices, then adjust based on simulation'
+                },
+                'pole_placement_guidelines': {
+                    'dominant_poles': 'Place dominant poles to achieve desired settling time',
+                    'non_dominant_poles': 'Place 5-10 times faster than dominant poles',
+                    'real_poles': 'Use real poles for no overshoot',
+                    'complex_poles': 'Use complex poles for faster response with some overshoot'
+                }
+            },
+            
+            'industrial_applications': {
+                'distillation_control': {
+                    'description': 'Multi-component distillation column control',
+                    'states': ['Tray temperatures', 'Component holdups', 'Internal flows'],
+                    'inputs': ['Reflux ratio', 'Reboiler duty', 'Feed location'],
+                    'outputs': ['Product compositions', 'Product rates'],
+                    'benefits': 'Handles strong interactions between control loops'
+                },
+                'reactor_networks': {
+                    'description': 'Multiple reactor systems with recycle streams',
+                    'states': ['Concentrations', 'Temperatures', 'Pressures'],
+                    'inputs': ['Feed flows', 'Coolant flows', 'Catalyst addition'],
+                    'outputs': ['Product quality', 'Conversion', 'Temperature'],
+                    'benefits': 'Optimal coordination of multiple units'
+                },
+                'heat_integration': {
+                    'description': 'Heat exchanger networks with energy integration',
+                    'states': ['Stream temperatures', 'Heat duties', 'Flow distributions'],
+                    'inputs': ['Bypass flows', 'Utility flows', 'Operating pressures'],
+                    'outputs': ['Target temperatures', 'Energy consumption'],
+                    'benefits': 'Minimizes energy consumption while meeting targets'
+                },
+                'crystallization_process': {
+                    'description': 'Batch crystallization with quality control',
+                    'states': ['Concentration', 'Temperature', 'Crystal size distribution'],
+                    'inputs': ['Cooling rate', 'Seeding', 'Agitation speed'],
+                    'outputs': ['Final crystal size', 'Purity', 'Yield'],
+                    'benefits': 'Optimal crystal quality with reproducible batch-to-batch results'
+                }
+            },
+            
+            'mathematical_requirements': {
+                'controllability': {
+                    'definition': 'All states can be controlled by the inputs',
+                    'test': 'Rank of controllability matrix [B AB A²B ... Aⁿ⁻¹B] = n',
+                    'importance': 'Required for arbitrary pole placement'
+                },
+                'observability': {
+                    'definition': 'All states can be determined from outputs',
+                    'test': 'Rank of observability matrix [C; CA; CA²; ...; CAⁿ⁻¹] = n',
+                    'importance': 'Required for state estimation'
+                },
+                'stability': {
+                    'definition': 'All eigenvalues of A have negative real parts',
+                    'test': 'All eigenvalues in left half-plane',
+                    'importance': 'Open-loop stability (system stable without control)'
+                }
+            },
+            
+            'implementation_considerations': {
+                'computational_requirements': {
+                    'matrix_operations': 'Requires linear algebra operations',
+                    'real_time_constraints': 'Matrix multiplication at each time step',
+                    'memory_usage': 'Stores state estimates and gain matrices'
+                },
+                'sensor_requirements': {
+                    'measurement_noise': 'Kalman filter can handle noisy measurements',
+                    'sampling_rate': 'Should be 5-10 times faster than system dynamics',
+                    'sensor_placement': 'Affects observability of the system'
+                },
+                'actuator_considerations': {
+                    'saturation_limits': 'Include anti-windup for input constraints',
+                    'actuator_dynamics': 'May need to include in state-space model',
+                    'failure_modes': 'Design redundancy for critical actuators'
+                }
+            },
+            
+            'performance_analysis': {
+                'time_domain': {
+                    'settling_time': 'Determined by dominant closed-loop poles',
+                    'overshoot': 'Related to damping ratio of complex poles',
+                    'steady_state_error': 'Usually zero with integral action'
+                },
+                'frequency_domain': {
+                    'bandwidth': 'Frequency range of effective control',
+                    'gain_margin': 'Safety margin before instability',
+                    'phase_margin': 'Phase safety margin',
+                    'sensitivity': 'Disturbance rejection capabilities'
+                },
+                'robustness': {
+                    'model_uncertainty': 'Performance with plant-model mismatch',
+                    'parameter_variations': 'Sensitivity to parameter changes',
+                    'unmodeled_dynamics': 'High-frequency neglected dynamics'
+                }
+            },
+            
+            'current_controller_status': {
+                'controller_name': self.name,
+                'control_method': self.control_method,
+                'model_name': self.model.name,
+                'state_estimate': self.x_hat.tolist(),
+                'integral_states': self.integral_states.tolist(),
+                'last_update_time': self.last_update_time,
+                'controller_matrices': {
+                    'K_designed': self.K is not None,
+                    'L_designed': self.L is not None,
+                    'N_designed': self.N is not None
+                }
+            },
+            
+            **controller_status,
+            
+            'advantages_over_pid': {
+                'mimo_capability': 'Natural handling of multiple inputs and outputs',
+                'optimal_performance': 'Systematic optimization of performance objectives',
+                'constraint_handling': 'Can incorporate input and state constraints',
+                'disturbance_rejection': 'Predictive disturbance compensation',
+                'internal_state_info': 'Provides insight into unmeasured process variables'
+            },
+            
+            'limitations': {
+                'model_dependency': 'Requires accurate linear model of the process',
+                'computational_cost': 'Higher computational requirements than PID',
+                'tuning_complexity': 'More parameters to tune (Q, R matrices)',
+                'sensor_requirements': 'May require more measurements or state estimation',
+                'linear_assumption': 'Limited to linear or linearized systems'
+            },
+            
+            'recommended_applications': [
+                'MIMO systems with strong interactions',
+                'Processes where optimal performance is critical',
+                'Systems with well-understood dynamics',
+                'Applications requiring constraint handling',
+                'Processes with expensive control actions'
+            ]
+        }
 
 
 def create_reactor_network_model() -> StateSpaceModel:

@@ -1,0 +1,80 @@
+================================================================================
+INDUSTRIAL HEAT EXCHANGER EXAMPLE
+Application: Crude Oil Preheat Train in Petroleum Refinery
+Configuration: Counter-current Shell-and-Tube Heat Exchanger
+================================================================================
+
+DESIGN PARAMETERS:
+Overall Heat Transfer Coefficient (U): 180.0 W/m²·K
+Heat Transfer Area (A): 450.0 m²
+Hot Side Flow Rate (Gas Oil): 25.0 kg/s (105.9 m³/h)
+Cold Side Flow Rate (Crude Oil): 30.0 kg/s (117.4 m³/h)
+
+OPERATING CONDITIONS:
+Hot Gas Oil Inlet Temperature: 200.0°C (473.1 K)
+Cold Crude Oil Inlet Temperature: 40.0°C (313.1 K)
+Operating Pressure: 15 bar (typical crude unit pressure)
+
+STEADY-STATE RESULTS:
+Hot Gas Oil Outlet Temperature: 106.8°C (380.0 K)
+Cold Crude Oil Outlet Temperature: 128.7°C (401.9 K)
+
+HEAT TRANSFER PERFORMANCE:
+Heat Transfer Rate (Q): 5.59 MW
+Log Mean Temperature Difference (LMTD): 69.0 K
+Heat Exchanger Effectiveness: 0.582
+Number of Transfer Units (NTU): 1.35
+
+DIMENSIONLESS ANALYSIS:
+Hot Side Heat Capacity Rate (C_hot): 60.0 kW/K
+Cold Side Heat Capacity Rate (C_cold): 63.0 kW/K
+Heat Capacity Rate Ratio (Cr): 0.952
+
+ENERGY INTEGRATION BENEFITS:
+Maximum Theoretical Heat Transfer: 9.60 MW
+Energy Recovery Efficiency: 58.2%
+Fuel Savings: 0.2 kg/h
+Annual Cost Savings: $1.0k/year
+
+SENSITIVITY ANALYSIS:
+Flow Rate Sensitivity (±50% of design):
+  50% Flow: Effectiveness = 0.742, Q = 3.56 MW
+  Design Flow: Effectiveness = 0.582, Q = 5.59 MW
+  150% Flow: Effectiveness = 0.479, Q = 6.90 MW
+
+Hot Inlet Temperature Sensitivity:
+  450°C: Q = 14.33 MW
+  460°C: Q = 14.68 MW
+  470°C: Q = 15.02 MW
+  480°C: Q = 15.37 MW
+  490°C: Q = 15.72 MW
+
+COMPARISON WITH HANDBOOK CORRELATIONS:
+Estimated Tube Side Velocity: 0.33 m/s
+Tube Side Reynolds Number: 1528
+Tube Side Prandtl Number: 75.0
+Flow Regime: Laminar (unusual for industrial scale)
+
+SCALE-UP CONSIDERATIONS:
+Current Heat Duty: 5.6 MW
+Heat Flux: 12423 W/m² (within typical range: 5,000-50,000 W/m²)
+Area Density: 52.9 m²/m³ (shell side)
+Clean Overall HTC (U_clean): 187 W/m²·K
+Design U with Fouling: 180 W/m²·K
+Fouling Margin: 3.6%
+
+PERFORMANCE MONITORING RECOMMENDATIONS:
+Key Process Variables to Monitor:
+  • Inlet/Outlet temperatures (±2°C accuracy)
+  • Flow rates (±5% accuracy)
+  • Pressure drop across exchanger (<20 kPa typical)
+  • Fouling rate (effectiveness degradation)
+
+Maintenance Indicators:
+  • Effectiveness drop below 0.524 indicates fouling
+  • LMTD increase above 82.8 K suggests performance degradation
+
+Example completed successfully!
+Results demonstrate typical industrial heat exchanger performance
+with realistic crude oil processing conditions and scale.
+================================================================================

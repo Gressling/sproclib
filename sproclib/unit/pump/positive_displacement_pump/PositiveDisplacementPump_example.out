@@ -1,0 +1,125 @@
+===========================================================================
+POSITIVE DISPLACEMENT PUMP - CHEMICAL INJECTION APPLICATION
+===========================================================================
+
+PROCESS CONDITIONS:
+--------------------
+Inlet Pressure:     1.0 bar (atmospheric tank)
+System Pressure:    25.0 bar (process line)
+Temperature:        24.9 °C
+Fluid Density:      1150 kg/m³
+Viscosity:          5.2 cP
+
+PUMP SPECIFICATIONS:
+--------------------
+Pump Type:          Positive Displacement (Diaphragm)
+Flow Rate:          0.0028 m³/s (10.1 m³/h)
+Required ΔP:        26.0 bar
+Efficiency:         85.0%
+Displacement:       ~47 mL/stroke (estimated)
+Stroke Rate:        ~60 strokes/min (estimated)
+
+DESIGN POINT PERFORMANCE:
+------------------------------
+Inlet Pressure:     1.0 bar
+Outlet Pressure:    27.0 bar
+Pressure Rise:      26.0 bar
+Hydraulic Power:    8.56 kW
+Brake Power:        10.08 kW
+Motor Size:         1.5 kW (recommended with safety factor)
+
+PRESSURE CAPABILITY ANALYSIS:
+-----------------------------------
+System P   Outlet P   ΔP      Power   Torque
+(bar)      (bar)      (bar)   (kW)    (N·m)
+---------------------------------------------
+10        12.0      11.0     3.62    544.7
+15        17.0      16.0     5.27    792.2
+20        22.0      21.0     6.92    1039.8
+25        27.0      26.0     8.56    1287.4
+30        32.0      31.0     10.21    1535.0
+
+FLOW CONSISTENCY ANALYSIS:
+------------------------------
+Inlet P    Flow Rate   Deviation
+(bar)      (m³/h)      (%)
+------------------------------
+0.5        10.1       0.0
+1.0        10.1       0.0
+1.5        10.1       0.0
+2.0        10.1       0.0
+
+Note: Flow rate remains constant - key advantage of PD pumps
+
+VISCOSITY EFFECT ANALYSIS:
+------------------------------
+Viscosity  Vol. Eff.  Flow Rate  Power
+(cP)       (%)        (m³/h)     (kW)
+-----------------------------------
+1.0        95.0      9.6      8.56
+5.2        94.6      9.5      8.74
+10.0        94.1      9.5      8.95
+50.0        90.1      9.1      10.66
+100.0        85.1      8.6      12.80
+
+DYNAMIC RESPONSE ANALYSIS:
+------------------------------
+PD pumps have faster pressure response due to:
+• Positive displacement mechanism
+• Lower fluid inertia in chambers
+• Direct mechanical coupling
+
+Time Constant:      0.5 s (vs 1.0 s for centrifugal)
+Response to 10% pressure step:
+  10% response:    0.05 s
+  50% response:    0.35 s
+  90% response:    1.15 s
+  95% response:    1.50 s
+
+INJECTION RATE CONTROL:
+-------------------------
+Process Flow:       500 m³/h
+Target Dosage:      25 ppm
+Chemical Conc:      5.0%
+Required Injection: 0.250 m³/h
+Pump Capacity:      10.1 m³/h
+Turndown Ratio:     40.3:1
+
+OPERATING COST & RELIABILITY:
+-----------------------------------
+Annual Operating Hours: 8,760 h
+Annual Energy:          75027 kWh
+Electricity Cost:       $6002/year
+Maintenance Cost:       $9003/year
+Total Annual Cost:      $15005/year
+
+COMPARISON WITH CENTRIFUGAL PUMP:
+----------------------------------------
+Positive Displacement Advantages:
+• Constant flow regardless of pressure
+• Excellent for high-pressure applications
+• Superior viscous fluid handling
+• Precise metering capability
+• Self-priming capability
+
+Centrifugal Pump Advantages:
+• Lower initial cost
+• Lower maintenance requirements
+• Smooth, pulsation-free flow
+• Higher flow rates available
+• Better for low-viscosity fluids
+
+APPLICATION GUIDELINES:
+-------------------------
+Recommended for:
+• Chemical injection systems
+• High-pressure applications (>10 bar)
+• Viscous fluids (>10 cP)
+• Precise flow control requirements
+• Low flow rates (<50 m³/h)
+
+Consider alternatives for:
+• High flow, low pressure applications
+• Clean, low-viscosity fluids
+• Cost-sensitive applications
+• Continuous high-speed operation

@@ -1,0 +1,80 @@
+============================================================
+GENERIC PUMP - INDUSTRIAL PROCESS APPLICATION
+============================================================
+
+PROCESS CONDITIONS:
+--------------------
+Inlet Pressure:     2.5 bar
+Temperature:        24.9 °C
+Flow Rate:          0.100 m³/s (360 m³/h)
+Fluid Density:      1000 kg/m³
+
+PUMP SPECIFICATIONS:
+--------------------
+Pump Type:          Generic Process Pump
+Efficiency:         75.0%
+Nominal Flow:       0.100 m³/s (360 m³/h)
+Pressure Rise:      3.0 bar (300 kPa)
+
+STEADY-STATE PERFORMANCE:
+------------------------------
+Outlet Pressure:    5.5 bar (550 kPa)
+Pressure Rise:      3.0 bar
+Hydraulic Power:    40.0 kW
+Brake Power:        53.3 kW
+
+HYDRAULIC ANALYSIS:
+--------------------
+Specific Energy:    300 J/kg
+Equivalent Head:    30.6 m
+Power Density:      400 W per m³/s
+
+PERFORMANCE CURVE (Constant Pressure Rise Model):
+--------------------------------------------------
+Flow Rate   Outlet P   Power    Efficiency
+(m³/s)      (bar)      (kW)     (%)
+----------------------------------------
+0.050       5.5      20.0      75.0
+0.070       5.5      28.0      75.0
+0.090       5.5      36.0      75.0
+0.110       5.5      44.0      75.0
+0.130       5.5      52.0      75.0
+0.150       5.5      60.0      75.0
+
+DYNAMIC RESPONSE ANALYSIS:
+------------------------------
+Initial Outlet Pressure: 5.50 bar
+Final Outlet Pressure:   6.00 bar
+Pressure Change:         0.50 bar
+Time Constant:           1.0 s (first-order response)
+
+ENERGY EFFICIENCY ANALYSIS:
+------------------------------
+Comparison with Perry's Chemical Engineers' Handbook:
+Modeled Efficiency:     75.0%
+Typical Range:          70-85% for process pumps
+Best Practice:          >80% for new installations
+
+ANNUAL OPERATING COST:
+-------------------------
+Operating Hours:        8,760 h/year
+Annual Energy:          350,400 kWh/year
+Electricity Cost:       $0.080/kWh
+Annual Operating Cost:  $28,032/year
+
+SYSTEM INTEGRATION NOTES:
+------------------------------
+• Pump curve: Constant pressure rise (simplified model)
+• Applications: Process circulation, utility services
+• Control: Flow control via bypass or throttling valve
+• NPSH: Ensure adequate suction pressure to prevent cavitation
+• Maintenance: Monitor vibration, temperature, and power consumption
+• Efficiency: Consider VFD for variable flow applications
+
+SCALE-UP CONSIDERATIONS:
+-------------------------
+• Power scaling: P ∝ Q³ for similar pumps (cube law)
+• Efficiency: Larger pumps typically more efficient
+• Materials: Consider corrosion, erosion, temperature effects
+• Redundancy: Parallel pumps for critical services
+• Control philosophy: Lead-lag operation for multiple pumps

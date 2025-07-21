@@ -1,0 +1,104 @@
+=================================================================
+THREE-WAY VALVE - INDUSTRIAL EXAMPLE
+Reactor Feed Temperature Control - Hot/Cold Stream Mixing
+=================================================================
+
+MIXING VALVE SPECIFICATIONS:
+-----------------------------------
+Configuration: mixing
+Max Cv per path: 180.0 gpm/psi^0.5
+Dead Time: 1.5 s
+Time Constant: 3.0 s
+State Variables: ['valve_position', 'flow_out']
+
+MIXING APPLICATION - PROCESS CONDITIONS:
+---------------------------------------------
+Hot Stream: 120.0 °C at 4.5 bar
+Cold Stream: 25.0 °C at 4.2 bar
+Target Mixed: 85.0 °C at 1.8 bar
+Fluid Density: 890.0 kg/m³
+
+TEMPERATURE MIXING CALCULATION:
+-----------------------------------
+Required Hot Fraction: 0.632
+Required Cold Fraction: 0.368
+Valve Position: 0.368
+
+MIXING VALVE PERFORMANCE ANALYSIS:
+----------------------------------------
+Position | Hot% | Cold% | Hot Flow | Cold Flow | Total | Mixed T
+         |      |       | (m³/h)   | (m³/h)    | (m³/h)| (°C)
+----------------------------------------------------------------------
+     0.0 |  100 |     0 |    712.1 |       0.0 | 712.1 |   120.0
+     0.1 |   91 |     9 |    640.9 |      67.1 | 708.0 |   111.0
+     0.2 |   81 |    19 |    569.7 |     134.3 | 703.9 |   101.9
+     0.3 |   71 |    29 |    498.4 |     201.4 | 699.9 |    92.7
+     0.4 |   61 |    39 |    427.2 |     268.5 | 695.8 |    83.3
+     0.5 |   51 |    49 |    356.0 |     335.7 | 691.7 |    73.9
+     0.6 |   41 |    59 |    284.8 |     402.8 | 687.6 |    64.4
+     0.7 |   31 |    69 |    213.6 |     469.9 | 683.6 |    54.7
+     0.8 |   21 |    79 |    142.4 |     537.1 | 679.5 |    44.9
+     0.9 |   11 |    89 |     71.2 |     604.2 | 675.4 |    35.0
+     1.0 |    0 |   100 |      0.0 |     671.3 | 671.3 |    25.0
+
+=================================================================
+DIVERTING VALVE APPLICATION - PRODUCT DISTRIBUTION
+=================================================================
+
+DIVERTING VALVE SPECIFICATIONS:
+-----------------------------------
+Configuration: diverting
+Max Cv per path: 120.0 gpm/psi^0.5
+
+DIVERTING PROCESS CONDITIONS:
+-----------------------------------
+Feed Pressure: 5.0 bar
+Product 1 Pressure: 2.0 bar
+Product 2 Pressure: 1.5 bar
+Product Density: 950.0 kg/m³
+
+DIVERTING VALVE PERFORMANCE:
+-----------------------------------
+Position | Product1 | Product2 | Total  | Split Ratio
+         | (m³/h)   | (m³/h)   | (m³/h) | (P1:P2)
+-------------------------------------------------------
+     0.0 |    484.3 |      0.0 |  484.3 |      inf
+     0.1 |    435.9 |     52.3 |  488.2 |     8.33
+     0.2 |    387.5 |    104.6 |  492.1 |     3.70
+     0.3 |    339.0 |    156.9 |  496.0 |     2.16
+     0.4 |    290.6 |    209.3 |  499.9 |     1.39
+     0.5 |    242.2 |    261.6 |  503.7 |     0.93
+     0.6 |    193.7 |    313.9 |  507.6 |     0.62
+     0.7 |    145.3 |    366.2 |  511.5 |     0.40
+     0.8 |     96.9 |    418.5 |  515.4 |     0.23
+     0.9 |     48.4 |    470.8 |  519.3 |     0.10
+     1.0 |      0.0 |    523.1 |  523.1 |     0.00
+
+ENGINEERING VALIDATION:
+-------------------------
+Target temperature: 85.0 °C
+Required position: 0.368
+Achieved flow: 697.1 m³/h
+Mass balance error: 0.00e+00 m³/s
+
+CONTROL SCENARIO SIMULATION:
+-----------------------------------
+Temperature control during process upset
+RMS Temperature Error: 1.29 °C
+Max Temperature Error: 1.36 °C
+Position Range: 0.316 - 0.421
+
+VALVE DESCRIPTIONS:
+-------------------------
+Mixing Valve - Type: ThreeWayValve
+Applications: Stream mixing in chemical reactors, Flow diversion for different process units
+Diverting Valve - Type: ThreeWayValve
+Applications: Stream mixing in chemical reactors, Flow diversion for different process units
+
+=================================================================
+EXAMPLE COMPLETED - Check plots for visual analysis
+=================================================================
+
+Plots saved:
+- ThreeWayValve_example_plots.png
+- ThreeWayValve_detailed_analysis.png

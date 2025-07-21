@@ -1,0 +1,61 @@
+=== BENZENE-TOLUENE DISTILLATION TRAY ANALYSIS ===
+Operating Pressure: 1.01 bar
+Operating Temperature: 110.0°C
+Relative Volatility (Benzene/Toluene): 2.40
+Tray Holdup: 3.5 kmol
+Tray Number: 15
+
+=== PROCESS OPERATING CONDITIONS ===
+Liquid Flow Rate: 450.0 kmol/min (27000 kmol/h)
+Vapor Flow Rate: 520.0 kmol/min (31200 kmol/h)
+Feed Composition (Benzene): 0.450 mole fraction
+Vapor Composition (Benzene): 0.350 mole fraction
+
+=== VAPOR-LIQUID EQUILIBRIUM ANALYSIS ===
+Liquid x_benzene | Vapor y_benzene | Enrichment Factor
+-------------------------------------------------------
+       0.010 |       0.024 |            2.37
+       0.210 |       0.389 |            1.85
+       0.410 |       0.625 |            1.52
+       0.610 |       0.790 |            1.29
+       0.810 |       0.911 |            1.12
+
+=== STEADY-STATE OPERATION ===
+Steady-State Liquid Composition: 0.2868 mole fraction benzene
+Equilibrium Vapor Composition: 0.4912 mole fraction benzene
+Separation Factor: 1.71
+
+Light Component In: 384.50 kmol/min
+Light Component Out: 384.50 kmol/min
+Material Balance Error: 0.001456 kmol/min
+
+=== DYNAMIC RESPONSE ANALYSIS ===
+Initial Composition: 0.0010 mole fraction benzene
+Final Composition: 0.9990 mole fraction benzene
+Response Time (95% of final): 0.6 min
+
+=== DIMENSIONLESS NUMBERS ===
+Liquid Mass Flow: 637.5 kg/s
+Vapor Mass Flow: 736.7 kg/s
+Mass Transfer Driving Force: 0.2043 mole fraction
+
+=== ECONOMIC ANALYSIS ===
+Hourly Throughput: 27000 kmol/h (2295.0 tonne/h)
+Benzene Production: 658.32 tonne/h
+Toluene Production: 1636.68 tonne/h
+Revenue Rate: $2099328/h
+Operating Cost: $1350/h
+Contribution Margin: $2097978/h
+
+=== PERFORMANCE METRICS ===
+Model Type: DistillationTray
+Applications: Binary distillation columns, Absorption towers, Stripping columns, Rectification processes
+Valid Alpha Range: 1.01 - 20.0
+Valid Holdup Range: 0.1 - 100.0 kmol
+
+=== COMPARISON WITH PERRY'S HANDBOOK ===
+Perry's Handbook α: 2.35
+Model α: 2.40
+Perry's y at x=0.5: 0.7015
+Model y at x=0.5: 0.7059
+Relative Error: 0.6%

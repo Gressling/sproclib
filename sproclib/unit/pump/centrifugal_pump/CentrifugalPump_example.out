@@ -1,0 +1,99 @@
+======================================================================
+CENTRIFUGAL PUMP - WATER TREATMENT PLANT APPLICATION
+======================================================================
+
+PROCESS CONDITIONS:
+--------------------
+Inlet Pressure:     1.5 bar
+Temperature:        14.9 °C
+Fluid Density:      1000 kg/m³
+Viscosity:          1.12 cP
+
+PUMP SPECIFICATIONS:
+--------------------
+Pump Type:          Centrifugal (End Suction)
+Shutoff Head:       80.0 m
+Head Coefficient:   25.0 s²/m⁵
+Design Efficiency:  82.0%
+Impeller Diameter:  ~400 mm (estimated)
+Speed:              1450 rpm (estimated)
+
+PUMP CURVE CHARACTERISTICS:
+------------------------------
+Maximum Flow:       1.789 m³/s (6440 m³/h)
+BEP Flow (est):     1.342 m³/s (4830 m³/h)
+Operating Range:    0.671 - 1.610 m³/s
+
+PUMP CURVE ANALYSIS:
+-------------------------
+Flow Rate   Head    ΔP      Power   Efficiency
+(m³/s)      (m)     (bar)   (kW)    (%)
+--------------------------------------------------
+0.189       79.1   7.76    178.7     82.0
+0.378       76.4   7.50    345.3     82.0
+0.566       72.0   7.06    487.8     82.0
+0.755       65.7   6.45    594.0     82.0
+0.944       57.7   5.66    651.9     82.0
+1.133       47.9   4.70    649.4     82.0
+1.322       36.3   3.56    574.4     82.0
+1.511       23.0   2.25    414.8     82.0
+1.699       7.8   0.77    158.6     82.0
+
+DESIGN OPERATING POINT:
+-------------------------
+Design Flow:        1.342 m³/s (4830 m³/h)
+Design Head:        35.0 m
+Design Power:       561.8 kW
+Outlet Pressure:    4.9 bar
+Pressure Rise:      3.4 bar
+
+AFFINITY LAWS ANALYSIS:
+-------------------------
+Speed   Flow    Head    Power
+(rpm)   (m³/s)  (m)     (kW)
+------------------------------
+1160    1.073   6.2   79.6
+1450    1.342   35.0   561.8
+1740    1.610   70.2   1352.1
+
+NPSH AND CAVITATION ANALYSIS:
+-----------------------------------
+Flow Ratio  NPSH_req  Min Suction P
+(Q/Q_bep)   (m)       (bar abs)
+-----------------------------------
+0.50        2.5     0.32
+0.75        4.5     0.52
+1.00        7.0     0.76
+1.25        9.8     1.03
+1.50        12.9     1.33
+
+SYSTEM CURVE ANALYSIS:
+-------------------------
+System Equation: H_sys = H_static + K_sys * Q²
+Static Head:     45.0 m
+System K:        15.0 s²/m⁵
+
+OPERATING POINT (System Intersection):
+----------------------------------------
+Operating Flow:     0.935 m³/s (3367 m³/h)
+Operating Head:     58.1 m
+Operating Power:    650.5 kW
+Flow vs BEP:        70% of BEP
+
+ENERGY AND COST ANALYSIS:
+------------------------------
+Motor Efficiency:   94.0%
+Brake Power:        692.0 kW
+Operating Hours:    6,000 h/year
+Annual Energy:      4,151,887 kWh/year
+Annual Cost:        $373,670/year
+
+PERFORMANCE COMPARISON:
+-------------------------
+Specific Speed:     3440 (US units)
+Pump Classification: Mixed flow (medium head, medium flow)
+
+Comparison with Pump Handbook (Karassik):
+Expected Efficiency: 78-85% for this specific speed
+Actual Efficiency:   82.0%
+Performance Rating:  Excellent

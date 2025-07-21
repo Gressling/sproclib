@@ -1,78 +1,43 @@
-Pump Operations
-===============
-
-Overview
---------
-
-The pump operations module provides comprehensive models for different types of pumps commonly used in chemical process industries. These models include performance calculations, system analysis, and energy optimization capabilities.
-
-Available Pump Types
---------------------
+Pump Models - Fluid Transport Equipment
+======================================
 
 .. toctree::
    :maxdepth: 2
+   
+   generic/Pump
+   centrifugal_pump/CentrifugalPump
+   positive_displacement_pump/PositiveDisplacementPump
 
-   centrifugal_pump
-   positive_displacement_pump
-
-Centrifugal Pump
-~~~~~~~~~~~~~~~~
-
-The centrifugal pump model provides:
-
-- Performance curve calculations
-- System curve analysis  
-- NPSH (Net Positive Suction Head) calculations
-- Efficiency and power consumption analysis
-- Affinity law applications
-
-**Key Features:**
-
-- Head-flow characteristic curves
-- Efficiency optimization
-- Cavitation prevention
-- Variable speed operation
-- System integration
-
-Positive Displacement Pump
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The positive displacement pump model includes:
-
-- Volumetric efficiency calculations
-- Pressure-flow relationships
-- Reciprocating and rotary pump types
-- Pulsation analysis
-
-**Key Features:**
-
-- Constant volume displacement
-- High pressure capabilities
-- Self-priming operation
-- Precise flow control
-
-Applications
-------------
-
-Pump models are used for:
-
-- **Process Design**: Pump sizing and selection
-- **System Analysis**: Pipeline and pump system optimization
-- **Energy Optimization**: Operating point optimization
-- **Control Design**: Pump control system development
-- **Safety Analysis**: Cavitation and overpressure protection
-
-Examples and Tutorials
+Process Models Overview
 ----------------------
 
-.. toctree::
-   :maxdepth: 1
+**Pump**: Generic liquid pump model for constant pressure rise applications, 
+suitable for process circulation loops, utility services, and general fluid transport. 
+Provides fundamental hydraulic behavior with first-order dynamic response.
 
-   pump_examples
+**CentrifugalPump**: Dynamic pump with quadratic head-flow characteristics following 
+pump affinity laws. Ideal for variable flow applications in water treatment, 
+chemical processing, and HVAC systems where system curves determine operating points.
 
-See Also
---------
+**PositiveDisplacementPump**: Constant flow pump for precise metering and high-pressure 
+applications. Essential for chemical injection systems, hydraulic power units, 
+and viscous fluid handling where flow accuracy is critical.
 
-* :doc:`../reactor/index` - Reactor operations
-* :doc:`../valve/index` - Valve operations  
-* :doc:`../tank/index` - Tank operations
+Unit Operations Context
+----------------------
+These pump models support fundamental unit operations in chemical engineering:
+
+**Fluid Mechanics**: Models incorporate Bernoulli's equation, friction losses, 
+and momentum transfer principles. Pump curves represent energy addition to fluid streams.
+
+**Mass Transfer**: Circulation pumps in absorption, distillation, and extraction 
+processes. Flow rate control affects mass transfer coefficients and column efficiency.
+
+**Heat Transfer**: Cooling water circulation, heat exchanger feed pumps, and 
+thermal fluid loops. Pump selection affects heat transfer rates and system efficiency.
+
+**Reaction Engineering**: Reactor feed pumps, circulation systems, and product 
+transfer. Flow control impacts residence time distribution and reaction kinetics.
+
+**Process Control**: Pump models provide process dynamics for control system design. 
+Variable speed drives enable flow control in automated process operations.

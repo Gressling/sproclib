@@ -1,9 +1,9 @@
 """
-InteractingTanks module for SPROCLIB - Standard Process Control Library
+Interacting Tanks Package
 
-This module imports the InteractingTanks class from InteractingTanks.py.
+This package provides the InteractingTanks model for two tanks in series applications.
 """
 
-from ..InteractingTanks import InteractingTanks
+from .interacting_tanks import InteractingTanks
 
 __all__ = ['InteractingTanks']

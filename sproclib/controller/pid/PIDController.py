@@ -159,3 +159,150 @@ class PIDController:
             'MV': self.MV,
             'manual_mode': self.manual_mode
         }
+    
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the PID Controller.
+        
+        Returns:
+            Dictionary containing detailed information about the PID controller,
+            its parameters, current state, tuning characteristics, and industrial applications.
+        """
+        return {
+            'class_name': 'PIDController',
+            'description': 'Industrial-grade PID (Proportional-Integral-Derivative) Controller with advanced features',
+            'purpose': 'Provides robust feedback control for single-input single-output (SISO) processes in chemical plants',
+            
+            'controller_parameters': {
+                'proportional_gain': {
+                    'value': self.Kp,
+                    'symbol': 'Kp',
+                    'units': 'dimensionless',
+                    'description': 'Controls speed of response to current error',
+                    'typical_range': '0.1 to 10.0',
+                    'effect': 'Higher values increase response speed but may cause overshoot'
+                },
+                'integral_gain': {
+                    'value': self.Ki,
+                    'symbol': 'Ki',
+                    'units': '1/s',
+                    'description': 'Eliminates steady-state error by integrating past errors',
+                    'typical_range': '0.01 to 1.0',
+                    'effect': 'Higher values reduce steady-state error but may cause oscillations'
+                },
+                'derivative_gain': {
+                    'value': self.Kd,
+                    'symbol': 'Kd',
+                    'units': 's',
+                    'description': 'Provides predictive action based on error rate of change',
+                    'typical_range': '0.1 to 10.0',
+                    'effect': 'Higher values improve stability but amplify measurement noise'
+                }
+            },
+            
+            'advanced_features': {
+                'setpoint_weighting': {
+                    'beta': {
+                        'value': self.beta,
+                        'range': '0.0 to 1.0',
+                        'description': 'Proportional setpoint weight (0 = derivative kick, 1 = no weighting)',
+                        'industrial_benefit': 'Prevents derivative kick during setpoint changes'
+                    },
+                    'gamma': {
+                        'value': self.gamma,
+                        'range': '0.0 to 1.0',
+                        'description': 'Derivative setpoint weight',
+                        'industrial_benefit': 'Reduces controller output spikes during setpoint changes'
+                    }
+                },
+                'derivative_filtering': {
+                    'filter_constant': {
+                        'value': self.N,
+                        'typical_range': '5 to 20',
+                        'description': 'Derivative filter constant to reduce high-frequency noise',
+                        'industrial_benefit': 'Essential for noisy process measurements'
+                    }
+                },
+                'output_limiting': {
+                    'min_output': self.MV_min,
+                    'max_output': self.MV_max,
+                    'bias': self.MV_bar,
+                    'description': 'Prevents actuator saturation and integrator windup',
+                    'industrial_benefit': 'Protects equipment and maintains stable operation'
+                },
+                'anti_windup': {
+                    'method': 'Back-calculation',
+                    'description': 'Prevents integral term buildup when output is saturated',
+                    'industrial_benefit': 'Maintains controller performance during constraints'
+                }
+            },
+            
+            'current_state': {
+                'proportional_term': self.P,
+                'integral_term': self.I,
+                'derivative_term': self.D,
+                'total_output': self.MV,
+                'mode': 'Manual' if self.manual_mode else 'Automatic',
+                'last_update_time': self.t_prev
+            },
+            
+            'industrial_applications': {
+                'temperature_control': {
+                    'description': 'Reactor temperature control using heating/cooling jackets',
+                    'typical_parameters': 'Kp=0.5-2.0, Ki=0.1-0.5, Kd=0.1-1.0',
+                    'considerations': 'Thermal lag requires careful derivative tuning'
+                },
+                'pressure_control': {
+                    'description': 'Vessel pressure control using vent valves or compressors',
+                    'typical_parameters': 'Kp=1.0-5.0, Ki=0.2-1.0, Kd=0.05-0.5',
+                    'considerations': 'Fast dynamics, avoid aggressive derivative action'
+                },
+                'flow_control': {
+                    'description': 'Mass/volumetric flow control using control valves',
+                    'typical_parameters': 'Kp=0.5-3.0, Ki=1.0-5.0, Kd=0.0-0.2',
+                    'considerations': 'Fast process, minimal derivative action needed'
+                },
+                'level_control': {
+                    'description': 'Tank level control using inlet/outlet flow manipulation',
+                    'typical_parameters': 'Kp=0.1-1.0, Ki=0.01-0.1, Kd=0.0-0.5',
+                    'considerations': 'Integrating process, conservative tuning required'
+                },
+                'composition_control': {
+                    'description': 'Product composition control in reactors and separators',
+                    'typical_parameters': 'Kp=0.2-2.0, Ki=0.05-0.3, Kd=0.1-2.0',
+                    'considerations': 'Large time delays, derivative action beneficial'
+                }
+            },
+            
+            'tuning_guidelines': {
+                'ziegler_nichols': 'Classic frequency response method',
+                'cohen_coon': 'Good for processes with time delays',
+                'lambda_tuning': 'Provides specified closed-loop time constant',
+                'ime_tuning': 'Minimizes integrated error criteria',
+                'aggressive_conservative': 'Dual-mode tuning based on error magnitude'
+            },
+            
+            'performance_metrics': {
+                'rise_time': 'Time to reach 90% of setpoint',
+                'settling_time': 'Time to stay within ±2% of setpoint',
+                'overshoot': 'Maximum deviation above setpoint (%)',
+                'steady_state_error': 'Final tracking error',
+                'integral_error_criteria': ['IAE', 'ISE', 'ITAE', 'ITSE']
+            },
+            
+            'implementation_notes': {
+                'sampling_time': 'Should be 5-10 times faster than process time constant',
+                'derivative_kick': 'Eliminated through setpoint weighting (beta < 1)',
+                'integral_windup': 'Prevented through back-calculation method',
+                'noise_sensitivity': 'Derivative term filtered with time constant 1/(N*Kp)',
+                'bumpless_transfer': 'Supported through tracking signal (TR)'
+            },
+            
+            'safety_considerations': {
+                'fail_safe_action': 'Define safe output value for controller failure',
+                'rate_limiting': 'Consider adding rate limits for valve protection',
+                'emergency_override': 'Manual mode available for emergency situations',
+                'alarm_limits': 'Set process variable deviation alarms',
+                'backup_control': 'Consider redundant controllers for critical loops'
+            }
+        }

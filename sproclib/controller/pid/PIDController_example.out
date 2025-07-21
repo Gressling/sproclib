@@ -1,0 +1,55 @@
+CSTR Temperature Control System
+========================================
+Reactor Volume: 10.0 m³
+Target Temperature: 85.0°C
+Process Gain: 0.8 °C/%
+Time Constant: 8.0 minutes
+Dead Time: 1.5 minutes
+
+PID Parameters:
+  Kp = 2.5
+  Ki = 0.1 1/s
+  Kd = 10.0 s
+
+Simulation Results
+------------------------------
+Time(min)  Temp(°C)  Valve(%)  Error(°C)
+     0.0      25.0       0.0      60.0
+     1.0      35.0       0.0      50.0
+     2.0      48.0       0.0      37.0
+     3.0      62.0       0.0      23.0
+     4.0      71.0       0.0      14.0
+     5.0      78.0       0.0       7.0
+     6.0      82.0       0.0       3.0
+     7.0      84.0       0.0       1.0
+     8.0      85.0       0.0       0.0
+     9.0      85.0       0.2       0.0
+    10.0      85.0       0.0       0.0
+
+Performance Analysis
+--------------------
+Final Error: 0.0°C
+Valve Range: 0.0 - 0.2%
+Control Effort: 0.2% valve travel
+
+Industrial Applications
+----------------------
+- Reactor temperature control via jacket cooling
+- Distillation column reboiler duty control
+- Heat exchanger outlet temperature control
+- Crystallizer temperature profile control
+
+Typical Industrial Parameters
+-----------------------------
+Operating Temperature: 50-200°C
+Control Valve Range: 0-100%
+Response Time: 5-30 minutes
+Accuracy: ±0.5-2.0°C
+Control Interval: 1-10 seconds
+
+Economic Impact
+---------------
+Energy savings: 5-15% with proper tuning
+Product quality improvement: 2-8%
+Reduced operator intervention: 60-80%
+Maintenance cost reduction: 10-25%

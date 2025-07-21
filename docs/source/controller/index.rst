@@ -1,99 +1,75 @@
-Control Systems
-===============
+Process Control Systems
+=======================
 
-The control systems documentation covers control algorithms, tuning methods, and controller implementations in SPROCLIB.
+This section covers industrial process control systems including PID controllers, 
+state-space methods, and model-based control strategies for chemical engineering applications.
 
 .. toctree::
    :maxdepth: 2
+   
+   pid/PIDController
+   state_space/StateSpaceController
+   model_based/IMCController
+   tuning/index
 
-   control_overview
-   pid_controllers
-   advanced_control
-   tuning_methods
-   state_space_control
-   model_predictive_control
-   controller_examples
+Controller Types Overview
+-------------------------
 
-Overview
---------
+**PID Controller**: Three-term feedback controller for single-loop applications.
+Standard workhorse for temperature, flow, pressure, and level control in chemical processes.
+Simple tuning with well-established methods (Ziegler-Nichols, Cohen-Coon, Lambda tuning).
 
-The controller package provides comprehensive control system design and implementation tools for chemical processes. This includes:
+**State-Space Controller**: Multivariable controller using modern control theory.
+Optimal for MIMO systems like distillation columns, reactor networks, and heat exchanger 
+networks where process interactions are significant.
 
-* **PID Controllers**: Classical and enhanced PID implementations
-* **Advanced Control**: Model-based and adaptive control strategies  
-* **Tuning Methods**: Various tuning techniques for optimal performance
-* **State-Space Control**: Modern control theory implementations
-* **Model Predictive Control**: Advanced multivariable control
+**IMC Controller**: Model-based controller with systematic design procedure.
+Single tuning parameter (filter time constant) provides robust performance for 
+well-modeled SISO processes with known dynamics.
 
-Key Features
-------------
+Unit Operations Context
+----------------------
 
-**PID Control**
-  * Standard PID implementation with anti-windup
-  * Enhanced PID with derivative filtering
-  * Cascade and feedforward control structures
+Control systems are essential for:
 
-**Advanced Controllers**
-  * Internal Model Control (IMC)
-  * Smith Predictor for dead-time compensation
-  * Adaptive and self-tuning controllers
+- **Reaction Engineering**: Temperature, pressure, and composition control in reactors
+- **Separation Processes**: Product quality control in distillation, extraction, absorption
+- **Heat Transfer**: Temperature control in heat exchangers, furnaces, crystallizers
+- **Fluid Mechanics**: Flow and pressure control in pumping and piping systems
+- **Mass Transfer**: Composition control in absorption, stripping, membrane processes
 
-**Tuning Methods**
-  * Ziegler-Nichols tuning rules
-  * AMIGO and Lambda tuning
-  * Relay auto-tuning procedures
+Control Strategy Selection
+-------------------------
 
-**State-Space Methods**
-  * Linear quadratic regulators (LQR)
-  * State observers and estimators
-  * Pole placement techniques
+**Use PID for**:
+- Single-input single-output loops
+- Well-established applications (temperature, flow, level)
+- Simple commissioning requirements
+- Operator familiarity important
 
-**Model Predictive Control**
-  * Linear MPC formulations
-  * Constraint handling
-  * Economic optimization integration
+**Use State-Space for**:
+- Multiple-input multiple-output systems
+- Strong process interactions
+- Optimal performance requirements
+- Complex batch processes
 
-Applications
-------------
+**Use IMC for**:
+- Well-modeled processes
+- Systematic tuning approach needed
+- Robust performance critical
+- Model-based design philosophy preferred
 
-* Process control loop design
-* Multivariable control systems
-* Advanced process control (APC)
-* Controller performance monitoring
-* Control system optimization
+Performance Specifications
+--------------------------
 
-Getting Started
----------------
+**Typical Control Objectives**:
+- Settling time: 2-4 process time constants
+- Overshoot: <5-10% for most applications
+- Steady-state error: <1% for regulatory control
+- Disturbance rejection: <5% deviation from setpoint
 
-For basic PID control::
-
-    from sproclib.controller.pid import PIDController
-    from sproclib.controller.tuning import ZieglerNicholsTuning
-    
-    # Tune controller
-    tuner = ZieglerNicholsTuning(method='ultimate_gain')
-    params = tuner.calculate_parameters({'K': 2.0, 'tau': 5.0, 'theta': 1.0})
-    
-    # Create PID controller
-    pid = PIDController(Kp=params['Kp'], Ki=params['Ki'], Kd=params['Kd'])
-    
-    # Calculate control action
-    output = pid.calculate(setpoint=75.0, process_variable=70.0, dt=0.1)
-
-For advanced control::
-
-    from sproclib.controller.model_based import IMCController
-    
-    # Create IMC controller
-    imc = IMCController(process_model={'K': 2.0, 'tau': 5.0, 'theta': 1.0})
-    
-    # Configure controller
-    imc.set_tuning_parameter(lambda_c=5.0)
-
-See Also
---------
-
-* :doc:`../api/controllers_package` - Complete API reference
-* :doc:`../analysis/index` - System analysis tools for controller design
-* :doc:`../unit/index` - Unit operations with integrated control
-* :doc:`../plant/index` - Plant-level control strategies
+**Economic Impact**:
+- Energy savings: 5-15% with proper control
+- Product quality improvement: 2-8%
+- Reduced variability: 20-50%
+- Decreased operator intervention: 60-80%

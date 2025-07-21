@@ -121,6 +121,187 @@ class FOPDTModel(ProcessModelInterface):
             response[active_time] = self.K * (1 - np.exp(-t_active / self.tau))
         
         return response
+    
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the FOPDT Model.
+        
+        Returns:
+            Dictionary containing detailed information about FOPDT models,
+            theory, parameter interpretation, and chemical engineering applications.
+        """
+        return {
+            'class_name': 'FOPDTModel',
+            'description': 'First Order Plus Dead Time (FOPDT) process model',
+            'purpose': 'Simple yet effective model for many industrial processes',
+            
+            'model_parameters': {
+                'K': {'value': self.K, 'description': 'Process gain (steady-state gain)', 'units': 'output_units/input_units'},
+                'tau': {'value': self.tau, 'description': 'Time constant (response speed)', 'units': 'time_units'},
+                'theta': {'value': self.theta, 'description': 'Dead time (transport delay)', 'units': 'time_units'}
+            },
+            
+            'mathematical_representation': {
+                'transfer_function': 'G(s) = K * exp(-θs) / (τs + 1)',
+                'time_domain': 'τ * dy/dt + y = K * u(t - θ)',
+                'step_response': 'y(t) = K * (1 - exp(-(t-θ)/τ)) for t ≥ θ',
+                'frequency_response': 'G(jω) = K * exp(-jωθ) / (jωτ + 1)',
+                'parameters': {
+                    'K': 'Ratio of output change to input change at steady state',
+                    'τ': 'Time to reach 63.2% of final value after step input',
+                    'θ': 'Time delay before process begins to respond'
+                }
+            },
+            
+            'physical_interpretation': {
+                'process_gain': {
+                    'meaning': 'Sensitivity of output to input changes',
+                    'positive_gain': 'Output increases when input increases',
+                    'negative_gain': 'Output decreases when input increases (rare)',
+                    'magnitude': 'Larger |K| means more sensitive process'
+                },
+                'time_constant': {
+                    'meaning': 'Speed of process response',
+                    'small_tau': 'Fast process response (seconds to minutes)',
+                    'large_tau': 'Slow process response (hours to days)',
+                    'exponential_decay': 'First-order exponential approach to steady state'
+                },
+                'dead_time': {
+                    'sources': ['Transport delays', 'Measurement delays', 'Actuator delays', 'Chemical reaction delays'],
+                    'impact': 'Makes control more difficult',
+                    'rule_of_thumb': 'θ/τ < 0.5 for good controllability'
+                }
+            },
+            
+            'chemical_engineering_applications': {
+                'temperature_control': {
+                    'description': 'Heated tank or reactor temperature control',
+                    'typical_values': {
+                        'K': '0.5-2.0 °C/% valve opening',
+                        'τ': '5-30 minutes (thermal time constant)',
+                        'θ': '0.5-5 minutes (sensor + valve delays)'
+                    },
+                    'physical_basis': 'Energy balance with first-order heat transfer',
+                    'limitations': 'Assumes well-mixed, constant properties'
+                },
+                'flow_control': {
+                    'description': 'Liquid flow through control valve',
+                    'typical_values': {
+                        'K': '0.8-1.2 (flow gain, often near unity)',
+                        'τ': '0.1-2 seconds (pipe + valve dynamics)',
+                        'θ': '0.05-1 second (measurement + actuation delays)'
+                    },
+                    'physical_basis': 'Momentum balance with valve characteristics',
+                    'limitations': 'Linear valve assumption, constant pressure drop'
+                },
+                'concentration_control': {
+                    'description': 'Composition control in stirred tank',
+                    'typical_values': {
+                        'K': '0.5-3.0 mol%/L/min feed rate change',
+                        'τ': '2-20 minutes (mixing time constant)',
+                        'θ': '0.2-3 minutes (analyzer + sampling delays)'
+                    },
+                    'physical_basis': 'Material balance with perfect mixing',
+                    'limitations': 'Assumes linear kinetics, perfect mixing'
+                },
+                'level_control': {
+                    'description': 'Tank level control (with outlet restriction)',
+                    'typical_values': {
+                        'K': '10-100 cm/(L/min) depending on tank area',
+                        'τ': '1-60 minutes (depends on tank size and outlet)',
+                        'θ': '0.1-2 minutes (level sensor delays)'
+                    },
+                    'physical_basis': 'Mass balance with outflow resistance',
+                    'limitations': 'Assumes constant outlet coefficient'
+                }
+            },
+            
+            'model_identification': {
+                'step_test_method': {
+                    'procedure': [
+                        'Bring process to steady state',
+                        'Apply step change in input (5-15%)',
+                        'Record output response',
+                        'Fit FOPDT parameters to data'
+                    ],
+                    'parameter_estimation': {
+                        'K': 'Ratio of final output change to input change',
+                        'tau': 'Time to reach 63.2% of final value',
+                        'theta': 'Apparent delay before response begins'
+                    }
+                },
+                'fitting_methods': [
+                    'Graphical method (tangent line)',
+                    'Two-point method (28.3% and 63.2% response)',
+                    'Least squares regression',
+                    'Process reaction curve method'
+                ]
+            },
+            
+            'control_design_implications': {
+                'controller_tuning': {
+                    'ziegler_nichols': 'Classical tuning rules based on K, τ, θ',
+                    'lambda_tuning': 'Desired closed-loop time constant',
+                    'imc_tuning': 'Internal Model Control based on FOPDT'
+                },
+                'performance_limitations': {
+                    'dead_time_dominant': 'θ/τ > 1 makes control difficult',
+                    'integrating_behavior': 'FOPDT cannot represent integrating processes',
+                    'oscillatory_response': 'Cannot capture underdamped behavior'
+                }
+            },
+            
+            'frequency_domain_properties': {
+                'magnitude_response': '|G(jω)| = K / √(1 + (ωτ)²)',
+                'phase_response': '∠G(jω) = -ωθ - arctan(ωτ)',
+                'bandwidth': 'ω_bw ≈ 1/τ (where magnitude drops 3 dB)',
+                'phase_crossover': 'ω_pc where phase = -180° (if it exists)'
+            },
+            
+            'model_validation': {
+                'goodness_of_fit': [
+                    'R² coefficient (should be > 0.9)',
+                    'Sum of squared errors',
+                    'Visual inspection of fit quality'
+                ],
+                'physical_reasonableness': [
+                    'Positive time constant (τ > 0)',
+                    'Non-negative dead time (θ ≥ 0)',
+                    'Realistic gain magnitude',
+                    'Consistent units'
+                ],
+                'model_adequacy': [
+                    'Residual analysis',
+                    'Independent validation data',
+                    'Process knowledge consistency'
+                ]
+            },
+            
+            'advantages': [
+                'Simple structure with only 3 parameters',
+                'Good approximation for many processes',
+                'Well-understood control design methods',
+                'Easy parameter identification',
+                'Analytical solutions available',
+                'Widely accepted in industry'
+            ],
+            
+            'limitations': [
+                'Cannot represent higher-order dynamics',
+                'No oscillatory behavior modeling',
+                'Linear model only',
+                'Constant parameter assumption',
+                'Single time constant limitation',
+                'Poor for integrating processes'
+            ],
+            
+            'extensions_and_alternatives': {
+                'sopdt': 'Second Order Plus Dead Time for better accuracy',
+                'ipdt': 'Integrator Plus Dead Time for level-like processes',
+                'fractional_order': 'Fractional order models for anomalous diffusion',
+                'time_varying': 'Adaptive models for changing process conditions'
+            }
+        }
 
 
 class SOPDTModel(ProcessModelInterface):
@@ -193,6 +374,247 @@ class SOPDTModel(ProcessModelInterface):
                 response[active_time] = self.K * (1 + a1 * exp1 + a2 * exp2)
         
         return response
+    
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the SOPDT Model.
+        
+        Returns:
+            Dictionary containing detailed information about SOPDT models,
+            theory, parameter interpretation, and chemical engineering applications.
+        """
+        return {
+            'class_name': 'SOPDTModel',
+            'description': 'Second Order Plus Dead Time (SOPDT) process model',
+            'purpose': 'More accurate model for processes with multiple time constants',
+            
+            'model_parameters': {
+                'K': {'value': self.K, 'description': 'Process gain (steady-state gain)', 'units': 'output_units/input_units'},
+                'tau1': {'value': self.tau1, 'description': 'First time constant (dominant dynamics)', 'units': 'time_units'},
+                'tau2': {'value': self.tau2, 'description': 'Second time constant (secondary dynamics)', 'units': 'time_units'},
+                'theta': {'value': self.theta, 'description': 'Dead time (transport delay)', 'units': 'time_units'}
+            },
+            
+            'mathematical_representation': {
+                'transfer_function': 'G(s) = K * exp(-θs) / ((τ₁s + 1)(τ₂s + 1))',
+                'expanded_form': 'G(s) = K * exp(-θs) / (τ₁τ₂s² + (τ₁ + τ₂)s + 1)',
+                'time_domain_ode': 'τ₁τ₂ * d²y/dt² + (τ₁ + τ₂) * dy/dt + y = K * u(t - θ)',
+                'characteristic_equation': 'τ₁τ₂s² + (τ₁ + τ₂)s + 1 = 0',
+                'poles': f'p₁ = -1/τ₁ = {-1/self.tau1:.4f}, p₂ = -1/τ₂ = {-1/self.tau2:.4f}'
+            },
+            
+            'system_classification': {
+                'time_constant_ratio': self.tau1 / self.tau2 if self.tau2 != 0 else float('inf'),
+                'system_type': self._classify_sopdt_type(),
+                'dominant_pole': f'τ₁ = {self.tau1}' if self.tau1 > self.tau2 else f'τ₂ = {self.tau2}',
+                'settling_time_estimate': f'{4 * max(self.tau1, self.tau2):.2f} time units'
+            },
+            
+            'physical_interpretation': {
+                'two_time_constants': {
+                    'meaning': 'Two distinct energy/mass storage mechanisms',
+                    'fast_mode': f'τ_fast = {min(self.tau1, self.tau2)} (quick initial response)',
+                    'slow_mode': f'τ_slow = {max(self.tau1, self.tau2)} (long-term approach to steady state)',
+                    'interaction': 'Two coupled first-order processes in series or parallel'
+                },
+                'step_response_characteristics': {
+                    'initial_response': 'Governed by faster time constant',
+                    'final_approach': 'Governed by slower time constant',
+                    'shape': 'S-curve more pronounced than FOPDT',
+                    'inflection_point': 'Transition between fast and slow modes'
+                }
+            },
+            
+            'chemical_engineering_applications': {
+                'heat_exchanger_dynamics': {
+                    'description': 'Shell-and-tube heat exchanger temperature control',
+                    'physical_basis': [
+                        'τ₁: Metal thermal time constant (fast)',
+                        'τ₂: Fluid thermal time constant (slow)',
+                        'θ: Transport delay through exchanger'
+                    ],
+                    'typical_values': {
+                        'K': '0.7-1.3 °C/°C coolant change',
+                        'τ₁': '1-5 minutes (metal response)',
+                        'τ₂': '10-30 minutes (fluid response)',
+                        'θ': '0.5-3 minutes (transport delay)'
+                    }
+                },
+                'reactor_with_jacket': {
+                    'description': 'Jacketed reactor temperature control',
+                    'physical_basis': [
+                        'τ₁: Reactor contents time constant',
+                        'τ₂: Jacket fluid time constant',
+                        'θ: Heat transfer and measurement delays'
+                    ],
+                    'typical_values': {
+                        'K': '0.5-1.5 °C/% valve opening',
+                        'τ₁': '3-15 minutes (reactor contents)',
+                        'τ₂': '5-25 minutes (jacket dynamics)',
+                        'θ': '1-5 minutes (thermal delays)'
+                    }
+                },
+                'distillation_tray_temperature': {
+                    'description': 'Tray temperature response to reboiler duty',
+                    'physical_basis': [
+                        'τ₁: Tray holdup time constant',
+                        'τ₂: Column hydraulic time constant',
+                        'θ: Vapor transport delay'
+                    ],
+                    'typical_values': {
+                        'K': '1.0-3.0 °C/% reboiler duty',
+                        'τ₁': '2-8 minutes (tray dynamics)',
+                        'τ₂': '15-45 minutes (column dynamics)',
+                        'θ': '3-12 minutes (vapor transport)'
+                    }
+                },
+                'crystallizer_temperature': {
+                    'description': 'Batch crystallizer temperature control',
+                    'physical_basis': [
+                        'τ₁: Solution thermal time constant',
+                        'τ₂: Heat transfer surface time constant',
+                        'θ: Cooling system transport delay'
+                    ],
+                    'typical_values': {
+                        'K': '0.6-1.8 °C/°C coolant change',
+                        'τ₁': '5-20 minutes (solution response)',
+                        'τ₂': '10-40 minutes (heat transfer surface)',
+                        'θ': '1-8 minutes (coolant system delay)'
+                    }
+                }
+            },
+            
+            'model_identification': {
+                'step_test_analysis': {
+                    'data_requirements': 'Clean step response data with good signal-to-noise ratio',
+                    'fitting_challenges': 'More parameters than FOPDT, requires better data',
+                    'parameter_estimation': [
+                        'Graphical methods (dual tangent)',
+                        'Nonlinear least squares',
+                        'Frequency domain fitting',
+                        'Subspace identification'
+                    ]
+                },
+                'parameter_bounds': {
+                    'physical_constraints': 'τ₁ > 0, τ₂ > 0, θ ≥ 0',
+                    'identifiability': 'Need τ₁ ≠ τ₂ for unique identification',
+                    'time_scale_separation': 'Ideally τ₁/τ₂ > 3 for clear identification'
+                }
+            },
+            
+            'control_design_considerations': {
+                'tuning_methods': {
+                    'imc_design': 'Natural choice for IMC controller design',
+                    'pid_tuning': 'More complex than FOPDT, may use approximations',
+                    'model_reduction': 'Sometimes approximated as FOPDT for simple control'
+                },
+                'performance_implications': {
+                    'slower_than_fopdt': 'Generally requires more conservative tuning',
+                    'better_accuracy': 'More accurate process representation',
+                    'controller_complexity': 'May justify more sophisticated control'
+                }
+            },
+            
+            'frequency_domain_analysis': {
+                'magnitude_response': '|G(jω)| = K / (√(1 + (ωτ₁)²) * √(1 + (ωτ₂)²))',
+                'phase_response': '∠G(jω) = -ωθ - arctan(ωτ₁) - arctan(ωτ₂)',
+                'bandwidth': 'Lower than equivalent FOPDT due to additional pole',
+                'roll_off': '-40 dB/decade at high frequencies (vs -20 for FOPDT)'
+            },
+            
+            'step_response_analysis': {
+                'response_shape': self._analyze_step_response_shape(),
+                'time_to_90_percent': f'{self._estimate_90_percent_time():.2f} time units',
+                'maximum_slope': self._calculate_maximum_slope(),
+                'overshoot': 'None (overdamped system)' if self.tau1 > 0 and self.tau2 > 0 else 'Possible'
+            },
+            
+            'model_validation': {
+                'fit_quality_metrics': [
+                    'R² coefficient (should be > 0.95 for SOPDT)',
+                    'Sum of squared errors',
+                    'Residual autocorrelation analysis'
+                ],
+                'physical_validation': [
+                    'Time constants match process physics',
+                    'Parameter values within reasonable ranges',
+                    'Dead time consistent with transport delays'
+                ],
+                'model_adequacy_tests': [
+                    'Residual whiteness test',
+                    'Model structure validation',
+                    'Cross-validation with different data sets'
+                ]
+            },
+            
+            'advantages_over_fopdt': [
+                'Better accuracy for many industrial processes',
+                'Captures two-time-scale behavior',
+                'More realistic representation of complex dynamics',
+                'Better prediction of transient behavior',
+                'Superior for processes with series/parallel components'
+            ],
+            
+            'limitations': [
+                'More complex parameter identification',
+                'Requires higher quality data',
+                'Still limited to linear behavior',
+                'Cannot represent oscillatory behavior',
+                'More parameters to estimate and validate'
+            ],
+            
+            'when_to_use_sopdt': {
+                'over_fopdt': [
+                    'FOPDT fit quality is poor (R² < 0.9)',
+                    'Process has clear two-time-scale behavior',
+                    'High accuracy requirements',
+                    'Model-based control design',
+                    'Process understanding is important'
+                ],
+                'stick_with_fopdt': [
+                    'FOPDT provides adequate fit',
+                    'Simple PID control is sufficient',
+                    'Data quality is limited',
+                    'Quick tuning is required'
+                ]
+            }
+        }
+    
+    def _classify_sopdt_type(self) -> str:
+        """Classify SOPDT based on time constant ratio."""
+        ratio = max(self.tau1, self.tau2) / min(self.tau1, self.tau2)
+        if ratio > 10:
+            return "Well-separated time constants (essentially FOPDT)"
+        elif ratio > 3:
+            return "Moderately separated time constants"
+        else:
+            return "Similar time constants"
+    
+    def _analyze_step_response_shape(self) -> str:
+        """Analyze the shape characteristics of step response."""
+        if abs(self.tau1 - self.tau2) < 1e-6:
+            return "Repeated poles - critically damped response"
+        else:
+            ratio = max(self.tau1, self.tau2) / min(self.tau1, self.tau2)
+            if ratio > 5:
+                return "Dominant pole behavior (similar to FOPDT)"
+            else:
+                return "Two-time-scale response (distinct S-curve)"
+    
+    def _estimate_90_percent_time(self) -> float:
+        """Estimate time to reach 90% of steady state."""
+        # Approximation based on dominant time constant
+        return 2.3 * max(self.tau1, self.tau2) + self.theta
+    
+    def _calculate_maximum_slope(self) -> str:
+        """Calculate maximum slope of step response."""
+        if abs(self.tau1 - self.tau2) < 1e-6:
+            # Repeated roots case
+            max_slope = self.K / (self.tau1 * np.e)
+            return f"{max_slope:.4f} output_units/time_unit"
+        else:
+            # Distinct roots - more complex calculation
+            return "Complex calculation for distinct time constants"
 
 
 class IMCController:
@@ -508,3 +930,570 @@ def tune_imc_lambda(
     else:
         # Conservative default
         return 1.0
+    
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the Internal Model Control (IMC) Controller.
+        
+        Returns:
+            Dictionary containing detailed information about the IMC controller,
+            its process models, tuning parameters, and industrial applications.
+        """
+        # Get process model information
+        model_info = {}
+        if isinstance(self.process_model, FOPDTModel):
+            model_info = {
+                'type': 'FOPDT (First Order Plus Dead Time)',
+                'transfer_function': 'G(s) = K * exp(-θs) / (τs + 1)',
+                'parameters': {
+                    'gain': self.process_model.K,
+                    'time_constant': self.process_model.tau,
+                    'dead_time': self.process_model.theta
+                }
+            }
+        elif isinstance(self.process_model, SOPDTModel):
+            model_info = {
+                'type': 'SOPDT (Second Order Plus Dead Time)',
+                'transfer_function': 'G(s) = K * exp(-θs) / ((τ₁s + 1)(τ₂s + 1))',
+                'parameters': {
+                    'gain': self.process_model.K,
+                    'time_constant_1': self.process_model.tau1,
+                    'time_constant_2': self.process_model.tau2,
+                    'dead_time': self.process_model.theta
+                }
+            }
+        
+        # Get equivalent PID parameters
+        try:
+            Kp, Ki, Kd = self._get_equivalent_pid_parameters()
+            equivalent_pid = {
+                'proportional_gain': Kp,
+                'integral_gain': Ki,
+                'derivative_gain': Kd
+            }
+        except:
+            equivalent_pid = {
+                'proportional_gain': 'Not available',
+                'integral_gain': 'Not available',
+                'derivative_gain': 'Not available'
+            }
+        
+        return {
+            'class_name': 'IMCController',
+            'description': 'Internal Model Control (IMC) - Advanced model-based controller',
+            'purpose': 'Provides excellent setpoint tracking and disturbance rejection using process model inversion',
+            
+            'control_strategy': {
+                'method': 'Model-based control using process inverse',
+                'principle': 'Uses internal process model to predict and compensate process behavior',
+                'structure': 'Q(s) = G⁻¹(s) * f(s) where Q(s) is controller, G⁻¹(s) is model inverse, f(s) is filter',
+                'advantages': [
+                    'Perfect setpoint tracking (in theory)',
+                    'Explicit handling of process dead time',
+                    'Systematic tuning procedure',
+                    'Inherent robustness through filtering'
+                ]
+            },
+            
+            'process_model': model_info,
+            
+            'controller_parameters': {
+                'filter_time_constant': {
+                    'value': self.lambda_c,
+                    'symbol': 'λ',
+                    'units': 'time units',
+                    'description': 'Primary tuning parameter controlling closed-loop speed',
+                    'typical_range': '0.1τ to 2.0τ (where τ is process time constant)',
+                    'effect': 'Smaller λ = faster response but less robust, Larger λ = slower but more robust'
+                },
+                'filter_order': {
+                    'value': self.filter_order,
+                    'symbol': 'n',
+                    'description': 'Order of IMC filter (usually 1 or 2)',
+                    'effect': 'Higher order provides better robustness but more complex implementation'
+                }
+            },
+            
+            'equivalent_pid_parameters': equivalent_pid,
+            
+            'imc_theory': {
+                'perfect_control': 'IMC provides perfect control when model matches process exactly',
+                'robustness': 'Filter ensures stability even with model mismatch',
+                'two_degree_freedom': 'Separate handling of setpoint tracking and disturbance rejection',
+                'internal_model_principle': 'Controller contains model of the process being controlled'
+            },
+            
+            'tuning_guidelines': {
+                'lambda_selection': {
+                    'conservative': 'λ = τ (time constant of process)',
+                    'moderate': 'λ = 0.5τ',
+                    'aggressive': 'λ = 0.1τ',
+                    'dead_time_constraint': 'λ ≥ θ for minimal overshoot'
+                },
+                'performance_trade_offs': {
+                    'speed_vs_robustness': 'Smaller λ gives faster response but less robustness',
+                    'noise_sensitivity': 'Higher filter order reduces noise sensitivity',
+                    'model_uncertainty': 'Larger λ provides better tolerance to model mismatch'
+                }
+            },
+            
+            'industrial_applications': {
+                'reactor_temperature_control': {
+                    'description': 'Precise temperature control in chemical reactors',
+                    'model_type': 'FOPDT with large time constants',
+                    'typical_lambda': '0.5 to 2.0 times thermal time constant',
+                    'benefits': 'Handles thermal lag and dead time explicitly'
+                },
+                'distillation_composition': {
+                    'description': 'Product composition control in distillation columns',
+                    'model_type': 'SOPDT with significant dead time',
+                    'typical_lambda': '1.0 to 3.0 times dominant time constant',
+                    'benefits': 'Excellent for high-purity separation requirements'
+                },
+                'ph_neutralization': {
+                    'description': 'pH control in wastewater treatment',
+                    'model_type': 'Nonlinear, approximated by FOPDT',
+                    'typical_lambda': '0.2 to 1.0 times process time constant',
+                    'benefits': 'Handles process nonlinearity through model adaptation'
+                },
+                'heat_exchanger_control': {
+                    'description': 'Outlet temperature control in heat exchangers',
+                    'model_type': 'FOPDT with moderate dead time',
+                    'typical_lambda': '0.5 to 1.5 times thermal time constant',
+                    'benefits': 'Superior performance compared to PID for thermal processes'
+                }
+            },
+            
+            'model_requirements': {
+                'fopdt_identification': {
+                    'methods': ['Step test', 'Impulse response', 'Frequency response'],
+                    'parameters': ['Process gain K', 'Time constant τ', 'Dead time θ'],
+                    'accuracy_needed': '±10% for good IMC performance'
+                },
+                'model_validation': {
+                    'criteria': ['Step response fit', 'Frequency response match', 'Steady-state gain'],
+                    'tools': ['Cross-validation', 'Residual analysis', 'Prediction error methods']
+                }
+            },
+            
+            'implementation_considerations': {
+                'digital_implementation': {
+                    'sampling_time': 'Should be 5-10 times faster than λ',
+                    'numerical_methods': 'Tustin transformation for filter discretization',
+                    'computational_load': 'Moderate - requires model evaluation at each step'
+                },
+                'robustness_analysis': {
+                    'gain_margin': 'Typically > 3 (9.5 dB) with proper λ selection',
+                    'phase_margin': 'Typically > 45° with proper filter design',
+                    'model_uncertainty': 'λ should account for expected model errors'
+                },
+                'performance_monitoring': {
+                    'model_mismatch': 'Monitor prediction error for model degradation',
+                    'adaptation': 'Consider adaptive IMC for time-varying processes',
+                    'backup_control': 'Fallback to PID if model becomes unreliable'
+                }
+            },
+            
+            'advantages_over_pid': {
+                'systematic_tuning': 'Only one main parameter (λ) to tune',
+                'dead_time_handling': 'Explicit compensation for process delays',
+                'setpoint_tracking': 'Theoretically perfect tracking with exact model',
+                'disturbance_rejection': 'Excellent rejection through model prediction'
+            },
+            
+            'limitations': {
+                'model_dependency': 'Performance degrades with model inaccuracy',
+                'inverse_model': 'Requires invertible process model',
+                'computational_cost': 'Higher than PID due to model calculations',
+                'nonlinear_processes': 'Limited to linear or linearized models'
+            },
+            
+            'current_state': {
+                'controller_name': self.name,
+                'last_update_time': self.last_update_time,
+                'history_length': len(self.time_history),
+                'output_limits': getattr(self, 'output_limits', 'Not set'),
+                'internal_states': {
+                    'integral_term': getattr(self, '_integral', 0),
+                    'last_error': getattr(self, '_last_error', 'Not available')
+                }
+            }
+        }
+    
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the Internal Model Control (IMC) Controller.
+        
+        Returns:
+            Dictionary containing detailed information about the IMC controller,
+            its process models, tuning parameters, and industrial applications.
+        """
+        # Get process model information
+        model_info = {}
+        if isinstance(self.process_model, FOPDTModel):
+            model_info = {
+                'type': 'FOPDT (First Order Plus Dead Time)',
+                'transfer_function': 'G(s) = K * exp(-θs) / (τs + 1)',
+                'parameters': {
+                    'gain': self.process_model.K,
+                    'time_constant': self.process_model.tau,
+                    'dead_time': self.process_model.theta
+                }
+            }
+        elif isinstance(self.process_model, SOPDTModel):
+            model_info = {
+                'type': 'SOPDT (Second Order Plus Dead Time)',
+                'transfer_function': 'G(s) = K * exp(-θs) / ((τ₁s + 1)(τ₂s + 1))',
+                'parameters': {
+                    'gain': self.process_model.K,
+                    'time_constant_1': self.process_model.tau1,
+                    'time_constant_2': self.process_model.tau2,
+                    'dead_time': self.process_model.theta
+                }
+            }
+        
+        # Get equivalent PID parameters
+        try:
+            Kp, Ki, Kd = self._get_equivalent_pid_parameters()
+            equivalent_pid = {
+                'proportional_gain': Kp,
+                'integral_gain': Ki,
+                'derivative_gain': Kd
+            }
+        except:
+            equivalent_pid = {
+                'proportional_gain': 'Not available',
+                'integral_gain': 'Not available',
+                'derivative_gain': 'Not available'
+            }
+        
+        return {
+            'class_name': 'IMCController',
+            'description': 'Internal Model Control (IMC) - Advanced model-based controller',
+            'purpose': 'Provides excellent setpoint tracking and disturbance rejection using process model inversion',
+            
+            'control_strategy': {
+                'method': 'Model-based control using process inverse',
+                'principle': 'Uses internal process model to predict and compensate process behavior',
+                'structure': 'Q(s) = G⁻¹(s) * f(s) where Q(s) is controller, G⁻¹(s) is model inverse, f(s) is filter',
+                'advantages': [
+                    'Perfect setpoint tracking (in theory)',
+                    'Explicit handling of process dead time',
+                    'Systematic tuning procedure',
+                    'Inherent robustness through filtering'
+                ]
+            },
+            
+            'process_model': model_info,
+            
+            'controller_parameters': {
+                'filter_time_constant': {
+                    'value': self.lambda_c,
+                    'symbol': 'λ',
+                    'units': 'time units',
+                    'description': 'Primary tuning parameter controlling closed-loop speed',
+                    'typical_range': '0.1τ to 2.0τ (where τ is process time constant)',
+                    'effect': 'Smaller λ = faster response but less robust, Larger λ = slower but more robust'
+                },
+                'filter_order': {
+                    'value': self.filter_order,
+                    'symbol': 'n',
+                    'description': 'Order of IMC filter (usually 1 or 2)',
+                    'effect': 'Higher order provides better robustness but more complex implementation'
+                }
+            },
+            
+            'equivalent_pid_parameters': equivalent_pid,
+            
+            'imc_theory': {
+                'perfect_control': 'IMC provides perfect control when model matches process exactly',
+                'robustness': 'Filter ensures stability even with model mismatch',
+                'two_degree_freedom': 'Separate handling of setpoint tracking and disturbance rejection',
+                'internal_model_principle': 'Controller contains model of the process being controlled'
+            },
+            
+            'tuning_guidelines': {
+                'lambda_selection': {
+                    'conservative': 'λ = τ (time constant of process)',
+                    'moderate': 'λ = 0.5τ',
+                    'aggressive': 'λ = 0.1τ',
+                    'dead_time_constraint': 'λ ≥ θ for minimal overshoot'
+                },
+                'performance_trade_offs': {
+                    'speed_vs_robustness': 'Smaller λ gives faster response but less robustness',
+                    'noise_sensitivity': 'Higher filter order reduces noise sensitivity',
+                    'model_uncertainty': 'Larger λ provides better tolerance to model mismatch'
+                }
+            },
+            
+            'industrial_applications': {
+                'reactor_temperature_control': {
+                    'description': 'Precise temperature control in chemical reactors',
+                    'model_type': 'FOPDT with large time constants',
+                    'typical_lambda': '0.5 to 2.0 times thermal time constant',
+                    'benefits': 'Handles thermal lag and dead time explicitly'
+                },
+                'distillation_composition': {
+                    'description': 'Product composition control in distillation columns',
+                    'model_type': 'SOPDT with significant dead time',
+                    'typical_lambda': '1.0 to 3.0 times dominant time constant',
+                    'benefits': 'Excellent for high-purity separation requirements'
+                },
+                'ph_neutralization': {
+                    'description': 'pH control in wastewater treatment',
+                    'model_type': 'Nonlinear, approximated by FOPDT',
+                    'typical_lambda': '0.2 to 1.0 times process time constant',
+                    'benefits': 'Handles process nonlinearity through model adaptation'
+                },
+                'heat_exchanger_control': {
+                    'description': 'Outlet temperature control in heat exchangers',
+                    'model_type': 'FOPDT with moderate dead time',
+                    'typical_lambda': '0.5 to 1.5 times thermal time constant',
+                    'benefits': 'Superior performance compared to PID for thermal processes'
+                }
+            },
+            
+            'model_requirements': {
+                'fopdt_identification': {
+                    'methods': ['Step test', 'Impulse response', 'Frequency response'],
+                    'parameters': ['Process gain K', 'Time constant τ', 'Dead time θ'],
+                    'accuracy_needed': '±10% for good IMC performance'
+                },
+                'model_validation': {
+                    'criteria': ['Step response fit', 'Frequency response match', 'Steady-state gain'],
+                    'tools': ['Cross-validation', 'Residual analysis', 'Prediction error methods']
+                }
+            },
+            
+            'implementation_considerations': {
+                'digital_implementation': {
+                    'sampling_time': 'Should be 5-10 times faster than λ',
+                    'numerical_methods': 'Tustin transformation for filter discretization',
+                    'computational_load': 'Moderate - requires model evaluation at each step'
+                },
+                'robustness_analysis': {
+                    'gain_margin': 'Typically > 3 (9.5 dB) with proper λ selection',
+                    'phase_margin': 'Typically > 45° with proper filter design',
+                    'model_uncertainty': 'λ should account for expected model errors'
+                },
+                'performance_monitoring': {
+                    'model_mismatch': 'Monitor prediction error for model degradation',
+                    'adaptation': 'Consider adaptive IMC for time-varying processes',
+                    'backup_control': 'Fallback to PID if model becomes unreliable'
+                }
+            },
+            
+            'advantages_over_pid': {
+                'systematic_tuning': 'Only one main parameter (λ) to tune',
+                'dead_time_handling': 'Explicit compensation for process delays',
+                'setpoint_tracking': 'Theoretically perfect tracking with exact model',
+                'disturbance_rejection': 'Excellent rejection through model prediction'
+            },
+            
+            'limitations': {
+                'model_dependency': 'Performance degrades with model inaccuracy',
+                'inverse_model': 'Requires invertible process model',
+                'computational_cost': 'Higher than PID due to model calculations',
+                'nonlinear_processes': 'Limited to linear or linearized models'
+            },
+            
+            'current_state': {
+                'controller_name': self.name,
+                'last_update_time': self.last_update_time,
+                'history_length': len(self.time_history),
+                'output_limits': getattr(self, 'output_limits', 'Not set'),
+                'internal_states': {
+                    'integral_term': getattr(self, '_integral', 0),
+                    'last_error': getattr(self, '_last_error', 'Not available')
+                }
+            }
+        }
+    
+    def describe(self) -> Dict[str, Any]:
+        """
+        Comprehensive description of the Internal Model Control (IMC) Controller.
+        
+        Returns:
+            Dictionary containing detailed information about the IMC controller,
+            its process models, tuning parameters, and industrial applications.
+        """
+        # Get process model information
+        model_info = {}
+        if isinstance(self.process_model, FOPDTModel):
+            model_info = {
+                'type': 'FOPDT (First Order Plus Dead Time)',
+                'transfer_function': 'G(s) = K * exp(-θs) / (τs + 1)',
+                'parameters': {
+                    'gain': self.process_model.K,
+                    'time_constant': self.process_model.tau,
+                    'dead_time': self.process_model.theta
+                }
+            }
+        elif isinstance(self.process_model, SOPDTModel):
+            model_info = {
+                'type': 'SOPDT (Second Order Plus Dead Time)',
+                'transfer_function': 'G(s) = K * exp(-θs) / ((τ₁s + 1)(τ₂s + 1))',
+                'parameters': {
+                    'gain': self.process_model.K,
+                    'time_constant_1': self.process_model.tau1,
+                    'time_constant_2': self.process_model.tau2,
+                    'dead_time': self.process_model.theta
+                }
+            }
+        
+        # Get equivalent PID parameters
+        try:
+            Kp, Ki, Kd = self._get_equivalent_pid_parameters()
+            equivalent_pid = {
+                'proportional_gain': Kp,
+                'integral_gain': Ki,
+                'derivative_gain': Kd
+            }
+        except:
+            equivalent_pid = {
+                'proportional_gain': 'Not available',
+                'integral_gain': 'Not available',
+                'derivative_gain': 'Not available'
+            }
+        
+        return {
+            'class_name': 'IMCController',
+            'description': 'Internal Model Control (IMC) - Advanced model-based controller',
+            'purpose': 'Provides excellent setpoint tracking and disturbance rejection using process model inversion',
+            
+            'control_strategy': {
+                'method': 'Model-based control using process inverse',
+                'principle': 'Uses internal process model to predict and compensate process behavior',
+                'structure': 'Q(s) = G⁻¹(s) * f(s) where Q(s) is controller, G⁻¹(s) is model inverse, f(s) is filter',
+                'advantages': [
+                    'Perfect setpoint tracking (in theory)',
+                    'Explicit handling of process dead time',
+                    'Systematic tuning procedure',
+                    'Inherent robustness through filtering'
+                ]
+            },
+            
+            'process_model': model_info,
+            
+            'controller_parameters': {
+                'filter_time_constant': {
+                    'value': self.lambda_c,
+                    'symbol': 'λ',
+                    'units': 'time units',
+                    'description': 'Primary tuning parameter controlling closed-loop speed',
+                    'typical_range': '0.1τ to 2.0τ (where τ is process time constant)',
+                    'effect': 'Smaller λ = faster response but less robust, Larger λ = slower but more robust'
+                },
+                'filter_order': {
+                    'value': self.filter_order,
+                    'symbol': 'n',
+                    'description': 'Order of IMC filter (usually 1 or 2)',
+                    'effect': 'Higher order provides better robustness but more complex implementation'
+                }
+            },
+            
+            'equivalent_pid_parameters': equivalent_pid,
+            
+            'imc_theory': {
+                'perfect_control': 'IMC provides perfect control when model matches process exactly',
+                'robustness': 'Filter ensures stability even with model mismatch',
+                'two_degree_freedom': 'Separate handling of setpoint tracking and disturbance rejection',
+                'internal_model_principle': 'Controller contains model of the process being controlled'
+            },
+            
+            'tuning_guidelines': {
+                'lambda_selection': {
+                    'conservative': 'λ = τ (time constant of process)',
+                    'moderate': 'λ = 0.5τ',
+                    'aggressive': 'λ = 0.1τ',
+                    'dead_time_constraint': 'λ ≥ θ for minimal overshoot'
+                },
+                'performance_trade_offs': {
+                    'speed_vs_robustness': 'Smaller λ gives faster response but less robustness',
+                    'noise_sensitivity': 'Higher filter order reduces noise sensitivity',
+                    'model_uncertainty': 'Larger λ provides better tolerance to model mismatch'
+                }
+            },
+            
+            'industrial_applications': {
+                'reactor_temperature_control': {
+                    'description': 'Precise temperature control in chemical reactors',
+                    'model_type': 'FOPDT with large time constants',
+                    'typical_lambda': '0.5 to 2.0 times thermal time constant',
+                    'benefits': 'Handles thermal lag and dead time explicitly'
+                },
+                'distillation_composition': {
+                    'description': 'Product composition control in distillation columns',
+                    'model_type': 'SOPDT with significant dead time',
+                    'typical_lambda': '1.0 to 3.0 times dominant time constant',
+                    'benefits': 'Excellent for high-purity separation requirements'
+                },
+                'ph_neutralization': {
+                    'description': 'pH control in wastewater treatment',
+                    'model_type': 'Nonlinear, approximated by FOPDT',
+                    'typical_lambda': '0.2 to 1.0 times process time constant',
+                    'benefits': 'Handles process nonlinearity through model adaptation'
+                },
+                'heat_exchanger_control': {
+                    'description': 'Outlet temperature control in heat exchangers',
+                    'model_type': 'FOPDT with moderate dead time',
+                    'typical_lambda': '0.5 to 1.5 times thermal time constant',
+                    'benefits': 'Superior performance compared to PID for thermal processes'
+                }
+            },
+            
+            'model_requirements': {
+                'fopdt_identification': {
+                    'methods': ['Step test', 'Impulse response', 'Frequency response'],
+                    'parameters': ['Process gain K', 'Time constant τ', 'Dead time θ'],
+                    'accuracy_needed': '±10% for good IMC performance'
+                },
+                'model_validation': {
+                    'criteria': ['Step response fit', 'Frequency response match', 'Steady-state gain'],
+                    'tools': ['Cross-validation', 'Residual analysis', 'Prediction error methods']
+                }
+            },
+            
+            'implementation_considerations': {
+                'digital_implementation': {
+                    'sampling_time': 'Should be 5-10 times faster than λ',
+                    'numerical_methods': 'Tustin transformation for filter discretization',
+                    'computational_load': 'Moderate - requires model evaluation at each step'
+                },
+                'robustness_analysis': {
+                    'gain_margin': 'Typically > 3 (9.5 dB) with proper λ selection',
+                    'phase_margin': 'Typically > 45° with proper filter design',
+                    'model_uncertainty': 'λ should account for expected model errors'
+                },
+                'performance_monitoring': {
+                    'model_mismatch': 'Monitor prediction error for model degradation',
+                    'adaptation': 'Consider adaptive IMC for time-varying processes',
+                    'backup_control': 'Fallback to PID if model becomes unreliable'
+                }
+            },
+            
+            'advantages_over_pid': {
+                'systematic_tuning': 'Only one main parameter (λ) to tune',
+                'dead_time_handling': 'Explicit compensation for process delays',
+                'setpoint_tracking': 'Theoretically perfect tracking with exact model',
+                'disturbance_rejection': 'Excellent rejection through model prediction'
+            },
+            
+            'limitations': {
+                'model_dependency': 'Performance degrades with model inaccuracy',
+                'inverse_model': 'Requires invertible process model',
+                'computational_cost': 'Higher than PID due to model calculations',
+                'nonlinear_processes': 'Limited to linear or linearized models'
+            },
+            
+            'current_state': {
+                'controller_name': self.name,
+                'last_update_time': self.last_update_time,
+                'history_length': len(self.time_history),
+                'output_limits': getattr(self, 'output_limits', 'Not set'),
+                'internal_states': {
+                    'integral_term': getattr(self, '_integral', 0),
+                    'last_error': getattr(self, '_last_error', 'Not available')
+                }
+            }
+        }

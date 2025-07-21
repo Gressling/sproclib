@@ -2,8 +2,8 @@
 Batch Solid Transport Modules for SPROCLIB
 """
 
-from .DrumBinTransfer import DrumBinTransfer
-from .VacuumTransfer import VacuumTransfer
+from .drum_bin_transfer import DrumBinTransfer
+from .vacuum_transfer import VacuumTransfer
 
 __all__ = [
     'DrumBinTransfer',

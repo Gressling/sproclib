@@ -1,9 +1,12 @@
 """
-ThreeWayValve module for SPROCLIB - Standard Process Control Library
+Three-Way Valve Package for SPROCLIB
 
-This module imports the ThreeWayValve class from ThreeWayValve.py.
+This package provides ThreeWayValve models for flow routing.
+
+Author: Thorsten Gressling <gressling@paramus.ai>
+License: MIT License
 """
 
-from ..ThreeWayValve import ThreeWayValve
+from .three_way_valve import ThreeWayValve
 
 __all__ = ['ThreeWayValve']

@@ -6,39 +6,12 @@ practical solutions to common chemical engineering challenges.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Chemical Processing
+   :caption: Case Study Categories
 
-   case_studies/petrochemical_plant
-   case_studies/pharmaceutical_batch
-   case_studies/polymer_production
-   case_studies/refinery_operations
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Process Industries
-
-   case_studies/water_treatment
-   case_studies/food_processing
-   case_studies/pulp_paper
-   case_studies/specialty_chemicals
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Energy and Utilities
-
-   case_studies/power_generation
-   case_studies/renewable_energy
-   case_studies/steam_systems
-   case_studies/refrigeration
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Advanced Applications
-
-   case_studies/digital_twins
-   case_studies/ai_integration
-   case_studies/predictive_maintenance
-   case_studies/cyber_security
+   case_studies/index
+   case_studies/process_industries
+   case_studies/energy_utilities
+   case_studies/advanced_applications
 
 Overview
 --------
