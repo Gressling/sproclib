@@ -72,8 +72,8 @@ Successfully implemented Internal Model Control (IMC) controller in the `/contro
 
 #### **Modular Imports (Recommended)**:
 ```python
-from controller.model_based.IMCController import IMCController, FOPDTModel
-from controller.model_based import tune_imc_lambda
+from sproclib.controller.model_based.IMCController import IMCController, FOPDTModel
+from sproclib.controller.model_based import tune_imc_lambda
 ```
 
 #### **Legacy Imports (Backward Compatibility)**:

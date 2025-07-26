@@ -40,10 +40,10 @@ Quick Start
 
 .. code-block:: python
 
-   from controller.pid.PIDController import PIDController
-   from controller.tuning.ZieglerNicholsTuning import ZieglerNicholsTuning
-   from controller.model_based.IMCController import IMCController
-   from controller.state_space.StateSpaceController import StateSpaceController
+   from sproclib.controller.pid.PIDController import PIDController
+   from sproclib.controller.tuning.ZieglerNicholsTuning import ZieglerNicholsTuning
+   from sproclib.controller.model_based.IMCController import IMCController
+   from sproclib.controller.state_space.StateSpaceController import StateSpaceController
    
    # Create and tune a PID controller
    tuner = ZieglerNicholsTuning(controller_type="PID")
@@ -143,7 +143,7 @@ Process Models for IMC
 
 .. code-block:: python
 
-   from controller.model_based.IMCController import IMCController, FOPDTModel, tune_imc_lambda
+   from sproclib.controller.model_based.IMCController import IMCController, FOPDTModel, tune_imc_lambda
    
    # Create process model
    model = FOPDTModel(K=2.0, tau=5.0, theta=1.0)
@@ -180,7 +180,9 @@ State-Space Control
 
 .. code-block:: python
 
-   from controller.state_space.StateSpaceController import StateSpaceController, StateSpaceModel
+   .. code-block:: python
+
+   from sproclib.controller.state_space.StateSpaceController import StateSpaceController, StateSpaceModel
    import numpy as np
    
    # Define system matrices for a 2x2 MIMO system
@@ -211,7 +213,7 @@ Examples
 
 .. code-block:: python
 
-   from controller.pid.PIDController import PIDController
+   from sproclib.controller.pid.PIDController import PIDController
    import numpy as np
    
    # Create PID controller
@@ -233,8 +235,8 @@ Examples
 
 .. code-block:: python
 
-   from controller.tuning.AMIGOTuning import AMIGOTuning
-   from controller.pid.PIDController import PIDController
+   from sproclib.controller.tuning.AMIGOTuning import AMIGOTuning
+   from sproclib.controller.pid.PIDController import PIDController
    
    # Auto-tune using AMIGO method
    tuner = AMIGOTuning(controller_type="PID")
@@ -254,7 +256,7 @@ Examples
 
 .. code-block:: python
 
-   from controller.tuning.RelayTuning import RelayTuning
+   from sproclib.controller.tuning.RelayTuning import RelayTuning
    
    # Perform relay test first to get Pu and amplitude
    tuner = RelayTuning(relay_amplitude=5.0)

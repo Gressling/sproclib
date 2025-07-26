@@ -82,7 +82,7 @@ Example 3: PID Flow Control
 
 .. code-block:: python
 
-    from controller.pid import PIDController
+    from sproclib.controller.pid import PIDController
     import numpy as np
     
     class PeristalticPumpController:

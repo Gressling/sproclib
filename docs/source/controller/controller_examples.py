@@ -19,7 +19,7 @@ def pid_controller_example():
     print("=" * 40)
     
     # Import from new modular structure
-    from controller.pid.PIDController import PIDController
+    from sproclib.controller.pid.PIDController import PIDController
     
     # Create PID controller with industrial features
     pid = PIDController(
@@ -67,9 +67,9 @@ def tuning_methods_example():
     print("=" * 40)
     
     # Import tuning methods
-    from controller.tuning.ZieglerNicholsTuning import ZieglerNicholsTuning
-    from controller.tuning.AMIGOTuning import AMIGOTuning
-    from controller.tuning.RelayTuning import RelayTuning
+    from sproclib.controller.tuning.ZieglerNicholsTuning import ZieglerNicholsTuning
+    from sproclib.controller.tuning.AMIGOTuning import AMIGOTuning
+    from sproclib.controller.tuning.RelayTuning import RelayTuning
     
     # Process model parameters (FOPDT)
     model_params = {
@@ -121,7 +121,7 @@ def backward_compatibility_example():
     print("=" * 40)
     
     # Legacy imports still work
-    from controllers import PIDController, ZieglerNicholsTuning
+    from sproclib.controllers import PIDController, ZieglerNicholsTuning
     
     # Create controller using legacy interface
     tuner = ZieglerNicholsTuning("PID")
@@ -142,9 +142,9 @@ def integration_with_units_example():
     
     try:
         # Import both controller and unit
-        from controller.pid.PIDController import PIDController
-        from controller.tuning.AMIGOTuning import AMIGOTuning
-        from unit.tank.Tank import Tank
+        from sproclib.controller.pid.PIDController import PIDController
+        from sproclib.controller.tuning.AMIGOTuning import AMIGOTuning
+        from sproclib.unit.tank.Tank import Tank
         
         # Create process unit
         tank = Tank(A=2.0, C=1.5, name="Level Control Tank")

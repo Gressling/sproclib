@@ -87,7 +87,7 @@ Successfully implemented StateSpaceController for SPROCLIB process control libra
 
 #### Modular Access (Recommended)
 ```python
-from controller.state_space import StateSpaceController, StateSpaceModel
+from sproclib.controller.state_space import StateSpaceController, StateSpaceModel
 ```
 
 #### Legacy Access (Backward Compatibility)
