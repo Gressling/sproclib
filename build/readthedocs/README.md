@@ -9,7 +9,7 @@ This directory contains tools for building and deploying documentation using Sph
 - **`test_rtd_config.py`** - Script to test ReadTheDocs configuration
 - **`README.md`** - This documentation file
 
-**Note:** The `readthedocs.yaml` configuration file is located in the project root directory, where ReadTheDocs.io expects to find it.
+**Note:** The `.readthedocs.yaml` configuration file is located in the project root directory, where ReadTheDocs.io expects to find it.
 
 ## Usage
 
@@ -61,7 +61,7 @@ This will validate:
 
 ### Configuration File
 
-The `readthedocs.yaml` file (located in the project root) configures:
+The `.readthedocs.yaml` file (located in the project root) configures:
 - **Build environment** (Ubuntu version, Python version)
 - **Python dependencies** (requirements files)
 - **Sphinx configuration** (source directory, output formats)
@@ -94,7 +94,7 @@ formats:
    - Select the branch to build from
 
 2. **Configure Build**:
-   - ReadTheDocs will automatically detect `readthedocs.yaml`
+   - ReadTheDocs will automatically detect `.readthedocs.yaml`
    - Builds will trigger on git pushes
    - Configure webhook if needed
 
@@ -208,7 +208,7 @@ pip install furo  # or your chosen theme
 3. Review failed build logs
 
 **Common fixes:**
-- Update `readthedocs.yaml` Python version
+- Update `.readthedocs.yaml` Python version
 - Add missing dependencies to requirements file
 - Fix import paths in documentation
 
@@ -228,7 +228,7 @@ This will report:
 
 ### PDF Generation
 
-Enable PDF output in `readthedocs.yaml`:
+Enable PDF output in `.readthedocs.yaml`:
 ```yaml
 formats:
   - htmlzip
@@ -247,7 +247,7 @@ Configure version handling in project settings.
 
 ### Custom Build Commands
 
-Add pre-build commands in `readthedocs.yaml`:
+Add pre-build commands in `.readthedocs.yaml`:
 ```yaml
 build:
   jobs:
