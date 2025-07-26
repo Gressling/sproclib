@@ -6,6 +6,7 @@ This directory contains tools for building, testing, and uploading the SPROCLIB 
 
 - **`build_and_upload.py`** - Cross-platform Python script for package building
 - **`build_and_upload.sh`** - Unix/macOS shell script with enhanced features  
+- **`pypi.sh`** - Unix/macOS interactive PyPI upload script
 - **`pypi.bat`** - Windows batch script with enhanced PyPI features
 
 ## Usage
@@ -28,10 +29,23 @@ These scripts will:
 3. Check the distribution with `twine check`
 4. Provide commands for uploading to PyPI
 
+### Unix/macOS Interactive Script
+
+```bash
+./scripts/pypi/pypi.sh
+```
+
+The Unix/macOS interactive script provides a step-by-step guided process:
+- Interactive upload choices (TestPyPI/PyPI/Skip)
+- Automatic dependency installation  
+- Enhanced error handling with helpful suggestions
+- Color-coded output and progress indicators
+- `.pypirc` configuration assistance
+
 ### Windows Enhanced Script
 
 ```cmd
-build\pypi\pypi.bat
+scripts\pypi\pypi.bat
 ```
 
 The Windows batch script includes additional features:
