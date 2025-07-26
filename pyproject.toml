@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sproclib"
-version = "3.0.0"
+version = "3.0.1"
 description = "Standard Process Control Library for chemical process control - Semantic API for chemical plant design using familiar ML patterns"
 readme = "README.md"
 requires-python = ">=3.8"

@@ -51,10 +51,10 @@ autodoc_typehints = 'description'
 project = 'SPROCLIB - Standard Process Control Library'
 copyright = '2025, Thorsten Gressling - MIT License'
 author = 'Thorsten Gressling'
-release = '3.0.0'
+release = '3.0.1'
 
 # The full version, including alpha/beta/rc tags
-version = '3.0.0'
+version = '3.0.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

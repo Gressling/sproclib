@@ -7,10 +7,10 @@ and advanced control techniques.
 
 Author: Thorsten Gressling <gressling@paramus.ai>
 License: MIT License
-Version: 3.0.0
+Version: 3.0.1
 """
 
-__version__ = "3.0.0"
+__version__ = "3.0.1"
 __author__ = "Thorsten Gressling"
 __email__ = "gressling@paramus.ai"
 

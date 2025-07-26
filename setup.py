@@ -15,7 +15,7 @@ else:
 
 setup(
     name="sproclib",
-    version="3.0.0",
+    version="3.0.1",
     author="Thorsten Gressling",
     author_email="gressling@paramus.ai",
     description="Standard Process Control Library for chemical process control",
