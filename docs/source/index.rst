@@ -53,18 +53,15 @@ Contents
    :maxdepth: 2
    :caption: User Guide
 
-   installation
-   quickstart
-   migration
-   user_guide
+   guide/index
+   user_guide/index
 
 .. toctree::
    :maxdepth: 2
    :caption: Tutorials and Examples
 
-   tutorials
-   case_studies
-   best_practices
+   tutorials/index
+   case_studies/index
 
 .. toctree::
    :maxdepth: 2
@@ -114,28 +111,19 @@ Contents
    :maxdepth: 2
    :caption: Theory and Background
 
-   theory
-   mathematical_foundations
-   control_theory
-   process_modeling
+   theory/index
 
 .. toctree::
    :maxdepth: 1
    :caption: Developer Resources
 
-   contributing
-   development_guide
-   testing
-   documentation_guide
+   developer/index
 
 .. toctree::
    :maxdepth: 1
    :caption: Project Information
 
-   changelog
-   references
-   license
-   acknowledgments
+   project/index
 
 Process Control Documentation
 -----------------------------

@@ -8,7 +8,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
+# build/ - Allow build directory but exclude specific build artifacts
+build/lib/
+build/bdist*/
+build/temp*/
 develop-eggs/
 dist/
 downloads/
