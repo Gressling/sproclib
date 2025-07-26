@@ -17,7 +17,7 @@ import os
 # Add the process_control directory to the path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from controller.state_space.StateSpaceController import StateSpaceController, StateSpaceModel
+from sproclib.controller.state_space.StateSpaceController import StateSpaceController, StateSpaceModel
 
 
 def test_state_space_model():
