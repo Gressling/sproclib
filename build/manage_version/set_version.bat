@@ -2,8 +2,8 @@
 REM ========================================================================
 REM SPROCLIB Version Update Script
 REM ========================================================================
-REM This script updates the version number across all project files and
-REM creates a git tag for the new version.
+REM This script updates the version number across all project files,
+REM creates a git tag for the new version, and pushes everything to remote.
 REM
 REM Usage: set_version.bat <version>
 REM Example: set_version.bat 2.0.5
@@ -130,6 +130,20 @@ if errorlevel 1 (
     exit /b 1
 )
 
+echo   Pushing commit to remote...
+git push origin main
+if errorlevel 1 (
+    echo ERROR: Failed to push commit to remote
+    exit /b 1
+)
+
+echo   Pushing tag to remote...
+git push origin "v%NEW_VERSION%"
+if errorlevel 1 (
+    echo ERROR: Failed to push tag to remote
+    exit /b 1
+)
+
 echo.
 echo ========================================================================
 echo SUCCESS: Version updated to %NEW_VERSION%
@@ -145,11 +159,11 @@ echo.
 echo Git operations completed:
 echo   - Committed changes
 echo   - Created tag: v%NEW_VERSION%
+echo   - Pushed commit to remote
+echo   - Pushed tag to remote
 echo.
 echo Next steps:
 echo   - Review changes: git show
-echo   - Push changes: git push origin main
-echo   - Push tags: git push origin v%NEW_VERSION%
 echo   - Build documentation: python docs\build_docs.py
 echo   - Upload to PyPI: python build_and_upload.py
 echo.

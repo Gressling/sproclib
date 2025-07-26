@@ -6,8 +6,10 @@ This directory contains tools for building and deploying documentation using Sph
 
 - **`sphinx.sh`** - Unix/macOS script for building Sphinx documentation
 - **`sphinx.bat`** - Windows script for building Sphinx documentation  
-- **`readthedocs.yaml`** - Configuration file for ReadTheDocs.io
 - **`test_rtd_config.py`** - Script to test ReadTheDocs configuration
+- **`README.md`** - This documentation file
+
+**Note:** The `readthedocs.yaml` configuration file is located in the project root directory, where ReadTheDocs.io expects to find it.
 
 ## Usage
 
@@ -59,7 +61,7 @@ This will validate:
 
 ### Configuration File
 
-The `readthedocs.yaml` file configures:
+The `readthedocs.yaml` file (located in the project root) configures:
 - **Build environment** (Ubuntu version, Python version)
 - **Python dependencies** (requirements files)
 - **Sphinx configuration** (source directory, output formats)

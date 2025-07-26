@@ -1,6 +1,12 @@
 # SPROCLIB Build Tools
 
-This directory contains build, deployment, and version management tools for the SPROCLIB project.
+This directory contains build, deployment, an### Build and Upload Tools
+
+| **Platform** | **Script** | **Usage** |
+|--------------|------------|-----------|
+| **Cross-platform** | `build_and_upload.py` | `python build/pypi/build_and_upload.py` |
+| **macOS/Linux** | `build_and_upload.sh` | `./build/pypi/build_and_upload.sh` |
+| **Windows Enhanced** | `pypi.bat` | `build\pypi\pypi.bat` |ion management tools for the SPROCLIB project.
 
 ## Quick Start
 
@@ -17,10 +23,13 @@ This directory contains build, deployment, and version management tools for the 
 
 **2. Build and Upload to PyPI:**
 ```bash
-# Build package and get upload commands
+# Cross-platform Python script
 python build/pypi/build_and_upload.py
 
-# Or use Windows enhanced script
+# macOS/Linux shell script
+./build/pypi/build_and_upload.sh
+
+# Windows enhanced script
 build\pypi\pypi.bat
 ```
 
@@ -49,11 +58,13 @@ build/
 │   ├── build_and_upload.py     # Cross-platform PyPI build and upload script
 │   └── pypi.bat                 # Windows-specific PyPI upload script
 └── readthedocs/                 # ReadTheDocs and Sphinx documentation tools
-    ├── readthedocs.yaml         # ReadTheDocs configuration
+    ├── README.md                # ReadTheDocs and Sphinx documentation
     ├── sphinx.sh                # Unix Sphinx build script
     ├── sphinx.bat               # Windows Sphinx build script
     └── test_rtd_config.py       # ReadTheDocs configuration tester
 ```
+
+**Note:** The `readthedocs.yaml` configuration file is located in the project root directory (where ReadTheDocs expects it), not in the build/readthedocs/ subdirectory.
 
 ## Version Management Tools
 
@@ -78,7 +89,7 @@ build/
 |--------------|------------|-----------|
 | **macOS/Linux** | `sphinx.sh` | `./build/readthedocs/sphinx.sh` |
 | **Windows** | `sphinx.bat` | `build\readthedocs\sphinx.bat` |
-| **ReadTheDocs Config** | `readthedocs.yaml` | Configuration file for RTD |
+| **ReadTheDocs Config** | `readthedocs.yaml` | Located in project root |
 | **RTD Tester** | `test_rtd_config.py` | `python build/readthedocs/test_rtd_config.py` |
 
 ### Version Checking
@@ -179,7 +190,7 @@ These scripts will:
 
 ### ReadTheDocs Configuration
 
-The `build/readthedocs/readthedocs.yaml` file configures how the documentation is built on ReadTheDocs.io. Test the configuration with:
+The `readthedocs.yaml` file (located in the project root) configures how the documentation is built on ReadTheDocs.io. Test the configuration with:
 
 ```bash
 python build/readthedocs/test_rtd_config.py

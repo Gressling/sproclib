@@ -1,8 +1,8 @@
 # ========================================================================
 # SPROCLIB Version Update Script (PowerShell)
 # ========================================================================
-# This script updates the version number across all project files and
-# creates a git tag for the new version.
+# This script updates the version number across all project files,
+# creates a git tag for the new version, and pushes everything to remote.
 #
 # Usage: .\set_version.ps1 <version>
 # Example: .\set_version.ps1 2.0.5
@@ -158,6 +158,14 @@ try {
     Write-Host "  Creating git tag..." -ForegroundColor Cyan
     git tag -a "v$Version" -m "Release version $Version"
     Write-Host "  ✓ Tag v$Version created" -ForegroundColor Green
+    
+    Write-Host "  Pushing commit to remote..." -ForegroundColor Cyan
+    git push origin main
+    Write-Host "  ✓ Commit pushed to remote" -ForegroundColor Green
+    
+    Write-Host "  Pushing tag to remote..." -ForegroundColor Cyan
+    git push origin "v$Version"
+    Write-Host "  ✓ Tag pushed to remote" -ForegroundColor Green
 }
 catch {
     Write-Error "Git operations failed: $_"
@@ -180,11 +188,11 @@ Write-Host ""
 Write-Host "Git operations completed:" -ForegroundColor Yellow
 Write-Host "  • Committed changes" -ForegroundColor White
 Write-Host "  • Created tag: v$Version" -ForegroundColor White
+Write-Host "  • Pushed commit to remote" -ForegroundColor White
+Write-Host "  • Pushed tag to remote" -ForegroundColor White
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Yellow
 Write-Host "  • Review changes: git show" -ForegroundColor White
-Write-Host "  • Push changes: git push origin main" -ForegroundColor White
-Write-Host "  • Push tags: git push origin v$Version" -ForegroundColor White
 Write-Host "  • Build documentation: python docs\build_docs.py" -ForegroundColor White
 Write-Host "  • Upload to PyPI: python build_and_upload.py" -ForegroundColor White
 Write-Host ""

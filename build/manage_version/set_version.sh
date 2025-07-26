@@ -2,8 +2,8 @@
 # ========================================================================
 # SPROCLIB Version Update Script (macOS/Unix)
 # ========================================================================
-# This script updates the version number across all project files and
-# creates a git tag for the new version.
+# This script updates the version number across all project files,
+# creates a git tag for the new version, and pushes everything to remote.
 #
 # Usage: ./set_version.sh <version>
 # Example: ./set_version.sh 2.0.5
@@ -141,6 +141,22 @@ else
     exit 1
 fi
 
+echo -e "${BLUE}   Pushing commit to remote...${NC}"
+if git push origin main; then
+    echo -e "${GREEN}   ✓ Commit pushed to remote${NC}"
+else
+    echo -e "${RED}ERROR: Failed to push commit to remote${NC}"
+    exit 1
+fi
+
+echo -e "${BLUE}   Pushing tag to remote...${NC}"
+if git push origin "v$NEW_VERSION"; then
+    echo -e "${GREEN}   ✓ Tag pushed to remote${NC}"
+else
+    echo -e "${RED}ERROR: Failed to push tag to remote${NC}"
+    exit 1
+fi
+
 echo ""
 echo -e "${GREEN}========================================================================${NC}"
 echo -e "${GREEN}SUCCESS: Version updated to $NEW_VERSION${NC}"
@@ -155,11 +171,11 @@ echo ""
 echo -e "${YELLOW}Git operations completed:${NC}"
 echo "   - Committed changes"
 echo "   - Created tag: v$NEW_VERSION"
+echo "   - Pushed commit to remote"
+echo "   - Pushed tag to remote"
 echo ""
 echo -e "${BLUE}Next steps:${NC}"
 echo "   - Review changes: git show"
-echo "   - Push changes: git push origin main"
-echo "   - Push tags: git push origin v$NEW_VERSION"
 echo "   - Build documentation: ./build/readthedocs/sphinx.sh"
 echo "   - Upload to PyPI: python build/pypi/build_and_upload.py"
 echo ""

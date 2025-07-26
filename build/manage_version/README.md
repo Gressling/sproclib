@@ -10,7 +10,8 @@ This directory contains scripts for managing and checking SPROCLIB version infor
 - **`get_version.ps1`** - Windows PowerShell script for checking version status (recommended for Windows)
 
 ### Version Setting Scripts
-- **`set_version.ps1`** - PowerShell script for updating all version numbers
+- **`set_version.sh`** - macOS/Unix shell script for updating all version numbers
+- **`set_version.ps1`** - PowerShell script for updating all version numbers  
 - **`set_version.bat`** - Windows batch script for updating all version numbers
 
 ## Usage
@@ -29,12 +30,21 @@ build\manage_version\get_version.bat
 
 ### Update Version Numbers
 ```bash
-# PowerShell (recommended)
+# macOS/Unix
+./build/manage_version/set_version.sh 2.0.5
+
+# Windows (PowerShell - recommended)
 .\build\manage_version\set_version.ps1 2.0.5
 
-# Windows batch
+# Windows (Command Prompt)
 build\manage_version\set_version.bat 2.0.5
 ```
+
+**Note:** All set_version scripts automatically:
+- Update version numbers in all project files
+- Create a git commit with the changes
+- Create a git tag for the new version
+- Push the commit and tag to the remote repository
 
 ## Output Format
 
