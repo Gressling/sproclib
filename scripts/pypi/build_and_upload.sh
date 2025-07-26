@@ -51,6 +51,38 @@ check_command() {
     fi
 }
 
+# Function to get API token from file
+get_api_token() {
+    local token_file="$SCRIPT_DIR/api-token.txt"
+    if [[ -f "$token_file" ]]; then
+        local token=$(cat "$token_file" | tr -d '\n\r' | xargs)
+        if [[ -n "$token" ]]; then
+            echo "$token"
+            return 0
+        fi
+    fi
+    return 1
+}
+
+# Function to setup authentication
+setup_auth() {
+    local api_token
+    if api_token=$(get_api_token); then
+        echo -e "${GREEN}🔑 Using API token from api-token.txt${NC}"
+        export TWINE_USERNAME="__token__"
+        export TWINE_PASSWORD="$api_token"
+        return 0
+    else
+        echo -e "${RED}❌ No API token found in api-token.txt${NC}"
+        echo -e "${YELLOW}💡 To set up your API token:${NC}"
+        echo -e "${YELLOW}   1. Create PyPI account: https://pypi.org/account/register/${NC}"
+        echo -e "${YELLOW}   2. Generate token: https://pypi.org/manage/account/token/${NC}"
+        echo -e "${YELLOW}   3. Save token: echo 'pypi-your-token-here' > scripts/pypi/api-token.txt${NC}"
+        echo -e "${YELLOW}   4. See: scripts/pypi/README_TOKEN_SETUP.md for detailed instructions${NC}"
+        return 1
+    fi
+}
+
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -147,10 +179,10 @@ if [[ "$CLEAN_FIRST" == true ]]; then
 fi
 
 # Build the package
-run_command "python -m build" "Building package"
+run_command "python3 -m build" "Building package"
 
 # Check the distribution
-run_command "python -m twine check dist/*" "Checking distribution"
+run_command "python3 -m twine check dist/*" "Checking distribution"
 
 echo -e "\n${GREEN}✅ Package built successfully!${NC}"
 echo -e "${BLUE}📂 Distribution files:${NC}"
@@ -159,17 +191,27 @@ ls -la dist/
 # Handle automatic uploads
 if [[ "$AUTO_TEST_UPLOAD" == true ]]; then
     echo -e "\n${YELLOW}🚀 Uploading to TestPyPI...${NC}"
-    run_command "python -m twine upload --repository testpypi dist/*" "Uploading to TestPyPI"
-    echo -e "${GREEN}✅ Uploaded to TestPyPI successfully!${NC}"
-    echo -e "${BLUE}🌐 View at: https://test.pypi.org/project/sproclib/${NC}"
+    if setup_auth; then
+        run_command "python3 -m twine upload --repository testpypi dist/*" "Uploading to TestPyPI"
+        echo -e "${GREEN}✅ Uploaded to TestPyPI successfully!${NC}"
+        echo -e "${BLUE}🌐 View at: https://test.pypi.org/project/sproclib/${NC}"
+    else
+        echo -e "${RED}❌ Cannot upload: No API token available${NC}"
+        exit 1
+    fi
 elif [[ "$AUTO_UPLOAD" == true ]]; then
     echo -e "\n${RED}⚠️  WARNING: You are about to upload to production PyPI!${NC}"
     read -p "Are you sure? (y/N): " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        run_command "python -m twine upload dist/*" "Uploading to PyPI"
-        echo -e "${GREEN}✅ Uploaded to PyPI successfully!${NC}"
-        echo -e "${BLUE}🌐 View at: https://pypi.org/project/sproclib/${NC}"
+        if setup_auth; then
+            run_command "python3 -m twine upload dist/*" "Uploading to PyPI"
+            echo -e "${GREEN}✅ Uploaded to PyPI successfully!${NC}"
+            echo -e "${BLUE}🌐 View at: https://pypi.org/project/sproclib/${NC}"
+        else
+            echo -e "${RED}❌ Cannot upload: No API token available${NC}"
+            exit 1
+        fi
     else
         echo -e "${YELLOW}Upload cancelled${NC}"
     fi
@@ -177,15 +219,36 @@ else
     # Provide upload commands
     echo -e "\n${CYAN}📤 Upload Commands:${NC}"
     echo ""
-    echo -e "${YELLOW}To upload to TestPyPI (recommended first):${NC}"
-    echo "python -m twine upload --repository testpypi dist/*"
-    echo ""
-    echo -e "${YELLOW}To upload to PyPI:${NC}"
-    echo "python -m twine upload dist/*"
-    echo ""
-    echo -e "${YELLOW}Or use this script with automatic upload:${NC}"
-    echo "$0 --test-upload    # Upload to TestPyPI"
-    echo "$0 --upload         # Upload to PyPI"
+    
+    # Check if token is available
+    if get_api_token > /dev/null; then
+        echo -e "${GREEN}🔑 API token found in api-token.txt - authentication ready${NC}"
+        echo ""
+        echo -e "${YELLOW}To upload to TestPyPI (recommended first):${NC}"
+        echo "./scripts/pypi/build_and_upload.sh --test-upload"
+        echo ""
+        echo -e "${YELLOW}To upload to PyPI:${NC}"
+        echo "./scripts/pypi/build_and_upload.sh --upload"
+        echo ""
+        echo -e "${YELLOW}Manual upload commands (with automatic authentication):${NC}"
+        echo "# First, ensure your token is set up (see README_TOKEN_SETUP.md)"
+        echo "export TWINE_USERNAME=\"__token__\""
+        echo "export TWINE_PASSWORD=\"\$(cat ./scripts/pypi/api-token.txt | tr -d '\\n\\r' | xargs)\""
+        echo "python3 -m twine upload --repository testpypi dist/*  # TestPyPI"
+        echo "python3 -m twine upload dist/*                        # PyPI"
+    else
+        echo -e "${YELLOW}⚠️  No API token found in api-token.txt${NC}"
+        echo ""
+        echo -e "${YELLOW}To upload to TestPyPI (recommended first):${NC}"
+        echo "python3 -m twine upload --repository testpypi dist/*"
+        echo ""
+        echo -e "${YELLOW}To upload to PyPI:${NC}"
+        echo "python3 -m twine upload dist/*"
+        echo ""
+        echo -e "${YELLOW}Or use this script with automatic upload:${NC}"
+        echo "$0 --test-upload    # Upload to TestPyPI"
+        echo "$0 --upload         # Upload to PyPI"
+    fi
 fi
 
 echo ""

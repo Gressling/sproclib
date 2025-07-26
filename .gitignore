@@ -3,6 +3,13 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# Security - API tokens and credentials
+scripts/pypi/api-token.txt
+*.token
+*.key
+.env
+.env.local
+
 # C extensions
 *.so
 
