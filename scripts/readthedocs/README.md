@@ -17,7 +17,7 @@ This directory contains tools for building and deploying documentation using Sph
 
 **macOS/Linux:**
 ```bash
-./build/readthedocs/sphinx.sh
+./scripts/readthedocs/sphinx.sh
 ```
 
 **Windows:**
@@ -37,7 +37,7 @@ The Sphinx scripts support a `clean` option to remove previous builds:
 
 ```bash
 # Clean and rebuild
-./build/readthedocs/sphinx.sh clean
+./scripts/readthedocs/sphinx.sh clean
 
 # Windows
 build\readthedocs\sphinx.bat clean
@@ -48,7 +48,7 @@ build\readthedocs\sphinx.bat clean
 Test the ReadTheDocs configuration before deploying:
 
 ```bash
-python build/readthedocs/test_rtd_config.py
+python scripts/readthedocs/test_rtd_config.py
 ```
 
 This will validate:
@@ -156,7 +156,7 @@ html_theme = 'furo'
 1. **Edit documentation files** in `docs/source/`
 2. **Build locally** to test changes:
    ```bash
-   ./build/readthedocs/sphinx.sh
+   ./scripts/readthedocs/sphinx.sh
    ```
 3. **Review output** in browser
 4. **Commit and push** changes
@@ -167,12 +167,12 @@ html_theme = 'furo'
 1. **Update version** in documentation:
    ```bash
    # Version management scripts update docs/source/conf.py
-   ./build/manage_version/set_version.ps1 2.0.5
+   ./scripts/manage_version/set_version.ps1 2.0.5
    ```
 
 2. **Build and test locally**:
    ```bash
-   ./build/readthedocs/sphinx.sh clean
+   ./scripts/readthedocs/sphinx.sh clean
    ```
 
 3. **Commit documentation updates**
@@ -216,7 +216,7 @@ pip install furo  # or your chosen theme
 
 Run the configuration tester:
 ```bash
-python build/readthedocs/test_rtd_config.py
+python scripts/readthedocs/test_rtd_config.py
 ```
 
 This will report:
@@ -268,10 +268,10 @@ build:
 
 ```yaml
 - name: Test Documentation Build
-  run: ./build/readthedocs/sphinx.sh
+  run: ./scripts/readthedocs/sphinx.sh
 
 - name: Test RTD Configuration  
-  run: python build/readthedocs/test_rtd_config.py
+  run: python scripts/readthedocs/test_rtd_config.py
 ```
 
 ## Best Practices

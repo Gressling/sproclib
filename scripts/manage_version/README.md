@@ -19,7 +19,7 @@ This directory contains scripts for managing and checking SPROCLIB version infor
 ### Check Current Version Status
 ```bash
 # macOS/Unix
-./build/manage_version/get_version.sh
+./scripts/manage_version/get_version.sh
 
 # Windows (Command Prompt)
 build\manage_version\get_version.bat
@@ -31,7 +31,7 @@ build\manage_version\get_version.bat
 ### Update Version Numbers
 ```bash
 # macOS/Unix
-./build/manage_version/set_version.sh 2.0.5
+./scripts/manage_version/set_version.sh 2.0.5
 
 # Windows (PowerShell - recommended)
 .\build\manage_version\set_version.ps1 2.0.5

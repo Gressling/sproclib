@@ -4,8 +4,8 @@ This directory contains build, deployment, an### Build and Upload Tools
 
 | **Platform** | **Script** | **Usage** |
 |--------------|------------|-----------|
-| **Cross-platform** | `build_and_upload.py` | `python build/pypi/build_and_upload.py` |
-| **macOS/Linux** | `build_and_upload.sh` | `./build/pypi/build_and_upload.sh` |
+| **Cross-platform** | `build_and_upload.py` | `python scripts/pypi/build_and_upload.py` |
+| **macOS/Linux** | `build_and_upload.sh` | `./scripts/pypi/build_and_upload.sh` |
 | **Windows Enhanced** | `pypi.bat` | `build\pypi\pypi.bat` |ion management tools for the SPROCLIB project.
 
 ## Quick Start
@@ -15,19 +15,19 @@ This directory contains build, deployment, an### Build and Upload Tools
 **1. Check/Set Version:**
 ```bash
 # Check current version status
-./build/manage_version/get_version.sh
+./scripts/manage_version/get_version.sh
 
 # Update version for new release
-./build/manage_version/set_version.ps1 2.0.5
+./scripts/manage_version/set_version.ps1 2.0.5
 ```
 
 **2. Build and Upload to PyPI:**
 ```bash
 # Cross-platform Python script
-python build/pypi/build_and_upload.py
+python scripts/pypi/build_and_upload.py
 
 # macOS/Linux shell script
-./build/pypi/build_and_upload.sh
+./scripts/pypi/build_and_upload.sh
 
 # Windows enhanced script
 build\pypi\pypi.bat
@@ -36,7 +36,7 @@ build\pypi\pypi.bat
 **3. Documentation (ReadTheDocs):**
 ```bash
 # Build documentation locally for testing
-./build/readthedocs/sphinx.sh
+./scripts/readthedocs/sphinx.sh
 
 # Note: ReadTheDocs builds automatically after git commits/pushes
 # No manual action needed for production documentation
@@ -45,7 +45,7 @@ build\pypi\pypi.bat
 ## Directory Structure
 
 ```
-build/
+scripts/
 ├── README.md                     # This file - overview of all build tools
 ├── manage_version/               # Version management tools
 │   ├── README.md                # Detailed version management documentation
@@ -64,7 +64,7 @@ build/
     └── test_rtd_config.py       # ReadTheDocs configuration tester
 ```
 
-**Note:** The `readthedocs.yaml` configuration file is located in the project root directory (where ReadTheDocs expects it), not in the build/readthedocs/ subdirectory.
+**Note:** The `readthedocs.yaml` configuration file is located in the project root directory (where ReadTheDocs expects it), not in the scripts/readthedocs/ subdirectory.
 
 ## Version Management Tools
 
@@ -72,7 +72,7 @@ build/
 
 | **Platform** | **Script** | **Usage** |
 |--------------|------------|-----------|
-| **macOS/Linux** | `get_version.sh` | `./build/manage_version/get_version.sh` |
+| **macOS/Linux** | `get_version.sh` | `./scripts/manage_version/get_version.sh` |
 | **Windows CMD** | `get_version.bat` | `build\manage_version\get_version.bat` |
 | **Windows PowerShell** | `get_version.ps1` | `.\build\manage_version\get_version.ps1` |
 
@@ -80,17 +80,17 @@ build/
 
 | **Platform** | **Script** | **Usage** |
 |--------------|------------|-----------|
-| **Cross-platform** | `build_and_upload.py` | `python build/pypi/build_and_upload.py` |
+| **Cross-platform** | `build_and_upload.py` | `python scripts/pypi/build_and_upload.py` |
 | **Windows Enhanced** | `pypi.bat` | `build\pypi\pypi.bat` |
 
 ### Documentation Tools
 
 | **Platform** | **Script** | **Usage** |
 |--------------|------------|-----------|
-| **macOS/Linux** | `sphinx.sh` | `./build/readthedocs/sphinx.sh` |
+| **macOS/Linux** | `sphinx.sh` | `./scripts/readthedocs/sphinx.sh` |
 | **Windows** | `sphinx.bat` | `build\readthedocs\sphinx.bat` |
 | **ReadTheDocs Config** | `readthedocs.yaml` | Located in project root |
-| **RTD Tester** | `test_rtd_config.py` | `python build/readthedocs/test_rtd_config.py` |
+| **RTD Tester** | `test_rtd_config.py` | `python scripts/readthedocs/test_rtd_config.py` |
 
 ### Version Checking
 
@@ -98,7 +98,7 @@ Check current version status across all project files:
 
 ```bash
 # macOS/Linux
-./build/manage_version/get_version.sh
+./scripts/manage_version/get_version.sh
 
 # Windows Command Prompt
 build\manage_version\get_version.bat
@@ -150,7 +150,7 @@ Use the build scripts for package management:
 
 **Cross-platform (recommended):**
 ```bash
-python build/pypi/build_and_upload.py
+python scripts/pypi/build_and_upload.py
 ```
 
 **Windows-specific with enhanced features:**
@@ -174,7 +174,7 @@ Build documentation locally for testing:
 
 **macOS/Linux:**
 ```bash
-./build/readthedocs/sphinx.sh
+./scripts/readthedocs/sphinx.sh
 ```
 
 **Windows:**
@@ -193,7 +193,7 @@ These scripts will:
 The `readthedocs.yaml` file (located in the project root) configures how the documentation is built on ReadTheDocs.io. Test the configuration with:
 
 ```bash
-python build/readthedocs/test_rtd_config.py
+python scripts/readthedocs/test_rtd_config.py
 ```
 
 ### Manual Build Process
@@ -203,7 +203,7 @@ python build/readthedocs/test_rtd_config.py
 pip install build twine
 
 # Clean previous builds
-rm -rf build/ dist/ *.egg-info/
+rm -rf scripts/ dist/ *.egg-info/
 
 # Build the package
 python -m build
@@ -240,24 +240,24 @@ pip install build twine
 
 1. **Check current versions** before making changes:
    ```bash
-   ./build/manage_version/get_version.sh
+   ./scripts/manage_version/get_version.sh
    ```
 
 2. **Make your code changes**
 
 3. **Update version** when ready for release:
    ```bash
-   ./build/manage_version/set_version.ps1 2.0.5
+   ./scripts/manage_version/set_version.ps1 2.0.5
    ```
 
 4. **Build and test** the package:
    ```bash
-   python build/pypi/build_and_upload.py
+   python scripts/pypi/build_and_upload.py
    ```
 
 5. **Build documentation** (optional):
    ```bash
-   ./build/readthedocs/sphinx.sh
+   ./scripts/readthedocs/sphinx.sh
    ```
 
 6. **Upload to TestPyPI** first:
@@ -282,13 +282,13 @@ These scripts can be integrated into CI/CD pipelines:
 ```yaml
 # Example GitHub Actions workflow
 - name: Check Version Consistency
-  run: ./build/manage_version/get_version.sh
+  run: ./scripts/manage_version/get_version.sh
 
 - name: Build Package
-  run: python build/pypi/build_and_upload.py
+  run: python scripts/pypi/build_and_upload.py
 
 - name: Build Documentation
-  run: ./build/readthedocs/sphinx.sh
+  run: ./scripts/readthedocs/sphinx.sh
 
 - name: Upload to PyPI
   run: python -m twine upload dist/*
@@ -322,8 +322,8 @@ Version management scripts monitor:
 ### Version Inconsistencies
 Run the version checker to identify issues, then use the version setter to fix them:
 ```bash
-./build/manage_version/get_version.sh
-./build/manage_version/set_version.ps1 <correct_version>
+./scripts/manage_version/get_version.sh
+./scripts/manage_version/set_version.ps1 <correct_version>
 ```
 
 ### Build Failures

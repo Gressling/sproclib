@@ -127,12 +127,12 @@ else
     echo -e "${YELLOW}⚠️  Found $ISSUES version inconsistencies out of $TOTAL files${NC}"
     echo ""
     echo -e "${BLUE}💡 Recommendations:${NC}"
-    echo "   • Use build/manage_version/set_version.sh to update all versions"
+    echo "   • Use scripts/manage_version/set_version.sh to update all versions"
     echo "   • Current release version appears to be: $GIT_TAG"
 fi
 
 echo ""
 echo "🛠️  Available commands:"
-echo "   • Update versions: build/manage_version/set_version.sh <version>"
-echo "   • Check again: build/manage_version/get_version.sh"
+echo "   • Update versions: scripts/manage_version/set_version.sh <version>"
+echo "   • Check again: scripts/manage_version/get_version.sh"
 echo ""

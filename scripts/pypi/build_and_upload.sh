@@ -1,14 +1,17 @@
 #!/bin/bash
-# ========================================================================
-# SPROCLIB PyPI Build and Upload Script (Unix/macOS)
-# ========================================================================
+# ===========================================================            echo "  --clean          Clean Python build artifacts before building (dist/, *.egg-info, Python's build/ only)"============
+# SPROCLIB PyPI Build and Upload Script (Unix/ma    # Python creates a build/ directory during packaging, but we use scripts/ for our scripts
+    # We can distinguish them: Python's build/ has lib/, our scripts/ has README.md
+    if [[ -d "build" ]] && [[ ! -f "scripts/README.md" ]] && [[ -d "build/lib" ]]; then
+        echo -e "${YELLOW}   Removing Python build artifacts...${NC}"
+        rm -rf build/# ========================================================================
 # This script builds the package and provides upload commands for PyPI
 #
 # Usage: ./build_and_upload.sh [options]
 # Options:
 #   --test-upload    Automatically upload to TestPyPI after build
 #   --upload         Automatically upload to PyPI after build
-#   --clean          Clean build artifacts before building
+#   --clean          Clean Python build artifacts before building (dist/, *.egg-info, Python's build/ only)
 # ========================================================================
 
 # Colors for output
@@ -68,7 +71,7 @@ while [[ $# -gt 0 ]]; do
             echo "Options:"
             echo "  --test-upload    Automatically upload to TestPyPI after build"
             echo "  --upload         Automatically upload to PyPI after build"
-            echo "  --clean          Clean build artifacts before building"
+            echo "  --clean          Clean Python build artifacts before building (dist/, *.egg-info, Python's scripts/ only)"
             echo "  -h, --help       Show this help message"
             exit 0
             ;;
@@ -116,9 +119,31 @@ if ! python -m twine --help &> /dev/null; then
     pip install twine
 fi
 
-# Clean previous builds if requested or if dist exists
-if [[ "$CLEAN_FIRST" == true ]] || [[ -d "dist" ]] || [[ -d "build" ]]; then
-    run_command "rm -rf build/ dist/ *.egg-info/" "Cleaning previous builds"
+# Clean previous builds if requested
+if [[ "$CLEAN_FIRST" == true ]]; then
+    echo -e "\n${BLUE}🧹 Cleaning previous builds...${NC}"
+    
+    # Remove dist directory
+    if [[ -d "dist" ]]; then
+        echo -e "${YELLOW}   Removing dist/...${NC}"
+        rm -rf dist/
+    fi
+    
+    # Remove *.egg-info directories
+    if ls *.egg-info 1> /dev/null 2>&1; then
+        echo -e "${YELLOW}   Removing *.egg-info...${NC}"
+        rm -rf *.egg-info/
+    fi
+    
+    # Only remove Python's build directory, not our scripts/ directory
+    # Python creates a scripts/ directory during packaging, but we use scripts/ for our scripts
+    # We can distinguish them: Python's scripts/ has lib/, our scripts/ has README.md
+    if [[ -d "build" ]] && [[ ! -f "scripts/README.md" ]] && [[ -d "scripts/lib" ]]; then
+        echo -e "${YELLOW}   Removing Python build artifacts...${NC}"
+        rm -rf scripts/
+    fi
+    
+    echo -e "${GREEN}   ✓ Cleanup completed${NC}"
 fi
 
 # Build the package

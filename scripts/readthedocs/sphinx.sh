@@ -29,7 +29,7 @@ fi
 
 echo "📖 Building documentation..."
 echo "   Source: source"
-echo "   Output: build/html"
+echo "   Output: scripts/html"
 echo ""
 
 # Check if sphinx-build is available
@@ -40,17 +40,17 @@ if ! command -v sphinx-build &> /dev/null; then
     echo ""
 fi
 
-sphinx-build -b html -E source build/html
+sphinx-build -b html -E source scripts/html
 BUILD_EXIT_CODE=$?
 
 if [[ $BUILD_EXIT_CODE -eq 0 ]]; then
     echo ""
     echo "✅ Documentation build completed successfully!"
-    echo "📂 Output directory: build/html"
-    echo "🌐 Open in browser: file://$PWD/build/html/index.html"
+    echo "📂 Output directory: scripts/html"
+    echo "🌐 Open in browser: file://$PWD/scripts/html/index.html"
     echo ""
     echo "🚀 Opening documentation in your default browser..."
-    open "build/html/index.html"
+    open "scripts/html/index.html"
 else
     echo ""
     echo "❌ Build failed with return code $BUILD_EXIT_CODE"

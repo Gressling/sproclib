@@ -14,12 +14,12 @@ This directory contains tools for building, testing, and uploading the SPROCLIB 
 
 **Python script (works everywhere):**
 ```bash
-python build/pypi/build_and_upload.py
+python scripts/pypi/build_and_upload.py
 ```
 
 **Unix/macOS shell script (enhanced features):**
 ```bash
-./build/pypi/build_and_upload.sh
+./scripts/pypi/build_and_upload.sh
 ```
 
 These scripts will:
@@ -85,7 +85,7 @@ pip install build twine
 
 1. **Build the package**:
    ```bash
-   python build/pypi/build_and_upload.py
+   python scripts/pypi/build_and_upload.py
    ```
 
 2. **Upload to TestPyPI**:
@@ -141,7 +141,7 @@ If the scripts don't work, use these manual commands:
 
 ```bash
 # Clean previous builds
-rm -rf build/ dist/ *.egg-info/
+rm -rf scripts/ dist/ *.egg-info/
 
 # Build package
 python -m build
@@ -167,8 +167,8 @@ python -m twine upload dist/*
 ## Integration
 
 These scripts integrate with:
-- **Version management**: Use `build/manage_version/` to set versions before building
-- **Documentation**: Use `build/readthedocs/` to build docs before releasing
+- **Version management**: Use `scripts/manage_version/` to set versions before building
+- **Documentation**: Use `scripts/readthedocs/` to build docs before releasing
 - **CI/CD**: Scripts can be called from GitHub Actions or other CI systems
 
 ## See Also
