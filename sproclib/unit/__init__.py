@@ -14,6 +14,7 @@ Available Units:
 - valve: Valve models (Control, Three-way)
 - pump: Pump models (Centrifugal, Positive Displacement)
 - compressor: Compressor models
+- mixer: Mixer models for stream combining
 - utilities: Linearization and analysis utilities
 
 For Contributors:
@@ -48,6 +49,9 @@ try:
     
     # Compressor models
     from .compressor import Compressor
+    
+    # Mixer models
+    from .mixer import Mixer
     
     # Utilities
     from .utilities import LinearApproximation
@@ -84,7 +88,7 @@ current_module = sys.modules[__name__]
 # Check what was successfully imported and add to __all__
 optional_units = [
     'Tank', 'Pump', 'CentrifugalPump', 'PositiveDisplacementPump',
-    'ControlValve', 'ThreeWayValve', 'Compressor', 'LinearApproximation',
+    'ControlValve', 'ThreeWayValve', 'Compressor', 'Mixer', 'LinearApproximation',
     'BatchReactor', 'PlugFlowReactor', 'FixedBedReactor', 'SemiBatchReactor',
     'FluidizedBedReactor', 'DistillationTray', 'BinaryDistillationColumn'
 ]
